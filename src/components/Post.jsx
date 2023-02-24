@@ -1,37 +1,116 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../css/style.css';
 import '../css/fontello.css';
 
-const Post = () => {
+import { mainContext } from '../App';
+
+const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }) => {
+  let { setFullImageSrc } = React.useContext(mainContext);
+  const navigate = useNavigate();
+
+  for (let i = 0; i < stats.length; i++) {
+    if (stats[i] >= 1000000) {
+      stats[i] = Math.floor(stats[i] / 1000000);
+      stats[i] = stats[i].toString() + 'm';
+    } else if (stats[i] >= 1000) {
+      stats[i] = Math.floor(stats[i] / 1000);
+      stats[i] = stats[i].toString() + 'k';
+    }
+  }
+  const CONTENT_LIMIT = 10;
+  const icons = ['icon-like', 'icon-comment', 'icon-repost', 'icon-flag'];
+
+  const [activeIcons, setActiveIcons] = React.useState([]);
+
+  const onClickIcon = (icon) => {
+    if (activeIcons.includes(icon)) {
+      setActiveIcons(activeIcons.filter((obj) => obj !== icon));
+    } else {
+      setActiveIcons([...activeIcons, icon]);
+    }
+
+    if (icon === 'icon-comment') {
+      navigate('/comments');
+    }
+  };
+
+  const goToFullMode = (path) => {
+    setFullImageSrc(path);
+    navigate('/full_image');
+  };
+
   return (
-    <article
-      className="Post" //ref="Post"
-    >
-      <div className="Post-user">
-        <div className="Post-user-profilepicture">
-          <img
-            src="https://t4.ftcdn.net/jpg/02/19/63/31/360_F_219633151_BW6TD8D1EA9OqZu4JgdmeJGg4JBaiAHj.jpg"
-            alt="Post Pic"
-          />
+    <div className="posts_container">
+      <div className="post">
+        <div className="author_post">
+          <div className="avatar_author_post">
+            {avatar ? (
+              <img className="avatar_picture" src={avatar} alt="user avatar" />
+            ) : (
+              <i className="icon-profile avatar_anonim"></i>
+            )}
+          </div>
+          <div className="author_nick">
+            <p className="nickname">{nickname}</p>
+          </div>
         </div>
 
-        <div className="Post-user-nickname">
-          <span>Nickname</span>
+        <div className="post_sign">
+          {text ? <p className="post_text">{text}</p> : null}
+          {imgs && imgs.length <= CONTENT_LIMIT
+            ? imgs.map((path, index) => {
+                return (
+                  <img
+                    key={index}
+                    className="post_one_item"
+                    src={path}
+                    alt="img post"
+                    onClick={() => goToFullMode(path)}
+                  />
+                );
+              })
+            : null}
+          {videos && videos.length <= CONTENT_LIMIT
+            ? videos.map((path, index) => {
+                return (
+                  <video
+                    key={index}
+                    controls
+                    className="post_one_item"
+                    src={path}
+                    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video>
+                );
+              })
+            : null}
+        </div>
+
+        <div
+          className="post_icons"
+          onClick={(e) => {
+            if (e.target.tagName !== 'I') {
+              return;
+            } else {
+              onClickIcon(e.target.className.split(' ')[0]);
+            }
+          }}>
+          {icons.map((obj, index) => {
+            return (
+              <div key={index} className="post_icon_box">
+                <i
+                  className={
+                    activeIcons.includes(obj)
+                      ? `${obj} post_icon icon_target post_icon_animation`
+                      : `${obj} post_icon`
+                  }></i>
+                <p className="post_count">{stats[index]}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
-
-      <div className="Post-image">
-        <div className="Post-image-bg">
-          <img
-            alt="Icon"
-            src="https://cdn-images-1.medium.com/max/1200/1*dMSWcBZCuzyRDeMr4uE_og.png"
-          />
-        </div>
-      </div>
-
-      <div className="Post-caption">
-        <strong>123 123 123 </strong>
-      </div>
-    </article>
+    </div>
   );
 };
 
