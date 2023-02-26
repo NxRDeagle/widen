@@ -21,13 +21,13 @@ function App() {
   const [page, setPage] = React.useState(
     location.pathname === '/' ? 'home' : location.pathname.substring(1),
   );
-  const [fullImageSrc, setFullImageSrc] = React.useState(
+  const [fullImages, setFullImages] = React.useState([
     'https://picturesofmaidenhead.files.wordpress.com/2019/01/image-not-found.jpg',
-  );
+  ]);
 
   return (
     <div className="App">
-      <mainContext.Provider value={{ page, setPage, fullImageSrc, setFullImageSrc }}>
+      <mainContext.Provider value={{ page, setPage, fullImages, setFullImages }}>
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
@@ -35,7 +35,7 @@ function App() {
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/full_image" element={<FullMode imgSrc={fullImageSrc} />} />
+          <Route path="/full_image" element={<FullMode imgs={fullImages} />} />
           <Route path="/comments" element={<Comments />} />
         </Routes>
       </mainContext.Provider>

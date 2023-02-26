@@ -7,7 +7,7 @@ import '../css/fontello.css';
 import { mainContext } from '../App';
 
 const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }) => {
-  let { setFullImageSrc } = React.useContext(mainContext);
+  let { setFullImages } = React.useContext(mainContext);
   const navigate = useNavigate();
 
   for (let i = 0; i < stats.length; i++) {
@@ -36,8 +36,11 @@ const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }
     }
   };
 
-  const goToFullMode = (path) => {
-    setFullImageSrc(path);
+  const goToFullMode = (imgs, firstImg) => {
+    imgs.sort(function (x, y) {
+      return x === firstImg ? -1 : y === firstImg ? 1 : 0;
+    });
+    setFullImages(imgs);
     navigate('/full_image');
   };
 
@@ -67,7 +70,7 @@ const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }
                     className="post_one_item"
                     src={path}
                     alt="img post"
-                    onClick={() => goToFullMode(path)}
+                    onClick={() => goToFullMode(imgs, path)}
                   />
                 );
               })
