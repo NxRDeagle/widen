@@ -13,6 +13,7 @@ const Home = () => {
       <main className="mainBackground">
         <Post
           id={1}
+          avatar="https://fanibani.ru/images/wp-content/uploads/2021/06/47-4-900x563.jpg"
           nickname="KatyJS"
           text="ЖИЛИ БЫЛИ ТРИ КИТА"
           imgs={['https://i.pinimg.com/originals/8a/de/fe/8adefe5af862b4f9cec286c6ee4722cb.jpg']}

@@ -476,3 +476,165 @@
   font-size: 15px;
   margin: 2px 0 1px 0;
 }
+
+.not_found_container {
+  height: 100%;
+  width: var(--max-width);
+}
+
+.not_found_header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Montserrat';
+  font-size: 28px;
+}
+
+.emoji {
+  width: max-content;
+  height: auto;
+}
+
+.go_back {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 200px;
+  border: 2px solid #7e52ee;
+  padding: 10px;
+  background-color: #7e52ee;
+  border-radius: 30px;
+  font-weight: 600;
+  font-style: normal;
+  cursor: pointer;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.go_back_button {
+  background-color: transparent;
+  border: none;
+  font-family: 'Montserrat';
+  font-size: 15px;
+  color: #fff;
+}
+
+.go_back_arrow {
+  display: block;
+  color: #fff !important;
+  width: 14px;
+  height: auto;
+}
+
+/*СТИЛИ ПРЕВЬЮ*/
+.preview_user_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 92vh;
+  border-end-end-radius: 15px;
+  border-end-start-radius: 15px;
+  background: url('https://w-dog.ru/wallpapers/1/81/537661202759680/kapli-zelenyj-fon.jpg');
+  background-repeat: round;
+}
+.foot_notview {
+  filter: blur(6px);
+  pointer-events: none;
+}
+.preview_user_avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 196px;
+  height: 196px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  margin-top: 40px;
+}
+.preview_user_nickname_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  min-width: 180px;
+  max-width: fit-content;
+  height: 62px;
+  background-color: #ffffff;
+  border-radius: 29px;
+  margin-top: 9px;
+  font-family: var(--fontMons);
+}
+.preview_user_nickname {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: black;
+}
+.preview_user_role {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #726f6f;
+}
+.preview_user_sign_box {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 29px;
+  overflow: hidden;
+  width: 80%;
+  max-height: 217px;
+  min-height: fit-content;
+  margin-top: 20px;
+  font-family: var(--fontMons);
+}
+.preview_user_count_container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 23px;
+}
+.preview_user_count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.count {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: black;
+}
+.count_sign {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #726f6f;
+}
+.idea_sign {
+  margin: 29px 16px 31px 16px;
+  /*СТИЛИ ЕЩЁ НЕ ПРОПИСАЛИ В ФИГМЕ*/
+}
+.idea_sign::before {
+  content: 'Идея: ';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: black;
+}
+.rowupp {
+  position: absolute;
+  bottom: 10%;
+  font-size: 20px;
+  color: #ffff;
+}

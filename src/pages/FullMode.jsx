@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
@@ -12,7 +11,6 @@ const FullMode = ({ imgs }) => {
   const navigate = useNavigate();
 
   console.log(imgs);
-
   return (
     <div className="full_mode">
       <i

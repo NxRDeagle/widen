@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import '../css/style.css';
 import '../css/fontello.css';
@@ -8,6 +8,7 @@ import { mainContext } from '../App';
 
 const Footer = () => {
   const { page, setPage } = React.useContext(mainContext);
+  const location = useLocation();
   return (
     <footer className="foot_container">
       <ul
@@ -20,7 +21,12 @@ const Footer = () => {
           }
         }}>
         <Link to="/">
-          <li id="home" className={page === 'home' ? 'icon_target' : ''}>
+          <li
+            id="home"
+            className={page === 'home' ? 'icon_target' : ''}
+            onClick={() => {
+              if (location.pathname === '/') window.scrollTo(0, 0);
+            }}>
             <i className="icon-posts"></i>
           </li>
         </Link>

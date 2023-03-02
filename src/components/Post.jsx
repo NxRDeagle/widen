@@ -7,7 +7,8 @@ import '../css/fontello.css';
 import { mainContext } from '../App';
 
 const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }) => {
-  let { setFullImages } = React.useContext(mainContext);
+  let { setFullImages, setProfile, profile } = React.useContext(mainContext);
+
   const navigate = useNavigate();
 
   for (let i = 0; i < stats.length; i++) {
@@ -44,11 +45,21 @@ const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }
     navigate('/full_image');
   };
 
+  const goToUserProfile = () => {
+    if (!avatar) avatar = 'https://rutensil.com/uploads/egiocMMHeJxW8ZDVer7lMv-xw7ReN-vH.jpeg';
+    setProfile({
+      ...profile,
+      nickname,
+      avatar,
+    });
+    navigate('/user_profile');
+  };
+
   return (
     <div className="posts_container">
       <div className="post">
         <div className="author_post">
-          <div className="avatar_author_post">
+          <div className="avatar_author_post" onClick={goToUserProfile}>
             {avatar ? (
               <img className="avatar_picture" src={avatar} alt="user avatar" />
             ) : (
@@ -56,7 +67,9 @@ const Post = ({ id, avatar, nickname, text, imgs, videos, stats = [0, 0, 0, 0] }
             )}
           </div>
           <div className="author_nick">
-            <p className="nickname">{nickname}</p>
+            <p className="nickname" onClick={goToUserProfile}>
+              {nickname}
+            </p>
           </div>
         </div>
 
