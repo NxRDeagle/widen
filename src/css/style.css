@@ -5,6 +5,7 @@
 :root {
   --color_gray: #bababa;
   --max-width: 100%;
+  --fontMons: 'Montserrat';
 }
 /*Для всей соц-сети*/
 * {
@@ -196,12 +197,12 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
+  color: #ffff;
 }
 .close_full {
   position: absolute;
-  color: #ffff;
   font-size: 24px;
-  align-self: flex-end;
+  align-self: flex-start;
   margin: 20px 10px;
   z-index: 10;
   cursor: pointer;
@@ -223,7 +224,7 @@
 }
 
 .count_pictures {
-  font-family: 'Montserrat';
+  font-family: var(--fontMons);
   position: absolute;
   top: 95%;
   left: 45%;
@@ -239,7 +240,7 @@
   width: 100%;
   height: fit-content;
   margin-top: 20px;
-  font-family: 'Montserrat' sans-serif;
+  font-family: var(--fontMons);
 }
 .post {
   display: flex;
@@ -277,7 +278,7 @@
 }
 .nickname {
   font-size: 14px;
-  color: #423189;
+  color: black;
 }
 .post_sign {
   display: flex;
@@ -381,7 +382,7 @@
 .comments_icon_animation {
   color: #7e52ee;
   font-size: 26px;
-  margin-left: 26px;
+  margin-right: 26px;
   animation: commIconAnimation 0.9s ease-out infinite;
 }
 
@@ -404,14 +405,14 @@
 }
 
 .comments_name {
-  font-family: 'Montserrat';
+  font-family: var(--fontMons);
   font-size: 26px;
 }
 
 .close_comments {
-  color: black !important;
+  color: var(--color_gray) !important;
   font-size: 26px;
-  margin-right: 26px;
+  margin-left: 26px;
 }
 .leave_comment {
   display: flex;
@@ -432,7 +433,7 @@
   width: 80%;
   padding: 5px;
   margin-left: 20px;
-  font-family: 'Montserrat';
+  font-family: var(--fontMons);
   font-size: 15px;
   max-height: 30vh;
   overflow-y: scroll;
@@ -467,7 +468,7 @@
   margin-left: 5px;
   height: fit-content;
   max-width: 80%;
-  font-family: 'Montserrat';
+  font-family: var(--fontMons);
 }
 .comment_sign {
   font-size: 12px;
@@ -477,6 +478,7 @@
   margin: 2px 0 1px 0;
 }
 
+/*СТИЛИ ОШИБКИ НОВОЙ ВКЛАДКИ*/
 .not_found_container {
   height: 100%;
   width: var(--max-width);
