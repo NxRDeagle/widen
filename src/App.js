@@ -37,12 +37,12 @@ function App() {
     'https://picturesofmaidenhead.files.wordpress.com/2019/01/image-not-found.jpg',
   ]);
   const [profile, setProfile] = React.useState({ ...defaultProfileSettings });
+  const [commentPostId, setCommentPostId] = React.useState(0);
 
   const savedScroll = localStorage.getItem('scrollValue');
   const [scrollValue, setScrollValue] = React.useState(
     savedScroll === null ? 0 : JSON.parse(savedScroll),
   );
-
   React.useEffect(() => {
     const onScroll = (e) => {
       if (e.target.documentElement.scrollTop !== 0)
@@ -55,12 +55,10 @@ function App() {
         return undefined;
       }
     };
-
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
   }, [scrollValue]);
-
   React.useEffect(() => {
     window.scrollTo(0, scrollValue);
   }, [location.pathname]);
@@ -68,7 +66,17 @@ function App() {
   return (
     <div className="App">
       <mainContext.Provider
-        value={{ page, setPage, fullImages, setFullImages, profile, setProfile, setScrollValue }}>
+        value={{
+          page,
+          setPage,
+          fullImages,
+          setFullImages,
+          profile,
+          setProfile,
+          setScrollValue,
+          commentPostId,
+          setCommentPostId,
+        }}>
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />

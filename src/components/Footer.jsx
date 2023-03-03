@@ -10,7 +10,10 @@ const Footer = () => {
   const { page, setPage } = React.useContext(mainContext);
   const location = useLocation();
   return (
-    <footer className="foot_container">
+    <footer
+      className={
+        location.pathname == '/user_profile' ? 'foot_notview foot_container' : 'foot_container'
+      }>
       <ul
         className="nav_icon_items"
         onClick={(e) => {
