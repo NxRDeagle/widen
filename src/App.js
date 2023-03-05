@@ -7,7 +7,7 @@ import './css/fontello.css';
 
 import Home from './pages/Home';
 import Search from './pages/Search';
-import Friends from './pages/Friends';
+import Vacancies from './pages/Vacancies';
 import Messenger from './pages/Messenger';
 import Help from './pages/Help';
 import Profile from './pages/Profile';
@@ -15,6 +15,7 @@ import FullMode from './pages/FullMode';
 import Comments from './pages/Comments';
 import Preview from './components/Preview';
 import NotFound from './pages/NotFound';
+import UserProfile from './pages/UserProfile';
 
 export const mainContext = React.createContext();
 
@@ -25,8 +26,8 @@ function App() {
     nickname: 'TEST',
     avatar: 'https://vraki.net/sites/default/files/inline/images/10_342.jpg',
     role: 'Дизайнер',
-    subscriptions: '10',
-    subs: '11k',
+    subscriptions: '0',
+    subs: '0',
     idea: 'uri aliquam beatae a accusamus aliastium, neque quibusdam pariatur beatae minus expedita. Totam aliquid id impedit culpa.',
   };
 
@@ -80,13 +81,14 @@ function App() {
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/friends" element={<Friends />} />
+          <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/full_image" element={<FullMode imgs={fullImages} />} />
           <Route path="/comments" element={<Comments />} />
-          <Route path="/user_profile" element={<Preview {...profile} />} />
+          <Route path="/preview_user_profile" element={<Preview {...profile} />} />
+          <Route path="/user_profile" element={<UserProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Footer from '../components/Footer';
 
-const Friends = () => {
+const Vacancies = () => {
   return (
     <>
       <div className="friend_container"></div>
@@ -10,4 +10,4 @@ const Friends = () => {
     </>
   );
 };
-export default Friends;
+export default Vacancies;

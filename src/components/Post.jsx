@@ -60,7 +60,7 @@ const Post = (props) => {
       subscribers: props.subscribers,
       idea: props.idea,
     });
-    navigate('/user_profile');
+    navigate('/preview_user_profile');
   };
 
   return (

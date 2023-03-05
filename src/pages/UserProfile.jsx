@@ -2,28 +2,23 @@ import React from 'react';
 
 import Footer from '../components/Footer';
 
-import '../css/style.css';
-
-const Profile = () => {
+const UserProfile = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  const [notification, setNotification] = React.useState(false);
+
   return (
     <>
-      <div className="profile_container">
-        <div className="burger_box">
-          <span className="burger_line"></span>
-          <span className="burger_line"></span>
-          <span className="burger_line"></span>
-        </div>
-
-        <i className="icon-bell profile_notific"></i>
+      <div className="profile_container user_profile">
+        <i className="icon-share share"></i>
 
         <div className="profile_avatar">
           <img
             className="avatar_picture"
-            src="https://fanibani.ru/images/wp-content/uploads/2021/06/na-avy-parni-5.jpg"
+            src="https://www.какэтосделали.рф/uploads/images/d/i/m/dimas_iz_batajska.jpg"
           />
         </div>
 
@@ -40,21 +35,14 @@ const Profile = () => {
           </div>
 
           <div className="profile_nick_box">
-            <h1 className="profile_nickname">Pupa_Online</h1>
-            <p className="profile_fi">Пимпа Онлиева</p>
-            <p className="profile_role">Суетолог</p>
+            <h1 className="profile_nickname">Dima_Yasek</h1>
+            <p className="profile_fi">Дмитрий Яценко</p>
+            <p className="profile_role">Реактер</p>
           </div>
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo facere odit similique
-              pariatur maiores cupiditate fugiat iusto dolorem aliquam ad animi neque saepe
-              consequatur debitis, enim placeat accusamus minus id corporis itaque! Rerum soluta
-              esse atque quod! Quaerat exercitationem vero debitis harum deserunt aliquam officiis
-              odio voluptatibus recusandae ex animi amet doloribus, temporibus autem velit, sit
-              corrupti? Itaque modi corrupti voluptatibus molestias quae! Fugit, aspernatur libero.
-            </p>
+            <p className="profile_idea_sign">lore</p>
           </div>
           {isLoaded && document.querySelector('.profile_idea_sign').textContent.length > 180 && (
             <p
@@ -67,9 +55,20 @@ const Profile = () => {
               Развернуть
             </p>
           )}
+
+          {/* <!--ЗДЕСЬ ДРУГИЕ--> */}
           <div className="btn_profile_box">
-            <button className="btn_my_profile">Редактировать</button>
-            <button className="btn_my_profile">Опубликовать</button>
+            <button className="btn_user_profile">Сообщение</button>
+            <button className="btn_user_profile">Подписаться</button>
+            <div onClick={() => setNotification(!notification)} className="profile_user_notific">
+              <i
+                className={
+                  notification
+                    ? 'icon-bell user_notific user_notific_active'
+                    : 'icon-bell user_notific'
+                }></i>
+              {/* <!--ЗДЕСЬ ПРИ НАЖАТИИ НА КОЛОКОЛЬЧИК КЛАСС active появляется--> */}
+            </div>
           </div>
 
           <div className="line"></div>
@@ -79,4 +78,5 @@ const Profile = () => {
     </>
   );
 };
-export default Profile;
+
+export default UserProfile;

@@ -29,7 +29,7 @@ const Preview = (props) => {
               <p className="count_sign">Подписки</p>
             </div>
             <div className="preview_user_count">
-              <p className="count">{props.subs}</p>
+              <p className="count">{props.subscribers}</p>
               <p className="count_sign">Подписчики</p>
             </div>
           </div>
