@@ -9,6 +9,7 @@ import { mainContext } from '../App';
 const Footer = () => {
   const { page, setPage } = React.useContext(mainContext);
   const location = useLocation();
+
   return (
     <footer
       className={
@@ -23,7 +24,7 @@ const Footer = () => {
             e.target.tagName !== 'I' &&
             e.target.tagName !== 'SVG' &&
             e.target.tagName !== 'PATH' &&
-            console.log(e.target.tagName)
+            console.log(`help page has been opened [${e.target.tagName}]`)
           ) {
             return;
           } else {

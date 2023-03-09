@@ -16,7 +16,7 @@ const FullMode = ({ imgs }) => {
       <i
         className="icon-cancel close_full"
         onClick={() => {
-          navigate('/');
+          navigate('/comments');
         }}></i>
 
       <Swiper

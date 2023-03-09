@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { mainContext } from '../App';
-import { Post_list } from './Home';
 
 import Comment from '../components/Comment';
 import Post from '../components/Post';
 
+import post_data from '../data/post_data.json';
+import user_data from '../data/user_data.json';
+
 const Comments = () => {
   const { commentPostId } = React.useContext(mainContext);
-  const posts = Post_list();
+
   return (
     <div className="comments_container">
       <div className="head_comments_container">
@@ -20,18 +22,18 @@ const Comments = () => {
         <i className="icon-comment comments_icon_animation"></i>
       </div>
 
-      <Post {...posts[commentPostId]} />
+      <Post {...post_data[commentPostId]} />
 
       <div className="line"></div>
       <div className="comments_box">
-        {posts[commentPostId].comments &&
-          posts[commentPostId].comments.map((comment, index) => {
+        {post_data[commentPostId].comments &&
+          post_data[commentPostId].comments.map((comment, index) => {
             return (
               <Comment
                 key={index}
-                commentText={comment?.text}
-                avatar={comment?.avatar}
-                nickname={comment?.nickname}
+                nickname={comment.nickname}
+                commentText={comment.text}
+                avatar={user_data.find((obj) => obj.nickname === comment.nickname).avatar}
               />
             );
           })}

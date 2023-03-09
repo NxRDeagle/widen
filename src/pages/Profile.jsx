@@ -9,6 +9,7 @@ const Profile = () => {
   React.useEffect(() => {
     setIsLoaded(true);
   }, []);
+
   return (
     <>
       <div className="profile_container">
@@ -24,6 +25,7 @@ const Profile = () => {
           <img
             className="avatar_picture"
             src="https://fanibani.ru/images/wp-content/uploads/2021/06/na-avy-parni-5.jpg"
+            alt="Avatar"
           />
         </div>
 

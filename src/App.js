@@ -13,7 +13,7 @@ import Help from './pages/Help';
 import Profile from './pages/Profile';
 import FullMode from './pages/FullMode';
 import Comments from './pages/Comments';
-import Preview from './components/Preview';
+import Preview from './pages/Preview';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 
@@ -22,22 +22,13 @@ export const mainContext = React.createContext();
 function App() {
   const location = useLocation();
 
-  const defaultProfileSettings = {
-    nickname: 'TEST',
-    avatar: 'https://vraki.net/sites/default/files/inline/images/10_342.jpg',
-    role: 'Дизайнер',
-    subscriptions: '0',
-    subs: '0',
-    idea: 'uri aliquam beatae a accusamus aliastium, neque quibusdam pariatur beatae minus expedita. Totam aliquid id impedit culpa.',
-  };
-
   const [page, setPage] = React.useState(
     location.pathname === '/' ? 'home' : location.pathname.substring(1),
   );
   const [fullImages, setFullImages] = React.useState([
     'https://picturesofmaidenhead.files.wordpress.com/2019/01/image-not-found.jpg',
   ]);
-  const [profile, setProfile] = React.useState({ ...defaultProfileSettings });
+  const [profile, setProfile] = React.useState({});
   const [commentPostId, setCommentPostId] = React.useState(0);
 
   const savedScroll = localStorage.getItem('scrollValue');
@@ -88,7 +79,7 @@ function App() {
           <Route path="/full_image" element={<FullMode imgs={fullImages} />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/preview_user_profile" element={<Preview {...profile} />} />
-          <Route path="/user_profile" element={<UserProfile />} />
+          <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

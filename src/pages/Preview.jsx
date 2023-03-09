@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Footer from './Footer';
+import Footer from '../components/Footer';
 
 const Preview = (props) => {
   const navigate = useNavigate();
@@ -16,7 +16,15 @@ const Preview = (props) => {
     <>
       <div className="preview_user_container">
         <div className="preview_user_avatar">
-          <img className="avatar_picture" src={props.avatar} alt="avatar" />
+          {props.avatar ? (
+            <img className="avatar_picture" src={props.avatar} alt="avatar" />
+          ) : (
+            <img
+              className="avatar_picture"
+              src="http://en-stal.ru/wp-content/uploads/2022/08/cropped-tild6265-3863-4963-b761-653137363930__usersilhouette_.jpg"
+              alt="avatar"
+            />
+          )}
         </div>
         <div className="preview_user_nickname_box">
           <h1 className="preview_user_nickname">{props.nickname}</h1>

@@ -1,0 +1,69 @@
+[
+    {
+      "id": "0",
+      "nickname": "leshka_veelka",
+      "stats": [150, 200, 13560005, 15665],
+      "imgs": [
+        "https://mirplaneta.ru/images/5/920.jpg",
+        "https://mobimg.b-cdn.net/v3/fetch/4e/4e91811a8323925e30904d21fb85efc8.jpeg",
+        "https://kartinkin.net/pics/uploads/posts/2022-06/thumbs/1656396081_46-kartinkin-net-p-kot-v-solntsezashchitnikh-ochkakh-art-kras-52.jpg"
+      ],
+      "signImgs": [
+       "ЖИЛИ БЫЛИ ТРИ КИТА",
+        "Подпись к фото",
+        "Lorem i et recusandae, deserunt earum,  cepturi aspernatur magni vero commodi praesentium impedit. Blandit modi!"
+      ],
+      "comments": [
+        {
+          "nickname": "ded",
+          "text": "сколько можно то твою мать"
+        },
+        {
+          "nickname": "obama",
+          "text": "ку"
+        },
+        {
+          "nickname": "biden",
+          "text": "ахаххаха"
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "nickname": "pupa_online",
+      "stats": [1337, 228, 150, 99999],
+      "signImgs": ["Я рад!!!"],
+      "comments": [
+        {
+          "nickname": "leshka_veelka",
+          "text": "я только браузер вижу"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "nickname": "fizruk",
+      "videos": ["../src/img/video.mp4"],
+      "signImgs": ["КРУТОЕ ВИДЕО СМОТРЕТЬ! ВСЕМ!"],
+      "signVideos": ["ыыыыыыыыыыыыыы"],
+      "comments": [
+        {
+          "nickname": "dima_yasek",
+          "text": "ывывывыв"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "nickname": "dima_yasek",
+      "stats": [1, 2, 3, 44444],
+      "imgs": [
+        "https://lifeo.ru/wp-content/uploads/kartinki-cvety-krasivie-bukety-41.jpg",
+        "https://mobimg.b-cdn.net/v3/fetch/4e/4e91811a8323925e30904d21fb85efc8.jpeg",
+        "https://kartinkin.net/pics/uploads/posts/2022-06/thumbs/1656396081_46-kartinkin-net-p-kot-v-solntsezashchitnikh-ochkakh-art-kras-52.jpg",
+        "https://phonoteka.org/uploads/posts/2022-06/1656605801_23-phonoteka-org-p-dora-pevitsa-oboi-24.jpg",
+        "https://www.meme-arsenal.com/memes/e88ee9b9904c754981f1ae6bcd3abbae.jpg"
+      ], 
+      "signImgs": ["цветочки", "животные", "котэ", "дора", "все"]     
+    }
+  ]
