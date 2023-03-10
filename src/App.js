@@ -19,19 +19,46 @@ import UserProfile from './pages/UserProfile';
 
 export const mainContext = React.createContext();
 
+export const userLogin = 'pupa_online';
+
 function App() {
   const location = useLocation();
+
+  const savedScroll = localStorage.getItem('scrollValue');
+  const savedProfile = localStorage.getItem('profile');
+  const savedCommentPostId = localStorage.getItem('commentPostId');
+  const savedFullImages = localStorage.getItem('fullImages');
 
   const [page, setPage] = React.useState(
     location.pathname === '/' ? 'home' : location.pathname.substring(1),
   );
-  const [fullImages, setFullImages] = React.useState([
-    'https://picturesofmaidenhead.files.wordpress.com/2019/01/image-not-found.jpg',
-  ]);
-  const [profile, setProfile] = React.useState({});
-  const [commentPostId, setCommentPostId] = React.useState(0);
 
-  const savedScroll = localStorage.getItem('scrollValue');
+  const [fullImages, setFullImages] = React.useState(
+    savedFullImages === null
+      ? ['https://picturesofmaidenhead.files.wordpress.com/2019/01/image-not-found.jpg']
+      : JSON.parse(savedFullImages),
+  );
+
+  const [commentPostId, setCommentPostId] = React.useState(
+    savedCommentPostId === null ? 0 : JSON.parse(savedCommentPostId),
+  );
+
+  const [profile, setProfile] = React.useState(
+    savedProfile === null ? {} : JSON.parse(savedProfile),
+  );
+  React.useEffect(() => {
+    try {
+      const savedProfile = JSON.stringify(profile);
+      localStorage.setItem('profile', savedProfile);
+      const savedCommentPostId = JSON.stringify(commentPostId);
+      localStorage.setItem('commentPostId', savedCommentPostId);
+      const savedFullImages = JSON.stringify(fullImages);
+      localStorage.setItem('fullImages', savedFullImages);
+    } catch (err) {
+      return undefined;
+    }
+  }, [profile, commentPostId, fullImages]);
+
   const [scrollValue, setScrollValue] = React.useState(
     savedScroll === null ? 0 : JSON.parse(savedScroll),
   );
@@ -75,7 +102,7 @@ function App() {
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/help" element={<Help />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile nickname={userLogin} />} />
           <Route path="/full_image" element={<FullMode imgs={fullImages} />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/preview_user_profile" element={<Preview {...profile} />} />

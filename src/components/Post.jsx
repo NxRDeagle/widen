@@ -9,13 +9,15 @@ import { mainContext } from '../App';
 
 import user_data from '../data/user_data.json';
 
+import { userLogin } from '../App';
+
 const Post = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const profile = user_data.find((obj) => obj.nickname === props.nickname);
 
-  let { setFullImages, setCommentPostId, setProfile } = React.useContext(mainContext);
+  let { setFullImages, setCommentPostId, setProfile, setPage } = React.useContext(mainContext);
 
   let stats = !props.stats ? [0, 0, 0, 0] : props.stats;
 
@@ -69,7 +71,10 @@ const Post = (props) => {
   };
 
   const goToProfile = () => {
-    navigate(`/user_profile/${profile.nickname}`);
+    profile.nickname !== userLogin
+      ? navigate(`/user_profile/${profile.nickname}`)
+      : navigate('/profile');
+    setPage('profile');
   };
 
   return (

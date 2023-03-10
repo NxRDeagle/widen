@@ -10,13 +10,17 @@ import post_data from '../data/post_data.json';
 import user_data from '../data/user_data.json';
 
 const Comments = () => {
-  const { commentPostId } = React.useContext(mainContext);
+  const { commentPostId, setPage } = React.useContext(mainContext);
 
   return (
     <div className="comments_container">
       <div className="head_comments_container">
         <Link to="/">
-          <i className="icon-cancel close_comments"></i>
+          <i
+            className="icon-cancel close_comments"
+            onClick={() => {
+              setPage('home');
+            }}></i>
         </Link>
         <h1 className="comments_name">COMMENTS</h1>
         <i className="icon-comment comments_icon_animation"></i>

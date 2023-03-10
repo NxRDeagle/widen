@@ -24,7 +24,7 @@ const FullMode = ({ imgs }) => {
         grabCursor={true}
         centeredSlides={true}
         loop={true}
-        slidesPerView={'auto'}
+        slidesPerView={1} // {'auto'}
         navigation={{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',

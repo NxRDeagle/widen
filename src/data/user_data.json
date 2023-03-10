@@ -33,16 +33,17 @@
     },
     {
         "nickname": "pupa_online",
-        "firstname": "Пупа",
-        "lastName": "Онлаевич",
-        "subscriptions": "9",
+        "firstName": "Пимпа",
+        "lastName": "Онлиева",
+        "avatar": "https://fanibani.ru/images/wp-content/uploads/2021/06/na-avy-parni-5.jpg",
+        "subscriptions": "15",
         "subscribers": "215k",
-        "role": "admin",
+        "role": "Суетолог",
         "idea": "Нейрополимерная субстанция"
     },
     {
         "nickname": "ded",
-        "firstname": "Дедок",
+        "firstName": "Дедок",
         "lastname": "Блатной",
         "avatar": "https://i.ytimg.com/vi/Q5wp58LuNDM/maxresdefault.jpg",
         "subscriptions": "999",
@@ -52,7 +53,7 @@
       },
       {
         "nickname": "obama",
-        "firstname": "Обама",
+        "firstName": "Обама",
         "lastname": "Барак",
         "avatar": "https://argumenti.ru/images/arhnews/438223.jpg",
         "subscriptions": "3k",
@@ -62,9 +63,8 @@
       },
       {
         "nickname": "biden",
-        "firstname": "Жо",
+        "firstName": "Жо",
         "lastname": "Байден",
-        "avatar": "https://ntv-static.cdnvideo.ru/home/news/2023/20230303/biden_io.jpg",
         "subscriptions": "33k",
         "subscribers": "200m",
         "role": "крутой",
