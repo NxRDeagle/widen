@@ -1,11 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper';
 
+import '../css/style.css';
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 const FullMode = ({ imgs }) => {
   const navigate = useNavigate();
@@ -24,13 +22,7 @@ const FullMode = ({ imgs }) => {
         grabCursor={true}
         centeredSlides={true}
         loop={true}
-        slidesPerView={1} // {'auto'}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-          clickable: true,
-        }}
-        modules={[Pagination, Navigation]}
+        slidesPerView={1}
         className="swiper_container">
         {imgs.map((item, index) => {
           return (

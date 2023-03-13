@@ -10,9 +10,9 @@ import '../css/style.css';
 import arrowSvg from '../img/arrow.svg';
 
 const NotFound = () => {
-  const { setPage } = React.useContext(mainContext);
-
   const navigate = useNavigate();
+
+  const { setPage } = React.useContext(mainContext);
 
   const goBack = () => {
     navigate('/');

@@ -6,10 +6,9 @@ import '../css/fontello.css';
 import defaultPostPng from '../img/default_post.png';
 
 import { mainContext } from '../App';
+import { userLogin } from '../App';
 
 import user_data from '../data/user_data.json';
-
-import { userLogin } from '../App';
 
 const Post = (props) => {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Post = (props) => {
 
   const profile = user_data.find((obj) => obj.nickname === props.nickname);
 
-  let { setFullImages, setCommentPostId, setProfile, setPage } = React.useContext(mainContext);
+  const { setFullImages, setCommentPostId, setProfile, setPage } = React.useContext(mainContext);
 
   let stats = !props.stats ? [0, 0, 0, 0] : props.stats;
 
@@ -101,7 +100,9 @@ const Post = (props) => {
             </div>
           </div>
         ) : (
-          <div className="user_history_box" style={{ marginTop: '11px', alignItems: 'center' }}>
+          <div
+            className="user_history_box"
+            style={{ marginTop: '11px', alignItems: 'center', marginRight: '31px' }}>
             <div className="user_history_avatar">
               {profile.avatar ? (
                 <img

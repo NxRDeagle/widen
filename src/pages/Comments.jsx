@@ -6,6 +6,8 @@ import { mainContext } from '../App';
 import Comment from '../components/Comment';
 import Post from '../components/Post';
 
+import '../css/style.css';
+
 import post_data from '../data/post_data.json';
 import user_data from '../data/user_data.json';
 

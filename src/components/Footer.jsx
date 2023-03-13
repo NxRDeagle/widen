@@ -7,8 +7,8 @@ import '../css/fontello.css';
 import { mainContext } from '../App';
 
 const Footer = () => {
-  const { page, setPage } = React.useContext(mainContext);
   const location = useLocation();
+  const { page, setPage } = React.useContext(mainContext);
 
   return (
     <footer

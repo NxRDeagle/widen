@@ -6,6 +6,8 @@ import Footer from '../components/Footer';
 
 import post_data from '../data/post_data.json';
 
+import '../css/style.css';
+
 const Home = () => {
   return (
     <>

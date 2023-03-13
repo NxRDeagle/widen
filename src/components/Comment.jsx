@@ -3,12 +3,18 @@ import { useNavigate } from 'react-router-dom';
 
 import '../css/style.css';
 
+import { mainContext } from '../App';
+
 const Comment = ({ commentText, avatar, nickname }) => {
   const navigate = useNavigate();
 
+  const { setPage } = React.useContext(mainContext);
+
   const goToProfile = () => {
     navigate(`/user_profile/${nickname}`);
+    setPage('profile');
   };
+
   return (
     <div className="user_comment_box">
       <div className="user_comment_avatar_box">

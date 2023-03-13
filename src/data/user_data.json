@@ -44,7 +44,7 @@
     {
         "nickname": "ded",
         "firstName": "Дедок",
-        "lastname": "Блатной",
+        "lastName": "Блатной",
         "avatar": "https://i.ytimg.com/vi/Q5wp58LuNDM/maxresdefault.jpg",
         "subscriptions": "999",
         "subscribers": "111k",
@@ -54,7 +54,7 @@
       {
         "nickname": "obama",
         "firstName": "Обама",
-        "lastname": "Барак",
+        "lastName": "Барак",
         "avatar": "https://argumenti.ru/images/arhnews/438223.jpg",
         "subscriptions": "3k",
         "subscribers": "200m",
@@ -64,7 +64,7 @@
       {
         "nickname": "biden",
         "firstName": "Жо",
-        "lastname": "Байден",
+        "lastName": "Байден",
         "subscriptions": "33k",
         "subscribers": "200m",
         "role": "крутой",
