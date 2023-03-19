@@ -188,7 +188,7 @@ const Post = (props) => {
           <div
             className="post_icons"
             onClick={(e) => {
-              if (e.target.tagName === 'SVG' && e.target.tagName === 'PATH') {
+              if (!e.target.getAttribute('name')) {
                 return;
               } else {
                 onClickIcon(e.target.getAttribute('name').split(' ')[0]);
