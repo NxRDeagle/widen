@@ -4,13 +4,20 @@ import { Link, useLocation } from 'react-router-dom';
 import '../css/style.css';
 import '../css/fontello.css';
 
+import { mainContext } from '../App';
+
 import History from './History';
 
 const Header = () => {
   const location = useLocation();
 
+  const { setCurrentFilter } = React.useContext(mainContext);
   const [isFilterOpen, setIsFilterOpen] = React.useState(false);
 
+  const onClickFilter = (filter) => {
+    setCurrentFilter(filter);
+    setIsFilterOpen(false);
+  };
   return (
     <header className="head_container">
       <div className="logo_box">
@@ -35,15 +42,15 @@ const Header = () => {
             }}></i>
         </div>
         <div className={isFilterOpen ? 'filter_post_box filter_post_box_open' : 'filter_post_box'}>
-          <div className="filter_post_item">
+          <div onClick={() => onClickFilter('case')} className="filter_post_item">
             <p>Кейсы</p>
             <div className="filter_line"></div>
           </div>
-          <div className="filter_post_item">
+          <div onClick={() => onClickFilter('post')} className="filter_post_item">
             <p>Посты</p>
             <div className="filter_line"></div>
           </div>
-          <div className="filter_post_item">
+          <div onClick={() => onClickFilter('all')} className="filter_post_item">
             <p>Всё вместе</p>
           </div>
         </div>
@@ -59,7 +66,7 @@ const Header = () => {
       <div className="history_container">
         <div className="user_history_box">
           <div className="user_history_add">
-            <p className="user_history_add_plus">+</p>
+            <i className="icon-plus user_history_add_plus"></i>
           </div>
         </div>
         {<History />}

@@ -25,6 +25,8 @@ export const userLogin = 'pupa_online';
 function App() {
   const location = useLocation();
 
+  const [currentFilter, setCurrentFilter] = React.useState('all');
+
   const savedScroll = localStorage.getItem('scrollValue');
   const savedProfile = localStorage.getItem('profile');
   const savedCommentPostId = localStorage.getItem('commentPostId');
@@ -47,6 +49,7 @@ function App() {
   const [profile, setProfile] = React.useState(
     savedProfile === null ? {} : JSON.parse(savedProfile),
   );
+
   React.useEffect(() => {
     try {
       const savedProfile = JSON.stringify(profile);
@@ -96,6 +99,8 @@ function App() {
           setScrollValue,
           commentPostId,
           setCommentPostId,
+          currentFilter,
+          setCurrentFilter,
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />

@@ -32,7 +32,9 @@
 .input_container,
 .input_form,
 .filter_post_box,
-.filter_post_item {
+.filter_post_item,
+.chats_container,
+.chat_user_sign_box {
   display: flex;
   flex-direction: column;
 }
@@ -76,7 +78,9 @@
 .idea_sign,
 .profile_idea,
 .btn_unwrap,
-.search-container input {
+.search-container input,
+.chat_user_message,
+.your_message::before {
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -92,7 +96,10 @@
 .profile_nickname,
 .btn_my_profile,
 .search_filter_btn,
-.who_im_box p {
+.who_im_box p,
+.chat_search_filter_btn,
+.chat_user_nickname,
+.input_form button {
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -111,8 +118,30 @@
 .head_container,
 .search_posts,
 .search_filter,
-.posts_container {
+.posts_container,
+.chats_container {
   animation: main 0.4s forwards;
+}
+
+/*СТИЛИ АВАТАРОК*/
+.user_history_add,
+.user_history_avatar,
+.not_view,
+.avatar_author_post,
+.user_comment_avatar_box,
+.preview_user_avatar,
+.profile_avatar,
+.profile_user_notific,
+.chat_user_avatar_box {
+  border-radius: 50%;
+}
+
+/*СТИЛИ ДЛЯ ИЗОБРАЖЕНИЯ АВАТАРОК*/
+
+.avatar_picture {
+  width: var(--max-width);
+  height: 100%;
+  border-radius: 50%;
 }
 
 .mainBackground,
@@ -228,7 +257,6 @@
 .user_history_avatar {
   width: 64px;
   height: 64px;
-  border-radius: 50%;
 }
 
 .user_history_avatar {
@@ -246,12 +274,6 @@
   color: white;
 }
 
-.avatar_picture {
-  width: var(--max-width);
-  height: 100%;
-  border-radius: 50%;
-}
-
 .user_history_nickname {
   text-align: center;
   padding: 10px 0 10px 0;
@@ -262,7 +284,6 @@
   border: var(--border2) var(--color_active);
   width: 74px;
   height: 74px;
-  border-radius: 50%;
 }
 
 .not_view ~ p {
@@ -540,7 +561,6 @@
   height: 46px;
   width: 46px;
   border: var(--border1) var(--color_gray);
-  border-radius: 50%;
 }
 
 .avatar_anonim {
@@ -668,6 +688,7 @@
   height: 50px;
   width: var(--max-width);
   background-color: white;
+  transition: opacity 0.4s ease;
 }
 
 .comments_name {
@@ -685,13 +706,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
   left: 0;
   bottom: 0;
-  position: fixed;
   width: var(--max-width);
   min-height: 60px;
   max-height: fit-content;
   background-color: white;
+  transition: opacity 0.4s ease;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .user_comment {
@@ -725,7 +751,6 @@
   height: 50px;
   width: 50px;
   border: var(--border1) var(--color_gray);
-  border-radius: 50%;
 }
 
 .anonim_comment_avatar {
@@ -821,7 +846,6 @@
   width: 196px;
   height: 196px;
   border: var(--border2) white;
-  border-radius: 50%;
   margin-top: 40px;
 }
 
@@ -898,7 +922,6 @@
   width: var(--max-width);
   background-image: url('https://i.pinimg.com/originals/60/a1/ce/60a1ce7af01d06775077d5db0e2ceee0.gif');
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .user_profile {
@@ -922,7 +945,6 @@
   width: 121px;
   height: 121px;
   border: var(--border2) white;
-  border-radius: 50%;
   margin: 93px 0 0 23px;
 }
 
@@ -1008,7 +1030,6 @@
 .profile_user_notific {
   width: 33px;
   height: 33px;
-  border-radius: 50%;
   border: var(--border1) #d9d9d9;
 }
 
@@ -1131,28 +1152,32 @@
 .input_container {
   width: var(--max-width);
   max-height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   align-items: center;
+  justify-content: center;
+  background: url('../img/backInputColor.jpg');
+  background-size: cover;
   animation: main 1s forwards;
 }
 
 .input_logo {
-  margin-top: 5em;
+  margin-bottom: 60px;
 }
 
 .input_form {
   align-items: center;
   justify-content: space-around;
   border-radius: 10px;
-  margin: 10px 0 20px 0;
-  width: 80%;
+  width: 90%;
+  background-color: white;
 }
 
 .input_form_sign {
   font-style: normal;
   font-weight: 400;
-  font-size: 40px;
-  line-height: 49px;
+  font-size: 30px;
+  line-height: 37px;
 }
 
 .input_form input {
@@ -1170,25 +1195,29 @@
 .input_form input:focus {
   border: var(--border2) var(--color_active);
   outline: none;
-  box-shadow: 8px 6px 8px 0px rgba(103, 67, 195, 0.2);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .input_form button {
   height: 38px;
   text-align: center;
   width: 167px;
-  background: var(--color_active);
+  background: url('../img/backBTN.jpg');
+  background-size: cover;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border: 0;
   border-radius: 10px;
   color: white;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+}
+
+.input_form ~ p {
+  color: var(--color_gray);
+  margin-top: 60px;
 }
 
 .input_link {
-  color: var(--color_active) !important;
+  color: white !important;
+  text-decoration: underline;
 }
 
 .error_input {
@@ -1243,6 +1272,67 @@
   100% {
     background-color: transparent;
   }
+}
+
+/*СТИЛИ ДЛЯ ЧАТА*/
+
+.chat_search_filter_btn {
+  text-align: center;
+  width: 161px;
+  height: 33px;
+  background-color: white;
+  border: var(--border1) var(--color_gray);
+  border-radius: 29px;
+  margin: 0 10px 0 10px;
+  color: black;
+}
+
+.chat_filter_active {
+  color: white !important;
+  background-color: var(--color_active) !important;
+}
+
+.chat_box {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 16px 0 20px;
+  border: 1px solid saddlebrown;
+}
+
+.chat_user_avatar_box {
+  width: 52px;
+  height: 52px;
+  border: var(--border1) var(--color_gray);
+}
+
+.chat_user_sign_box {
+  border: 1px salmon solid;
+  padding: 5px 0 6px 8px;
+  width: 75%;
+  justify-content: space-between;
+  max-height: 52px;
+  overflow: hidden;
+}
+
+.chat_user_nickname {
+  color: black;
+}
+
+.chat_user_message {
+  color: black;
+  border: 1px solid firebrick;
+  max-height: 15px;
+  overflow: hidden;
+}
+
+.your_message::before {
+  content: 'Вы: ';
+  color: black;
+}
+
+.big_message::after {
+  content: '...';
+  color: black;
 }
 
 @keyframes main {

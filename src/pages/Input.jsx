@@ -32,7 +32,9 @@ const Input = () => {
     document.querySelectorAll('input').forEach((input) => {
       if (input.value === '') {
         input.className = 'error_input';
-        input.nextElementSibling.classList.remove('none_active');
+        activeBox === 1
+          ? input.nextElementSibling.classList.remove('none_active')
+          : document.getElementById('error_label_input').classList.remove('none_active');
       }
     });
     if (activeBox === 1 && userCategory === 'undefined') {
@@ -46,13 +48,14 @@ const Input = () => {
       {activeBox === 0 && (
         <div className="input_container">
           <img className="input_logo" src={logoSvg} />
-          <div className="input_line"></div>
 
           <form className="input_form" action="#" style={{ height: '40vh' }}>
             <h1 className="input_form_sign">Вход</h1>
             <input onFocus={onFocusInput} type="text" placeholder="Логин" />
-            {/* <input onFocus={onFocusInput} type="password" placeholder="Пароль" /> */}
-            <p className="error_label none_active">Неверный логин или пароль!</p>
+            <input onFocus={onFocusInput} type="password" placeholder="Пароль" />
+            <p id="error_label_input" className="error_label none_active">
+              Неверный логин или пароль!
+            </p>
             <button onClick={onClickLogin}>Войти</button>
           </form>
 
@@ -71,7 +74,6 @@ const Input = () => {
       {activeBox === 1 && (
         <div className="input_container">
           <img className="input_logo" src={logoSvg} />
-          <div className="input_line"></div>
 
           <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 className="input_form_sign">Регистрация</h1>

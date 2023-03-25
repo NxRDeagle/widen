@@ -34,6 +34,7 @@ const Preview = (props) => {
         centeredSlides={true}
         loop={false}
         slidesPerView={1}
+        allowSlidePrev={false}
         className="swiper_container"
         onSlideChange={() => {
           goToHome();

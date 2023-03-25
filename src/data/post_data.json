@@ -26,7 +26,8 @@
           "nickname": "biden",
           "text": "ахаххаха"
         }
-      ]
+      ],
+      "filter": "post"
     },
     {
       "id": "1",
@@ -38,7 +39,8 @@
           "nickname": "leshka_veelka",
           "text": "я только браузер вижу"
         }
-      ]
+      ],
+      "filter": "post"
     },
     {
       "id": "2",
@@ -51,7 +53,8 @@
           "nickname": "dima_yasek",
           "text": "ывывывыв"
         }
-      ]
+      ],
+      "filter": "post"
     },
     {
       "id": "3",
@@ -64,6 +67,7 @@
         "https://phonoteka.org/uploads/posts/2022-06/1656605801_23-phonoteka-org-p-dora-pevitsa-oboi-24.jpg",
         "https://www.meme-arsenal.com/memes/e88ee9b9904c754981f1ae6bcd3abbae.jpg"
       ], 
-      "signImgs": ["цветочки", "животные", "брэд", "дора", "все"]     
+      "signImgs": ["цветочки", "животные", "брэд", "дора", "все"],
+      "filter": "case"     
     }
   ]
