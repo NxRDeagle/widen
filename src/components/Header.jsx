@@ -81,6 +81,12 @@ const Header = () => {
         {<History />}
         {<History />}
         {<History />}
+        {<History />}
+        {<History />}
+        {<History />}
+        {<History />}
+        {<History />}
+        {<History />}
       </div>
       <div className="line"></div>
     </header>
