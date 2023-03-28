@@ -2,7 +2,7 @@ import React from 'react';
 
 import Footer from '../components/Footer';
 
-import '../css/style.css';
+import '../css/Messenger.css';
 
 const Messenger = () => {
   return (

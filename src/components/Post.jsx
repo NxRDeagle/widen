@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import '../css/style.css';
-import '../css/fontello.css';
+
 import defaultPostPng from '../img/default_post.png';
 
 import { mainContext } from '../App';
 import { userLogin } from '../App';
+
+import '../css/Post.css';
 
 import user_data from '../data/user_data.json';
 

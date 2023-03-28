@@ -1,0 +1,40 @@
+.foot_container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 56px;
+    width: var(--max-width);
+    background-color: white;
+}
+
+.foot_notview {
+    filter: blur(6px);
+    pointer-events: none;
+}
+
+.nav_icon_items {
+    width: var(--max-width);
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+.nav_icon_items li {
+    font-size: 24px;
+    font-weight: 500;
+    color: black;
+}
+
+.nav_icon_items :nth-child(4) {
+    margin-top: 6px;
+}
+
+.icon_target {
+    color: var(--color_active) !important;
+}
+
+.icon_target svg path {
+    fill: var(--color_active) !important;
+}

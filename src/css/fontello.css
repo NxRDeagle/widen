@@ -9,6 +9,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
@@ -57,40 +58,66 @@
 
 .icon-search:before {
   content: '\e800';
-} /* '' */
+}
+
+/* '' */
 .icon-posts:before {
   content: '\e801';
-} /* '' */
+}
+
+/* '' */
 .icon-vacancies:before {
   content: '\e802';
-} /* '' */
+}
+
+/* '' */
 .icon-messenger:before {
   content: '\e803';
-} /* '' */
+}
+
+/* '' */
 .icon-down-open:before {
   content: '\e804';
-} /* '' */
+}
+
+/* '' */
 .icon-profile:before {
   content: '\e805';
-} /* '' */
+}
+
+/* '' */
 .icon-up-open:before {
   content: '\e806';
-} /* '' */
+}
+
+/* '' */
 .icon-plus:before {
   content: '\e807';
-} /* '' */
+}
+
+/* '' */
 .icon-geolocation:before {
   content: '\e808';
-} /* '' */
+}
+
+/* '' */
 .icon-cancel:before {
   content: '\e809';
-} /* '' */
+}
+
+/* '' */
 .icon-rowupp:before {
   content: '\e80b';
-} /* '' */
+}
+
+/* '' */
 .icon-share:before {
   content: '\e80c';
-} /* '' */
+}
+
+/* '' */
 .icon-bell:before {
   content: '\f0f3';
-} /* '' */
+}
+
+/* '' */

@@ -5,6 +5,8 @@ import { mainContext } from '../App';
 
 import logoSvg from '../img/logoInput.svg';
 
+import '../css/Input.css';
+
 const Input = () => {
   const navigate = useNavigate();
 

@@ -2,9 +2,10 @@ import React from 'react';
 
 import Footer from '../components/Footer';
 
-import '../css/style.css';
 
 import user_data from '../data/user_data.json';
+
+import '../css/Profile.css';
 
 const Profile = ({ nickname }) => {
   const [activeIcon, setActiveIcon] = React.useState(0);
@@ -75,8 +76,8 @@ const Profile = ({ nickname }) => {
             </p>
           )}
           <div className="btn_profile_box">
-            <button className="btn_my_profile">Редактировать</button>
-            <button className="btn_my_profile">Опубликовать</button>
+            <button className="btn_profile">Редактировать</button>
+            <button className="btn_profile">Опубликовать</button>
           </div>
 
           <div className="line"></div>

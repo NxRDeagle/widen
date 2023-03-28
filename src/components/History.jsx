@@ -1,8 +1,7 @@
-import '../css/style.css';
-import '../css/fontello.css';
-
 import ContentLoader from 'react-content-loader';
 import React from 'react';
+
+import '../css/History.css';
 
 const History = ({ isView, avatar, nickname = 'ANONIM' }) => {
   const [load, setLoad] = React.useState(true);

@@ -6,8 +6,9 @@ import Header from '../components/Header';
 
 import { mainContext } from '../App';
 
-import '../css/style.css';
 import arrowSvg from '../img/arrow.svg';
+
+import '../css/NotFound.css';
 
 const NotFound = () => {
   const navigate = useNavigate();

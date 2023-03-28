@@ -2,7 +2,7 @@ import React from 'react';
 
 import Footer from '../components/Footer';
 
-import '../css/style.css';
+import '../css/Vacancies.css';
 
 const Vacancies = () => {
   return (

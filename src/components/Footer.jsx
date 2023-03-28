@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import '../css/style.css';
-import '../css/fontello.css';
+import '../css/Footer.css';
 
 import { mainContext } from '../App';
 

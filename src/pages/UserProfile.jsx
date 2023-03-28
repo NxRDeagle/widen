@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import Footer from '../components/Footer';
 
-import '../css/style.css';
+import '../css/Profile.css';
+
 
 import user_data from '../data/user_data.json';
 
@@ -81,8 +82,8 @@ const UserProfile = () => {
           )}
 
           <div className="btn_profile_box">
-            <button className="btn_user_profile">Сообщение</button>
-            <button className="btn_user_profile">Подписаться</button>
+            <button className="btn_profile">Сообщение</button>
+            <button className="btn_profile">Подписаться</button>
             <div onClick={() => setNotification(!notification)} className="profile_user_notific">
               <i
                 className={

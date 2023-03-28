@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-import './css/style.css';
+import './css/App.css';
 import './css/fontello.css';
 
 import Home from './pages/Home';

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Comment from '../components/Comment';
 import Post from '../components/Post';
 
-import '../css/style.css';
+import '../css/Comments.css';
 import 'swiper/css';
 
 import { mainContext } from '../App';
@@ -31,8 +31,7 @@ const Comments = () => {
               setPage('home');
             }}></i>
         </Link>
-        <h1 className="comments_name">COMMENTS</h1>
-        <i className="icon-comment comments_icon_animation"></i>
+        <h1 className="comments_name">Запись</h1>
       </div>
       <Swiper
         initialSlide={2}
@@ -47,9 +46,11 @@ const Comments = () => {
         onSlideChange={() => {
           goToHome();
         }}
-        onTouchMove={() => {
-          document.querySelector('.head_comments_container').classList.add('hidden');
-          document.querySelector('.leave_comment').classList.add('hidden');
+        onTouchMove={(e) => {
+          if (e.translate > -414) {
+            document.querySelector('.head_comments_container').classList.add('hidden');
+            document.querySelector('.leave_comment').classList.add('hidden');
+          }
         }}
         onTouchEnd={() => {
           document.querySelector('.head_comments_container').classList.remove('hidden');

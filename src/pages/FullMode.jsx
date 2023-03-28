@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import '../css/style.css';
+import '../css/FullMode.css';
 import 'swiper/css';
 
 const FullMode = ({ imgs }) => {

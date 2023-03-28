@@ -5,14 +5,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Footer from '../components/Footer';
 
 import { mainContext } from '../App';
+import { userLogin } from '../App';
 
-import '../css/style.css';
 import 'swiper/css';
+import '../css/Preview.css';
 
 const Preview = (props) => {
   const navigate = useNavigate();
 
-  const { setPage } = React.useContext(mainContext);
+  const { setPage, profile } = React.useContext(mainContext);
 
   React.useEffect(() => {
     if (!props.nickname) {
@@ -23,6 +24,13 @@ const Preview = (props) => {
   const goToHome = () => {
     navigate('/');
     setPage('home');
+  };
+
+  const goToProfile = () => {
+    profile.nickname !== userLogin
+      ? navigate(`/user_profile/${profile.nickname}`)
+      : navigate('/profile');
+    setPage('profile');
   };
 
   return (
@@ -43,12 +51,18 @@ const Preview = (props) => {
           <div className="preview_user_container">
             <div className="preview_user_avatar">
               {props.avatar ? (
-                <img className="avatar_picture" src={props.avatar} alt="avatar" />
+                <img
+                  className="avatar_picture"
+                  src={props.avatar}
+                  alt="avatar"
+                  onClick={goToProfile}
+                />
               ) : (
                 <img
                   className="avatar_picture"
                   src="http://en-stal.ru/wp-content/uploads/2022/08/cropped-tild6265-3863-4963-b761-653137363930__usersilhouette_.jpg"
                   alt="avatar"
+                  onClick={goToProfile}
                 />
               )}
             </div>

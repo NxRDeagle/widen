@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import '../css/style.css';
+import '../css/Comments.css';
 
 import { mainContext } from '../App';
 

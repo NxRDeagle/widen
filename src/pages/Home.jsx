@@ -9,12 +9,12 @@ import Preload from '../components/Preload';
 import post_data from '../data/post_data.json';
 import { mainContext } from '../App';
 
-import '../css/style.css';
+import '../css/Home.css';
 
 const Home = () => {
   const { currentFilter } = React.useContext(mainContext);
 
-  const [isLoading, setIsLoading] = React.useState(true); // setTimeOut убрать
+  const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
   setTimeout(() => {
     setIsLoading(false);
@@ -26,7 +26,7 @@ const Home = () => {
     <>
       <Header />
       <main className="mainBackground">
-        {true ? (
+        {false ? (
           <div className="posts_container">
             <div className="post_box">
               {[...new Array(3)].map((_, index) => {

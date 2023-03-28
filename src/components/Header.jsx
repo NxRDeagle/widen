@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import '../css/style.css';
-import '../css/fontello.css';
+import '../css/Header.css';
 
 import { mainContext } from '../App';
 
@@ -23,7 +22,6 @@ const Header = () => {
       <div className="logo_box">
         <div className="logo_item">
           <svg
-            className="logo"
             width="207"
             height="54"
             viewBox="0 0 207 54"
