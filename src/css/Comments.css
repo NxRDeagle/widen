@@ -1,144 +1,159 @@
 /*flex+column*/
 .comments_box,
 .comment_user_sign {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /*border 50%*/
 .user_comment_avatar_box,
 .avatar_picture {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 /*font 15*/
 .user_comment,
 .comment_user_nickname {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
 }
 
-
 .comments_container {
-    animation: open 0.5s ease-in-out;
-    overflow: hidden;
+  animation: open 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 .head_comments_container {
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    height: 50px;
-    width: var(--max-width);
-    background-color: white;
-    transition: opacity 0.4s ease;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  height: 50px;
+  width: var(--max-width);
+  background-color: white;
+  transition: opacity 0.4s ease;
 }
 
 .close_comments {
-    color: var(--color_gray) !important;
-    font-size: 20px;
-    margin-left: 26px;
+  color: var(--color_gray) !important;
+  font-size: 20px;
+  margin-left: 26px;
 }
 
 .comments_name {
-    font-size: 26px;
-    font-weight: 300;
+  font-size: 26px;
+  font-weight: 300;
 }
 
 .line {
-    width: var(--max-width);
-    height: 0;
-    border: var(--border1) var(--color_gray);
-    transform: rotate(0.15deg);
+  background-color: white;
+  width: var(--max-width);
+  height: 0;
+  border: var(--border1) var(--color_gray);
+  transform: rotate(0.15deg);
 }
 
 .comments_box {
-    width: var(--max-width);
-    height: fit-content;
-    padding: 0 20px 55px 20px;
-    margin-top: 10px;
-    overflow-y: scroll;
+  background-color: white;
+  width: var(--max-width);
+  height: fit-content;
+  min-height: 42%;
+  padding: 10px 20px 55px 20px;
+  /* margin-top: 10px; */
 }
 
 .leave_comment {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: var(--max-width);
-    min-height: 60px;
-    max-height: fit-content;
-    background-color: white;
-    transition: opacity 0.4s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: var(--max-width);
+  min-height: 60px;
+  max-height: fit-content;
+  background-color: white;
+  transition: opacity 0.4s ease;
 }
 
 .user_comment {
-    border: var(--border2) var(--color_gray);
-    border-radius: 10px;
-    min-height: 30px;
-    width: 80%;
-    padding: 5px;
-    margin-left: 20px;
-    max-height: 30vh;
-    overflow-y: scroll;
+  border: var(--border2) var(--color_gray);
+  border-radius: 10px;
+  min-height: 30px;
+  width: 80%;
+  padding: 5px;
+  margin-left: 20px;
+  max-height: 30vh;
+  overflow-y: scroll;
 }
 
 .user_comment:focus {
-    border: var(--border2) var(--color_active);
-    outline: none;
+  border: var(--border2) var(--color_active);
+  outline: none;
 }
 
 .hidden {
-    opacity: 0;
+  opacity: 0;
 }
 
 .user_comment_box {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
 }
 
 .user_comment_avatar_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    width: 50px;
-    border: var(--border1) var(--color_gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border: var(--border1) var(--color_gray);
 }
 
 .avatar_picture {
-    width: var(--max-width);
-    height: 100%;
+  width: var(--max-width);
+  height: 100%;
 }
 
 .comment_user_sign {
-    margin-left: 5px;
-    height: fit-content;
-    max-width: 80%;
+  margin-left: 5px;
+  height: fit-content;
+  max-width: 80%;
 }
 
 .comment_user_nickname {
-    margin: 2px 0 1px 0;
+  margin: 2px 0 1px 0;
 }
 
 .comment_sign {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 @keyframes open {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
+/* .swiper-wrapper,
+.swiper-slide {
+  width: var(--max-width);
+  height: 100vh;
+}
+
+.swipe_background {
+  width: var(--max-width);
+  height: 100%;
+  background-size: cover;
+  background-color: #7e52ee;
+  background-repeat: repeat;
+} */

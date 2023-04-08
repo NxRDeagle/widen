@@ -15,6 +15,7 @@ import user_data from '../data/user_data.json';
 const Comments = () => {
   const navigate = useNavigate();
   const { commentPostId, setPage } = React.useContext(mainContext);
+  const [isTouchMove, setIsTouchMove] = React.useState();
 
   const goToHome = () => {
     navigate('/');
@@ -46,17 +47,22 @@ const Comments = () => {
         onSlideChange={() => {
           goToHome();
         }}
+        onTouchStart={(e) => {
+          setIsTouchMove(e.translate);
+        }}
         onTouchMove={(e) => {
-          if (e.translate > -414) {
+          if (e.translate > isTouchMove) {
+            document.body.style.backgroundColor = '#7e52ee';
             document.querySelector('.head_comments_container').classList.add('hidden');
             document.querySelector('.leave_comment').classList.add('hidden');
           }
         }}
         onTouchEnd={() => {
+          document.body.style.backgroundColor = '#ffffff';
           document.querySelector('.head_comments_container').classList.remove('hidden');
           document.querySelector('.leave_comment').classList.remove('hidden');
         }}>
-        <SwiperSlide></SwiperSlide>
+        <SwiperSlide>{/* <div className="swipe_background"></div> */}</SwiperSlide>
         <SwiperSlide>
           <Post {...post_data[commentPostId]} />
 

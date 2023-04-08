@@ -86,6 +86,8 @@ function App() {
     window.scrollTo(0, scrollValue);
   }, [location.pathname]);
 
+  const [locationPreview, setLocationPreview] = React.useState('home');
+
   return (
     <div className="App">
       <mainContext.Provider
@@ -101,6 +103,8 @@ function App() {
           setCommentPostId,
           currentFilter,
           setCurrentFilter,
+          locationPreview,
+          setLocationPreview,
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Footer from '../components/Footer';
+import Home from './Home';
 
 import { mainContext } from '../App';
 import { userLogin } from '../App';
@@ -13,7 +14,7 @@ import '../css/Preview.css';
 const Preview = (props) => {
   const navigate = useNavigate();
 
-  const { setPage, profile } = React.useContext(mainContext);
+  const { setPage, profile, locationPreview, setLocationPreview } = React.useContext(mainContext);
 
   React.useEffect(() => {
     if (!props.nickname) {
@@ -21,8 +22,9 @@ const Preview = (props) => {
     }
   }, []);
 
-  const goToHome = () => {
-    navigate('/');
+  const goBack = () => {
+    setLocationPreview('home');
+    locationPreview === 'home' ? navigate('/') : navigate('/comments');
     setPage('home');
   };
 
@@ -45,7 +47,7 @@ const Preview = (props) => {
         allowSlidePrev={false}
         className="swiper_container"
         onSlideChange={() => {
-          goToHome();
+          goBack();
         }}>
         <SwiperSlide>
           <div className="preview_user_container">
@@ -86,7 +88,9 @@ const Preview = (props) => {
             <i className="icon-rowupp rowupp"></i>
           </div>
         </SwiperSlide>
-        <SwiperSlide></SwiperSlide>
+        <SwiperSlide>
+          <Home />
+        </SwiperSlide>
       </Swiper>
 
       <Footer />
