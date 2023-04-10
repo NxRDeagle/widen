@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Comment from '../components/Comment';
@@ -14,24 +14,20 @@ import user_data from '../data/user_data.json';
 
 const Comments = () => {
   const navigate = useNavigate();
-  const { commentPostId, setPage } = React.useContext(mainContext);
+  const { commentPostId, setPage, loc } = React.useContext(mainContext);
   const [isTouchMove, setIsTouchMove] = React.useState();
 
-  const goToHome = () => {
-    navigate('/');
-    setPage('home');
+  const goBack = () => {
+    navigate(loc);
+    if (loc === `/user_profile/${post_data[commentPostId].nickname}`) setPage('profile');
+    else if (loc === '/') setPage('home');
+    else setPage(loc.substring(1));
   };
 
   return (
     <div className="comments_container">
       <div className="head_comments_container">
-        <Link to="/">
-          <i
-            className="icon-cancel close_comments"
-            onClick={() => {
-              setPage('home');
-            }}></i>
-        </Link>
+        <i className="icon-cancel close_comments" onClick={goBack}></i>
         <h1 className="comments_name">Запись</h1>
       </div>
       <Swiper
@@ -45,7 +41,7 @@ const Comments = () => {
         allowSlidePrev={true}
         style={{ overflowY: 'scroll' }}
         onSlideChange={() => {
-          goToHome();
+          goBack();
         }}
         onTouchStart={(e) => {
           setIsTouchMove(e.translate);
@@ -62,7 +58,7 @@ const Comments = () => {
           document.querySelector('.head_comments_container').classList.remove('hidden');
           document.querySelector('.leave_comment').classList.remove('hidden');
         }}>
-        <SwiperSlide>{/* <div className="swipe_background"></div> */}</SwiperSlide>
+        <SwiperSlide></SwiperSlide>
         <SwiperSlide>
           <Post {...post_data[commentPostId]} />
 

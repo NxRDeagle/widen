@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Update from '../components/Update';
 import Footer from '../components/Footer';
 
 import '../css/Search.css';
@@ -19,6 +20,7 @@ const Search = () => {
         <button className="search_filter_btn">Посты</button>
         <button className="search_filter_btn">Профессионалы</button>
       </div>
+      <Update />
       <Footer />
     </>
   );

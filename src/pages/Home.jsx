@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Post from '../components/Post';
 import Footer from '../components/Footer';
 import Preload from '../components/Preload';
+import Update from '../components/Update';
 
 import post_data from '../data/post_data.json';
 import { mainContext } from '../App';
@@ -14,7 +15,7 @@ import 'swiper/css';
 import '../css/Preview.css';
 
 const Home = () => {
-  const { profile, currentFilter } = React.useContext(mainContext);
+  const { currentFilter } = React.useContext(mainContext);
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
@@ -27,7 +28,7 @@ const Home = () => {
   ) : (
     <>
       <Header />
-
+      <Update />
       <main className="mainBackground">
         {false ? (
           <div className="posts_container">

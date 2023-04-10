@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-
 import defaultPostPng from '../img/default_post.png';
 
 import { mainContext } from '../App';

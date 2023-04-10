@@ -84,9 +84,11 @@ function App() {
   }, [scrollValue]);
   React.useEffect(() => {
     window.scrollTo(0, scrollValue);
+    if (location.pathname !== '/preview_user_profile' && location.pathname !== '/comments')
+      setLoc(location.pathname);
   }, [location.pathname]);
 
-  const [locationPreview, setLocationPreview] = React.useState('home');
+  const [loc, setLoc] = React.useState('/');
 
   return (
     <div className="App">
@@ -103,8 +105,8 @@ function App() {
           setCommentPostId,
           currentFilter,
           setCurrentFilter,
-          locationPreview,
-          setLocationPreview,
+          loc,
+          setLoc,
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />

@@ -69,5 +69,31 @@
       ], 
       "signImgs": ["цветочки", "животные", "брэд", "дора", "все"],
       "filter": "case"     
+    },
+    {
+      "id": "4",
+      "nickname": "pupa_online",
+      "stats": [37, 28, 10, 999],
+      "signImgs": ["лол"],
+      "comments": [
+        {
+          "nickname": "leshka_veelka",
+          "text": "я только браузер вижу"
+        }
+      ],
+      "filter": "post"
+    },{
+      "id": "5",
+      "nickname": "pupa_online",
+      "stats": [345, 2546, 13345, 945699],
+      "signImgs": ["Lorem i et recusandae, deserunt earum,  cepturi aspernatur magni vero commodi praesentium impedit. Blandit modi!"
+  ],
+      "comments": [
+        {
+          "nickname": "leshka_veelka",
+          "text": "я только браузер вижу"
+        }
+      ],
+      "filter": "post"
     }
   ]

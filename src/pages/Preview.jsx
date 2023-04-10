@@ -11,21 +11,22 @@ import { userLogin } from '../App';
 import 'swiper/css';
 import '../css/Preview.css';
 
-const Preview = (props) => {
+const Preview = () => {
   const navigate = useNavigate();
 
-  const { setPage, profile, locationPreview, setLocationPreview } = React.useContext(mainContext);
+  const { setPage, profile, loc } = React.useContext(mainContext);
 
   React.useEffect(() => {
-    if (!props.nickname) {
+    if (!profile.nickname) {
       navigate('*');
     }
   }, []);
 
   const goBack = () => {
-    setLocationPreview('home');
-    locationPreview === 'home' ? navigate('/') : navigate('/comments');
-    setPage('home');
+    navigate(loc);
+    if (loc === `/user_profile/${profile.nickname}`) setPage('profile');
+    else if (loc === '/') setPage('home');
+    else setPage(loc.substring(1));
   };
 
   const goToProfile = () => {
@@ -52,10 +53,10 @@ const Preview = (props) => {
         <SwiperSlide>
           <div className="preview_user_container">
             <div className="preview_user_avatar">
-              {props.avatar ? (
+              {profile.avatar ? (
                 <img
                   className="avatar_picture"
-                  src={props.avatar}
+                  src={profile.avatar}
                   alt="avatar"
                   onClick={goToProfile}
                 />
@@ -69,21 +70,21 @@ const Preview = (props) => {
               )}
             </div>
             <div className="preview_user_nickname_box">
-              <h1 className="preview_user_nickname">{props.nickname}</h1>
-              <p className="preview_user_role">{props.role}</p>
+              <h1 className="preview_user_nickname">{profile.nickname}</h1>
+              <p className="preview_user_role">{profile.role}</p>
             </div>
             <div className="preview_user_sign_box">
               <div className="preview_user_count_container">
                 <div className="preview_user_count">
-                  <p className="count">{props.subscriptions}</p>
+                  <p className="count">{profile.subscriptions}</p>
                   <p className="count_sign">Подписки</p>
                 </div>
                 <div className="preview_user_count">
-                  <p className="count">{props.subscribers}</p>
+                  <p className="count">{profile.subscribers}</p>
                   <p className="count_sign">Подписчики</p>
                 </div>
               </div>
-              <p className="idea_sign">{props.idea}</p>
+              <p className="idea_sign">{profile.idea}</p>
             </div>
             <i className="icon-rowupp rowupp"></i>
           </div>

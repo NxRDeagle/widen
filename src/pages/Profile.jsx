@@ -1,17 +1,27 @@
 import React from 'react';
+import ContentLoader from 'react-content-loader';
 
 import Footer from '../components/Footer';
-
+import Update from '../components/Update';
+import Post from '../components/Post';
 
 import user_data from '../data/user_data.json';
+import post_data from '../data/post_data.json';
 
 import '../css/Profile.css';
+import '../css/Post.css';
 
 const Profile = ({ nickname }) => {
   const [activeIcon, setActiveIcon] = React.useState(0);
+  const [userPosts, setUserPosts] = React.useState([]);
 
   const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
+    setUserPosts(
+      post_data.filter((item) => {
+        return item.nickname === nickname;
+      }),
+    );
     setIsLoaded(true);
   }, []);
 
@@ -193,7 +203,41 @@ const Profile = ({ nickname }) => {
               </svg>
             </li>
           </ul>
-          <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}></div>
+          <Update />
+          <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}>
+            <div className="mainBackground">
+              {userPosts.length === 0 ? (
+                <p className="no_posts">У вас ещё нет постов...</p>
+              ) : isLoaded ? (
+                userPosts.map((item, index) => {
+                  return <Post {...item} key={index} />;
+                })
+              ) : (
+                <div className="posts_container">
+                  <div className="post_box">
+                    {[...new Array(3)].map((_, index) => {
+                      return (
+                        <ContentLoader
+                          key={index}
+                          speed={1}
+                          width={360}
+                          height={300}
+                          viewBox="0 0 360 300"
+                          backgroundColor="#f3f3f3"
+                          foregroundColor="#7e52ee">
+                          <circle cx="47" cy="16" r="16" />
+                          <rect x="72" y="5" rx="3" ry="3" width="65" height="8" />
+                          <rect x="72" y="20" rx="3" ry="3" width="50" height="6" />
+                          <rect x="31" y="50" rx="3" ry="3" width="320" height="8" />
+                          <rect x="31" y="70" rx="10" ry="10" width="320" height="188" />
+                        </ContentLoader>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
           <div className={activeIcon === 1 ? 'editItems' : 'editItems none_active'}></div>
           <div className={activeIcon === 2 ? 'scopeItems' : 'scopeItems none_active'}></div>
           <div
