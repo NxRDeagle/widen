@@ -84,7 +84,11 @@ function App() {
   }, [scrollValue]);
   React.useEffect(() => {
     window.scrollTo(0, scrollValue);
-    if (location.pathname !== '/preview_user_profile' && location.pathname !== '/comments')
+    if (
+      location.pathname !== '/preview_user_profile' &&
+      location.pathname !== '/comments' &&
+      location.pathname !== '/full_image'
+    )
       setLoc(location.pathname);
   }, [location.pathname]);
 

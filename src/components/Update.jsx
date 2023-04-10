@@ -9,18 +9,28 @@ class Update extends React.Component {
   };
 
   componentDidMount() {
-    document.body.ontouchmove = () => {
-      if (window.scrollY === 0) {
-        if (this.state.positionUpdate < 150) {
-          this.setState({ positionUpdate: this.state.positionUpdate + 5 });
-          if (this.state.loaderOpacity < 1)
-            this.setState({ loaderOpacity: this.state.loaderOpacity + 0.05 });
-        }
-      } else {
-        if (this.state.positionUpdate !== 0) {
-          this.setState({ positionUpdate: this.state.positionUpdate - 10 });
-          if (this.state.loaderOpacity > 0)
-            this.setState({ loaderOpacity: this.state.loaderOpacity - 0.1 });
+    let screenX = null;
+    let screenY = null;
+
+    document.body.ontouchstart = (e) => {
+      screenX = e.touches[0].screenX;
+      screenY = e.touches[0].screenY;
+    };
+
+    document.body.ontouchmove = (e) => {
+      if (Math.abs(screenY - e.touches[0].screenY) >= 20) {
+        if (window.scrollY === 0) {
+          if (this.state.positionUpdate < 150) {
+            this.setState({ positionUpdate: this.state.positionUpdate + 5 });
+            if (this.state.loaderOpacity < 1)
+              this.setState({ loaderOpacity: this.state.loaderOpacity + 0.05 });
+          }
+        } else {
+          if (this.state.positionUpdate !== 0) {
+            this.setState({ positionUpdate: this.state.positionUpdate - 10 });
+            if (this.state.loaderOpacity > 0)
+              this.setState({ loaderOpacity: this.state.loaderOpacity - 0.1 });
+          }
         }
       }
     };
