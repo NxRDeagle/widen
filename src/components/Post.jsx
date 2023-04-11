@@ -56,11 +56,12 @@ const Post = (props) => {
   };
 
   const goToFullMode = (imgs, firstImg) => {
-    if (imgs.length > 1)
-      imgs.sort(function (x, y) {
+    const imgs_clone = Array.from(imgs);
+    if (imgs_clone.length > 1)
+      imgs_clone.sort(function (x, y) {
         return x === firstImg ? -1 : y === firstImg ? 1 : 0;
       });
-    setFullImages(imgs);
+    setFullImages(imgs_clone);
     navigate('/full_image');
   };
 

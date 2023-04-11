@@ -8,7 +8,7 @@ import 'swiper/css';
 const FullMode = ({ imgs }) => {
   const navigate = useNavigate();
 
-  console.log(imgs);
+  const [currentSlide, setCurrentSlide] = React.useState(1);
   return (
     <div className="full_mode">
       <i
@@ -23,20 +23,23 @@ const FullMode = ({ imgs }) => {
         centeredSlides={true}
         loop={true}
         slidesPerView={1}
+        onSlideChange={(swiper) => {
+          setCurrentSlide(swiper.realIndex + 1);
+        }}
         className="swiper_container">
         {imgs.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <img className="full_picture" src={item} alt="Full image" />
-              {imgs.length !== 1 && (
-                <p className="count_pictures">
-                  {index + 1} / {imgs.length}
-                </p>
-              )}
             </SwiperSlide>
           );
         })}
       </Swiper>
+      {imgs.length !== 1 && (
+        <p className="count_pictures">
+          {currentSlide} / {imgs.length}
+        </p>
+      )}
     </div>
   );
 };
