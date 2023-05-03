@@ -38,7 +38,8 @@ const UserProfile = () => {
     navigate('*')
   ) : (
     <>
-      <div className="profile_container user_profile">
+      <div name="upd" className="profile_container user_profile">
+        <Update />
         <i className="icon-share share"></i>
 
         <div className="profile_avatar">
@@ -215,38 +216,40 @@ const UserProfile = () => {
               </svg>
             </li>
           </ul>
-          <Update />
+
           <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}>
-            {userPosts.length === 0 ? (
-              <p className="no_posts">У пользователя ещё нет постов...</p>
-            ) : isLoaded ? (
-              userPosts.map((item, index) => {
-                return <Post {...item} key={index} />;
-              })
-            ) : (
-              <div className="posts_container">
-                <div className="post_box">
-                  {[...new Array(3)].map((_, index) => {
-                    return (
-                      <ContentLoader
-                        key={index}
-                        speed={1}
-                        width={360}
-                        height={300}
-                        viewBox="0 0 360 300"
-                        backgroundColor="#f3f3f3"
-                        foregroundColor="#7e52ee">
-                        <circle cx="47" cy="16" r="16" />
-                        <rect x="72" y="5" rx="3" ry="3" width="65" height="8" />
-                        <rect x="72" y="20" rx="3" ry="3" width="50" height="6" />
-                        <rect x="31" y="50" rx="3" ry="3" width="320" height="8" />
-                        <rect x="31" y="70" rx="10" ry="10" width="320" height="188" />
-                      </ContentLoader>
-                    );
-                  })}
+            <div className="mainBackground">
+              {userPosts.length === 0 ? (
+                <p className="no_posts">У пользователя ещё нет постов...</p>
+              ) : isLoaded ? (
+                userPosts.map((item, index) => {
+                  return <Post {...item} key={index} />;
+                })
+              ) : (
+                <div className="posts_container">
+                  <div className="post_box">
+                    {[...new Array(3)].map((_, index) => {
+                      return (
+                        <ContentLoader
+                          key={index}
+                          speed={1}
+                          width={360}
+                          height={300}
+                          viewBox="0 0 360 300"
+                          backgroundColor="#f3f3f3"
+                          foregroundColor="#7e52ee">
+                          <circle cx="47" cy="16" r="16" />
+                          <rect x="72" y="5" rx="3" ry="3" width="65" height="8" />
+                          <rect x="72" y="20" rx="3" ry="3" width="50" height="6" />
+                          <rect x="31" y="50" rx="3" ry="3" width="320" height="8" />
+                          <rect x="31" y="70" rx="10" ry="10" width="320" height="188" />
+                        </ContentLoader>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
           <div className={activeIcon === 1 ? 'editItems' : 'editItems none_active'}></div>
           <div className={activeIcon === 2 ? 'scopeItems' : 'scopeItems none_active'}></div>

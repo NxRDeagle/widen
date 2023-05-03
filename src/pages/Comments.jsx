@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Comment from '../components/Comment';
 import Post from '../components/Post';
+import Update from '../components/Update';
 
 import '../css/Comments.css';
 import 'swiper/css';
@@ -30,6 +31,7 @@ const Comments = () => {
         <i className="icon-cancel close_comments" onClick={goBack}></i>
         <h1 className="comments_name">Запись</h1>
       </div>
+      <Update />
       <Swiper
         initialSlide={2}
         grabCursor={true}
@@ -60,21 +62,23 @@ const Comments = () => {
         }}>
         <SwiperSlide></SwiperSlide>
         <SwiperSlide>
-          <Post {...post_data[commentPostId]} />
+          <div name="upd">
+            <Post {...post_data[commentPostId]} />
 
-          <div className="line"></div>
-          <div className="comments_box">
-            {post_data[commentPostId].comments &&
-              post_data[commentPostId].comments.map((comment, index) => {
-                return (
-                  <Comment
-                    key={index}
-                    nickname={comment.nickname}
-                    commentText={comment.text}
-                    avatar={user_data.find((obj) => obj.nickname === comment.nickname).avatar}
-                  />
-                );
-              })}
+            <div className="line"></div>
+            <div className="comments_box">
+              {post_data[commentPostId].comments &&
+                post_data[commentPostId].comments.map((comment, index) => {
+                  return (
+                    <Comment
+                      key={index}
+                      nickname={comment.nickname}
+                      commentText={comment.text}
+                      avatar={user_data.find((obj) => obj.nickname === comment.nickname).avatar}
+                    />
+                  );
+                })}
+            </div>
           </div>
         </SwiperSlide>
       </Swiper>

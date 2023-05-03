@@ -30,8 +30,8 @@ const Home = () => {
       <Header />
       <Update />
       <main className="mainBackground">
-        {false ? (
-          <div className="posts_container">
+        <div className="posts_container" name="upd">
+          {false ? (
             <div className="post_box">
               {[...new Array(3)].map((_, index) => {
                 return (
@@ -52,14 +52,14 @@ const Home = () => {
                 );
               })}
             </div>
-          </div>
-        ) : (
-          post_data.map((item, index) => {
-            return item.filter === currentFilter || currentFilter === 'all' ? (
-              <Post {...item} key={index} />
-            ) : null;
-          })
-        )}
+          ) : (
+            post_data.map((item, index) => {
+              return item.filter === currentFilter || currentFilter === 'all' ? (
+                <Post {...item} key={index} />
+              ) : null;
+            })
+          )}
+        </div>
       </main>
       <Footer />
     </>

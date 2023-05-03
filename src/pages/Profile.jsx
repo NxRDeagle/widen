@@ -29,7 +29,8 @@ const Profile = ({ nickname }) => {
 
   return (
     <>
-      <div className="profile_container">
+      <div name="upd" className="profile_container">
+        <Update />
         <div className="burger_box">
           <span className="burger_line"></span>
           <span className="burger_line"></span>
@@ -203,7 +204,6 @@ const Profile = ({ nickname }) => {
               </svg>
             </li>
           </ul>
-          <Update />
           <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}>
             <div className="mainBackground">
               {userPosts.length === 0 ? (
