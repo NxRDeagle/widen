@@ -30,7 +30,7 @@ const Home = () => {
       <Header />
       <Update />
       <main className="mainBackground">
-        <div className="posts_container" name="upd">
+        <div name="upd" className="posts_container">
           {false ? (
             <div className="post_box">
               {[...new Array(3)].map((_, index) => {
