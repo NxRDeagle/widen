@@ -66,8 +66,13 @@ const Post = (props) => {
   };
 
   const goToPreview = () => {
-    setProfile(profile);
-    navigate('/preview_user_profile');
+    if (
+      location.pathname !== `/user_profile/${profile.nickname}` &&
+      location.pathname !== '/profile'
+    ) {
+      setProfile(profile);
+      navigate('/preview_user_profile');
+    }
   };
 
   const goToProfile = () => {

@@ -11,50 +11,54 @@ class Update extends React.Component {
   };
 
   componentDidMount() {
+    const element = document.querySelector('[name="upd"]');
+
     let screenX = null;
     let screenY = null;
 
-    document.body.addEventListener('touchstart', (e) => {
-      screenX = e.touches[0].screenX;
-      screenY = e.touches[0].screenY;
-    });
+    if (element !== null && element != undefined) {
+      element.addEventListener('touchstart', (e) => {
+        screenX = e.touches[0].screenX;
+        screenY = e.touches[0].screenY;
+      });
 
-    document.body.addEventListener('touchmove', (e) => {
-      if (Math.abs(screenY - e.touches[0].screenY) >= 20) {
-        if (window.scrollY === 0) {
-          if (this.state.positionUpdate < 150) {
-            this.setState({ positionUpdate: this.state.positionUpdate + 5 });
-            if (this.state.loaderOpacity < 1)
-              this.setState({ loaderOpacity: this.state.loaderOpacity + 0.05 });
-            if (this.state.loaderWidth < 25) {
-              this.setState({ loaderWidth: this.state.loaderWidth + 1 });
-              this.setState({ loaderHeight: this.state.loaderHeight + 1 });
+      element.addEventListener('touchmove', (e) => {
+        if (Math.abs(screenY - e.touches[0].screenY) >= 20) {
+          if (element.getBoundingClientRect().top >= 0) {
+            if (this.state.positionUpdate < 150) {
+              this.setState({ positionUpdate: this.state.positionUpdate + 5 });
+              if (this.state.loaderOpacity < 1)
+                this.setState({ loaderOpacity: this.state.loaderOpacity + 0.05 });
+              if (this.state.loaderWidth < 25) {
+                this.setState({ loaderWidth: this.state.loaderWidth + 1 });
+                this.setState({ loaderHeight: this.state.loaderHeight + 1 });
+              }
             }
-          }
-        } else {
-          if (this.state.positionUpdate !== 0) {
-            this.setState({ positionUpdate: this.state.positionUpdate - 10 });
-            if (this.state.loaderOpacity > 0)
-              this.setState({ loaderOpacity: this.state.loaderOpacity - 0.08 });
-            if (this.state.loaderWidth > 0) {
-              this.setState({ loaderWidth: this.state.loaderWidth - 2 });
-              this.setState({ loaderHeight: this.state.loaderHeight - 2 });
+          } else {
+            if (this.state.positionUpdate !== 0) {
+              this.setState({ positionUpdate: this.state.positionUpdate - 10 });
+              if (this.state.loaderOpacity > 0)
+                this.setState({ loaderOpacity: this.state.loaderOpacity - 0.1 });
+              if (this.state.loaderWidth > 0) {
+                this.setState({ loaderWidth: this.state.loaderWidth - 2 });
+                this.setState({ loaderHeight: this.state.loaderHeight - 2 });
+              }
             }
           }
         }
-      }
-    });
+      });
 
-    document.body.addEventListener('touchend', (e) => {
-      this.setState({ positionUpdate: 0 });
-      this.setState({ loaderOpacity: 0 });
-      this.setState({ loaderWidth: 0 });
-      this.setState({ loaderHeight: 0 });
-    });
+      element.addEventListener('touchend', (e) => {
+        this.setState({ positionUpdate: 0 });
+        this.setState({ loaderOpacity: 0 });
+        this.setState({ loaderWidth: 0 });
+        this.setState({ loaderHeight: 0 });
+      });
+    }
   }
 
   render() {
-    const { positionUpdate, loaderOpacity, loaderHeight, loaderWidth } = this.state;
+    const { positionUpdate, loaderOpacity, loaderWidth, loaderHeight } = this.state;
 
     const updateStyle = {
       height: positionUpdate + 'px',
