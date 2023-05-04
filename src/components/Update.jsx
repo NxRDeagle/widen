@@ -15,16 +15,21 @@ class Update extends React.Component {
 
     let screenX = null;
     let screenY = null;
+    let clientTop = null;
 
     if (element !== null && element != undefined) {
       element.addEventListener('touchstart', (e) => {
         screenX = e.touches[0].screenX;
         screenY = e.touches[0].screenY;
+        clientTop = element.getBoundingClientRect().top;
       });
 
       element.addEventListener('touchmove', (e) => {
         if (Math.abs(screenY - e.touches[0].screenY) >= 20) {
-          if (element.getBoundingClientRect().top >= 0) {
+          if (
+            element.getBoundingClientRect().top >= clientTop &&
+            element.getBoundingClientRect().top >= 0
+          ) {
             if (this.state.positionUpdate < 150) {
               this.setState({ positionUpdate: this.state.positionUpdate + 5 });
               if (this.state.loaderOpacity < 1)
@@ -33,6 +38,7 @@ class Update extends React.Component {
                 this.setState({ loaderWidth: this.state.loaderWidth + 1 });
                 this.setState({ loaderHeight: this.state.loaderHeight + 1 });
               }
+              clientTop = element.getBoundingClientRect().top;
             }
           } else {
             if (this.state.positionUpdate !== 0) {
@@ -43,12 +49,13 @@ class Update extends React.Component {
                 this.setState({ loaderWidth: this.state.loaderWidth - 2 });
                 this.setState({ loaderHeight: this.state.loaderHeight - 2 });
               }
+              clientTop = element.getBoundingClientRect().top;
             }
           }
         }
       });
 
-      element.addEventListener('touchend', (e) => {
+      element.addEventListener('touchend', () => {
         this.setState({ positionUpdate: 0 });
         this.setState({ loaderOpacity: 0 });
         this.setState({ loaderWidth: 0 });
