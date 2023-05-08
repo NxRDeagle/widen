@@ -17,6 +17,7 @@ import Preview from './pages/Preview';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 import Input from './pages/Input';
+import ChooseInterest from './pages/ChooseInterest';
 
 export const mainContext = React.createContext();
 
@@ -124,6 +125,7 @@ function App() {
           <Route path="/preview_user_profile" element={<Preview {...profile} />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
+          <Route path="/choose_interest" element={<ChooseInterest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

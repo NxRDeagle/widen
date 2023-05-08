@@ -53,12 +53,14 @@ const Comments = () => {
             document.body.style.backgroundColor = '#7e52ee';
             document.querySelector('.head_comments_container').classList.add('hidden');
             document.querySelector('.leave_comment').classList.add('hidden');
+            document.querySelector('.line').classList.add('hidden');
           }
         }}
         onTouchEnd={() => {
           document.body.style.backgroundColor = '#ffffff';
           document.querySelector('.head_comments_container').classList.remove('hidden');
           document.querySelector('.leave_comment').classList.remove('hidden');
+          document.querySelector('.line').classList.remove('hidden');
         }}>
         <SwiperSlide></SwiperSlide>
         <SwiperSlide>

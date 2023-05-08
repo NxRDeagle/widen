@@ -62,6 +62,7 @@
   min-height: 42%;
   padding: 10px 20px 55px 20px;
   /* margin-top: 10px; */
+  border-radius: 10px;
 }
 
 .leave_comment {
