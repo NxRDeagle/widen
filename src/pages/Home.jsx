@@ -13,9 +13,10 @@ import { mainContext } from '../App';
 import '../css/Home.css';
 import 'swiper/css';
 import '../css/Preview.css';
+import Comments from './Comments';
 
 const Home = () => {
-  const { currentFilter } = React.useContext(mainContext);
+  const { currentFilter, openComments } = React.useContext(mainContext);
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
@@ -27,8 +28,9 @@ const Home = () => {
     <Preload />
   ) : (
     <>
-      <Header />
-      <Update />
+      {openComments ? <Comments /> : null}
+      {openComments ? null : <Header />}
+      {!openComments ? null : <Update />}
       <main className="mainBackground">
         <div name="upd" className="posts_container">
           {false ? (
@@ -53,9 +55,9 @@ const Home = () => {
               })}
             </div>
           ) : (
-            post_data.map((item, index) => {
+            post_data.map((item) => {
               return item.filter === currentFilter || currentFilter === 'all' ? (
-                <Post {...item} key={index} />
+                <Post {...item} key={item.id} />
               ) : null;
             })
           )}

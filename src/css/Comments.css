@@ -21,12 +21,17 @@
 }
 
 .comments_container {
+  width: 100%;
   animation: open 0.5s ease-in-out;
-  overflow: hidden;
+  overflow-y: scroll;
+  position: fixed;
+  background-color: white;
+  z-index: 10;
+  height: 100%;
 }
 
 .head_comments_container {
-  z-index: 5;
+  z-index: 4;
   display: flex;
   align-items: center;
   position: fixed;
@@ -61,38 +66,6 @@
   height: fit-content;
   min-height: 42%;
   padding: 10px 20px 55px 20px;
-  /* margin-top: 10px; */
-  border-radius: 10px;
-}
-
-.leave_comment {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: var(--max-width);
-  min-height: 60px;
-  max-height: fit-content;
-  background-color: white;
-  transition: opacity 0.4s ease;
-}
-
-.user_comment {
-  border: var(--border2) var(--color_gray);
-  border-radius: 10px;
-  min-height: 30px;
-  width: 80%;
-  padding: 5px;
-  margin-left: 20px;
-  max-height: 30vh;
-  overflow-y: scroll;
-}
-
-.user_comment:focus {
-  border: var(--border2) var(--color_active);
-  outline: none;
 }
 
 .hidden {

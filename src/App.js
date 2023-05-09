@@ -17,7 +17,6 @@ import Preview from './pages/Preview';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 import Input from './pages/Input';
-import ChooseInterest from './pages/ChooseInterest';
 
 export const mainContext = React.createContext();
 
@@ -50,6 +49,8 @@ function App() {
   const [profile, setProfile] = React.useState(
     savedProfile === null ? {} : JSON.parse(savedProfile),
   );
+
+  const [openComments, setOpenComments] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -85,13 +86,9 @@ function App() {
   }, [scrollValue]);
   React.useEffect(() => {
     window.scrollTo(0, scrollValue);
-    if (
-      location.pathname !== '/preview_user_profile' &&
-      location.pathname !== '/comments' &&
-      location.pathname !== '/full_image'
-    )
+    if (location.pathname !== '/preview_user_profile' && location.pathname !== '/full_image')
       setLoc(location.pathname);
-  }, [location.pathname]);
+  }, [location.pathname, openComments]);
 
   const [loc, setLoc] = React.useState('/');
 
@@ -112,6 +109,8 @@ function App() {
           setCurrentFilter,
           loc,
           setLoc,
+          openComments,
+          setOpenComments,
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />
@@ -125,7 +124,6 @@ function App() {
           <Route path="/preview_user_profile" element={<Preview {...profile} />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
-          <Route path="/choose_interest" element={<ChooseInterest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

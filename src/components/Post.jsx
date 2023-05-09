@@ -16,7 +16,8 @@ const Post = (props) => {
 
   const profile = user_data.find((obj) => obj.nickname === props.nickname);
 
-  const { setFullImages, setCommentPostId, setProfile, setPage } = React.useContext(mainContext);
+  const { setFullImages, setCommentPostId, setProfile, setPage, setOpenComments } =
+    React.useContext(mainContext);
 
   let stats = !props.stats ? [0, 0, 0, 0] : props.stats;
 
@@ -36,11 +37,13 @@ const Post = (props) => {
   const icons = ['icon-like', 'icon-comment', 'icon-repost', 'icon-flag'];
   const [activeIcons, setActiveIcons] = React.useState([]);
 
-  const [fullPost, setFullPost] = React.useState(location.pathname === '/comments' ? true : false);
+  const [fullPost, setFullPost] = React.useState(props.full);
 
   const goToComments = () => {
+    console.log(window.scrollY);
+    document.body.style.overflow = 'hidden';
     setCommentPostId(props.id);
-    navigate('/comments');
+    setOpenComments(true);
   };
 
   const onClickIcon = (icon) => {
@@ -83,7 +86,7 @@ const Post = (props) => {
   };
 
   return (
-    <div className={location.pathname === '/comments' ? 'post open_post' : 'post'}>
+    <div className={fullPost ? 'post open_post' : 'post'}>
       {!fullPost ? (
         <div className="author_post">
           <div className="avatar_author_post">
@@ -189,7 +192,7 @@ const Post = (props) => {
         ) : null}
       </div>
 
-      {location.pathname !== '/comments' && (
+      {!props.full && (
         <div
           className="post_icons"
           onClick={(e) => {

@@ -5,14 +5,18 @@ import ContentLoader from 'react-content-loader';
 import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Post from '../components/Post';
+import Comments from './Comments';
 
 import '../css/Profile.css';
 
 import user_data from '../data/user_data.json';
 import post_data from '../data/post_data.json';
+import { mainContext } from '../App';
 
 const UserProfile = () => {
   const navigate = useNavigate();
+
+  const { openComments } = React.useContext(mainContext);
 
   const { nickname } = useParams();
   let [profile, setProfile] = React.useState(
@@ -38,8 +42,9 @@ const UserProfile = () => {
     navigate('*')
   ) : (
     <>
+      {openComments ? <Comments /> : null}
       <div name="upd" className="profile_container user_profile">
-        <Update />
+        {!openComments ? <Update /> : null}
         <i className="icon-share share"></i>
 
         <div className="profile_avatar">
@@ -222,8 +227,8 @@ const UserProfile = () => {
               {userPosts.length === 0 ? (
                 <p className="no_posts">У пользователя ещё нет постов...</p>
               ) : isLoaded ? (
-                userPosts.map((item, index) => {
-                  return <Post {...item} key={index} />;
+                userPosts.map((item) => {
+                  return <Post {...item} key={item.id} />;
                 })
               ) : (
                 <div className="posts_container">

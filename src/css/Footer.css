@@ -1,40 +1,75 @@
 .foot_container {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 56px;
-    width: var(--max-width);
-    background-color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 56px;
+  width: var(--max-width);
+  background-color: white;
+  z-index: 50;
 }
 
 .foot_notview {
-    filter: blur(6px);
-    pointer-events: none;
+  filter: blur(6px);
+  pointer-events: none;
 }
 
 .nav_icon_items {
-    width: var(--max-width);
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
+  width: var(--max-width);
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
 }
 
 .nav_icon_items li {
-    font-size: 24px;
-    font-weight: 500;
-    color: black;
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
 }
 
 .nav_icon_items :nth-child(4) {
-    margin-top: 6px;
+  margin-top: 6px;
 }
 
 .icon_target {
-    color: var(--color_active) !important;
+  color: var(--color_active) !important;
 }
 
 .icon_target svg path {
-    fill: var(--color_active) !important;
+  fill: var(--color_active) !important;
+}
+
+.user_comment {
+  border: var(--border2) var(--color_gray);
+  border-radius: 10px;
+  min-height: 30px;
+  width: 80%;
+  padding: 5px;
+  margin-left: 20px;
+  font-size: 15px;
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+
+.user_comment:focus {
+  border: var(--border2) var(--color_active);
+  outline: none;
+}
+
+[contenteditable='true'] {
+  caret-color: var(--color_gray);
+}
+
+.nav_comment_items {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: var(--max-width);
+  list-style: none;
+}
+
+.nav_comment_items li {
+  width: fit-content;
 }

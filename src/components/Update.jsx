@@ -18,6 +18,7 @@ class Update extends React.Component {
     let clientTop = null;
 
     if (element !== null && element != undefined) {
+      
       element.addEventListener('touchstart', (e) => {
         screenX = e.touches[0].screenX;
         screenY = e.touches[0].screenY;
@@ -26,10 +27,7 @@ class Update extends React.Component {
 
       element.addEventListener('touchmove', (e) => {
         if (Math.abs(screenY - e.touches[0].screenY) >= 20) {
-          if (
-            element.getBoundingClientRect().top >= clientTop &&
-            element.getBoundingClientRect().top >= 0
-          ) {
+          if (element.getBoundingClientRect().top >= clientTop && element.getBoundingClientRect().top >= 0) {
             if (this.state.positionUpdate < 150) {
               this.setState({ positionUpdate: this.state.positionUpdate + 5 });
               if (this.state.loaderOpacity < 1)
@@ -40,7 +38,8 @@ class Update extends React.Component {
               }
               clientTop = element.getBoundingClientRect().top;
             }
-          } else {
+          }
+          else {
             if (this.state.positionUpdate !== 0) {
               this.setState({ positionUpdate: this.state.positionUpdate - 10 });
               if (this.state.loaderOpacity > 0)
