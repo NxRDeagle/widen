@@ -1,11 +1,23 @@
 .choose_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: scroll;
   margin-bottom: 50px;
+}
+
+.choose_container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .interest_sphere {
   width: 95px;
   height: 95px;
+
   border: 1px solid transparent;
   border-radius: 100%;
   background-size: contain;
@@ -14,7 +26,7 @@
 
 .interest {
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 15px 15px;
   flex-direction: row;
   flex-wrap: wrap;

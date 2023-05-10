@@ -173,7 +173,10 @@ class Input extends React.Component {
               <p className="error_label none_active">Пароли не совпадают!</p>
               <button onClick={this.onClickLogin}>Далее</button>
             </form>
-
+            <p className="sign_conf">
+              Нажимая “Далее”, Вы соглашаетесь с <u>регламентом</u> и{' '}
+              <u>политикой конфиденциальности</u>
+            </p>
             <p>
               Есть аккаунт?{' '}
               <a

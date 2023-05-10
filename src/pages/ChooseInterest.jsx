@@ -8,27 +8,30 @@ const ChooseInterest = () => {
   return (
     <div className="choose_div">
       <h3 className="choose_header">Какие сферы Вам интересны?</h3>
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
-      <Sphere />
+      <div className="choose_container">
+        {' '}
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+        <Sphere />
+      </div>
     </div>
   );
 };

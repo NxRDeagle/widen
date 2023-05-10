@@ -1,160 +1,163 @@
 /*Flex+column*/
 .input_container,
 .input_form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /*Flex+row*/
 .who_im_container,
 .who_im_box {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 /*шрифт 15px*/
 .input_form button,
 .who_im_box p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
 }
 
-
 .none_active {
-    display: none !important;
+  display: none !important;
 }
 
 .input_container {
-    width: var(--max-width);
-    max-height: 100vh;
-    min-height: 100vh;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    background: url('../img/backInputColor.jpg');
-    background-size: cover;
-    animation: main 1s forwards;
+  width: var(--max-width);
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background: url('../img/backInputColor.jpg');
+  background-size: cover;
+  animation: main 1s forwards;
 }
 
 .input_logo {
-    margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .input_form {
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 10px;
-    width: 90%;
-    background-color: white;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  width: 90%;
+  background-color: white;
 }
 
 .input_form_sign {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 37px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 37px;
 }
 
 .input_form input {
-    width: 90%;
-    height: 43px;
-    border: var(--border1) var(--color_gray);
-    border-radius: 10px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    padding-left: 21px;
+  width: 90%;
+  height: 43px;
+  border: var(--border1) var(--color_gray);
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  padding-left: 21px;
 }
 
 .input_form input:focus {
-    border: var(--border2) var(--color_active);
-    outline: none;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  border: var(--border2) var(--color_active);
+  outline: none;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .input_form button {
-    height: 38px;
-    text-align: center;
-    width: 167px;
-    background: url('../img/backBTN.jpg');
-    background-size: cover;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    border: 0;
-    border-radius: 10px;
-    color: white;
+  height: 38px;
+  text-align: center;
+  width: 167px;
+  background: url('../img/backBTN.jpg');
+  background-size: cover;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border: 0;
+  border-radius: 10px;
+  color: white;
 }
 
-.input_form~p {
-    color: var(--color_gray);
-    margin-top: 60px;
+.input_form ~ p {
+  color: var(--color_gray);
+  margin-top: 60px;
 }
 
 .input_link {
-    color: white !important;
-    text-decoration: underline;
+  color: white !important;
+  text-decoration: underline;
 }
 
 .error_input {
-    animation: errInput 1.5s ease-in infinite;
+  animation: errInput 1.5s ease-in infinite;
 }
 
 .input_line {
-    width: 50%;
-    height: 0;
-    border: var(--border1) var(--color_gray);
-    margin-top: 20px;
+  width: 50%;
+  height: 0;
+  border: var(--border1) var(--color_gray);
+  margin-top: 20px;
 }
 
 .who_im_container {
-    width: 100vw;
-    justify-content: center;
+  width: 100vw;
+  justify-content: center;
 }
 
 .who_im_box {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 .who_im_checkbtn {
-    width: 20px;
-    height: 20px;
-    border: var(--border1) var(--color_gray);
-    margin-right: 5px;
-    border-radius: 5px;
-    transition: background 0.8s ease;
+  width: 20px;
+  height: 20px;
+  border: var(--border1) var(--color_gray);
+  margin-right: 5px;
+  border-radius: 5px;
+  transition: background 0.8s ease;
 }
 
 .checked {
-    border: 0;
-    background-color: var(--color_active);
+  border: 0;
+  background-color: var(--color_active);
 }
 
 .error_label {
-    color: red;
+  color: red;
 }
 
 @keyframes main {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes errInput {
-    0% {
-        background-color: transparent;
-    }
+  0% {
+    background-color: transparent;
+  }
 
-    50% {
-        background-color: red;
-    }
+  50% {
+    background-color: red;
+  }
 
-    100% {
-        background-color: transparent;
-    }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.sign_conf {
+  text-align: center;
 }
