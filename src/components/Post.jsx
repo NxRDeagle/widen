@@ -16,7 +16,7 @@ const Post = (props) => {
 
   const profile = user_data.find((obj) => obj.nickname === props.nickname);
 
-  const { setFullImages, setCommentPostId, setProfile, setPage, setOpenComments } =
+  const { setFullImages, setCommentPostId, setProfile, setPage, setStateFull, stateFull } =
     React.useContext(mainContext);
 
   let stats = !props.stats ? [0, 0, 0, 0] : props.stats;
@@ -40,10 +40,12 @@ const Post = (props) => {
   const [fullPost, setFullPost] = React.useState(props.full);
 
   const goToComments = () => {
-    console.log(window.scrollY);
     document.body.style.overflow = 'hidden';
     setCommentPostId(props.id);
-    setOpenComments(true);
+    setStateFull({
+      ...stateFull,
+      openComments: true
+    })
   };
 
   const onClickIcon = (icon) => {
@@ -65,7 +67,10 @@ const Post = (props) => {
         return x === firstImg ? -1 : y === firstImg ? 1 : 0;
       });
     setFullImages(imgs_clone);
-    navigate('/full_image');
+    setStateFull({
+      ...stateFull,
+      openImage: true
+    })
   };
 
   const goToPreview = () => {
@@ -73,12 +78,23 @@ const Post = (props) => {
       location.pathname !== `/user_profile/${profile.nickname}` &&
       location.pathname !== '/profile'
     ) {
+      document.body.style.overflow = 'hidden';
       setProfile(profile);
-      navigate('/preview_user_profile');
+      setStateFull({
+        ...stateFull,
+        openPreview: true
+      })
     }
   };
 
   const goToProfile = () => {
+    setStateFull({
+      ...stateFull,
+      openComments: false,
+      openPreview: false
+    })
+    document.body.style.overflow = '';
+    
     profile.nickname !== userLogin
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
@@ -155,38 +171,38 @@ const Post = (props) => {
           <>
             {props.imgs && props.imgs.length <= CONTENT_LIMIT
               ? props.imgs.map((path, index) => {
-                  if (index !== 0)
-                    return (
-                      <div key={index}>
-                        {props.signImgs[index] ? (
-                          <p className="post_text">{props.signImgs[index]}</p>
-                        ) : null}
-                        <img
-                          className="post_one_item"
-                          src={path}
-                          alt="img post"
-                          onClick={() => goToFullMode(props.imgs, path)}
-                        />
-                      </div>
-                    );
-                })
+                if (index !== 0)
+                  return (
+                    <div key={index}>
+                      {props.signImgs[index] ? (
+                        <p className="post_text">{props.signImgs[index]}</p>
+                      ) : null}
+                      <img
+                        className="post_one_item"
+                        src={path}
+                        alt="img post"
+                        onClick={() => goToFullMode(props.imgs, path)}
+                      />
+                    </div>
+                  );
+              })
               : null}
             {props.videos && props.videos.length <= CONTENT_LIMIT
               ? props.videos.map((path, index) => {
-                  return (
-                    <div key={index}>
-                      {props.signVideos[index] ? (
-                        <p className="post_text">{props.signVideos[index]}</p>
-                      ) : null}
-                      <video
-                        key={index}
-                        controls
-                        className="post_one_item"
-                        src={path}
-                        type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video>
-                    </div>
-                  );
-                })
+                return (
+                  <div key={index}>
+                    {props.signVideos[index] ? (
+                      <p className="post_text">{props.signVideos[index]}</p>
+                    ) : null}
+                    <video
+                      key={index}
+                      controls
+                      className="post_one_item"
+                      src={path}
+                      type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video>
+                  </div>
+                );
+              })
               : null}
           </>
         ) : null}

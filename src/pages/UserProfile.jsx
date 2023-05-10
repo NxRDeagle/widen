@@ -5,7 +5,9 @@ import ContentLoader from 'react-content-loader';
 import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Post from '../components/Post';
-import Comments from './Comments';
+import Comments from '../components/Comments';
+import Preview from '../components/Preview';
+import FullMode from '../components/FullMode';
 
 import '../css/Profile.css';
 
@@ -16,35 +18,34 @@ import { mainContext } from '../App';
 const UserProfile = () => {
   const navigate = useNavigate();
 
-  const { openComments } = React.useContext(mainContext);
+  const { stateFull, fullImages } = React.useContext(mainContext);
 
   const { nickname } = useParams();
-  let [profile, setProfile] = React.useState(
-    user_data.find((obj) => obj.nickname === nickname.toLocaleLowerCase()),
-  );
+  const [profile, setProfile] = React.useState({});
 
   const [activeIcon, setActiveIcon] = React.useState(0);
   const [userPosts, setUserPosts] = React.useState([]);
 
   const [isLoaded, setIsLoaded] = React.useState(false);
+
+  const [notification, setNotification] = React.useState(false);
+
   React.useEffect(() => {
+    setProfile(user_data.find((obj) => obj.nickname === nickname.toLocaleLowerCase()));
     setUserPosts(
       post_data.filter((item) => {
         return item.nickname === nickname;
       }),
     );
     setIsLoaded(true);
-  }, []);
-
-  const [notification, setNotification] = React.useState(false);
+  }, [nickname]);
 
   return !profile ? (
     navigate('*')
   ) : (
     <>
-      {openComments ? <Comments /> : null}
       <div name="upd" className="profile_container user_profile">
-        {!openComments ? <Update /> : null}
+        {!stateFull.openComments ? <Update /> : null}
         <i className="icon-share share"></i>
 
         <div className="profile_avatar">
@@ -264,7 +265,10 @@ const UserProfile = () => {
             }></div>
         </div>
       </div>
+      {stateFull.openComments ? <Comments /> : null}
+      {stateFull.openPreview ? <Preview /> : null}
       <Footer />
+      {stateFull.openImage ? <FullMode imgs={fullImages} /> : null}
     </>
   );
 };

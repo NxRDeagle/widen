@@ -28,15 +28,17 @@
 
 .preview_user_container {
   position: fixed;
-  z-index: 10;
+  z-index: 25;
+  top: 0;
   align-items: center;
   width: var(--max-width);
-  height: 92vh;
+  height: 100vh;
   border-end-end-radius: 15px;
   border-end-start-radius: 15px;
   background: url('http://www.mobilmusic.ru/mfile/f1/4b/0a/1475940.jpg');
   background-size: cover;
   animation: open 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 .preview_user_avatar {
@@ -117,7 +119,7 @@
 .rowupp {
   position: absolute;
   bottom: 10%;
-  font-size: 20px;
+  font-size: 30px;
   color: white;
 }
 

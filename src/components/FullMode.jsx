@@ -4,17 +4,23 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import '../css/FullMode.css';
 import 'swiper/css';
+import { mainContext } from '../App';
 
 const FullMode = ({ imgs }) => {
-  const navigate = useNavigate();
 
   const [currentSlide, setCurrentSlide] = React.useState(1);
+
+  const {setStateFull, stateFull} = React.useContext(mainContext);
+
   return (
     <div className="full_mode">
       <i
         className="icon-cancel close_full"
         onClick={() => {
-          navigate('/');
+          setStateFull({
+            ...stateFull,
+            openImage: false
+          })
         }}></i>
 
       <Swiper

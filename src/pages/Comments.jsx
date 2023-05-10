@@ -15,17 +15,11 @@ import post_data from '../data/post_data.json';
 import user_data from '../data/user_data.json';
 
 const Comments = () => {
-  const navigate = useNavigate();
-  const { commentPostId, setPage, loc, setOpenComments } = React.useContext(mainContext);
+  const { commentPostId, setOpenComments } = React.useContext(mainContext);
 
   const goBack = () => {
-    console.log(window.scrollY, 'goBack');
     document.body.style.overflow = '';
     setOpenComments(false);
-    // navigate(loc);
-    // if (loc === `/user_profile/${post_data[commentPostId].nickname}`) setPage('profile');
-    // else if (loc === '/') setPage('home');
-    // else setPage(loc.substring(1));
   };
 
   return (

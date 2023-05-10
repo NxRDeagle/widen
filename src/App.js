@@ -11,9 +11,6 @@ import Vacancies from './pages/Vacancies';
 import Messenger from './pages/Messenger';
 import Help from './pages/Help';
 import Profile from './pages/Profile';
-import FullMode from './pages/FullMode';
-import Comments from './pages/Comments';
-import Preview from './pages/Preview';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 import Input from './pages/Input';
@@ -27,30 +24,31 @@ function App() {
 
   const [currentFilter, setCurrentFilter] = React.useState('all');
 
-  const savedScroll = localStorage.getItem('scrollValue');
-  const savedProfile = localStorage.getItem('profile');
-  const savedCommentPostId = localStorage.getItem('commentPostId');
-  const savedFullImages = localStorage.getItem('fullImages');
+  const [local, setLocal] = React.useState({
+    savedScroll: localStorage.getItem('scrollValue'),
+    savedProfile: localStorage.getItem('profile'),
+    savedCommentPostId: localStorage.getItem('commentPostId'),
+  });
 
   const [page, setPage] = React.useState(
     location.pathname === '/' ? 'home' : location.pathname.substring(1),
   );
 
-  const [fullImages, setFullImages] = React.useState(
-    savedFullImages === null
-      ? ['https://picturesofmaidenhead.files.wordpress.com/2019/01/image-not-found.jpg']
-      : JSON.parse(savedFullImages),
-  );
+  const [fullImages, setFullImages] = React.useState(['']);
 
   const [commentPostId, setCommentPostId] = React.useState(
-    savedCommentPostId === null ? 0 : JSON.parse(savedCommentPostId),
+    local.savedCommentPostId === null ? 0 : JSON.parse(local.savedCommentPostId),
   );
 
   const [profile, setProfile] = React.useState(
-    savedProfile === null ? {} : JSON.parse(savedProfile),
+    local.savedProfile === null ? {} : JSON.parse(local.savedProfile),
   );
 
-  const [openComments, setOpenComments] = React.useState(false);
+  const [stateFull, setStateFull] = React.useState({
+    openComments: false,
+    openPreview: false,
+    openImage: false,
+  });
 
   React.useEffect(() => {
     try {
@@ -66,8 +64,9 @@ function App() {
   }, [profile, commentPostId, fullImages]);
 
   const [scrollValue, setScrollValue] = React.useState(
-    savedScroll === null ? 0 : JSON.parse(savedScroll),
+    local.savedScroll === null ? 0 : JSON.parse(local.savedScroll),
   );
+
   React.useEffect(() => {
     const onScroll = (e) => {
       if (e.target.documentElement.scrollTop !== 0)
@@ -84,11 +83,10 @@ function App() {
 
     return () => window.removeEventListener('scroll', onScroll);
   }, [scrollValue]);
+
   React.useEffect(() => {
     window.scrollTo(0, scrollValue);
-    if (location.pathname !== '/preview_user_profile' && location.pathname !== '/full_image')
-      setLoc(location.pathname);
-  }, [location.pathname, openComments]);
+  }, [stateFull.openComments, stateFull.openPreview, stateFull.openImage]);
 
   const [loc, setLoc] = React.useState('/');
 
@@ -109,8 +107,8 @@ function App() {
           setCurrentFilter,
           loc,
           setLoc,
-          openComments,
-          setOpenComments,
+          stateFull,
+          setStateFull,
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />
@@ -119,9 +117,6 @@ function App() {
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile nickname={userLogin} />} />
-          <Route path="/full_image" element={<FullMode imgs={fullImages} />} />
-          <Route path="/comments" element={<Comments />} />
-          <Route path="/preview_user_profile" element={<Preview {...profile} />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
           <Route path="*" element={<NotFound />} />

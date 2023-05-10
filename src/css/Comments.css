@@ -25,20 +25,17 @@
   animation: open 0.5s ease-in-out;
   overflow-y: scroll;
   position: fixed;
+  top: 0;
   background-color: white;
-  z-index: 10;
   height: 100%;
 }
 
 .head_comments_container {
-  z-index: 4;
   display: flex;
   align-items: center;
-  position: fixed;
   height: 50px;
   width: var(--max-width);
   background-color: white;
-  transition: opacity 0.4s ease;
 }
 
 .close_comments {

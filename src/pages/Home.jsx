@@ -6,6 +6,7 @@ import Post from '../components/Post';
 import Footer from '../components/Footer';
 import Preload from '../components/Preload';
 import Update from '../components/Update';
+import Preview from '../components/Preview';
 
 import post_data from '../data/post_data.json';
 import { mainContext } from '../App';
@@ -13,10 +14,10 @@ import { mainContext } from '../App';
 import '../css/Home.css';
 import 'swiper/css';
 import '../css/Preview.css';
-import Comments from './Comments';
+import Comments from '../components/Comments';
 
 const Home = () => {
-  const { currentFilter, openComments } = React.useContext(mainContext);
+  const { currentFilter, stateFull} = React.useContext(mainContext);
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
@@ -28,11 +29,10 @@ const Home = () => {
     <Preload />
   ) : (
     <>
-      {openComments ? <Comments /> : null}
-      {openComments ? null : <Header />}
-      {!openComments ? null : <Update />}
+      <Header />
+      {stateFull.openComments || stateFull.openPreview ? null : <Update />}
       <main className="mainBackground">
-        <div name="upd" className="posts_container">
+        <div name={stateFull.openComments ? "" : "upd"} className="posts_container">
           {false ? (
             <div className="post_box">
               {[...new Array(3)].map((_, index) => {
@@ -63,6 +63,8 @@ const Home = () => {
           )}
         </div>
       </main>
+      {stateFull.openComments ? <Comments /> : null}
+      {stateFull.openPreview ? <Preview /> : null}
       <Footer />
     </>
   );

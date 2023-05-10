@@ -7,16 +7,16 @@ import { mainContext } from '../App';
 
 const Footer = () => {
   const location = useLocation();
-  const { page, setPage, openComments } = React.useContext(mainContext);
+  const { page, setPage, stateFull } = React.useContext(mainContext);
 
   return (
     <footer
       className={
-        location.pathname === '/preview_user_profile'
+        stateFull.openPreview
           ? 'foot_notview foot_container'
           : 'foot_container'
       }>
-      {!openComments ? (
+      {!stateFull.openComments || stateFull.openPreview ? (
         <ul
           className="nav_icon_items"
           onClick={(e) => {

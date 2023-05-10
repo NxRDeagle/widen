@@ -4,7 +4,9 @@ import ContentLoader from 'react-content-loader';
 import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Post from '../components/Post';
-import Comments from './Comments';
+import Comments from '../components/Comments';
+import Preview from '../components/Preview';
+import FullMode from '../components/FullMode';
 import { mainContext } from '../App';
 
 import user_data from '../data/user_data.json';
@@ -14,7 +16,7 @@ import '../css/Profile.css';
 import '../css/Post.css';
 
 const Profile = ({ nickname }) => {
-  const { openComments } = React.useContext(mainContext);
+  const { stateFull, fullImages } = React.useContext(mainContext);
 
   const [activeIcon, setActiveIcon] = React.useState(0);
   const [userPosts, setUserPosts] = React.useState([]);
@@ -33,9 +35,8 @@ const Profile = ({ nickname }) => {
 
   return (
     <>
-      {openComments ? <Comments /> : null}
       <div name="upd" className="profile_container">
-        {!openComments ? <Update /> : null}
+        {stateFull.openComments || stateFull.openPreview ? null : <Update />}
         <div className="burger_box">
           <span className="burger_line"></span>
           <span className="burger_line"></span>
@@ -251,7 +252,10 @@ const Profile = ({ nickname }) => {
             }></div>
         </div>
       </div>
+      {stateFull.openComments ? <Comments /> : null}
+      {stateFull.openPreview ? <Preview/> : null}
       <Footer />
+      {stateFull.openImage ? <FullMode imgs={fullImages}/> : null}
     </>
   );
 };

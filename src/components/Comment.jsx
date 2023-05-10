@@ -9,12 +9,14 @@ import user_data from '../data/user_data.json';
 const Comment = ({ commentText, avatar, nickname }) => {
   const navigate = useNavigate();
 
-  const { setProfile, setLoc } = React.useContext(mainContext);
+  const { setProfile, setLoc, setStateFull, stateFull } = React.useContext(mainContext);
 
   const goToPreview = () => {
-    setLoc('/comments');
     setProfile(user_data.find((obj) => obj.nickname === nickname.toLocaleLowerCase()));
-    navigate('/preview_user_profile');
+    setStateFull({
+      ...stateFull,
+      openPreview: true
+    })
   };
 
   return (
