@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/widen/static/css/main.87526f8e.css",
+    "main.js": "/widen/static/js/main.90b0bb9c.js",
+    "static/media/Verdana.ttf": "/widen/static/media/Verdana.06356c47838279a6fe85.ttf",
+    "static/media/default_post.png": "/widen/static/media/default_post.0e4506185a59e071bc61.png",
+    "static/media/backInputColor.jpg": "/widen/static/media/backInputColor.1e485d8cd28b4df7c6d7.jpg",
+    "static/media/fontello.eot?55074594": "/widen/static/media/fontello.59e27ae347e37ccb1c0d.eot",
+    "static/media/fontello.ttf?55074594": "/widen/static/media/fontello.7e8667f95856078f263b.ttf",
+    "static/media/fontello.svg?55074594": "/widen/static/media/fontello.a86423b2e2079e92fe72.svg",
+    "static/media/fontello.woff?55074594": "/widen/static/media/fontello.343e0af571ba7b5f24dd.woff",
+    "static/media/fontello.woff2?55074594": "/widen/static/media/fontello.c4b0ea1ce412ec76ac5d.woff2",
+    "static/media/logoInput.svg": "/widen/static/media/logoInput.4c4097b01b0f4d68ae348e159db4cad4.svg",
+    "index.html": "/widen/index.html",
+    "static/media/arrow.svg": "/widen/static/media/arrow.fc29ec73901b6f8218c91a0d69592416.svg",
+    "main.87526f8e.css.map": "/widen/static/css/main.87526f8e.css.map",
+    "main.90b0bb9c.js.map": "/widen/static/js/main.90b0bb9c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.87526f8e.css",
+    "static/js/main.90b0bb9c.js"
+  ]
+}
