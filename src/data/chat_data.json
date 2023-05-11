@@ -1,0 +1,164 @@
+[
+    {
+        "id" : 1,
+        "nickname": "Aleksey_Guf",
+        "avatar": "https://avatars.mds.yandex.net/i?id=5f01c7b4b641b91b052f87be76e9b6aead348452-7570978-images-thumbs&n=13",
+        "colleague": true,
+        "fullstatus": "unread",
+        "messages":[
+            {
+                "who": "user",
+                "message": "Пошли пить пиво?",
+                "status": "unread",
+                "time": "13:45"
+            },
+            {
+                "who": "user",
+                "message": "Ты тут?",
+                "status": "unread",
+                "time": "14:00"
+            },
+            {
+                "who": "user",
+                "message": "Ладно",
+                "status": "unread",
+                "time": "14:20"
+            }
+        ]
+    },
+    {
+        "id" : 2,
+        "nickname": "Ural_FD",
+        "avatar": "https://shapka-youtube.ru/wp-content/uploads/2022/11/ava-s-nadpisyu-odinokiy.jpg",
+        "colleague": false,
+        "fullstatus": "unread",
+        "messages":[
+            {
+                "who": "iam",
+                "message": "Дратути",
+                "status": "read",
+                "time": "12:45"
+            },
+            {
+                "who": "user",
+                "message": "Хай",
+                "status": "read",
+                "time": "14:00"
+            },
+            {
+                "who": "iam",
+                "message": "Работа нужна",
+                "status": "unread",
+                "time": "15:20"
+            }
+        ]
+    },
+    {
+        "id" : 3,
+        "nickname": "Valera_Blat",
+        "avatar": "https://i.pinimg.com/550x/a7/db/a6/a7dba63fa833afad38ac7e7504c1e7c4.jpg",
+        "colleague": true,
+        "fullstatus": "read",
+        "messages":[
+            {
+                "who": "iam",
+                "message": "Даров",
+                "status": "read",
+                "time": "12:45"
+            },
+            {
+                "who": "user",
+                "message": "Хай",
+                "status": "read",
+                "time": "14:00"
+            },
+            {
+                "who": "iam",
+                "message": "Есть идея!",
+                "status": "read",
+                "time": "15:20"
+            }
+        ]
+    },
+    {
+        "id" : 4,
+        "nickname": "FK_BARSA",
+        "avatar": "https://wonder-day.com/wp-content/uploads/2020/03/unnamed.jpg",
+        "colleague": false,
+        "fullstatus": "read",
+        "messages":[
+            {
+                "who": "iam",
+                "message": "Даров",
+                "status": "read",
+                "time": "12:45"
+            },
+            {
+                "who": "user",
+                "message": "Хай",
+                "status": "read",
+                "time": "14:00"
+            },
+            {
+                "who": "user",
+                "message": "Что хотел?",
+                "status": "read",
+                "time": "15:20"
+            }
+        ]
+    },
+    {
+        "id" : 5,
+        "nickname": "Gosha_Arno",
+        "avatar": "https://cspromogame.ru//storage/upload_images/avatars/2038.jpg",
+        "colleague": true,
+        "fullstatus": "unread",
+        "messages":[
+            {
+                "who": "user",
+                "message": "Занят?",
+                "status": "read",
+                "time": "12:45"
+            },
+            {
+                "who": "iam",
+                "message": "Нет",
+                "status": "read",
+                "time": "14:00"
+            },
+            {
+                "who": "user",
+                "message": "Гоу гул?",
+                "status": "unread",
+                "time": "15:20"
+            }
+        ]
+    },
+    {
+        "id" : 6,
+        "nickname": "Zenit",
+        "avatar": "https://cs14.pikabu.ru/post_img/big/2021/03/24/0/1616536067143232419.jpg",
+        "colleague": false,
+        "fullstatus": "read",
+        "messages":[
+            {
+                "who": "user",
+                "message": "Играешь в футбол?",
+                "status": "read",
+                "time": "12:45"
+            },
+            {
+                "who": "iam",
+                "message": "Да",
+                "status": "read",
+                "time": "14:00"
+            },
+            {
+                "who": "user",
+                "message": "Ты принят!",
+                "status": "read",
+                "time": "14:20"
+            }
+        ]
+    }
+]
