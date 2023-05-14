@@ -64,7 +64,8 @@ const Header = () => {
       <div className="history_container">
         <div className="user_history_box">
           <div className="user_history_add">
-            <i className="icon-plus user_history_add_plus"></i>
+            <span className='line_plus_horizontal'></span>
+            <span className='line_plus_vertical'></span>
           </div>
         </div>
         {<History />}

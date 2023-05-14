@@ -22,3 +22,7 @@
     text-decoration: none;
     font-family: var(--fontVer);
 }
+
+.root{
+    overflow-x: none;
+}

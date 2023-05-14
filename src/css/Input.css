@@ -5,16 +5,8 @@
   flex-direction: column;
 }
 
-/*Flex+row*/
-.who_im_container,
-.who_im_box {
-  display: flex;
-  flex-direction: row;
-}
-
 /*шрифт 15px*/
-.input_form button,
-.who_im_box p {
+.input_form button {
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -38,7 +30,7 @@
 }
 
 .input_logo {
-  margin-bottom: 30px;
+  margin: 0px 0 40px 0;
 }
 
 .input_form {
@@ -59,36 +51,36 @@
 .input_form input {
   width: 90%;
   height: 43px;
-  border: var(--border1) var(--color_gray);
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   padding-left: 21px;
+  border: 0;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .input_form input:focus {
   border: var(--border2) var(--color_active);
   outline: none;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .input_form button {
+  width: 117px;
   height: 38px;
   text-align: center;
-  width: 167px;
   background: url('../img/backBTN.jpg');
   background-size: cover;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border: 0;
-  border-radius: 10px;
+  border-radius: 100px;
   color: white;
 }
 
-.input_form ~ p {
+.input_form~p {
   color: var(--color_gray);
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .input_link {
@@ -107,31 +99,95 @@
   margin-top: 20px;
 }
 
-.who_im_container {
-  width: 100vw;
-  justify-content: center;
+.error_label {
+  color: red;
 }
 
-.who_im_box {
-  margin-left: 15px;
+.sign_conf {
+  text-align: center;
+  margin: 0 20px 0 20px;
 }
 
-.who_im_checkbtn {
-  width: 20px;
-  height: 20px;
-  border: var(--border1) var(--color_gray);
-  margin-right: 5px;
-  border-radius: 5px;
-  transition: background 0.8s ease;
+.choose_header {
+  margin-bottom: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
 }
 
-.checked {
+.choose_who {
+  width: 296px;
+  height: 43px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border: 0;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  color: black;
+  background-color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  transition: background-color 0.8s ease;
+}
+
+.your_choose {
+  color: white;
   background-color: var(--color_active);
 }
 
-.error_label {
-  color: red;
+.choose_next_btn {
+  width: 117px;
+  height: 38px;
+  text-align: center;
+  background: url('../img/backBTN.jpg');
+  background-size: cover;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border: 0;
+  border-radius: 100px;
+  color: white;
+}
+
+.first_input_container {
+  display: flex;
+  flex-direction: column;
+  width: var(--max-width);
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  background: url('../img/backInputColor.jpg');
+  background-size: cover;
+  animation: main 1s forwards;
+}
+
+.logo_input {
+  margin-top: 40%;
+}
+
+.come_btn {
+  padding: 15px 85px;
+  box-shadow: inset 0px 4px 10px rgba(255, 255, 255, 0.8);
+  border-radius: 100px;
+  background-color: var(--color_active);
+  border: 0;
+  color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.come_btn~p {
+  text-align: center;
+  color: white;
+  margin: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
 }
 
 @keyframes main {
@@ -156,8 +212,4 @@
   100% {
     background-color: transparent;
   }
-}
-
-.sign_conf {
-  text-align: center;
 }

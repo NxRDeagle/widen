@@ -28,7 +28,7 @@
 
 .preview_user_container {
   position: fixed;
-  z-index: 25;
+  z-index: 60;
   top: 0;
   align-items: center;
   width: var(--max-width);

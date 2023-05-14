@@ -12,6 +12,7 @@ import 'swiper/css';
 import { mainContext } from '../App';
 import post_data from '../data/post_data.json';
 import user_data from '../data/user_data.json';
+import Footer from './Footer';
 
 const Comments = () => {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const Comments = () => {
       document.getElementById('update').classList.remove('none_active');
       if (scroll < 20) {
         commentBox.style.transform = `translate(0%)`;
-        document.querySelector('.head_comments_container').style.opacity = 1;
+        document.querySelector('.head_comments_container').removeAttribute('style');
         document.querySelector('.foot_container').style.opacity = 1;
       }
       else {
@@ -87,11 +88,11 @@ const Comments = () => {
 
   return (
     <>
-      <div id='comments' className="comments_container">
-        <div className="head_comments_container">
+      <div className="head_comments_container">
           <i className="icon-cancel close_comments" onClick={goBack}></i>
           <h1 className="comments_name">Запись</h1>
-        </div>
+      </div>
+      <div id='comments' className="comments_container">
         {stateFull.openPreview ? null : <Update />}
         <div name="upd">
           <div name='swipe'>
@@ -113,6 +114,7 @@ const Comments = () => {
           </div>
         </div>
       </div>
+      <Footer message={true}/>
       {stateFull.openImage ? <FullMode imgs={fullImages}/> : null}
     </>
   );

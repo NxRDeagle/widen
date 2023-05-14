@@ -42,7 +42,7 @@
     height: 0;
     background-color: white;
     border-radius: 10px;
-    z-index: 1;
+    z-index: 12;
     overflow: hidden;
 }
 
@@ -94,22 +94,30 @@
 }
 
 .user_history_add {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     width: 64px;
     height: 64px;
-    background: url('../img/backBTN.jpg');
-    background-size: cover;
-    border: var(--border1) var(--color_active);
+    background-color: var(--color_active);
 }
 
-.user_history_add_plus {
-    font-size: 45px;
-    line-height: 100;
-    color: white;
+.line_plus_horizontal{
+    width: 40px;
+    border: 1px solid #FFFFFF;
+    z-index: 0;
 }
+
+.line_plus_vertical{
+    position: absolute;
+    width: 40px;
+    border: 1px solid #FFFFFF;
+    transform: rotate(-90deg);
+    z-index: 10;
+}
+
 
 .line {
     width: var(--max-width);

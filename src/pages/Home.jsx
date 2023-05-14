@@ -65,7 +65,7 @@ const Home = () => {
       </main>
       {stateFull.openComments ? <Comments /> : null}
       {stateFull.openPreview ? <Preview /> : null}
-      <Footer />
+      <Footer/>
     </>
   );
 };

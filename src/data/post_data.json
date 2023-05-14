@@ -96,5 +96,32 @@
         }
       ],
       "filter": "post"
+    },
+    {
+      "id": "6",
+      "nickname": "ded",
+      "stats": [345, 2546, 13345, 945699],
+      "signImgs": ["Рекламная компания KFC"
+  ],
+      "imgs": [ "https://in-w.ru/wp-content/uploads/2018/05/KFC.jpg"],
+      "filter": "case"
+    },
+    {
+      "id": "7",
+      "nickname": "fizruk",
+      "stats": [345, 2546, 13345, 945699],
+      "signImgs": ["ЛАЛАЛАЛА ывывыв"
+  ],
+      "imgs": [ "https://gamebomb.ru/files/galleries/001/0/06/221558.jpg"],
+      "filter": "case"
+    },
+    {
+      "id": "8",
+      "nickname": "pupa_online",
+      "stats": [345, 2546, 13345, 945699],
+      "signImgs": ["я ненавижу ксс"
+  ],
+      "imgs": [ "https://proprikol.ru/wp-content/uploads/2020/10/kartinki-ognya-14.jpg"],
+      "filter": "case"
     }
   ]

@@ -14,11 +14,11 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 import Input from './pages/Input';
-import Start from './pages/Start';
 
 import ChooseInterest from './pages/ChooseInterest';
 import WhoAreYou from './pages/WhoAreYou';
 import MoreInterests from './pages/MoreInterests';
+import Start from './pages/Start';
 
 export const mainContext = React.createContext();
 

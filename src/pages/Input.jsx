@@ -37,24 +37,31 @@ class Input extends React.Component {
       if (input.value === '') {
         logic = false;
         input.className = 'error_input';
-        this.state.activeBox === 1
+        this.state.activeBox === 2
           ? input.nextElementSibling.classList.remove('none_active')
           : document.getElementById('error_label_input').classList.remove('none_active');
       }
     });
-    if (this.state.activeBox === 1 && this.state.userCategory === 'undefined') {
-      logic = false;
-      document.querySelectorAll('.who_im_checkbtn').forEach((box) => {
-        box.classList.add('error_input');
-      });
-    }
-    if (this.state.activeBox === 0 && logic) {
+    if (this.state.activeBox === 1 && logic) {
       const navigate = useNavigate();
       const { setPage } = React.useContext(mainContext);
       navigate('/');
       setPage('home');
     }
+    if (this.state.activeBox === 2 && logic) {
+      this.setState({ activeBox: 3 });
+    }
   };
+
+  NextChoose = () => {
+    this.state.userCategory === 'undefined' ?
+      document.querySelectorAll('.choose_who').forEach((item) => {
+        item.classList.add('error_input')
+      })
+      :
+      this.setState({ activeBox: 0 })
+  }
+
 
   render() {
     const { activeBox, userCategory, login, password, loginpassword, secondpassword, telem, code } =
@@ -62,7 +69,19 @@ class Input extends React.Component {
 
     return (
       <>
-        {activeBox === 0 && (
+        {
+          activeBox === 0 && (
+            <div className='first_input_container'>
+              <img className="logo_input" src={logoSvg} alt='logo'/>
+              <div style={{marginBottom:"30%"}}>
+                <button onClick={() => this.setState({activeBox: 1}) } className='come_btn'>Войти</button>
+                <p>или</p>
+                <p style={{textDecorationLine:'underline'}} onClick={() => this.setState({activeBox: 2}) } >зарегистрироваться</p>
+              </div>
+            </div>
+          )
+        }
+        {activeBox === 1 && (
           <div className="input_container">
             <img className="input_logo" src={logoSvg} />
 
@@ -95,14 +114,14 @@ class Input extends React.Component {
               <a
                 className="input_link"
                 onClick={() => {
-                  this.setState({ activeBox: 1 });
+                  this.setState({ activeBox: 2 });
                 }}>
                 Зарегистрироваться
               </a>
             </p>
           </div>
         )}
-        {activeBox === 1 && (
+        {activeBox === 2 && (
           <div className="input_container">
             <img className="input_logo" src={logoSvg} />
             <form className="input_form" action="#" style={{ height: '60vh' }}>
@@ -116,34 +135,6 @@ class Input extends React.Component {
                 placeholder="Номер телефона/Почта"
               />
               <p className="error_label none_active">Неверный номер телефона или почта!</p>
-              <div className="who_im_container">
-                <div className="who_im_box">
-                  <div
-                    className={
-                      userCategory === 'freelancer' ? 'who_im_checkbtn checked' : 'who_im_checkbtn'
-                    }
-                    onClick={() => {
-                      document.querySelectorAll('.who_im_checkbtn').forEach((box) => {
-                        box.classList.remove('error_input');
-                      });
-                      this.setState({ userCategory: 'freelancer' });
-                    }}></div>
-                  <p>Фрилансер</p>
-                </div>
-                <div className="who_im_box">
-                  <div
-                    className={
-                      userCategory === 'urik' ? 'who_im_checkbtn checked' : 'who_im_checkbtn'
-                    }
-                    onClick={() => {
-                      document.querySelectorAll('.who_im_checkbtn').forEach((box) => {
-                        box.classList.remove('error_input');
-                      });
-                      this.setState({ userCategory: 'urik' });
-                    }}></div>
-                  <p>Юридическое лицо</p>
-                </div>
-              </div>
               <input
                 onFocus={this.onFocusInput}
                 onChange={this.handleChange}
@@ -174,21 +165,66 @@ class Input extends React.Component {
               <button onClick={this.onClickLogin}>Далее</button>
             </form>
             <p className="sign_conf">
-              Нажимая “Далее”, Вы соглашаетесь с <u>регламентом</u> и{' '}
-              <u>политикой конфиденциальности</u>
+              Нажимая “Далее”, Вы соглашаетесь с <u style={{textDecorationLine:'underline'}}>регламентом</u> и{' '}
+              <u style={{textDecorationLine:'underline'}}>политикой конфиденциальности</u>
             </p>
             <p>
               Есть аккаунт?{' '}
               <a
                 className="input_link"
                 onClick={() => {
-                  this.setState({ activeBox: 0 });
+                  this.setState({ activeBox: 1 });
                 }}>
                 Войти
               </a>
             </p>
           </div>
         )}
+        {
+          activeBox === 3 && (
+            <div className='input_container' style={{ backgroundImage: 'url()' }}>
+              <p className='choose_header'>Кем вы являетесь?</p>
+              <button
+                className={userCategory === "professional" ? 'choose_who your_choose' : 'choose_who '}
+                onClick={() => {
+                  this.setState({ userCategory: 'professional' })
+                  document.querySelectorAll('.choose_who').forEach((item) => {
+                    item.classList.remove('error_input')
+                  })
+                }
+                }
+              >
+                Профессионал
+              </button>
+              <button
+                className={userCategory === "сustomer" ? 'choose_who your_choose' : 'choose_who '}
+                onClick={() => {
+                  this.setState({ userCategory: 'сustomer' })
+                  document.querySelectorAll('.choose_who').forEach((item) => {
+                    item.classList.remove('error_input')
+                  })
+                }
+                }
+              >
+                Заказчик
+              </button>
+              <button
+                className={userCategory === "organization" ? 'choose_who your_choose' : 'choose_who '}
+                onClick={() => {
+                  this.setState({ userCategory: 'organization' })
+                  document.querySelectorAll('.choose_who').forEach((item) => {
+                    item.classList.remove('error_input')
+                  })
+                }
+                }
+              >
+                Организация
+              </button>
+              <button onTo className='choose_next_btn' onClick={this.NextChoose}>Далее</button>
+            </div>
+          )
+        }
+
       </>
     );
   }

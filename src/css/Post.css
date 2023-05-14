@@ -54,6 +54,7 @@
 }
 
 .author_post {
+  position: relative;
   display: flex;
   flex-direction: row;
   height: fit-content;
@@ -128,6 +129,19 @@
   max-width: 80%;
 }
 
+.case_text {
+  margin-bottom: 0;
+  position: absolute;
+  margin-top: 40px;
+  margin-left: 15px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  z-index: 20;
+  color: #ffffff;
+}
+
 .post_one_item {
   max-width: 90%;
   width: fit-content;
@@ -157,6 +171,33 @@
 .post_icon_animation path {
   stroke: var(--color_active);
   fill: var(--color_active);
+}
+
+.case_filter {
+  filter: brightness(55%) blur(1px);
+}
+
+.case_author {
+  position: absolute;
+  margin-top: 125px;
+  margin-left: 15px;
+  z-index: 20;
+}
+
+.case_avatar {
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+.case_nick {
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 @keyframes postIconAnimation {

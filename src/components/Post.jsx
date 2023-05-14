@@ -37,15 +37,15 @@ const Post = (props) => {
   const icons = ['icon-like', 'icon-comment', 'icon-repost', 'icon-flag'];
   const [activeIcons, setActiveIcons] = React.useState([]);
 
-  const [fullPost, setFullPost] = React.useState(props.full);
+  const [fullPost, setFullPost] = React.useState(false);
 
   const goToComments = () => {
     document.body.style.overflow = 'hidden';
     setCommentPostId(props.id);
     setStateFull({
       ...stateFull,
-      openComments: true
-    })
+      openComments: true,
+    });
   };
 
   const onClickIcon = (icon) => {
@@ -69,8 +69,8 @@ const Post = (props) => {
     setFullImages(imgs_clone);
     setStateFull({
       ...stateFull,
-      openImage: true
-    })
+      openImage: true,
+    });
   };
 
   const goToPreview = () => {
@@ -82,8 +82,8 @@ const Post = (props) => {
       setProfile(profile);
       setStateFull({
         ...stateFull,
-        openPreview: true
-      })
+        openPreview: true,
+      });
     }
   };
 
@@ -91,10 +91,10 @@ const Post = (props) => {
     setStateFull({
       ...stateFull,
       openComments: false,
-      openPreview: false
-    })
+      openPreview: false,
+    });
     document.body.style.overflow = '';
-    
+
     profile.nickname !== userLogin
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
@@ -154,10 +154,35 @@ const Post = (props) => {
       )}
 
       <div className="post_sign">
-        {props.signImgs ? <p className="post_text">{props.signImgs[0]}</p> : null}
+        {props.signImgs && (
+          <p className={props.filter != 'case' ? 'post_text' : 'post_text case_text'}>
+            {props.signImgs[0]}
+          </p>
+        )}
+        {props.filter === 'case' && (
+          <div className="author_post case_author">
+            <div className="avatar_author_post case_avatar">
+              {profile.avatar ? (
+                <img
+                  className="avatar_picture case_avatar"
+                  src={profile.avatar}
+                  alt="user avatar"
+                  onClick={goToPreview}
+                />
+              ) : (
+                <i className="icon-profile avatar_anonim case_avatar" onClick={goToPreview}></i>
+              )}
+            </div>
+            <div className="author_nick">
+              <p className="nickname case_nick" onClick={goToPreview}>
+                {profile.nickname}
+              </p>
+            </div>
+          </div>
+        )}
 
         <img
-          className="post_one_item"
+          className={props.filter === 'case' ? 'post_one_item case_filter' : 'post_one_item'}
           src={firstImgSrc}
           alt="Post picture"
           onClick={() => {
@@ -171,44 +196,46 @@ const Post = (props) => {
           <>
             {props.imgs && props.imgs.length <= CONTENT_LIMIT
               ? props.imgs.map((path, index) => {
-                if (index !== 0)
-                  return (
-                    <div key={index}>
-                      {props.signImgs[index] ? (
-                        <p className="post_text">{props.signImgs[index]}</p>
-                      ) : null}
-                      <img
-                        className="post_one_item"
-                        src={path}
-                        alt="img post"
-                        onClick={() => goToFullMode(props.imgs, path)}
-                      />
-                    </div>
-                  );
-              })
+                  if (index !== 0)
+                    return (
+                      <div key={index}>
+                        {props.signImgs[index] ? (
+                          <p className="post_text">{props.signImgs[index]}</p>
+                        ) : null}
+                        <img
+                          className={
+                            props.filter === 'case' ? 'post_one_item case_filter' : 'post_one_item'
+                          }
+                          src={path}
+                          alt="img post"
+                          onClick={() => goToFullMode(props.imgs, path)}
+                        />
+                      </div>
+                    );
+                })
               : null}
             {props.videos && props.videos.length <= CONTENT_LIMIT
               ? props.videos.map((path, index) => {
-                return (
-                  <div key={index}>
-                    {props.signVideos[index] ? (
-                      <p className="post_text">{props.signVideos[index]}</p>
-                    ) : null}
-                    <video
-                      key={index}
-                      controls
-                      className="post_one_item"
-                      src={path}
-                      type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video>
-                  </div>
-                );
-              })
+                  return (
+                    <div key={index}>
+                      {props.signVideos[index] ? (
+                        <p className="post_text">{props.signVideos[index]}</p>
+                      ) : null}
+                      <video
+                        key={index}
+                        controls
+                        className="post_one_item"
+                        src={path}
+                        type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video>
+                    </div>
+                  );
+                })
               : null}
           </>
         ) : null}
       </div>
 
-      {!props.full && (
+      {!fullPost && (
         <div
           className="post_icons"
           onClick={(e) => {

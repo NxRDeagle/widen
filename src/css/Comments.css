@@ -28,6 +28,7 @@
   top: 0;
   background-color: white;
   height: 100%;
+  z-index: 40;
 }
 
 .head_comments_container {
@@ -36,6 +37,9 @@
   height: 50px;
   width: var(--max-width);
   background-color: white;
+  position: fixed;
+  z-index: 50;
+  top: 0;
 }
 
 .close_comments {
