@@ -17,7 +17,7 @@
 }
 
 /*font 12px*/
-.nickname,
+.geolocation,
 .user_history_nickname,
 .post_count {
   font-style: normal;
@@ -54,7 +54,6 @@
 }
 
 .author_post {
-  position: relative;
   display: flex;
   flex-direction: row;
   height: fit-content;
@@ -65,7 +64,6 @@
   border-radius: 50%;
   height: 46px;
   width: 46px;
-  border: var(--border1) var(--color_gray);
 }
 
 .avatar_picture {
@@ -80,13 +78,13 @@
 
 .nickname {
   color: black;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
 }
 
 .geolocation {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 12px;
   color: var(--color_gray);
   margin: 2px 0 0 -2px;
 }
@@ -100,7 +98,6 @@
   border-radius: 50%;
   width: 64px;
   height: 64px;
-  border: var(--border1) var(--color_gray);
 }
 
 .avatar_picture {
@@ -129,6 +126,38 @@
   max-width: 80%;
 }
 
+.post_one_item {
+  max-width: 90%;
+  width: fit-content;
+  max-height: 600px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.post_icons {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-bottom: 8px;
+  color: black;
+}
+
+.post_icon_box {
+  align-items: center;
+  margin-right: 20px;
+}
+
+.post_icon_animation {
+  animation: postIconAnimation 0.6s ease-out;
+  animation-fill-mode: forwards;
+}
+
+.post_icon_animation path {
+  stroke: var(--color_active);
+  fill: var(--color_active);
+}
+
 .case_text {
   margin-bottom: 0;
   position: absolute;
@@ -140,37 +169,6 @@
   line-height: 24px;
   z-index: 20;
   color: #ffffff;
-}
-
-.post_one_item {
-  max-width: 90%;
-  width: fit-content;
-  max-height: 600px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.post_icons {
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  padding-bottom: 8px;
-  color: black;
-}
-
-.post_icon_box {
-  align-items: center;
-  margin-right: 28px;
-}
-
-.post_icon_animation {
-  animation: postIconAnimation 0.6s ease-out;
-  animation-fill-mode: forwards;
-}
-
-.post_icon_animation path {
-  stroke: var(--color_active);
-  fill: var(--color_active);
 }
 
 .case_filter {

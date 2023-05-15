@@ -1,9 +1,7 @@
 [
     {
-        "id" : 1,
-        "nickname": "Aleksey_Guf",
-        "avatar": "https://avatars.mds.yandex.net/i?id=5f01c7b4b641b91b052f87be76e9b6aead348452-7570978-images-thumbs&n=13",
-        "colleague": true,
+        "chatId" : 1,
+        "companion_id": 10,
         "fullstatus": "unread",
         "messages":[
             {
@@ -27,22 +25,20 @@
         ]
     },
     {
-        "id" : 2,
-        "nickname": "Ural_FD",
-        "avatar": "https://shapka-youtube.ru/wp-content/uploads/2022/11/ava-s-nadpisyu-odinokiy.jpg",
-        "colleague": false,
+        "chatId" : 2,
+        "companion_id": 4,
         "fullstatus": "unread",
         "messages":[
             {
                 "who": "iam",
                 "message": "Дратути",
-                "status": "read",
+                "status": "unread",
                 "time": "12:45"
             },
             {
-                "who": "user",
+                "who": "iam",
                 "message": "Хай",
-                "status": "read",
+                "status": "unread",
                 "time": "14:00"
             },
             {
@@ -54,10 +50,8 @@
         ]
     },
     {
-        "id" : 3,
-        "nickname": "Valera_Blat",
-        "avatar": "https://i.pinimg.com/550x/a7/db/a6/a7dba63fa833afad38ac7e7504c1e7c4.jpg",
-        "colleague": true,
+        "chatId" : 3,
+        "companion_id": 1,
         "fullstatus": "read",
         "messages":[
             {
@@ -81,10 +75,8 @@
         ]
     },
     {
-        "id" : 4,
-        "nickname": "FK_BARSA",
-        "avatar": "https://wonder-day.com/wp-content/uploads/2020/03/unnamed.jpg",
-        "colleague": false,
+        "chatId" : 4,
+        "companion_id": 7,
         "fullstatus": "read",
         "messages":[
             {
@@ -108,11 +100,9 @@
         ]
     },
     {
-        "id" : 5,
-        "nickname": "Gosha_Arno",
-        "avatar": "https://cspromogame.ru//storage/upload_images/avatars/2038.jpg",
-        "colleague": true,
-        "fullstatus": "unread",
+        "chatId" : 5,
+        "companion_id": 8,
+        "fullstatus": "read",
         "messages":[
             {
                 "who": "user",
@@ -129,35 +119,8 @@
             {
                 "who": "user",
                 "message": "Гоу гул?",
-                "status": "unread",
+                "status": "read",
                 "time": "15:20"
-            }
-        ]
-    },
-    {
-        "id" : 6,
-        "nickname": "Zenit",
-        "avatar": "https://cs14.pikabu.ru/post_img/big/2021/03/24/0/1616536067143232419.jpg",
-        "colleague": false,
-        "fullstatus": "read",
-        "messages":[
-            {
-                "who": "user",
-                "message": "Играешь в футбол?",
-                "status": "read",
-                "time": "12:45"
-            },
-            {
-                "who": "iam",
-                "message": "Да",
-                "status": "read",
-                "time": "14:00"
-            },
-            {
-                "who": "user",
-                "message": "Ты принят!",
-                "status": "read",
-                "time": "14:20"
             }
         ]
     }

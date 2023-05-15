@@ -1,0 +1,10 @@
+[
+    {
+        "commentId": 1,
+        "authorCommentId": 2,
+        "text": "я гениш импактер",
+        "likes": [1, 8, 9],
+        "replies": [2]
+
+    }
+]

@@ -40,16 +40,15 @@
   position: fixed;
   z-index: 50;
   top: 0;
+  border-bottom: var(--border1) var(--color_gray);
 }
 
-.close_comments {
-  color: var(--color_gray) !important;
-  font-size: 20px;
-  margin-left: 26px;
+.icon_close{
+  margin: 0 20px 0 20px;
 }
 
 .comments_name {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 300;
 }
 
@@ -118,17 +117,3 @@
     transform: translateX(0);
   }
 }
-
-/* .swiper-wrapper,
-.swiper-slide {
-  width: var(--max-width);
-  height: 100vh;
-}
-
-.swipe_background {
-  width: var(--max-width);
-  height: 100%;
-  background-size: cover;
-  background-color: #7e52ee;
-  background-repeat: repeat;
-} */

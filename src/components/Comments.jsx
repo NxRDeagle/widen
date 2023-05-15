@@ -70,7 +70,7 @@ const Comments = () => {
           }
         }
       }
-    },[stateFull.openComments]);
+    }, [stateFull.openComments]);
 
     swipe.addEventListener('touchend', () => {
       document.getElementById('update').classList.remove('none_active');
@@ -89,8 +89,12 @@ const Comments = () => {
   return (
     <>
       <div className="head_comments_container">
-          <i className="icon-cancel close_comments" onClick={goBack}></i>
-          <h1 className="comments_name">Запись</h1>
+        <i className='icon_close' onClick={goBack}>
+          <svg width="23" height="12" viewBox="0 0 23 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 6H23M1 6L8 1M1 6L8 11" stroke="#7E52EE" />
+          </svg>
+        </i>
+        <h1 className="comments_name">Запись</h1>
       </div>
       <div id='comments' className="comments_container">
         {stateFull.openPreview ? null : <Update />}
@@ -114,8 +118,8 @@ const Comments = () => {
           </div>
         </div>
       </div>
-      <Footer message={true}/>
-      {stateFull.openImage ? <FullMode imgs={fullImages}/> : null}
+      <Footer message={true} />
+      {stateFull.openImage ? <FullMode imgs={fullImages} /> : null}
     </>
   );
 };
