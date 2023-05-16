@@ -14,11 +14,11 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 import Input from './pages/Input';
-import ChooseInterest from './pages/ChooseInterest';
+import ChooseInterest from './components/ChooseInterest';
 
 export const mainContext = React.createContext();
 
-export const userLogin = 'pupa_online';
+export const userId = 5;
 
 function App() {
   const location = useLocation();
@@ -91,6 +91,29 @@ function App() {
 
   const [loc, setLoc] = React.useState('/');
 
+  function Conversion(type, stats) {
+    let element = null;
+    switch (type) {
+      case 'count':
+        element = stats >= 1000000 ?
+          Math.floor(stats / 1000000) + 'm' :
+          stats >= 1000 ?
+            Math.floor(stats/ 1000) + 'k' :
+            stats;
+        break;
+      case 'comments':
+        element = stats % 10 === 1 ? 
+          'комментарий' :
+          stats % 10 === 0 || stats % 10 >= 5 ?
+          'комментариев' :
+          'комментария'
+        break;
+      default:
+        return element    
+    }
+    return element
+  }
+
   return (
     <div className="App">
       <mainContext.Provider
@@ -110,6 +133,7 @@ function App() {
           setLoc,
           stateFull,
           setStateFull,
+          Conversion
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />
@@ -117,7 +141,7 @@ function App() {
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/help" element={<Help />} />
-          <Route path="/profile" element={<Profile nickname={userLogin} />} />
+          <Route path="/profile" element={<Profile userId={userId} />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
           <Route path="/ch" element={<ChooseInterest />} />

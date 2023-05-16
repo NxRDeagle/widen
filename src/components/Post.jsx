@@ -4,34 +4,43 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import defaultPostPng from '../img/default_post.png';
 
 import { mainContext } from '../App';
-import { userLogin } from '../App';
+import { userId } from '../App';
 
 import '../css/Post.css';
 
-import user_data from '../data/user_data.json';
+import users_data from '../data/users_data.json';
 
 const Post = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const profile = user_data.find((obj) => obj.nickname === props.nickname);
+  const { Conversion } = React.useContext(mainContext);
+
+  const {
+    postId = 0,
+    type = '',
+    authorId = 0,
+    imgs = '',
+    signImgs = '',
+    stats = {},
+    geoposition = '',
+    time = '',
+  } = props;
+
+  let statsCount = {};
+
+  for (const key in stats) {
+    statsCount[key] = Conversion('count', stats[key].length);
+  }
+
+  const profile = users_data.find((obj) => obj.userId === authorId);
+  const myProfile = users_data.find((obj) => obj.userId === userId);
 
   const { setFullImages, setCommentPostId, setProfile, setPage, setStateFull, stateFull } =
     React.useContext(mainContext);
 
-  let stats = !props.stats ? [0, 0, 0, 0] : props.stats;
+  const firstImgSrc = imgs ? imgs[0] : defaultPostPng;
 
-  const firstImgSrc = props.imgs ? props.imgs[0] : defaultPostPng;
-
-  for (let i = 0; i < stats.length; i++) {
-    if (stats[i] >= 1000000) {
-      stats[i] = Math.floor(stats[i] / 1000000);
-      stats[i] = stats[i].toString() + 'm';
-    } else if (stats[i] >= 1000) {
-      stats[i] = Math.floor(stats[i] / 1000);
-      stats[i] = stats[i].toString() + 'k';
-    }
-  }
   const CONTENT_LIMIT = 10;
 
   const icons = ['icon-like', 'icon-comment', 'icon-repost', 'icon-flag'];
@@ -41,11 +50,12 @@ const Post = (props) => {
 
   const goToComments = () => {
     document.body.style.overflow = 'hidden';
-    setCommentPostId(props.id);
+    document.querySelector('.mainBackground').style.filter = 'blur(5px)';
+    setCommentPostId(postId);
     setStateFull({
       ...stateFull,
-      openComments: true
-    })
+      openComments: true,
+    });
   };
 
   const onClickIcon = (icon) => {
@@ -69,21 +79,26 @@ const Post = (props) => {
     setFullImages(imgs_clone);
     setStateFull({
       ...stateFull,
-      openImage: true
-    })
+      openImage: true,
+    });
   };
 
   const goToPreview = () => {
-    if (
-      location.pathname !== `/user_profile/${profile.nickname}` &&
-      location.pathname !== '/profile'
-    ) {
-      document.body.style.overflow = 'hidden';
-      setProfile(profile);
-      setStateFull({
-        ...stateFull,
-        openPreview: true
-      })
+    if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
+      goToProfile();
+    } else {
+      if (
+        location.pathname !== `/user_profile/${profile.nickname}` &&
+        location.pathname !== '/profile'
+      ) {
+        document.body.style.overflow = 'hidden';
+        document.querySelector('footer').style.filter = `blur(5px)`;
+        setProfile(profile);
+        setStateFull({
+          ...stateFull,
+          openPreview: true,
+        });
+      }
     }
   };
 
@@ -91,10 +106,11 @@ const Post = (props) => {
     setStateFull({
       ...stateFull,
       openComments: false,
-      openPreview: false
-    })
+      openPreview: false,
+    });
     document.body.style.overflow = '';
-    profile.nickname !== userLogin
+    document.querySelector('.mainBackground').removeAttribute('style');
+    profile.userId !== userId
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
     setPage('profile');
@@ -105,41 +121,39 @@ const Post = (props) => {
       {!fullPost ? (
         <div className="author_post">
           <div className="avatar_author_post">
-            {profile.avatar ? (
-              <img
-                className="avatar_picture"
-                src={profile.avatar}
-                alt="user avatar"
-                onClick={goToPreview}
-              />
-            ) : (
-              <i className="icon-profile avatar_anonim" onClick={goToPreview}></i>
-            )}
+            <img
+              className="avatar_picture"
+              src={profile.avatar}
+              alt="user avatar"
+              onClick={goToPreview}
+            />
           </div>
           <div className="author_nick">
             <p className="nickname" onClick={goToPreview}>
               {profile.nickname}
             </p>
             <p className="geolocation">
-              <i className="icon-geolocation" style={{ fontSize: '12px' }}></i>Москва
+              <i className="icon-geolocation" style={{ fontSize: '12px' }}></i>
+              {geoposition}
             </p>
           </div>
         </div>
       ) : (
         <div
           className="user_history_box"
-          style={{ marginTop: '11px', paddingTop: '40px', alignItems: 'center', marginRight: '31px' }}>
+          style={{
+            marginTop: '11px',
+            paddingTop: '40px',
+            alignItems: 'center',
+            marginRight: '31px',
+          }}>
           <div className="user_history_avatar">
-            {profile.avatar ? (
-              <img
-                className="avatar_picture"
-                src={profile.avatar}
-                alt="user avatar"
-                onClick={goToProfile}
-              />
-            ) : (
-              <i className="icon-profile none_picture" onClick={goToProfile}></i>
-            )}
+            <img
+              className="avatar_picture"
+              src={profile.avatar}
+              alt="user avatar"
+              onClick={goToProfile}
+            />
           </div>
 
           <p className="nickname" style={{ paddingBottom: '2px' }}>
@@ -147,31 +161,24 @@ const Post = (props) => {
           </p>
           <p className="geolocation">
             <i className="icon-geolocation" style={{ fontSize: '12px' }}></i>
-            Москва
+            {geoposition}
           </p>
         </div>
       )}
 
       <div className="post_sign">
-        {console.log(props.signImgs[0])}
-        {props.signImgs && (
-          <p className={props.filter != 'case' ? 'post_text' : 'post_text case_text'}>
-            {props.signImgs[0]}
-          </p>
+        {signImgs && (
+          <p className={type != 'case' ? 'post_text' : 'post_text case_text'}>{signImgs[0]}</p>
         )}
-        {props.filter === 'case' && (
+        {type === 'case' && (
           <div className="author_post case_author">
             <div className="avatar_author_post case_avatar">
-              {profile.avatar ? (
-                <img
-                  className="avatar_picture case_avatar"
-                  src={profile.avatar}
-                  alt="user avatar"
-                  onClick={goToPreview}
-                />
-              ) : (
-                <i className="icon-profile avatar_anonim case_avatar" onClick={goToPreview}></i>
-              )}
+              <img
+                className="avatar_picture case_avatar"
+                src={profile.avatar}
+                alt="user avatar"
+                onClick={goToPreview}
+              />
             </div>
             <div className="author_nick">
               <p className="nickname case_nick" onClick={goToPreview}>
@@ -182,39 +189,35 @@ const Post = (props) => {
         )}
 
         <img
-           className={props.filter === 'case' ? 'post_one_item case_filter' : 'post_one_item'}
+          className={type === 'case' ? 'post_one_item case_filter' : 'post_one_item'}
           src={firstImgSrc}
           alt="Post picture"
           onClick={() => {
-            fullPost
-              ? goToFullMode(props.imgs ? props.imgs : [firstImgSrc], firstImgSrc)
-              : goToComments();
+            fullPost ? goToFullMode(imgs ? imgs : [firstImgSrc], firstImgSrc) : goToComments();
           }}
         />
 
         {fullPost ? (
           <>
-            {props.imgs && props.imgs.length <= CONTENT_LIMIT
-              ? props.imgs.map((path, index) => {
-                if (index !== 0)
-                  return (
-                    <div key={index}>
-                      {props.signImgs[index] ? (
-                        <p className="post_text">{props.signImgs[index]}</p>
-                      ) : null}
-                      <img
-                        className={
-                          props.filter === 'case' ? 'post_one_item case_filter' : 'post_one_item'
-                        }
-                        src={path}
-                        alt="img post"
-                        onClick={() => goToFullMode(props.imgs, path)}
-                      />
-                    </div>
-                  );
-              })
+            {imgs && imgs.length <= CONTENT_LIMIT
+              ? imgs.map((path, index) => {
+                  if (index !== 0)
+                    return (
+                      <div key={index}>
+                        {signImgs[index] ? <p className="post_text">{signImgs[index]}</p> : null}
+                        <img
+                          className={
+                            type === 'case' ? 'post_one_item case_filter' : 'post_one_item'
+                          }
+                          src={path}
+                          alt="img post"
+                          onClick={() => goToFullMode(imgs, path)}
+                        />
+                      </div>
+                    );
+                })
               : null}
-            {props.videos && props.videos.length <= CONTENT_LIMIT
+            {/* {props.videos && props.videos.length <= CONTENT_LIMIT
               ? props.videos.map((path, index) => {
                 return (
                   <div key={index}>
@@ -230,7 +233,7 @@ const Post = (props) => {
                   </div>
                 );
               })
-              : null}
+              : null} */}
           </>
         ) : null}
       </div>
@@ -262,9 +265,9 @@ const Post = (props) => {
               strokeLinejoin="round"
             />
           </svg>
-          <p className="post_count">{stats[0]}</p>
+          <p className="post_count">{statsCount['likes']}</p>
         </div>
-        <div className={props.full ? "none_active" : "post_icon_box"}>
+        <div className={props.full ? 'none_active' : 'post_icon_box'}>
           <svg
             name="icon-comment"
             width="21"
@@ -278,7 +281,7 @@ const Post = (props) => {
               fill="black"
             />
           </svg>
-          <p className="post_count">{stats[1]}</p>
+          <p className="post_count">{statsCount['comments']}</p>
         </div>
         <div className="post_icon_box">
           <svg
@@ -296,7 +299,7 @@ const Post = (props) => {
               strokeWidth="1.5"
             />
           </svg>
-          <p className="post_count">{stats[2]}</p>
+          <p className="post_count">{statsCount['reposts']}</p>
         </div>
         <div className="post_icon_box">
           <svg
@@ -314,15 +317,28 @@ const Post = (props) => {
             />
             <path name="icon-flag" d="M7 17.95L12 15.8L17 17.95V5H12H7V17.95Z" fill="none" />
           </svg>
-          <p className="post_count">{stats[3]}</p>
+          <p className="post_count">{statsCount['favorites']}</p>
         </div>
-        <div style={{ position: 'absolute', right: '0', marginRight: '0px' }} className="post_icon_box">
-          <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5ZM11 13C8.24 13 6 10.76 6 8C6 5.24 8.24 3 11 3C13.76 3 16 5.24 16 8C16 10.76 13.76 13 11 13ZM11 5C9.34 5 8 6.34 8 8C8 9.66 9.34 11 11 11C12.66 11 14 9.66 14 8C14 6.34 12.66 5 11 5Z" fill="#BABABA" />
+        <div
+          style={{ position: 'absolute', right: '0', marginRight: '0px' }}
+          className="post_icon_box">
+          <svg
+            width="22"
+            height="16"
+            viewBox="0 0 22 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5ZM11 13C8.24 13 6 10.76 6 8C6 5.24 8.24 3 11 3C13.76 3 16 5.24 16 8C16 10.76 13.76 13 11 13ZM11 5C9.34 5 8 6.34 8 8C8 9.66 9.34 11 11 11C12.66 11 14 9.66 14 8C14 6.34 12.66 5 11 5Z"
+              fill="#BABABA"
+            />
           </svg>
-          <p style={{ marginTop: '5px', color: '#BABABA' }} className="post_count">331</p>
+          <p style={{ marginTop: '5px', color: '#BABABA' }} className="post_count">
+            {statsCount['views']}
+          </p>
         </div>
       </div>
+      <p className="post_time">{time} время число месяц</p>
     </div>
   );
 };

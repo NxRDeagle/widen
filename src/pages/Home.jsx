@@ -8,7 +8,8 @@ import Preload from '../components/Preload';
 import Update from '../components/Update';
 import Preview from '../components/Preview';
 
-import post_data from '../data/post_data.json';
+import posts_data from '../data/posts_data.json';
+
 import { mainContext } from '../App';
 
 import '../css/Home.css';
@@ -17,7 +18,7 @@ import '../css/Preview.css';
 import Comments from '../components/Comments';
 
 const Home = () => {
-  const { currentFilter, stateFull} = React.useContext(mainContext);
+  const { currentFilter, stateFull } = React.useContext(mainContext);
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
@@ -55,9 +56,9 @@ const Home = () => {
               })}
             </div>
           ) : (
-            post_data.map((item) => {
-              return item.filter === currentFilter || currentFilter === 'all' ? (
-                <Post {...item} key={item.id} />
+            posts_data.map((item) => {
+              return item.type === currentFilter || currentFilter === 'all' ? (
+                <Post {...item} key={item.postId} />
               ) : null;
             })
           )}
@@ -65,7 +66,7 @@ const Home = () => {
       </main>
       {stateFull.openComments ? <Comments /> : null}
       {stateFull.openPreview ? <Preview /> : null}
-      <Footer/>
+      <Footer />
     </>
   );
 };

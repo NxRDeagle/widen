@@ -49,7 +49,7 @@
 }
 
 .open_post {
-  padding-top: 60px;
+  padding-top: 40px;
   margin-bottom: 0 !important;
 }
 
@@ -115,6 +115,7 @@
 .post_sign {
   margin: 13px 0 13px;
   max-height: fit-content;
+  position: relative;
 }
 
 .post_text {
@@ -159,10 +160,9 @@
 }
 
 .case_text {
-  margin-bottom: 0;
   position: absolute;
-  margin-top: 40px;
-  margin-left: 15px;
+  top: 45px;
+  left: 15px;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -177,8 +177,8 @@
 
 .case_author {
   position: absolute;
-  margin-top: 125px;
-  margin-left: 15px;
+  bottom: 25px;
+  left: 15px;
   z-index: 20;
 }
 
@@ -194,8 +194,17 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 10px;
+}
+
+.post_time {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #bababa;
+  margin-bottom: 10px;
 }
 
 @keyframes postIconAnimation {

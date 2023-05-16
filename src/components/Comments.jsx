@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Comment from './Comment';
 import Post from './Post';
@@ -10,17 +9,23 @@ import '../css/Comments.css';
 import 'swiper/css';
 
 import { mainContext } from '../App';
-import post_data from '../data/post_data.json';
-import user_data from '../data/user_data.json';
+import posts_data from '../data/posts_data.json';
+import comments_data from '../data/comments_data.json';
 import Footer from './Footer';
 
 const Comments = () => {
-  const navigate = useNavigate();
-  const { fullImages, commentPostId, setStateFull, stateFull } = React.useContext(mainContext);
+  const { fullImages, commentPostId, setStateFull, stateFull, Conversion } = React.useContext(mainContext);
+
+  const post = posts_data.find((obj) => obj.postId === commentPostId);
+
+  const commentsCount = Conversion('count', post.stats.comments.length);
+  const commentsSign = Conversion('comments', post.stats.comments.length);
+
 
   const goBack = () => {
     document.body.style.overflow = '';
     document.querySelector('.foot_container').style.opacity = 1;
+    document.querySelector('.mainBackground').removeAttribute('style');
     setStateFull({
       ...stateFull,
       openComments: false,
@@ -34,6 +39,7 @@ const Comments = () => {
     let clientX = null;
     let scroll = null;
     let opacity = null;
+    let blur = null;
     const commentBox = document.getElementById('comments');
     const swipe = document.querySelector('[name="swipe"]');
 
@@ -42,6 +48,7 @@ const Comments = () => {
       clientX = e.touches[0].screenX;
       scroll = 0;
       opacity = 1;
+      blur = 5;
     });
 
     swipe.addEventListener('touchmove', (e) => {
@@ -51,8 +58,12 @@ const Comments = () => {
           if (scroll < 50) {
             scroll++;
             opacity -= 0.05;
+            if (blur > 0) {
+              blur -= 0.2;
+            }
             document.querySelector('.head_comments_container').style.opacity = opacity;
             document.querySelector('.foot_container').style.opacity = opacity;
+            document.querySelector('.mainBackground').style.filter = `blur(${blur}px)`
             clientX = e.touches[0].screenX;
             commentBox.style.transform = `translateX(${scroll}%)`;
           }
@@ -64,8 +75,12 @@ const Comments = () => {
           if (scroll > 0) {
             opacity += 0.05;
             scroll--;
+            if (blur < 5) {
+              blur += 0.2;
+            }
             document.querySelector('.head_comments_container').style.opacity = opacity;
             document.querySelector('.foot_container').style.opacity = opacity;
+            document.querySelector('.mainBackground').style.filter = `blur(${blur}px)`
             commentBox.style.transform = `translateX(${scroll}%)`;
           }
         }
@@ -78,6 +93,7 @@ const Comments = () => {
         commentBox.style.transform = `translate(0%)`;
         document.querySelector('.head_comments_container').removeAttribute('style');
         document.querySelector('.foot_container').style.opacity = 1;
+        document.querySelector('.mainBackground').style.filter = `blur(5px)`;
       }
       else {
         goBack();
@@ -100,17 +116,17 @@ const Comments = () => {
         {stateFull.openPreview ? null : <Update />}
         <div name="upd">
           <div name='swipe'>
-            <Post {...post_data[commentPostId]} full={true} />
+            <Post {...post} full={true} />
             <div className="line"></div>
             <div className="comments_box">
-              {post_data[commentPostId].comments &&
-                post_data[commentPostId].comments.map((comment, index) => {
+              <p className='count_comments'>{commentsCount} {commentsSign}</p>
+              {post.stats.comments &&
+                post.stats.comments.map((commentId) => {
                   return (
                     <Comment
-                      key={index}
-                      nickname={comment.nickname}
-                      commentText={comment.text}
-                      avatar={user_data.find((obj) => obj.nickname === comment.nickname).avatar}
+                      key={commentId}
+                      commentId={commentId}
+                      authorCommentId={comments_data.find((obj) => obj.commentId === commentId).authorCommentId}
                     />
                   );
                 })}

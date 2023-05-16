@@ -1,7 +1,7 @@
 import React from 'react';
 import { memo } from 'react';
 
-import Sphere from '../components/Sphere';
+import Sphere from './Sphere';
 
 import interest_data from '../data/interest_data.json';
 
@@ -23,9 +23,6 @@ const ChooseInterest = memo(() => {
           bgs.sort(() => Math.random() - 0.5);
           return <Sphere sign={interest_data[index].name} bg={bgs[index % 4]} key={index} />;
         })}
-      </div>
-      <div className="choose_next">
-        <button className="next_button">Далее</button>
       </div>
     </div>
   );

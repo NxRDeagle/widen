@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ContentLoader from 'react-content-loader';
 
 import Footer from '../components/Footer';
@@ -11,17 +11,17 @@ import FullMode from '../components/FullMode';
 
 import '../css/Profile.css';
 
-import user_data from '../data/user_data.json';
-import post_data from '../data/post_data.json';
+import posts_data from '../data/posts_data.json';
+import users_data from '../data/users_data.json';
 import { mainContext } from '../App';
 
 const UserProfile = () => {
   const navigate = useNavigate();
 
-  const { stateFull, fullImages } = React.useContext(mainContext);
+  const { stateFull, fullImages, Conversion } = React.useContext(mainContext);
 
-  const { nickname } = useParams();
-  const [profile, setProfile] = React.useState({});
+  const nickname = useParams().nickname;
+  const profile = users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase());
 
   const [activeIcon, setActiveIcon] = React.useState(0);
   const [userPosts, setUserPosts] = React.useState([]);
@@ -31,43 +31,40 @@ const UserProfile = () => {
   const [notification, setNotification] = React.useState(false);
 
   React.useEffect(() => {
-    setProfile(user_data.find((obj) => obj.nickname === nickname.toLocaleLowerCase()));
     setUserPosts(
-      post_data.filter((item) => {
-        return item.nickname === nickname;
+      posts_data.filter((item) => {
+        return item.authorId === profile.userId;
       }),
     );
     setIsLoaded(true);
-  }, [nickname]);
+  }, [profile]);
+
+  let subsriptions = Conversion('count', profile.subscribers.length);
+  let subscribers = Conversion('count', profile.subscribers.length);
 
   return !profile ? (
     navigate('*')
   ) : (
     <>
-      <div name="upd" className="profile_container user_profile">
+      <div
+        name="upd"
+        className="profile_container"
+        style={{ backgroundImage: `url(${profile.background})` }}>
         {!stateFull.openComments ? <Update /> : null}
         <i className="icon-share share"></i>
 
         <div className="profile_avatar">
-          {profile.avatar ? (
-            <img className="avatar_picture" src={profile.avatar} alt="avatar" />
-          ) : (
-            <img
-              className="avatar_picture"
-              src="http://en-stal.ru/wp-content/uploads/2022/08/cropped-tild6265-3863-4963-b761-653137363930__usersilhouette_.jpg"
-              alt="avatar"
-            />
-          )}
+          <img className="avatar_picture" src={profile.avatar} alt="avatar" />
         </div>
 
         <div className="profile_box">
           <div className="profile_user_count_container">
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
-              <p className="profile_count">{profile.subscriptions}</p>
+              <p className="profile_count">{subsriptions}</p>
               <p className="profile_count_sign">Подписки</p>
             </div>
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
-              <p className="profile_count">{profile.subscribers}</p>
+              <p className="profile_count">{subscribers}</p>
               <p className="profile_count_sign">Подписчики</p>
             </div>
           </div>
@@ -229,7 +226,7 @@ const UserProfile = () => {
                 <p className="no_posts">У пользователя ещё нет постов...</p>
               ) : isLoaded ? (
                 userPosts.map((item) => {
-                  return <Post {...item} key={item.id} />;
+                  return <Post {...item} key={item.postId} />;
                 })
               ) : (
                 <div className="posts_container">

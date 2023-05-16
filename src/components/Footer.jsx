@@ -13,14 +13,13 @@ const Footer = (props) => {
 
   return (
     <footer
-      className={
-        stateFull.openPreview
-          ? 'foot_notview foot_container'
-          : 'foot_container'
+      className={stateFull.openPreview ?
+        'foot_container foot_notview' :
+        'foot_container'
       }
-      style={message ? { zIndex: 80 } : { zIndex: 50 }}
+      style={message ? { zIndex: 80 } : { zIndex: 70 }}
     >
-      {!message || stateFull.openPreview ? (
+      {!message ? (
         <ul
           className="nav_icon_items"
           onClick={(e) => {

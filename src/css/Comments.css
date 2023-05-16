@@ -11,15 +11,6 @@
   border-radius: 50%;
 }
 
-/*font 15*/
-.user_comment,
-.comment_user_nickname {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 18px;
-}
-
 .comments_container {
   width: 100%;
   animation: open 0.5s ease-in-out;
@@ -43,7 +34,7 @@
   border-bottom: var(--border1) var(--color_gray);
 }
 
-.icon_close{
+.icon_close {
   margin: 0 20px 0 20px;
 }
 
@@ -82,8 +73,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 50px;
+  width: 32px;
+  height: 32px;
   border: var(--border1) var(--color_gray);
 }
 
@@ -100,10 +91,27 @@
 
 .comment_user_nickname {
   margin: 2px 0 1px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .comment_sign {
   font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.count_comments {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #bababa;
+  margin-bottom: 14px;
 }
 
 @keyframes open {

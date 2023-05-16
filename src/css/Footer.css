@@ -7,7 +7,6 @@
 }
 
 .foot_notview {
-  filter: blur(6px);
   pointer-events: none;
 }
 

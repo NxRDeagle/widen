@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Message from '../components/Message';
 
-import chat_data from '../data/chat_data.json'
+import { userId } from '../App';
+
+import chat_data from '../data/chat_data.json';
+import users_data from '../data/users_data.json';
 
 import '../css/Messenger.css';
 
@@ -13,21 +16,22 @@ const Messenger = () => {
 
   /*После подключения базы данных будут меняться динамично переменные unread, поэтому они в State*/
 
+
   const [chatState, setChatState] = useState({
     activeChats: [],
-    unreadColleague: chat_data.filter(chat => chat.colleague && chat.fullstatus === "unread").length,
-    unreadСustomers: chat_data.filter(chat => !chat.colleague && chat.fullstatus === "unread").length
+    unreadColleague: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who === users_data.find((obj) => obj.userId === userId).who && chat.fullstatus === "unread").length,
+    unreadСustomers: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who !== users_data.find((obj) => obj.userId === userId).who && chat.fullstatus === "unread").length
   })
-
+ 
   useEffect(() => {
     chatFilter === 0 ?
       setChatState({
         ...chatState,
-        activeChats: chat_data.filter(chat => chat.colleague)
+        activeChats: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who === users_data.find((obj) => obj.userId === userId).who)
       })
       : setChatState({
         ...chatState,
-        activeChats: chat_data.filter(chat => !chat.colleague)
+        activeChats: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who !== users_data.find((obj) => obj.userId === userId).who)
       });
   }, [chatFilter])
 
@@ -78,7 +82,7 @@ const Messenger = () => {
 
       <div className="chats_container">
         {chatState.activeChats.map((item)=>{
-          return <Message key={item.id} {...item} />
+          return <Message key={item.chatId} {...item} />
         })}
       </div>
 

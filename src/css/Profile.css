@@ -58,8 +58,8 @@
   position: absolute;
   height: fit-content;
   width: var(--max-width);
-  background-image: url('https://i.pinimg.com/originals/60/a1/ce/60a1ce7af01d06775077d5db0e2ceee0.gif');
   background-repeat: no-repeat;
+  animation: main 0.4s forwards;
 }
 
 .burger_box {
@@ -216,10 +216,6 @@
   stroke: black !important;
 }
 
-.user_profile {
-  animation: open 0.5s ease-in-out;
-}
-
 .share {
   position: absolute;
   color: white;
@@ -244,16 +240,12 @@
   animation: ani 1s forwards;
 }
 
-@keyframes open {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.no_posts {
+  position: relative;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: lighter;
 }
 
 @keyframes ani {
@@ -302,10 +294,13 @@
   }
 }
 
-.no_posts {
-  position: relative;
-  margin-top: 20px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: lighter;
+
+@keyframes main {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

@@ -1,7 +1,7 @@
 [
     {
         "chatId" : 1,
-        "companion_id": 10,
+        "companionId": 10,
         "fullstatus": "unread",
         "messages":[
             {
@@ -26,7 +26,7 @@
     },
     {
         "chatId" : 2,
-        "companion_id": 4,
+        "companionId": 4,
         "fullstatus": "unread",
         "messages":[
             {
@@ -51,7 +51,7 @@
     },
     {
         "chatId" : 3,
-        "companion_id": 1,
+        "companionId": 1,
         "fullstatus": "read",
         "messages":[
             {
@@ -76,7 +76,7 @@
     },
     {
         "chatId" : 4,
-        "companion_id": 7,
+        "companionId": 7,
         "fullstatus": "read",
         "messages":[
             {
@@ -101,7 +101,7 @@
     },
     {
         "chatId" : 5,
-        "companion_id": 8,
+        "companionId": 8,
         "fullstatus": "read",
         "messages":[
             {

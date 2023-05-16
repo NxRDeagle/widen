@@ -9,14 +9,14 @@ import Preview from '../components/Preview';
 import FullMode from '../components/FullMode';
 import { mainContext } from '../App';
 
-import user_data from '../data/user_data.json';
-import post_data from '../data/post_data.json';
+import users_data from '../data/users_data.json';
+import posts_data from '../data/posts_data.json';
 
 import '../css/Profile.css';
 import '../css/Post.css';
 
-const Profile = ({ nickname }) => {
-  const { stateFull, fullImages } = React.useContext(mainContext);
+const Profile = ({ userId }) => {
+  const { stateFull, fullImages, Conversion } = React.useContext(mainContext);
 
   const [activeIcon, setActiveIcon] = React.useState(0);
   const [userPosts, setUserPosts] = React.useState([]);
@@ -24,18 +24,24 @@ const Profile = ({ nickname }) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   React.useEffect(() => {
     setUserPosts(
-      post_data.filter((item) => {
-        return item.nickname === nickname;
+      posts_data.filter((item) => {
+        return item.authorId === userId;
       }),
     );
     setIsLoaded(true);
   }, []);
 
-  const profileData = user_data.find((obj) => obj.nickname === nickname);
+  const profile = users_data.find((obj) => obj.userId === userId);
+
+  let subsriptions = Conversion('count', profile.subscribers.length);
+  let subscribers = Conversion('count', profile.subscribers.length);
 
   return (
     <>
-      <div name="upd" className="profile_container">
+      <div
+        name="upd"
+        className="profile_container"
+        style={{ backgroundImage: `url(${profile.background})` }}>
         {stateFull.openComments || stateFull.openPreview ? null : <Update />}
         <div className="burger_box">
           <span className="burger_line"></span>
@@ -46,40 +52,32 @@ const Profile = ({ nickname }) => {
         <i className="icon-bell profile_notific"></i>
 
         <div className="profile_avatar">
-          {profileData.avatar ? (
-            <img className="avatar_picture" src={profileData.avatar} alt="avatar" />
-          ) : (
-            <img
-              className="avatar_picture"
-              src="http://en-stal.ru/wp-content/uploads/2022/08/cropped-tild6265-3863-4963-b761-653137363930__usersilhouette_.jpg"
-              alt="avatar"
-            />
-          )}
+          <img className="avatar_picture" src={profile.avatar} alt="avatar" />
         </div>
 
         <div className="profile_box">
           <div className="profile_user_count_container">
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
-              <p className="profile_count">{profileData.subscriptions}</p>
+              <p className="profile_count">{subsriptions}</p>
               <p className="profile_count_sign">Подписки</p>
             </div>
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
-              <p className="profile_count">{profileData.subscribers}</p>
+              <p className="profile_count">{subscribers}</p>
               <p className="profile_count_sign">Подписчики</p>
             </div>
           </div>
 
           <div className="profile_nick_box">
-            <h1 className="profile_nickname">{profileData.nickname}</h1>
+            <h1 className="profile_nickname">{profile.nickname}</h1>
             <p className="profile_fi">
-              {profileData.firstName} {profileData.lastName}
+              {profile.firstName} {profile.lastName}
             </p>
-            <p className="profile_role">{profileData.role}</p>
+            <p className="profile_role">{profile.role}</p>
           </div>
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">{profileData.idea}</p>
+            <p className="profile_idea_sign">{profile.idea}</p>
           </div>
           {isLoaded && document.querySelector('.profile_idea_sign').textContent.length > 180 && (
             <p
@@ -216,7 +214,7 @@ const Profile = ({ nickname }) => {
                 <p className="no_posts">У вас ещё нет постов...</p>
               ) : isLoaded ? (
                 userPosts.map((item) => {
-                  return <Post {...item} key={item.id} />;
+                  return <Post {...item} key={item.postId} />;
                 })
               ) : (
                 <div className="posts_container">
@@ -253,9 +251,9 @@ const Profile = ({ nickname }) => {
         </div>
       </div>
       {stateFull.openComments ? <Comments /> : null}
-      {stateFull.openPreview ? <Preview/> : null}
+      {stateFull.openPreview ? <Preview /> : null}
       <Footer />
-      {stateFull.openImage ? <FullMode imgs={fullImages}/> : null}
+      {stateFull.openImage ? <FullMode imgs={fullImages} /> : null}
     </>
   );
 };

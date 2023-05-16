@@ -4,7 +4,54 @@
         "authorCommentId": 2,
         "text": "я гениш импактер",
         "likes": [1, 8, 9],
-        "replies": [2]
-
+        "replies": [2],
+        "time": ""
+    },
+    {
+        "commentId": 2,
+        "authorCommentId": 1,
+        "text": "лол",
+        "likes": [1, 2, 3, 4, 8, 9],
+        "replies": [2],
+        "time": ""
+    },   {
+        "commentId": 3,
+        "authorCommentId": 4,
+        "text": "ахаахахахаахахахахаахахахааххххххххххххххххххххххххххх",
+        "likes": [1, 2, 3, 4, 8, 9],
+        "replies": [2],
+        "time": ""
+    },
+    {
+        "commentId": 4,
+        "authorCommentId": 7,
+        "text": "дадада",
+        "likes": [1, 3, 4, 8, 9],
+        "replies": [2],
+        "time": ""
+    },
+    {
+        "commentId": 5,
+        "authorCommentId": 7,
+        "text": "бара бара бере бере эщкере",
+        "likes": [1, 3, 4, 8, 9, 10],
+        "replies": [2],
+        "time": ""
+    },
+    {
+        "commentId": 5,
+        "authorCommentId": 7,
+        "text": "без комментариев",
+        "likes": [10],
+        "replies": [2],
+        "time": ""
+    },
+    {
+        "commentId": 6,
+        "authorCommentId": 5,
+        "text": "буль буль",
+        "likes": [8],
+        "replies": [2],
+        "time": ""
     }
 ]

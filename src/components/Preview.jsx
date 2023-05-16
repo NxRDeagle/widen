@@ -2,14 +2,17 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { mainContext } from '../App';
-import { userLogin } from '../App';
+import { userId } from '../App';
 
 import '../css/Preview.css';
 
 const Preview = () => {
   const navigate = useNavigate();
 
-  const { setPage, profile, loc, setStateFull, stateFull } = React.useContext(mainContext);
+  const { setPage, profile, setStateFull, stateFull, Conversion} = React.useContext(mainContext);
+
+  let subsriptions = Conversion('count', profile.subscribers.length);
+  let subscribers =  Conversion('count', profile.subscribers.length);
 
   React.useEffect(() => {
     if (!profile.nickname) {
@@ -19,12 +22,14 @@ const Preview = () => {
     let screenY = null;
     let clientY = null;
     let scroll = null;
+    let blur = null;
     const previewBox = document.getElementById('swipe_preview');
 
     previewBox.addEventListener('touchstart', (e) => {
       screenY = e.touches[0].screenY;
       clientY = e.touches[0].screenY;
       scroll = 0;
+      blur = 5;
     });
 
     previewBox.addEventListener('touchmove', (e) => {
@@ -32,15 +37,23 @@ const Preview = () => {
         if (e.touches[0].screenY <= clientY) {
           if (scroll < 50) {
             scroll++;
+            if(blur > 0){
+              blur -= 0.2;
+            }
             clientY = e.touches[0].screenY;
             previewBox.style.transform = `translateY(-${scroll}%)`;
+            document.querySelector('footer').style.filter = `blur(${blur}px)`
           } else {
             goBack();
           }
         } else {
           if (scroll > 0) {
             scroll--;
+            if(blur < 5){
+              blur += 0.2;
+            }
             previewBox.style.transform = `translateY(-${scroll}%)`;
+            document.querySelector('footer').style.filter = `blur(${blur}px)`
           }
         }
       }
@@ -49,6 +62,7 @@ const Preview = () => {
     previewBox.addEventListener('touchend', () => {
       if (scroll < 20) {
         previewBox.style.transform = `translateY(0%)`;
+        document.querySelector('footer').style.filter = `blur(5px)`;
       } else {
         goBack();
       }
@@ -56,6 +70,9 @@ const Preview = () => {
   }, [stateFull.openPreview]);
 
   const goBack = () => {
+
+    document.querySelector('footer').style.filter = 'blur(0px)';
+
     setStateFull({
       ...stateFull,
       openPreview: false,
@@ -65,23 +82,18 @@ const Preview = () => {
       document.body.style.overflow = '';
     }
 
-    // navigate(loc);
-    // if (loc === `/user_profile/${profile.nickname}`) setPage('profile');
-    // else if (loc === '/') setPage('home');
-    // else setPage(loc.substring(1));
   };
 
   const goToProfile = () => {
     document.body.style.overflow = '';
 
     setStateFull({
-      //...stateFull,
       openPreview: false,
       openComments: false,
       openImage: false,
     });
 
-    profile.nickname !== userLogin
+    profile.userId !== userId
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
     setPage('profile');
@@ -89,23 +101,14 @@ const Preview = () => {
 
   return (
     <>
-      <div id="swipe_preview" className="preview_user_container">
+      <div id="swipe_preview" className="preview_user_container" style={{ background: `url(${profile.background})`}}>
         <div className="preview_user_avatar">
-          {profile.avatar ? (
-            <img
-              className="avatar_picture"
-              src={profile.avatar}
-              alt="avatar"
-              onClick={goToProfile}
-            />
-          ) : (
-            <img
-              className="avatar_picture"
-              src="http://en-stal.ru/wp-content/uploads/2022/08/cropped-tild6265-3863-4963-b761-653137363930__usersilhouette_.jpg"
-              alt="avatar"
-              onClick={goToProfile}
-            />
-          )}
+          <img
+            className="avatar_picture"
+            src={profile.avatar}
+            alt="avatar"
+            onClick={goToProfile}
+          />
         </div>
         <div className="preview_user_nickname_box">
           <h1 className="preview_user_nickname">{profile.nickname}</h1>
@@ -114,11 +117,11 @@ const Preview = () => {
         <div className="preview_user_sign_box">
           <div className="preview_user_count_container">
             <div className="preview_user_count">
-              <p className="count">{profile.subscriptions}</p>
+              <p className="count">{subsriptions}</p>
               <p className="count_sign">Подписки</p>
             </div>
             <div className="preview_user_count">
-              <p className="count">{profile.subscribers}</p>
+              <p className="count">{subscribers}</p>
               <p className="count_sign">Подписчики</p>
             </div>
           </div>

@@ -6,8 +6,13 @@
         "nickname": "Monkey_Cola",
         "firstName": "Алексей",
         "lastName": "Веялко",
-        "subscribers": [2],
-        "subsriptions": [2],
+        "subscribers": [
+            2
+        ],
+        "subsriptions": [
+            2
+        ],
+        "viewUsers": [],
         "idea": "Дарить Кока Колу Ивану Золо за 3 ляма",
         "role": "Маркетинг",
         "softSkills": "",
@@ -24,8 +29,13 @@
         "nickname": "dimas_sas",
         "firstName": "Дмитрий",
         "lastName": "Яценко",
-        "subscribers": [1],
-        "subsriptions": [1],
+        "subscribers": [
+            1
+        ],
+        "subsriptions": [
+            1
+        ],
+        "viewUsers": [],
         "idea": "Коничива яматэ кудасай!",
         "role": "SMM",
         "softSkills": "",
@@ -42,8 +52,13 @@
         "nickname": "mamont_bank",
         "firstName": "Мамант",
         "lastName": "Банк",
-        "subscribers": [4],
-        "subsriptions": [4],
+        "subscribers": [
+            4
+        ],
+        "subsriptions": [
+            4
+        ],
+        "viewUsers": [],
         "idea": "Мы не скам!",
         "role": "Start-up",
         "softSkills": "",
@@ -60,8 +75,13 @@
         "nickname": "zenit",
         "firstName": "СПБ",
         "lastName": "Зенит",
-        "subscribers": [3],
-        "subsriptions": [3],
+        "subscribers": [
+            3
+        ],
+        "subsriptions": [
+            3
+        ],
+        "viewUsers": [],
         "idea": "бк леон бк",
         "role": "Start-up",
         "softSkills": "",
@@ -78,13 +98,18 @@
         "nickname": "pupa_felini",
         "firstName": "Фрикаделька",
         "lastName": "Вроде",
-        "subscribers": [6],
-        "subsriptions": [6],
+        "subscribers": [
+            6
+        ],
+        "subsriptions": [
+            6
+        ],
+        "viewUsers": [1],
         "idea": "финансовая пирамида",
         "role": "SMM",
         "softSkills": "",
         "status": "online",
-        "who": "customer",
+        "who": "professional",
         "achievements": "",
         "notifications": false,
         "lastTime": ""
@@ -96,8 +121,13 @@
         "nickname": "sas_kvas",
         "firstName": "Аркадий",
         "lastName": "Паравозов",
-        "subscribers": [5],
-        "subsriptions": [5],
+        "subscribers": [
+            5
+        ],
+        "subsriptions": [
+            5
+        ],
+        "viewUsers": [],
         "idea": "люблю парить",
         "role": "SEO",
         "softSkills": "",
@@ -114,8 +144,13 @@
         "nickname": "ega_omut",
         "firstName": "Егор",
         "lastName": "Сюткин",
-        "subscribers": [8],
-        "subsriptions": [8],
+        "subscribers": [
+            8
+        ],
+        "subsriptions": [
+            8
+        ],
+        "viewUsers": [],
         "idea": "люблю пиво",
         "role": "Веб-дизайн",
         "softSkills": "",
@@ -132,8 +167,13 @@
         "nickname": "dina_toha",
         "firstName": "Егор",
         "lastName": "Сюткин",
-        "subscribers": [7],
-        "subsriptions": [7],
+        "subscribers": [
+            7
+        ],
+        "subsriptions": [
+            7
+        ],
+        "viewUsers": [],
         "idea": "пиво",
         "role": "Веб-дизайн",
         "softSkills": "",
@@ -150,8 +190,13 @@
         "nickname": "Intel_Egich_Pentium",
         "firstName": "Интел",
         "lastName": "Сюткин",
-        "subscribers": [10],
-        "subsriptions": [10],
+        "subscribers": [
+            10
+        ],
+        "subsriptions": [
+            10
+        ],
+        "viewUsers": [],
         "idea": "Не пиво",
         "role": "Веб-дизайн",
         "softSkills": "",
@@ -168,13 +213,18 @@
         "nickname": "Ur4ik",
         "firstName": "Юрий",
         "lastName": "Чепурин",
-        "subscribers": [9],
-        "subsriptions": [9],
+        "subscribers": [
+            9
+        ],
+        "subsriptions": [
+            9
+        ],
+        "viewUsers": [],
         "idea": "питон мастер",
         "role": "Веб-дизайн",
         "softSkills": "",
         "status": "online",
-        "who": "professional",
+        "who": "customer",
         "achievements": "",
         "notifications": false,
         "lastTime": ""

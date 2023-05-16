@@ -1,23 +1,25 @@
+import users_data from '../data/users_data.json';
+
 const Message = (props) => {
     const {
-        nickname,
-        avatar,
+        companionId,
         messages
     } = props
 
     /*Объект последнего сообщения*/
     const Message = messages[messages.length - 1];
     const countUnread = messages.filter(item => item.status === "unread").length;
+    const user = users_data.find((obj)=> obj.userId === companionId)
 
     return (
         <div className="chat_box">
 
             <div className="chat_user_avatar_box">
-                <img className="avatar_picture" src={avatar} alt={nickname} />
+                <img className="avatar_picture" src={user.avatar} alt={user.nickname} />
             </div>
 
             <div className="chat_user_sign_box">
-                <p className="chat_user_nickname">{nickname}</p>
+                <p className="chat_user_nickname">{user.nickname}</p>
                 <p className={Message.who === "iam" ? "chat_user_message your_message" : "chat_user_message"}>{Message.message}</p>
             </div>
 
