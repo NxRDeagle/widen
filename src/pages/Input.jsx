@@ -74,6 +74,7 @@ class Input extends React.Component {
     input.className = 'more_input';
     input.placeholder = `${this.state.inputCount}. Я интересуюсь...`;
     document.querySelector('.more_container').appendChild(input);
+    input.focus();
   };
 
   render() {

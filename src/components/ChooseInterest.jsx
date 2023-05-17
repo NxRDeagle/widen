@@ -21,7 +21,14 @@ const ChooseInterest = memo(() => {
       <div className="choose_container">
         {[...new Array(28)].map((_, index) => {
           bgs.sort(() => Math.random() - 0.5);
-          return <Sphere sign={interest_data[index].name} bg={bgs[index % 4]} key={index} />;
+          return (
+            <Sphere
+              sign={interest_data[index].name}
+              bg={bgs[index % 4]}
+              icon={index + 1}
+              key={index}
+            />
+          );
         })}
       </div>
     </div>

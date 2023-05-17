@@ -67,6 +67,8 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  max-height: fit-content;
+  max-width: 80%;
 }
 
 .user_comment_avatar_box {
@@ -85,7 +87,7 @@
 
 .comment_user_sign {
   margin-left: 5px;
-  height: fit-content;
+  max-height: fit-content;
   max-width: 80%;
 }
 
@@ -103,6 +105,8 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
+  max-width: 100%;
+  max-height: fit-content;
 }
 
 .count_comments {
