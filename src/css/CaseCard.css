@@ -1,0 +1,93 @@
+.casecard_header {
+  position: relative;
+  top: 10px;
+  left: 15px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  z-index: 20;
+  color: white;
+  margin-right: 40px;
+}
+.casecard {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 170px;
+  height: 130px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.casecard_fav {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  fill: #ffffff;
+}
+
+.casecard_fav_selected {
+  stroke: #7e52ee !important;
+  fill: #7e52ee !important;
+}
+
+.casecard_up {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: fit-content;
+}
+
+.casecard_author {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.casecard_avatar {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 20;
+}
+
+.casecard_nick {
+  position: absolute;
+  bottom: 20px;
+  left: 55px;
+  color: #ffffff;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  z-index: 20;
+}
+
+.casecard_filter {
+  filter: brightness(75%) blur(1px);
+}
+
+.casecard_background {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}

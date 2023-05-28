@@ -89,6 +89,7 @@ function App() {
   }, [stateFull.openComments, stateFull.openPreview, stateFull.openImage]);
 
   const [loc, setLoc] = React.useState('/');
+  const [messageText, setMessageText] = React.useState('');
 
   function Conversion(type, stats) {
     let element = null;
@@ -135,6 +136,8 @@ function App() {
           stateFull,
           setStateFull,
           Conversion,
+          messageText,
+          setMessageText
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />

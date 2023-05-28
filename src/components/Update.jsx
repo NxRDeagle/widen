@@ -16,7 +16,7 @@ class Update extends React.Component {
     let screenY = null;
     let clientTop = null;
 
-    if (element !== null && element != undefined) {
+    if (element !== null && element !== undefined) {
       element.addEventListener('touchstart', (e) => {
         screenY = e.touches[0].screenY;
         clientTop = e.target.getBoundingClientRect().y;

@@ -1,3 +1,8 @@
+.search_div {
+  width: var(--max-width);
+  display: block;
+}
+
 .search_container {
   display: flex;
   width: var(--max-width);
@@ -33,29 +38,43 @@
 }
 
 .search_input {
-  margin: 0 7px 0 18px;
+  margin: 0 10px 0 20px;
+  z-index: 10;
 }
 
 .search_filter {
+  position: relative;
   display: flex;
   justify-content: center;
-  width: var(--max-width);
+  width: 100%;
   margin-top: 7px;
   animation: main 0.4s forwards;
+  overflow-y: hidden;
+  overflow-x: scroll;
+
+  height: 50px;
+  padding: 10px 20px;
 }
 
 .search_filter_btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
   text-align: center;
-  height: 33px;
+  height: 34px;
   background: white;
   border: var(--border1) var(--color_gray);
   border-radius: 29px;
   padding: 0 16px 0 16px;
-  margin-right: 4px;
+  margin-right: 6px;
+}
+
+.search_btn_sign {
+  white-space: nowrap;
 }
 
 @keyframes main {
@@ -78,4 +97,22 @@
     opacity: 1;
     width: var(--max-width);
   }
+}
+
+.active_btn {
+  background-color: #7e52ee;
+  color: white;
+}
+
+.casecard_container {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: var(--max-width);
+  height: fit-content;
+  overflow-y: scroll;
+  padding: 0 auto;
 }
