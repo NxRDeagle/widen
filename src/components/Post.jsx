@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import defaultPostPng from '../img/default_post.png';
+import addFriend from '../img/addFriend.png';
 
 import { mainContext } from '../App';
 import { userId } from '../App';
@@ -137,6 +138,9 @@ const Post = (props) => {
               {geoposition}
             </p>
           </div>
+          {location.pathname === '/search' && (
+            <img src={addFriend} className="add_friend_icon" alt="Add Friend" />
+          )}
         </div>
       ) : (
         <div

@@ -227,3 +227,10 @@
     transform: none;
   }
 }
+
+.add_friend_icon {
+  position: relative;
+  left: 5px;
+  width: 60px;
+  height: 60px;
+}

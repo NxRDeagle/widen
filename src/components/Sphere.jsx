@@ -22,7 +22,7 @@ const Sphere = ({ sign, bg, icon }) => {
         style={{ backgroundImage: `url('${bg}')` }}>
         <img src={image} className="interest_icon" alt="interest icon" />
       </div>
-      <p className="interest_sign">{sign ? sign : 'TestTestTest'}</p>
+      <p className="interest_sign">{sign}</p>
     </div>
   );
 };
