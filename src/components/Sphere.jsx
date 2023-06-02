@@ -6,7 +6,7 @@ const Sphere = ({ sign, bg, icon }) => {
   const [isSelected, setIsSelected] = React.useState(false);
   const interestRef = React.useRef();
 
-  let image = require(`../img/spheres/icon${icon}.png`);
+  let image = require(`../img/spheres/icon${icon}.svg`);
   const selectInterest = () => {
     setIsSelected(!isSelected);
     isSelected
@@ -22,7 +22,7 @@ const Sphere = ({ sign, bg, icon }) => {
         style={{ backgroundImage: `url('${bg}')` }}>
         <img src={image} className="interest_icon" alt="interest icon" />
       </div>
-      <p className="interest_sign">{sign}</p>
+      <p className="interest_sign">{sign ? sign : 'TestTestTest'}</p>
     </div>
   );
 };

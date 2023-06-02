@@ -15,7 +15,8 @@ const Post = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { Conversion } = React.useContext(mainContext);
+  const { setFullImages, setCommentPostId, setProfile, setPage, Conversion, setMessage, loc } =
+    React.useContext(mainContext);
 
   const {
     postId = 0,
@@ -37,9 +38,6 @@ const Post = (props) => {
   const profile = users_data.find((obj) => obj.userId === authorId);
   const myProfile = users_data.find((obj) => obj.userId === userId);
 
-  const { setFullImages, setCommentPostId, setProfile, setPage, setStateFull, stateFull } =
-    React.useContext(mainContext);
-
   const firstImgSrc = imgs ? imgs[0] : defaultPostPng;
 
   const CONTENT_LIMIT = 10;
@@ -50,13 +48,10 @@ const Post = (props) => {
   const [fullPost, setFullPost] = React.useState(props.full);
 
   const goToComments = () => {
-    document.body.style.overflow = 'hidden';
-    document.querySelector('.mainBackground').style.filter = 'blur(5px)';
+    loc.push(location.pathname);
+    setMessage(true);
     setCommentPostId(postId);
-    setStateFull({
-      ...stateFull,
-      openComments: true,
-    });
+    navigate('/comments');
   };
 
   const onClickIcon = (icon) => {
@@ -78,13 +73,12 @@ const Post = (props) => {
         return x === firstImg ? -1 : y === firstImg ? 1 : 0;
       });
     setFullImages(imgs_clone);
-    setStateFull({
-      ...stateFull,
-      openImage: true,
-    });
+    loc.push(location.pathname);
+    navigate('/full_image');
   };
 
   const goToPreview = () => {
+    setProfile(profile);
     if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
       goToProfile();
     } else {
@@ -92,25 +86,14 @@ const Post = (props) => {
         location.pathname !== `/user_profile/${profile.nickname}` &&
         location.pathname !== '/profile'
       ) {
-        document.body.style.overflow = 'hidden';
-        document.querySelector('footer').style.filter = `blur(5px)`;
-        setProfile(profile);
-        setStateFull({
-          ...stateFull,
-          openPreview: true,
-        });
+        loc.push(location.pathname);
+        navigate('/preview');
       }
     }
   };
 
   const goToProfile = () => {
-    setStateFull({
-      ...stateFull,
-      openComments: false,
-      openPreview: false,
-    });
-    document.body.style.overflow = '';
-    document.querySelector('.mainBackground').removeAttribute('style');
+    setProfile(profile);
     profile.userId !== userId
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
@@ -172,7 +155,7 @@ const Post = (props) => {
 
       <div className="post_sign">
         {signImgs && (
-          <p className={type != 'case' ? 'post_text' : 'post_text case_text'}>{signImgs[0]}</p>
+          <p className={type !== 'case' ? 'post_text' : 'post_text case_text'}>{signImgs[0]}</p>
         )}
         {type === 'case' && (
           <div className="author_post case_author">
@@ -195,7 +178,7 @@ const Post = (props) => {
         <img
           className={type === 'case' ? 'post_one_item case_filter' : 'post_one_item'}
           src={firstImgSrc}
-          alt="Post picture"
+          alt="Post"
           onClick={() => {
             fullPost ? goToFullMode(imgs ? imgs : [firstImgSrc], firstImgSrc) : goToComments();
           }}
@@ -275,8 +258,8 @@ const Post = (props) => {
           <svg
             name="icon-comment"
             width="21"
-            height="20"
-            viewBox="0 0 21 19"
+            height="21"
+            viewBox="0 0 21 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
@@ -290,15 +273,15 @@ const Post = (props) => {
         <div className="post_icon_box">
           <svg
             name="icon-repost"
-            width="19"
-            height="20"
-            viewBox="0 0 19 19"
+            width="22"
+            height="21"
+            viewBox="0 0 22 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
               name="icon-repost"
-              d="M17.7052 7.83284L12.528 14.4674L12.1931 11.7527L12.1012 11.0084L11.3569 11.1002C6.97193 11.6412 3.66678 13.157 1.27669 15.8555C1.68051 14.2159 2.32661 12.637 3.28316 11.227C4.83399 8.94094 7.22883 7.05568 10.8439 6.07597L11.4717 5.90582L11.392 5.26024L11.0707 2.6556L17.7052 7.83284Z"
-              fill="white"
+              d="M19.7052 7.83235L14.528 14.4669L14.1931 11.7522L14.1012 11.0079L13.3569 11.0997C8.97193 11.6407 5.66678 13.1565 3.27669 15.855C3.68051 14.2154 4.32661 12.6365 5.28316 11.2265C6.83399 8.94045 9.22883 7.05519 12.8439 6.07548L13.4717 5.90533L13.392 5.25976L13.0707 2.65512L19.7052 7.83235Z"
+              fill="none"
               stroke="black"
               strokeWidth="1.5"
             />
@@ -310,8 +293,8 @@ const Post = (props) => {
             name="icon-flag"
             className={activeIcons.includes(icons[3]) ? 'post_icon_animation' : ''}
             width="20"
-            height="20"
-            viewBox="0 0 24 24"
+            height="21"
+            viewBox="0 0 24 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path

@@ -27,17 +27,15 @@
 }
 
 .preview_user_container {
-  position: fixed;
-  z-index: 50;
-  top: 0;
   align-items: center;
   width: var(--max-width);
-  height: 100vh;
+  height: 93vh;
   border-end-end-radius: 15px;
   border-end-start-radius: 15px;
   background-size: cover;
-  animation: open 0.5s ease-in-out;
+  animation: openPreview 0.5s ease-in-out;
   overflow: hidden;
+  position: relative;
 }
 
 .preview_user_avatar {
@@ -116,20 +114,20 @@
 }
 
 .rowupp {
-  position: absolute;
-  bottom: 10%;
+  margin-top: 50px;
   font-size: 30px;
   color: white;
+  transform: rotate(-90deg);
 }
 
-@keyframes open {
+@keyframes openPreview {
   0% {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
     opacity: 0;
   }
 
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }

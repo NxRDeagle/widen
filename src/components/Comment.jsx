@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import '../css/Comments.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Reply from '../components/Reply';
 
 import { mainContext } from '../App';
@@ -11,57 +11,46 @@ import comments_data from '../data/comments_data.json';
 
 const Comment = ({ authorCommentId, commentId }) => {
 
-  const { setPage, profile, setProfile, setStateFull, stateFull, Conversion, setMessageText } = React.useContext(mainContext);
+  const { setPage, setProfile, Conversion, setMessageText, loc } = React.useContext(mainContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const {
-    nickname,
-    avatar
-  } = users_data.find((obj) => obj.userId === authorCommentId);
+  const [wrap, setWrap] = React.useState(false);
 
+  useEffect(() => {
+      if (wrap) {
+        if (document.querySelector('blockquote')) {
+          document.querySelector('blockquote').innerHTML = `Ответить <a style='color:var(--color_active)'>${profile.nickname}</a>`;
+        }
+      }
+      else {
+        if (document.querySelector('blockquote')) {
+          document.querySelector('blockquote').innerHTML = `Комментировать...`;
+        }
+      }
+    // eslint-disable-next-line
+  }, [wrap])
+
+
+  const profile = users_data.find((obj) => obj.userId === authorCommentId);
   const comment = comments_data.find((obj) => obj.commentId === commentId);
   const likesCount = Conversion('count', comment.likes.length);
   const replysCount = Conversion('count', comment.replies.length);
   const myProfile = users_data.find((obj) => obj.userId === userId);
 
-  const unWrap = (e) =>{
-    switch(e.target.textContent.split(' ')[0]){
-      case 'Показать':
-        e.target.textContent = 'Скрыть ответы'
-        e.target.closest('div').querySelector('i').className = 'unwrap_icon icon-down-open'
-        e.target.closest('div').nextSibling.className = 'replys_box unwrap';
-        break;
-      case 'Скрыть':
-        e.target.textContent = 'Показать ответы'
-        e.target.closest('div').querySelector('i').className = 'unwrap_icon icon-up-open'
-        e.target.closest('div').nextSibling.className = 'replys_box';
-        break;
-      default:
-        return;
-    }
-  }
-
   const goToPreview = () => {
-    document.querySelector('footer').style.filter = `blur(5px)`;
+    setProfile(profile);
     if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
       goToProfile();
     }
     else {
-      setProfile(users_data.find((obj) => obj.userId === authorCommentId));
-      setStateFull({
-        ...stateFull,
-        openPreview: true
-      })
+      loc.push(location.pathname);
+      navigate("/preview");
     }
   };
 
   const goToProfile = () => {
-    setStateFull({
-      ...stateFull,
-      openComments: false,
-      openPreview: false
-    })
-    document.body.style.overflow = '';
+    setProfile(profile);
     profile.userId !== userId
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
@@ -75,24 +64,20 @@ const Comment = ({ authorCommentId, commentId }) => {
           null
           :
           <>
-            <div 
-            id = {`comment_${comment.commentId}`} 
-            className="comment_box"
-            onClick={()=>{
-              setMessageText('');
-              if(comment.replies.length > 0 ){
-                document.getElementById(`replys_${comment.commentId}`).click();
-              }
-              const block = document.querySelector('blockquote');
-              block.innerHTML=`Ответить <a style='color:var(--color_active)'>${nickname}</a>`;
-            }}
+            <div
+              id={`comment_${comment.commentId}`}
+              className="comment_box"
+              onClick={() => {
+                setMessageText('');
+                setWrap(!wrap);
+              }}
             >
               <div className="comment_user_avatar_box">
-                <img className="avatar_picture" src={avatar} alt="User Avatar" onClick={goToPreview} />
+                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={goToPreview} />
               </div>
               <div className="comment_text_box">
                 <p className="comment_user_nickname">
-                  {nickname}
+                  {profile.nickname}
                 </p>
                 <p className="comment_text">{comment.text}</p>
                 <span className='time_reply_box'>
@@ -107,14 +92,14 @@ const Comment = ({ authorCommentId, commentId }) => {
                 <p className='likes_count'>{likesCount}</p>
               </div>
             </div>
-            <div className={comment.replies.length > 0 ? 'unwrap_box' : 'unwrap_box none_active'}>
-              <p id={`replys_${comment.commentId}`} onClick={unWrap} className='unwrap_replys'>Показать ответы</p>
+            <div onClick={() => setWrap(!wrap)} className={comment.replies.length > 0 ? 'unwrap_box' : 'unwrap_box none_active'}>
+              <p className='unwrap_replys'>{wrap ? 'Скрыть ответы' : 'Показать ответы'}</p>
               <p className='replys_count'>({replysCount})</p>
-              <i className='unwrap_icon icon-up-open'></i>
+              <i className={wrap ? 'unwrap_icon icon-down-open' : 'unwrap_icon icon-up-open'}></i>
             </div>
             {
               comment.replies.length > 0 ?
-                <div className='replys_box'>
+                <div id={`replys_${comment.commentId}`} className={wrap ? 'replys_box unwrap' : 'replys_box'}>
                   {
                     comment.replies.map((replyId) => {
                       return (

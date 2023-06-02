@@ -11,34 +11,18 @@ import users_data from '../data/users_data.json';
 import '../css/Messenger.css';
 
 const Messenger = () => {
+  const myProfile = users_data.find((obj) => obj.userId === userId);
+  const [chatFilter, setChatFilter] = useState(myProfile.chatNames[0]);
+  const [activeChats, setActiveChats] = useState(
+    chat_data.filter((chat) => chat.chatName === myProfile.chatNames[0]),
+  );
 
-  const [chatFilter, setChatFilter] = useState(0);
-
-  /*После подключения базы данных будут меняться динамично переменные unread, поэтому они в State*/
-
-
-  const [chatState, setChatState] = useState({
-    activeChats: [],
-    unreadColleague: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who === users_data.find((obj) => obj.userId === userId).who && chat.fullstatus === "unread").length,
-    unreadСustomers: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who !== users_data.find((obj) => obj.userId === userId).who && chat.fullstatus === "unread").length
-  })
- 
   useEffect(() => {
-    chatFilter === 0 ?
-      setChatState({
-        ...chatState,
-        activeChats: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who === users_data.find((obj) => obj.userId === userId).who)
-      })
-      : setChatState({
-        ...chatState,
-        activeChats: chat_data.filter(chat => users_data.find((obj) => obj.userId === chat.companionId).who !== users_data.find((obj) => obj.userId === userId).who)
-      });
-  }, [chatFilter])
-
+    setActiveChats(chat_data.filter((chat) => chat.chatName === chatFilter));
+  }, [chatFilter]);
 
   return (
     <>
-
       <div className="search_container">
         <div className="search_box">
           <i className="icon-search search_input"></i>
@@ -47,45 +31,46 @@ const Messenger = () => {
       </div>
 
       <div className="search_filter">
-        <button
-          onClick={() => {
-            setChatFilter(0);
-          }}
-          className={chatFilter === 0 ? "chat_search_filter_btn chat_filter_active" : "chat_search_filter_btn"}
-        >
-          Коллеги
-          {
-            chatState.unreadColleague > 0 ?
-              <div className={chatFilter === 0 ? "not_view_message chat_none_active" : "not_view_message chat_active"}>
-                <p>{chatState.unreadColleague}</p>
-              </div>
-              :
-              null
-          }
-        </button>
-        <button
-          onClick={() => {
-            setChatFilter(1);
-          }}
-          className={chatFilter === 1 ? "chat_search_filter_btn chat_filter_active" : "chat_search_filter_btn"}
-        >
-          Заказчики
-          {chatState.unreadСustomers > 0 ?
-            <div className={chatFilter === 1 ? "not_view_message chat_none_active" : "not_view_message chat_active"}>
-              <p>{chatState.unreadСustomers}</p>
-            </div>
-            :
-            null
-          }
-        </button>
-      </div>
-
-      <div className="chats_container">
-        {chatState.activeChats.map((item)=>{
-          return <Message key={item.chatId} {...item} />
+        {myProfile.chatNames.map((item, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                setChatFilter(item);
+              }}
+              className={
+                chatFilter === item
+                  ? 'chat_search_filter_btn chat_filter_active'
+                  : 'chat_search_filter_btn'
+              }>
+              {item}
+              {chat_data.filter((chat) => chat.chatName === item && chat.fullStatus === 'unread')
+                .length ? (
+                <div
+                  className={
+                    chatFilter === item
+                      ? 'not_view_message chat_none_active'
+                      : 'not_view_message chat_active'
+                  }>
+                  <p>
+                    {
+                      chat_data.filter(
+                        (chat) => chat.chatName === item && chat.fullStatus === 'unread',
+                      ).length
+                    }
+                  </p>
+                </div>
+              ) : null}
+            </button>
+          );
         })}
       </div>
 
+      <div className="chats_container">
+        {activeChats.map((item) => {
+          return <Message key={item.chatId} {...item} />;
+        })}
+      </div>
 
       <Footer />
     </>

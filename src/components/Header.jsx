@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import '../css/Header.css';
+import addHistory from '../img/addHistory.svg';
 
 import { mainContext } from '../App';
 
@@ -64,8 +65,9 @@ const Header = () => {
       <div className="history_container">
         <div className="user_history_box">
           <div className="user_history_add">
-            <span className='line_plus_horizontal'></span>
-            <span className='line_plus_vertical'></span>
+            <img src={addHistory} alt="Add History" />
+            {/* <span className="line_plus_horizontal"></span>
+            <span className="line_plus_vertical"></span> */}
           </div>
         </div>
         {<History />}

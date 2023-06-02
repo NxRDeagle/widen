@@ -16,8 +16,8 @@ const NotFound = () => {
   const { setPage } = React.useContext(mainContext);
 
   const goBack = () => {
-    navigate('/');
-    setPage('home');
+    navigate('/input');
+    setPage('input');
   };
 
   return (

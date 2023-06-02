@@ -14,15 +14,20 @@ import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
 import UserProfile from './pages/UserProfile';
 import Input from './pages/Input';
+import Comments from './pages/Comments';
+import Preview from './pages/Preview';
+import FullMode from './pages/FullMode';
 
 export const mainContext = React.createContext();
 
-export const userId = 5;
+export const userId = 7;
 
 function App() {
   const location = useLocation();
 
   const [currentFilter, setCurrentFilter] = React.useState('all');
+
+  const [message, setMessage] = React.useState(false);
 
   const [local, setLocal] = React.useState({
     savedScroll: localStorage.getItem('scrollValue'),
@@ -43,12 +48,6 @@ function App() {
   const [profile, setProfile] = React.useState(
     local.savedProfile === null ? {} : JSON.parse(local.savedProfile),
   );
-
-  const [stateFull, setStateFull] = React.useState({
-    openComments: false,
-    openPreview: false,
-    openImage: false,
-  });
 
   React.useEffect(() => {
     try {
@@ -86,9 +85,11 @@ function App() {
 
   React.useEffect(() => {
     window.scrollTo(0, scrollValue);
-  }, [stateFull.openComments, stateFull.openPreview, stateFull.openImage]);
+    setPage(location.pathname === '/' ? 'home' : location.pathname.substring(1));
+  }, [location.pathname]);
 
-  const [loc, setLoc] = React.useState('/');
+  const [loc, setLoc] = React.useState([]);
+
   const [messageText, setMessageText] = React.useState('');
 
   function Conversion(type, stats) {
@@ -133,21 +134,24 @@ function App() {
           setCurrentFilter,
           loc,
           setLoc,
-          stateFull,
-          setStateFull,
           Conversion,
           messageText,
-          setMessageText
+          setMessageText,
+          message,
+          setMessage
         }}>
         <Routes>
-          <Route index path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/comments" element={<Comments />} />
+          <Route path="/preview" element={<Preview />} />
+          <Route path="/full_image" element={<FullMode imgs={fullImages}/>} />
           <Route path="/search" element={<Search />} />
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile userId={userId} />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
-          <Route path="/input" element={<Input />} />
+          <Route index path="/input" element={<Input />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

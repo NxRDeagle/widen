@@ -5,9 +5,6 @@ import ContentLoader from 'react-content-loader';
 import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Post from '../components/Post';
-import Comments from '../components/Comments';
-import Preview from '../components/Preview';
-import FullMode from '../components/FullMode';
 
 import '../css/Profile.css';
 
@@ -18,7 +15,7 @@ import { mainContext } from '../App';
 const UserProfile = () => {
   const navigate = useNavigate();
 
-  const { stateFull, fullImages, Conversion } = React.useContext(mainContext);
+  const { fullImages, Conversion } = React.useContext(mainContext);
 
   const nickname = useParams().nickname;
   const profile = users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase());
@@ -50,7 +47,7 @@ const UserProfile = () => {
         name="upd"
         className="profile_container"
         style={{ backgroundImage: `url(${profile.background})` }}>
-        {!stateFull.openComments ? <Update /> : null}
+        <Update />
         <i className="icon-share share"></i>
 
         <div className="profile_avatar">
@@ -262,10 +259,7 @@ const UserProfile = () => {
             }></div>
         </div>
       </div>
-      {stateFull.openComments ? <Comments /> : null}
-      {stateFull.openPreview ? <Preview /> : null}
       <Footer />
-      {stateFull.openImage ? <FullMode imgs={fullImages} /> : null}
     </>
   );
 };

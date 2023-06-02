@@ -90,6 +90,7 @@
   height: 121px;
   border: var(--border2) white;
   margin: 93px 0 0 23px;
+  z-index: 30;
 }
 
 .avatar_picture {

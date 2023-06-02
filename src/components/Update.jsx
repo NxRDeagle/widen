@@ -12,14 +12,19 @@ class Update extends React.Component {
 
   componentDidMount() {
     const element = document.querySelector('[name="upd"]');
+    const profileAvatar = document.querySelector('.profile_avatar') ? document.querySelector('.profile_avatar') : null;
 
     let screenY = null;
     let clientTop = null;
+    let avatarHeight = null;
+    let avatarWidth = null;
 
     if (element !== null && element !== undefined) {
       element.addEventListener('touchstart', (e) => {
         screenY = e.touches[0].screenY;
         clientTop = e.target.getBoundingClientRect().y;
+        avatarHeight = 121;
+        avatarWidth = 121;
       });
 
       element.addEventListener('touchmove', (e) => {
@@ -36,6 +41,12 @@ class Update extends React.Component {
                 this.setState({ loaderWidth: this.state.loaderWidth + 1 });
                 this.setState({ loaderHeight: this.state.loaderHeight + 1 });
               }
+              if (avatarHeight >= 90 && profileAvatar) {
+                avatarHeight -= 1;
+                avatarWidth -= 1;
+                profileAvatar.style.width = avatarWidth + 'px';
+                profileAvatar.style.height = avatarHeight + 'px';
+              }
               clientTop = e.target.getBoundingClientRect().y;
             }
           }
@@ -48,6 +59,12 @@ class Update extends React.Component {
                 this.setState({ loaderWidth: this.state.loaderWidth - 2 });
                 this.setState({ loaderHeight: this.state.loaderHeight - 2 });
               }
+              if (avatarHeight <= 121 && profileAvatar) {
+                avatarHeight += 2;
+                avatarWidth += 2;
+                profileAvatar.style.width = avatarWidth + 'px';
+                profileAvatar.style.height = avatarHeight + 'px';
+              }
               clientTop = e.target.getBoundingClientRect().y;
             }
           }
@@ -56,29 +73,25 @@ class Update extends React.Component {
 
       element.addEventListener('touchend', () => {
         this.setState({ positionUpdate: 0 });
-        this.setState({ loaderOpacity: 0 });
-        this.setState({ loaderWidth: 0 });
-        this.setState({ loaderHeight: 0 });
+        if (profileAvatar) {
+          avatarHeight = 121;
+          avatarWidth = 121;
+          profileAvatar.style.width = avatarWidth + 'px';
+          profileAvatar.style.height = avatarHeight + 'px';
+        }
       });
     }
   }
 
   render() {
-    const { positionUpdate, loaderOpacity, loaderWidth, loaderHeight } = this.state;
+    const { positionUpdate } = this.state;
 
     const updateStyle = {
       height: positionUpdate + 'px',
     };
 
-    const loaderStyle = {
-      opacity: loaderOpacity,
-      width: loaderWidth + 'px',
-      height: loaderHeight + 'px',
-    };
-
     return (
       <div id="update" className="update_box" style={updateStyle}>
-        <div className="loader" style={loaderStyle}></div>
       </div>
     );
   }

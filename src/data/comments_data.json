@@ -2,90 +2,64 @@
     {
         "commentId": 1,
         "authorCommentId": 2,
-        "text": "я гениш импактер",
-        "likes": [1, 8, 9],
-        "isReply": false,
-        "replies": [9],
-        "time": ""
+        "text": "Ну тут как бы и не поспорить",
+        "likes": [1,4,5,6],
+        "replies":[2,3],
+        "time": "",
+        "isReply": false
     },
     {
         "commentId": 2,
-        "authorCommentId": 1,
-        "text": "лол",
-        "likes": [1, 2, 3, 4, 8, 9],
-        "isReply": false,
-        "replies": [],
-        "time": ""
-    },   {
-        "commentId": 3,
         "authorCommentId": 4,
-        "text": "ахаахахахаахахахахаахахахааххххххххххххххххххххххххххх",
-        "likes": [1, 2, 3, 4, 8, 9],
-        "isReply": false,
-        "replies": [],
-        "time": ""
+        "text": "Сильно сказано",
+        "likes": [1,4],
+        "replies":[],
+        "time": "",
+        "isReply": true
+    },
+    {
+        "commentId": 3,
+        "authorCommentId": 5,
+        "text": "<a style='color:var(--color_active)'>Holly_Mommy</a>, Расскажешь об этом другому",
+        "likes": [5,6],
+        "replies":[],
+        "time": "",
+        "isReply": true
     },
     {
         "commentId": 4,
-        "authorCommentId": 7,
-        "text": "дадада",
-        "likes": [1, 3, 4, 8, 9],
-        "isReply": false,
-        "replies": [10],
-        "time": ""
+        "authorCommentId": 8,
+        "text": "Бывает",
+        "likes": [],
+        "replies":[],
+        "time": "",
+        "isReply": true
     },
     {
         "commentId": 5,
-        "authorCommentId": 7,
-        "text": "бара бара бере бере эщкере",
-        "likes": [1, 3, 4, 8, 9, 10],
-        "isReply": false,
-        "replies": [7],
-        "time": ""
+        "authorCommentId": 9,
+        "text": "Красиво сказал, брат",
+        "likes": [1,4,5,6,7,8,9,10],
+        "replies":[4],
+        "time": "",
+        "isReply": false
     },
     {
         "commentId": 6,
-        "authorCommentId": 7,
-        "text": "без комментариев",
-        "likes": [10],
-        "isReply": false,
-        "replies": [],
-        "time": ""
+        "authorCommentId": 8,
+        "text": "Лол",
+        "likes": [1,4,5,6],
+        "replies":[],
+        "time": "",
+        "isReply": false
     },
     {
         "commentId": 7,
         "authorCommentId": 3,
-        "text": "о здарова",
-        "likes": [2, 3],
-        "isReply": true,
-        "replies": [8],
-        "time": ""
-    },
-    {
-        "commentId": 8,
-        "authorCommentId": 2,
-        "text": "hello",
-        "likes": [1],
-        "isReply": true,
-        "replies": [],
-        "time": ""
-    },
-    {
-        "commentId": 9,
-        "authorCommentId": 4,
-        "text": "кул стори боб",
-        "likes": [10],
-        "isReply": true,
-        "replies": [],
-        "time": ""
-    },
-    {
-        "commentId": 10,
-        "authorCommentId": 7,
-        "text": "кайфик",
-        "likes": [7, 8, 9, 10],
-        "isReply": true,
-        "replies": [],
-        "time": ""
+        "text": "Кек",
+        "likes": [1,4,5,6],
+        "replies":[],
+        "time": "",
+        "isReply": false
     }
 ]
