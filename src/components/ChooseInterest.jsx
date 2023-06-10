@@ -22,12 +22,7 @@ const ChooseInterest = memo(() => {
         {[...new Array(28)].map((_, index) => {
           bgs.sort(() => Math.random() - 0.5);
           return (
-            <Sphere
-              sign={interest_data[index].name}
-              bg={bgs[index % 4]}
-              icon={index + 1}
-              key={index}
-            />
+            <Sphere sign={interest_data[index].name} bg={bgs[index % 4]} num={index} key={index} />
           );
         })}
       </div>

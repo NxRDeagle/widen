@@ -1,97 +1,139 @@
 [
     {
         "chatId": 1,
-        "companionId": 2,
-        "chatName": "Крутыши",
-        "fullStatus": "read",
+        "companionId": 4,
+        "chatName" : "Крутые перцы",
+        "fullStatus" : "unread",
         "messages": [
             {
                 "who": "iam",
-                "message": "Вай вай юпи ёу юпи эй",
-                "status": "read",
+                "message": "Крутой пляшем",
+                "status": "unread",
                 "time": "12:30"
             }
         ]
     },
     {
         "chatId": 2,
-        "companionId": 3,
-        "chatName": "Крутыши",
-        "fullStatus": "unread",
+        "companionId": 5,
+        "chatName" : "Крутые перцы",
+        "fullStatus" : "read",
         "messages": [
             {
                 "who": "user",
-                "message": "Может пельмешей заточим?",
-                "status": "unread",
-                "time": "14:30"
+                "message": "Пельмеши супер",
+                "status": "read",
+                "time": "11:30"
             }
         ]
     },
     {
         "chatId": 3,
         "companionId": 6,
-        "chatName": "Заказчики",
-        "fullStatus": "unread",
+        "chatName" : "Крутые перцы",
+        "fullStatus" : "unread",
         "messages": [
             {
-                "who": "iam",
-                "message": "Ало!",
+                "who": "user",
+                "message": "100 жмёшь?",
                 "status": "unread",
-                "time": "12:30"
-            },
-            {
-                "who": "iam",
-                "message": "Товар сделаю, Вася",
-                "status": "unread",
-                "time": "12:35"
+                "time": "10:30"
             }
         ]
     },
     {
         "chatId": 4,
-        "companionId": 10,
-        "chatName": "Заказчики",
-        "fullStatus": "read",
+        "companionId": 8,
+        "chatName" : "Крутые перцы",
+        "fullStatus" : "read",
         "messages": [
             {
-                "who": "user",
-                "message": "Прочитал, молодец",
+                "who": "iam",
+                "message": "Зачёт",
                 "status": "read",
-                "time": "12:30"
+                "time": "9:30"
             }
         ]
     },
     {
         "chatId": 5,
-        "companionId": 9,
-        "chatName": "Коллеги",
-        "fullStatus": "unread",
+        "companionId": 7,
+        "chatName" : "Крутые перцы",
+        "fullStatus" : "read",
         "messages": [
             {
                 "who": "iam",
-                "message": "Хаю, хай",
+                "message": "Скоро буду делать тестовое",
                 "status": "read",
-                "time": "12:30"
-            },
-            {
-                "who": "user",
-                "message": "Дратвуй",
-                "status": "unread",
-                "time": "13:30"
+                "time": "8:30"
             }
         ]
     },
     {
         "chatId": 6,
-        "companionId": 4,
-        "chatName": "Крутыши",
-        "fullStatus": "read",
+        "companionId": 11,
+        "chatName" : "Коллеги",
+        "fullStatus" : "unread",
+        "messages": [
+            {
+                "who": "user",
+                "message": "Привет",
+                "status": "unread",
+                "time": "8:30"
+            },
+            {
+                "who": "user",
+                "message": "Есть дело",
+                "status": "unread",
+                "time": "8:32"
+            }
+        ]
+    },
+    {
+        "chatId": 7,
+        "companionId": 12,
+        "chatName" : "Коллеги",
+        "fullStatus" : "read",
+        "messages": [
+            {
+                "who": "user",
+                "message": "Привет",
+                "status": "read",
+                "time": "5:30"
+            },
+            {
+                "who": "user",
+                "message": "Я это я!",
+                "status": "read",
+                "time": "6:32"
+            }
+        ]
+    },
+    {
+        "chatId": 8,
+        "companionId": 13,
+        "chatName" : "Заказчики",
+        "fullStatus" : "read",
+        "messages": [
+            {
+                "who": "user",
+                "message": "Есть работа",
+                "status": "read",
+                "time": "21:13"
+            }
+        ]
+    },
+    {
+        "chatId": 9,
+        "companionId": 14,
+        "chatName" : "Заказчики",
+        "fullStatus" : "read",
         "messages": [
             {
                 "who": "iam",
-                "message": "Ой, мама, что эта?",
+                "message": "Есть работа?",
                 "status": "read",
-                "time": "18:30"
+                "time": "14:12"
             }
         ]
     }

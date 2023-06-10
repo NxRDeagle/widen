@@ -3,42 +3,42 @@ import ContentLoader from 'react-content-loader';
 
 import Footer from '../components/Footer';
 import Update from '../components/Update';
-import Post from '../components/Post';
-import { mainContext } from '../App';
+import Newsware from '../components/Newsware';
+import { mainContext, userId, defaultUser } from '../App';
 
 import users_data from '../data/users_data.json';
-import posts_data from '../data/posts_data.json';
+import newsware_data from '../data/newsware_data.json';
 
 import '../css/Profile.css';
-import '../css/Post.css';
 
-const Profile = ({ userId }) => {
-  const { fullImages, Conversion } = React.useContext(mainContext);
+const Profile = () => {
+  const { Conversion } = React.useContext(mainContext);
 
-  const [activeIcon, setActiveIcon] = React.useState(0);
-  const [userPosts, setUserPosts] = React.useState([]);
+  const [activeIcon, setActiveIcon] = React.useState(0); //App
+  const [userPosts, setUserPosts] = React.useState([]); //App
 
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(false); //Comp
   React.useEffect(() => {
     setUserPosts(
-      posts_data.filter((item) => {
+      newsware_data.filter((item) => {
         return item.authorId === userId;
       }),
     );
     setIsLoaded(true);
   }, []);
 
-  const profile = users_data.find((obj) => obj.userId === userId);
+  const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;//app
 
-  let subsriptions = Conversion('count', profile.subscribers.length);
-  let subscribers = Conversion('count', profile.subscribers.length);
+  let subscriptions = Conversion('count', myProfile.subscriptions.length);
+  let subscribers = Conversion('count', myProfile.subscribers.length);
+
 
   return (
     <>
       <div
         name = "upd"
         className="profile_container"
-        style={{ backgroundImage: `url(${profile.background})` }}>
+        style={{ backgroundImage: `url(${myProfile.background})` }}>
         <Update/>
         <div className="burger_box">
           <span className="burger_line"></span>
@@ -49,13 +49,13 @@ const Profile = ({ userId }) => {
         <i className="icon-bell profile_notific"></i>
 
         <div className="profile_avatar">
-          <img className="avatar_picture" src={profile.avatar} alt="avatar" />
+          <img className="avatar_picture" src={myProfile.avatar} alt="avatar" />
         </div>
 
         <div className="profile_box">
           <div className="profile_user_count_container">
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
-              <p className="profile_count">{subsriptions}</p>
+              <p className="profile_count">{subscriptions}</p>
               <p className="profile_count_sign">Подписки</p>
             </div>
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
@@ -65,16 +65,16 @@ const Profile = ({ userId }) => {
           </div>
 
           <div className="profile_nick_box">
-            <h1 className="profile_nickname">{profile.nickname}</h1>
+            <h1 className="profile_nickname">{myProfile.nickname}</h1>
             <p className="profile_fi">
-              {profile.firstName} {profile.lastName}
+              {myProfile.firstName} {myProfile.lastName}
             </p>
-            <p className="profile_role">{profile.role}</p>
+            <p className="profile_role">{myProfile.role}</p>
           </div>
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">{profile.idea}</p>
+            <p className="profile_idea_sign">{myProfile.idea}</p>
           </div>
           {isLoaded && document.querySelector('.profile_idea_sign').textContent.length > 180 && (
             <p
@@ -211,7 +211,7 @@ const Profile = ({ userId }) => {
                 <p className="no_posts">У вас ещё нет постов...</p>
               ) : isLoaded ? (
                 userPosts.map((item) => {
-                  return <Post {...item} key={item.postId} />;
+                  return <Newsware {...item} key={item.newswareId} />;
                 })
               ) : (
                 <div className="posts_container">

@@ -1,12 +1,13 @@
 import React from 'react';
 
+import interest_data from '../data/interest_data.json';
 import '../css/Sphere.css';
 
-const Sphere = ({ sign, bg, icon }) => {
+const Sphere = ({ sign, bg, num }) => {
   const [isSelected, setIsSelected] = React.useState(false);
   const interestRef = React.useRef();
 
-  let image = require(`../img/spheres/icon${icon}.svg`);
+  // let image = require(`../img/spheres/icon${icon}.svg`);
   const selectInterest = () => {
     setIsSelected(!isSelected);
     isSelected
@@ -14,15 +15,17 @@ const Sphere = ({ sign, bg, icon }) => {
       : interestRef.current.classList.add('interest_selected');
   };
 
+  React.useEffect(() => {
+    interestRef.current.innerHTML = interest_data[num].icon;
+  }, []);
+
   return (
     <div className="interest" onClick={selectInterest}>
       <div
         className="interest_sphere"
         ref={interestRef}
-        style={{ backgroundImage: `url('${bg}')` }}>
-        <img src={image} className="interest_icon" alt="interest icon" />
-      </div>
-      <p className="interest_sign">{sign ? sign : 'TestTestTest'}</p>
+        style={{ backgroundImage: `url('${bg}')` }}></div>
+      <p className="interest_sign">{sign}</p>
     </div>
   );
 };

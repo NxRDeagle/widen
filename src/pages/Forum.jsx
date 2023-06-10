@@ -2,7 +2,7 @@ import React from 'react';
 
 import Footer from '../components/Footer';
 
-import '../css/Help.css';
+import '../css/Forum.css';
 
 const Help = () => {
   return (

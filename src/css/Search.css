@@ -15,6 +15,7 @@
   margin: 55px 20px 0 20px;
   overflow: hidden;
   animation: search 0.4s linear;
+  padding-left: 20px;
 }
 
 .search_box input {
@@ -33,7 +34,7 @@
 }
 
 .search_input {
-  margin: 0 7px 0 18px;
+  margin: 0 7px 0 5px;
 }
 
 .search_filter {
@@ -74,17 +75,13 @@
   color: white;
 }
 
-.casecard_container {
-  margin-top: 20px;
-  margin-bottom: 50px;
+.global_search_container {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 20px 0 60px 0;
   width: var(--max-width);
-  height: fit-content;
-  overflow-y: scroll;
-  padding: 0 auto;
 }
 
 @keyframes main {
@@ -107,4 +104,109 @@
     opacity: 1;
     width: var(--max-width);
   }
+}
+
+.filter_container {
+  width: var(--max-width);
+  height: fit-content;
+}
+
+.filter_button {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  height: 33px;
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 30px;
+}
+
+.filter_sign {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #726f6f;
+  margin: 0 7px;
+}
+
+.filters_list {
+  width: var(--max-width);
+  margin: 0 20px;
+  height: fit-content;
+  z-index: 10;
+  background: #ffffff;
+  border: 1px solid #bababa;
+  border-radius: 10px;
+}
+
+.filters_element {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  align-items: center;
+  height: 55px;
+  width: 100%;
+  border-bottom: 1px solid #bababa;
+}
+
+.filter_name {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+
+.filters_down {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+}
+.btn_reset {
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 30px;
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  height: 32px;
+}
+
+.btn_ready {
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  width: 90px;
+  height: 32px;
+  background-image: url('../img/backBTN.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 0;
+  border-radius: 65px;
+  color: white;
+}
+
+.filter_direction {
+  width: 100%;
+  height: 200px;
+}
+
+.direction_list {
+  list-style: none;
+}
+
+.list_el {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  width: 100%;
 }

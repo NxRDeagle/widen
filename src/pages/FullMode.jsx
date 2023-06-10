@@ -8,8 +8,8 @@ import { mainContext } from '../App';
 
 const FullMode = ({ imgs }) => {
 
-  const [currentSlide, setCurrentSlide] = React.useState(1);
-  const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = React.useState(1);//comp
+  const navigate = useNavigate(); //App
   const {loc} = React.useContext(mainContext);
 
 

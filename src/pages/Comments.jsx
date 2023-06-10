@@ -1,23 +1,24 @@
 import React from 'react';
 
 import Comment from '../components/Comment';
-import Post from '../components/Post';
+import Newsware from '../components/Newsware';
 
 import '../css/Comments.css';
 
 import { mainContext } from '../App';
-import posts_data from '../data/posts_data.json';
+import newsware_data from '../data/newsware_data.json';
 import comments_data from '../data/comments_data.json';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
 const Comments = () => {
-  const { commentPostId, Conversion, setMessageText, message, setMessage, loc} = React.useContext(mainContext);
-  const navigate = useNavigate();
-  const post = posts_data.find((obj) => obj.postId === commentPostId);
+  const { commentNewswareId, Conversion, setMessageText, message, setMessage, loc} = React.useContext(mainContext);
+  const navigate = useNavigate();//app
 
-  const commentsCount = Conversion('count', post.stats.comments.length);
-  const commentsSign = Conversion('comments', post.stats.comments.length);
+  const newsware = newsware_data.find((obj) => obj.newswareId === commentNewswareId) ? newsware_data.find((obj) => obj.newswareId === commentNewswareId) : null;//comp
+
+  const commentsCount = Conversion('count', newsware.stats.comments.length);
+  const commentsSign = Conversion('comments', newsware.stats.comments.length);
 
 
   const goBack = () => {
@@ -37,12 +38,12 @@ const Comments = () => {
         <h1 className="comments_name">Запись</h1>
       </div>
       <div id='comments' className="comments_container">
-        <Post {...post} full={true} />
+        <Newsware {...newsware} full={true} />
         <div className="line"></div>
         <div className="comments_box">
           <p className='count_comments'>{commentsCount} {commentsSign}</p>
-          {post.stats.comments &&
-            post.stats.comments.map((commentId) => {
+          {newsware.stats.comments.length > 0 &&
+            newsware.stats.comments.map((commentId) => {
               return (
                 <Comment
                   key={commentId}

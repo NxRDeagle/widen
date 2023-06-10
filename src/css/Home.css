@@ -1,18 +1,18 @@
 .mainBackground,
-.posts_container {
+.newsware_container {
   background-color: #f5f5f5;
   padding-bottom: 2px;
 }
 
-.posts_container {
+.newsware_container {
   animation: main 0.4s forwards;
   width: var(--max-width);
   height: fit-content;
   margin-top: 10px;
 }
 
-.posts_container:last-child {
-  padding-bottom: 40px;
+.newsware_container:last-child {
+  padding-bottom: 60px;
 }
 
 @keyframes main {

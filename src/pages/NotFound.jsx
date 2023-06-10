@@ -11,7 +11,7 @@ import arrowSvg from '../img/arrow.svg';
 import '../css/NotFound.css';
 
 const NotFound = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate();//App
 
   const { setPage } = React.useContext(mainContext);
 

@@ -7,8 +7,8 @@ import '../css/Preview.css';
 import Footer from '../components/Footer';
 
 const Preview = () => {
-  const navigate = useNavigate();
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const navigate = useNavigate();//App
+  const [isLoaded, setIsLoaded] = React.useState(false);//Comp
 
   const { setPage, profile, Conversion, message, loc } = React.useContext(mainContext);
 

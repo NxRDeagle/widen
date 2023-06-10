@@ -70,24 +70,9 @@ const Header = () => {
             <span className="line_plus_vertical"></span> */}
           </div>
         </div>
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
-        {<History />}
+        {[...new Array(15)].map((_, index) => {
+          return <History key={index} />;
+        })}
       </div>
       <div className="line"></div>
     </header>

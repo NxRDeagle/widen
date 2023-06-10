@@ -4,39 +4,39 @@ import ContentLoader from 'react-content-loader';
 
 import Footer from '../components/Footer';
 import Update from '../components/Update';
-import Post from '../components/Post';
+import Newsware from '../components/Newsware';
 
 import '../css/Profile.css';
 
-import posts_data from '../data/posts_data.json';
+import newsware_data from '../data/newsware_data.json';
 import users_data from '../data/users_data.json';
-import { mainContext } from '../App';
+import { mainContext, defaultUser } from '../App';
 
 const UserProfile = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //App 
 
-  const { fullImages, Conversion } = React.useContext(mainContext);
+  const { Conversion } = React.useContext(mainContext);
 
-  const nickname = useParams().nickname;
-  const profile = users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase());
+  const nickname = useParams().nickname; //Comp
+  const profile = users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase()) ? users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase()) : defaultUser; //Comp
 
-  const [activeIcon, setActiveIcon] = React.useState(0);
-  const [userPosts, setUserPosts] = React.useState([]);
+  const [activeIcon, setActiveIcon] = React.useState(0); //App
+  const [userPosts, setUserPosts] = React.useState([]); //App
 
-  const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isLoaded, setIsLoaded] = React.useState(false); //Comp
 
-  const [notification, setNotification] = React.useState(false);
+  const [notification, setNotification] = React.useState(false); //Ненужон
 
   React.useEffect(() => {
     setUserPosts(
-      posts_data.filter((item) => {
+      newsware_data.filter((item) => {
         return item.authorId === profile.userId;
       }),
     );
     setIsLoaded(true);
   }, [profile]);
 
-  let subsriptions = Conversion('count', profile.subscribers.length);
+  let subscriptions = Conversion('count', profile.subscriptions.length);
   let subscribers = Conversion('count', profile.subscribers.length);
 
   return !profile ? (
@@ -57,7 +57,7 @@ const UserProfile = () => {
         <div className="profile_box">
           <div className="profile_user_count_container">
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
-              <p className="profile_count">{subsriptions}</p>
+              <p className="profile_count">{subscriptions}</p>
               <p className="profile_count_sign">Подписки</p>
             </div>
             <div className="preview_user_count" style={{ marginRight: '48px' }}>
@@ -223,7 +223,7 @@ const UserProfile = () => {
                 <p className="no_posts">У пользователя ещё нет постов...</p>
               ) : isLoaded ? (
                 userPosts.map((item) => {
-                  return <Post {...item} key={item.postId} />;
+                  return <Newsware {...item} key={item.newswareId} />;
                 })
               ) : (
                 <div className="posts_container">

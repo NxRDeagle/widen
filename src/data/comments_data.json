@@ -1,64 +1,55 @@
 [
     {
         "commentId": 1,
-        "authorCommentId": 2,
-        "text": "Ну тут как бы и не поспорить",
-        "likes": [1,4,5,6],
-        "replies":[2,3],
+        "authorCommentId": 19,
+        "text": "Кузя, ты дебил, как мне это есть?",
+        "likes": [1,2,3,4],
+        "replies": [2,3],
         "time": "",
         "isReply": false
     },
     {
         "commentId": 2,
-        "authorCommentId": 4,
-        "text": "Сильно сказано",
-        "likes": [1,4],
-        "replies":[],
+        "authorCommentId": 11,
+        "text": "Успокойся Тоша",
+        "likes": [1,2],
+        "replies": [],
         "time": "",
         "isReply": true
     },
     {
         "commentId": 3,
-        "authorCommentId": 5,
-        "text": "<a style='color:var(--color_active)'>Holly_Mommy</a>, Расскажешь об этом другому",
-        "likes": [5,6],
-        "replies":[],
+        "authorCommentId": 12,
+        "text": "<a style='color: var(--color_active)'>Premium</a>, Не затыкай ему рот!",
+        "likes": [1,2],
+        "replies": [],
         "time": "",
         "isReply": true
     },
     {
         "commentId": 4,
-        "authorCommentId": 8,
-        "text": "Бывает",
-        "likes": [],
-        "replies":[],
+        "authorCommentId": 3,
+        "text": "С мазиком вкуснее!",
+        "likes": [1,2,5],
+        "replies": [],
         "time": "",
-        "isReply": true
+        "isReply": false
     },
     {
         "commentId": 5,
-        "authorCommentId": 9,
-        "text": "Красиво сказал, брат",
-        "likes": [1,4,5,6,7,8,9,10],
-        "replies":[4],
+        "authorCommentId": 6,
+        "text": "А что, идёт!",
+        "likes": [],
+        "replies": [],
         "time": "",
         "isReply": false
     },
     {
         "commentId": 6,
-        "authorCommentId": 8,
-        "text": "Лол",
-        "likes": [1,4,5,6],
-        "replies":[],
-        "time": "",
-        "isReply": false
-    },
-    {
-        "commentId": 7,
-        "authorCommentId": 3,
-        "text": "Кек",
-        "likes": [1,4,5,6],
-        "replies":[],
+        "authorCommentId": 15,
+        "text": "Закачаешься",
+        "likes": [],
+        "replies": [],
         "time": "",
         "isReply": false
     }

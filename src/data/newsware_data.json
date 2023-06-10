@@ -1,0 +1,139 @@
+[
+    {
+        "newswareId": 1,
+        "type": "post",
+        "authorId": 3,
+        "stats":{
+            "likes": [1,3,5,6,8],
+            "comments": [],
+            "favorites": [5,6],
+            "reposts": [1],
+            "views": [1,3,5,6,8,15]
+        },
+        "imgs": ["https://papik.pro/uploads/posts/2023-03/1678351868_papik-pro-p-krutoi-risunok-dlya-oblozhki-7.jpg"],
+        "signImgs": ["Крутые крутые"],
+        "geoposition" : "Москва",
+        "time" : "",
+        "tags": ["Крутыши","Крутое рисование"]
+    },
+    {
+        "newswareId": 2,
+        "type": "case",
+        "authorId": 5,
+        "stats":{
+            "likes": [1,6,8],
+            "comments": [1,2,3,4,5],
+            "favorites": [5,6],
+            "reposts": [],
+            "views": [1,2,3,4,5,6,8,11,12,19]
+        },
+        "imgs": ["https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663755871_9-mykaleidoscope-ru-p-appetitnie-pelmeni-yeda-krasivo-9.jpg"],
+        "signImgs": ["История пельменей"],
+        "geoposition" : "Общага",
+        "time" : "",
+        "tags": ["Крутой","Вкусный вкус","Кечунез"]
+    },
+    {
+        "newswareId": 3,
+        "type": "event",
+        "authorId": 6,
+        "stats":{
+            "likes": [6,8],
+            "comments": [6],
+            "favorites": [5,6],
+            "reposts": [],
+            "views": [5,6,8,15]
+        },
+        "imgs": ["https://cs2.livemaster.ru/storage/d1/a6/a58554b0163b43b747960b1c61hv--kantselyarskie-tovary-oblozhka-na-pasport.jpg"],
+        "signImgs": ["Приходи"],
+        "geoposition" : "Лос-Анджелес",
+        "time" : "",
+        "tags": []
+    },
+    {
+        "newswareId": 4,
+        "type": "post",
+        "authorId": 1,
+        "stats":{
+            "likes": [1,6,8],
+            "comments": [],
+            "favorites": [1,5,6],
+            "reposts": [],
+            "views": [1,5,6,8]
+        },
+        "imgs": ["https://i.yapx.cc/Mw7aT.gif","https://i.gifer.com/WS56.gif"],
+        "signImgs": ["Лёгкий распрыг","На выход"],
+        "geoposition" : "Пермь",
+        "time" : "",
+        "tags": ["Гивочки","Картиночки","Сочные сливочки"]
+    },
+    {
+        "newswareId": 5,
+        "type": "post",
+        "authorId": 17,
+        "stats":{
+            "likes": [12,14,2,18],
+            "comments": [],
+            "favorites": [],
+            "reposts": [],
+            "views": [2,12,14,18,17]
+        },
+        "imgs": ["https://cdn.fishki.net/upload/post/2019/03/15/2911238/podborka-15032019-037--kopirovaty.jpg"],
+        "signImgs": ["Единорог"],
+        "geoposition" : "Стамбул",
+        "time" : "",
+        "tags": []
+    },
+    {
+        "newswareId": 6,
+        "type": "post",
+        "authorId": 18,
+        "stats":{
+            "likes": [1],
+            "comments": [],
+            "favorites": [],
+            "reposts": [2],
+            "views": [1,2,12,14,18]
+        },
+        "imgs": ["https://fotorelax.ru/wp-content/uploads/2015/10/funny-animals-01.jpg","https://otkritkis.com/wp-content/uploads/2022/02/scale_1200-25.jpg"],
+        "signImgs": ["Зову всех","Или нет"],
+        "geoposition" : "Екатеринбург",
+        "time" : "",
+        "tags": ["В мире животных","Лютый движ"]
+    },
+    {
+        "newswareId": 7,
+        "type": "case",
+        "authorId": 13,
+        "stats":{
+            "likes": [],
+            "comments": [],
+            "favorites": [],
+            "reposts": [2],
+            "views": [2,12,14,18,13]
+        },
+        "imgs": ["https://i.pinimg.com/originals/29/a3/b6/29a3b6efcc703a07a57b13a026b5c83f.jpg"],
+        "signImgs": ["Ленд_Крол"],
+        "geoposition" : "Москва",
+        "time" : "",
+        "tags": ["В мире животных","Лютый движ"]
+    },
+    {
+        "newswareId": 8,
+        "type": "case",
+        "authorId": 20,
+        "stats":{
+            "likes": [2,3],
+            "comments": [],
+            "favorites": [13],
+            "reposts": [2],
+            "views": [1,2,3,13,20]
+        },
+        "imgs": ["http://digiseller.ru/preview/1057982/p1_3303863_98c3c1b5.jpg"],
+        "signImgs": ["Платина"],
+        "geoposition" : "Сити",
+        "time" : "",
+        "tags": ["Кс Го","Игры"]
+    }
+
+]

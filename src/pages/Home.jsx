@@ -2,19 +2,23 @@ import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 import Header from '../components/Header';
-import Post from '../components/Post';
+import Newsware from '../components/Newsware';
 import Footer from '../components/Footer';
 import Preload from '../components/Preload';
 
-import posts_data from '../data/posts_data.json';
+import newsware_data from '../data/newsware_data.json';
+import users_data from '../data/users_data.json';
 
-import { mainContext } from '../App';
+import { mainContext, userId, defaultUser } from '../App';
 
 import '../css/Home.css';
 
 const Home = () => {
-  const { currentFilter, setMessage} = React.useContext(mainContext);
+  const { currentFilter, setMessage } = React.useContext(mainContext);
 
+  const myProfile = users_data.find((obj) => obj.userId === userId)
+    ? users_data.find((obj) => obj.userId === userId)
+    : defaultUser; //app
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
@@ -30,7 +34,7 @@ const Home = () => {
     <>
       <Header />
       <main className="mainBackground">
-        <div className="posts_container">
+        <div className="newsware_container">
           {false ? (
             <div className="post_box">
               {[...new Array(3)].map((_, index) => {
@@ -53,9 +57,11 @@ const Home = () => {
               })}
             </div>
           ) : (
-            posts_data.map((item) => {
-              return item.type === currentFilter || currentFilter === 'all' ? (
-                <Post {...item} key={item.postId} />
+            newsware_data.map((item, id) => {
+              return (item.authorId === userId ||
+                myProfile.subscriptions.includes(item.authorId)) &&
+                (item.type === currentFilter || currentFilter === 'all') ? (
+                <Newsware {...item} key={id} />
               ) : null;
             })
           )}

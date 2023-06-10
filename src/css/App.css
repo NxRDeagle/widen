@@ -20,14 +20,17 @@
     padding: 0;
     text-decoration: none;
     font-family: var(--fontVer);
-    -webkit-overflow-scrolling:touch;
+    -webkit-overflow-scrolling: touch;
     -webkit-text-size-adjust: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-body{
+body {
     overflow-x: none;
 }

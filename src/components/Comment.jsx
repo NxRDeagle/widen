@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Reply from '../components/Reply';
 
 import { mainContext } from '../App';
-import { userId } from '../App';
+import { userId, defaultUser } from '../App';
 import users_data from '../data/users_data.json';
 import comments_data from '../data/comments_data.json';
 
@@ -15,7 +15,7 @@ const Comment = ({ authorCommentId, commentId }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [wrap, setWrap] = React.useState(false);
+  const [wrap, setWrap] = React.useState(false);//comp
 
   useEffect(() => {
       if (wrap) {
@@ -32,11 +32,11 @@ const Comment = ({ authorCommentId, commentId }) => {
   }, [wrap])
 
 
-  const profile = users_data.find((obj) => obj.userId === authorCommentId);
+  const profile = users_data.find((obj) => obj.userId === authorCommentId) ? users_data.find((obj) => obj.userId === authorCommentId) : defaultUser;
   const comment = comments_data.find((obj) => obj.commentId === commentId);
   const likesCount = Conversion('count', comment.likes.length);
   const replysCount = Conversion('count', comment.replies.length);
-  const myProfile = users_data.find((obj) => obj.userId === userId);
+  const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;
 
   const goToPreview = () => {
     setProfile(profile);

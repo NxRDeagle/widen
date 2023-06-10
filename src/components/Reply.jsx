@@ -4,7 +4,7 @@ import '../css/Reply.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { mainContext } from '../App';
-import { userId } from '../App';
+import { userId, defaultUser } from '../App';
 
 import users_data from '../data/users_data.json';
 import comments_data from '../data/comments_data.json';
@@ -12,13 +12,13 @@ import comments_data from '../data/comments_data.json';
 const Reply = ({ replyId, authorReplyId }) => {
 
     const { setPage, setProfile, Conversion, setMessageText, loc } = React.useContext(mainContext);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate();//app
+    const location = useLocation();//app
 
-    let profile = users_data.find((obj) => obj.userId === authorReplyId);
     const reply = comments_data.find((obj) => obj.commentId === replyId);
     const likesCount = Conversion('count', reply.likes.length);
-    const myProfile = users_data.find((obj) => obj.userId === userId);
+    let profile = users_data.find((obj) => obj.userId === authorReplyId) ? users_data.find((obj) => obj.userId === authorReplyId) : defaultUser;
+    const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;
 
     React.useEffect(() => {
         if (document.querySelectorAll('.reply_text')) {
