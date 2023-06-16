@@ -229,32 +229,55 @@ const Search = () => {
               <div className="filters_element">
                 <div className="filters_top">
                   <div className="filter_name_container" onClick={() => onClickCategory(1)}>
+                    {openedCategories.includes(1) && (
+                      <svg
+                        className="vertical_line"
+                        width="1"
+                        height="14"
+                        viewBox="0 0 1 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      </svg>
+                    )}
+                    <p
+                      className={
+                        openedCategories.includes(1) ? 'filter_name selected_text' : 'filter_name'
+                      }>
+                      Направление
+                    </p>
+                  </div>
+                  {openedCategories.includes(1) ? (
                     <svg
-                      className="vertical_line"
-                      width="1"
-                      height="14"
-                      viewBox="0 0 1 14"
+                      onClick={() => onClickCategory(1)}
+                      className="triangleBottom"
+                      width="13"
+                      height="12"
+                      viewBox="0 0 13 12"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      <path
+                        onClick={() => onClickCategory(1)}
+                        d="M6.5 12L0.00480938 0.75L12.9952 0.75L6.5 12Z"
+                        fill="#BABABA"
+                      />
                     </svg>
-                    <p className="filter_name">Направление</p>
-                  </div>
-
-                  <svg
-                    onClick={() => onClickCategory(1)}
-                    className="triangleLeft"
-                    width="12"
-                    height="14"
-                    viewBox="0 0 12 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
+                  ) : (
+                    <svg
                       onClick={() => onClickCategory(1)}
-                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                      fill="#BABABA"
-                    />
-                  </svg>
+                      className="triangleLeft"
+                      width="12"
+                      height="14"
+                      viewBox="0 0 12 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        onClick={() => onClickCategory(1)}
+                        d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                        fill="#BABABA"
+                      />
+                    </svg>
+                  )}
                 </div>
                 {openedCategories.includes(1) && (
                   <div className="filter_opened" id="filter_direction">
@@ -329,31 +352,55 @@ const Search = () => {
               <div className="filters_element">
                 <div className="filters_top">
                   <div className="filter_name_container" onClick={() => onClickCategory(2)}>
+                    {openedCategories.includes(2) && (
+                      <svg
+                        className="vertical_line"
+                        width="1"
+                        height="14"
+                        viewBox="0 0 1 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      </svg>
+                    )}
+                    <p
+                      className={
+                        openedCategories.includes(2) ? 'filter_name selected_text' : 'filter_name'
+                      }>
+                      Форма участия
+                    </p>
+                  </div>
+                  {openedCategories.includes(2) ? (
                     <svg
-                      className="vertical_line"
-                      width="1"
-                      height="14"
-                      viewBox="0 0 1 14"
+                      onClick={() => onClickCategory(2)}
+                      className="triangleBottom"
+                      width="13"
+                      height="12"
+                      viewBox="0 0 13 12"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      <path
+                        onClick={() => onClickCategory(2)}
+                        d="M6.5 12L0.00480938 0.75L12.9952 0.75L6.5 12Z"
+                        fill="#BABABA"
+                      />
                     </svg>
-                    <p className="filter_name">Форма участия</p>
-                  </div>
-                  <svg
-                    onClick={() => onClickCategory(2)}
-                    className="triangleLeft"
-                    width="12"
-                    height="14"
-                    viewBox="0 0 12 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
+                  ) : (
+                    <svg
                       onClick={() => onClickCategory(2)}
-                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                      fill="#BABABA"
-                    />
-                  </svg>
+                      className="triangleLeft"
+                      width="12"
+                      height="14"
+                      viewBox="0 0 12 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        onClick={() => onClickCategory(2)}
+                        d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                        fill="#BABABA"
+                      />
+                    </svg>
+                  )}
                 </div>
                 {openedCategories.includes(2) && (
                   <div className="filter_opened" id="filter_form">
@@ -428,31 +475,55 @@ const Search = () => {
               <div className="filters_element">
                 <div className="filters_top">
                   <div className="filter_name_container" onClick={() => onClickCategory(3)}>
+                    {openedCategories.includes(3) && (
+                      <svg
+                        className="vertical_line"
+                        width="1"
+                        height="14"
+                        viewBox="0 0 1 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      </svg>
+                    )}
+                    <p
+                      className={
+                        openedCategories.includes(3) ? 'filter_name selected_text' : 'filter_name'
+                      }>
+                      Формат
+                    </p>
+                  </div>
+                  {openedCategories.includes(3) ? (
                     <svg
-                      className="vertical_line"
-                      width="1"
-                      height="14"
-                      viewBox="0 0 1 14"
+                      onClick={() => onClickCategory(3)}
+                      className="triangleBottom"
+                      width="13"
+                      height="12"
+                      viewBox="0 0 13 12"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      <path
+                        onClick={() => onClickCategory(3)}
+                        d="M6.5 12L0.00480938 0.75L12.9952 0.75L6.5 12Z"
+                        fill="#BABABA"
+                      />
                     </svg>
-                    <p className="filter_name">Формат</p>
-                  </div>
-                  <svg
-                    onClick={() => onClickCategory(3)}
-                    className="triangleLeft"
-                    width="12"
-                    height="14"
-                    viewBox="0 0 12 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
+                  ) : (
+                    <svg
                       onClick={() => onClickCategory(3)}
-                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                      fill="#BABABA"
-                    />
-                  </svg>
+                      className="triangleLeft"
+                      width="12"
+                      height="14"
+                      viewBox="0 0 12 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        onClick={() => onClickCategory(3)}
+                        d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                        fill="#BABABA"
+                      />
+                    </svg>
+                  )}
                 </div>
                 {openedCategories.includes(3) && (
                   <div className="filter_opened " id="filter_format">
@@ -527,31 +598,55 @@ const Search = () => {
               <div className="filters_element">
                 <div className="filters_top">
                   <div className="filter_name_container" onClick={() => onClickCategory(4)}>
+                    {openedCategories.includes(4) && (
+                      <svg
+                        className="vertical_line"
+                        width="1"
+                        height="14"
+                        viewBox="0 0 1 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      </svg>
+                    )}
+                    <p
+                      className={
+                        openedCategories.includes(4) ? 'filter_name selected_text' : 'filter_name'
+                      }>
+                      Город
+                    </p>
+                  </div>
+                  {openedCategories.includes(4) ? (
                     <svg
-                      className="vertical_line"
-                      width="1"
-                      height="14"
-                      viewBox="0 0 1 14"
+                      onClick={() => onClickCategory(4)}
+                      className="triangleBottom"
+                      width="13"
+                      height="12"
+                      viewBox="0 0 13 12"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                      <path
+                        onClick={() => onClickCategory(4)}
+                        d="M6.5 12L0.00480938 0.75L12.9952 0.75L6.5 12Z"
+                        fill="#BABABA"
+                      />
                     </svg>
-                    <p className="filter_name">Город</p>
-                  </div>
-                  <svg
-                    onClick={() => onClickCategory(4)}
-                    className="triangleLeft"
-                    width="12"
-                    height="14"
-                    viewBox="0 0 12 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
+                  ) : (
+                    <svg
                       onClick={() => onClickCategory(4)}
-                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                      fill="#BABABA"
-                    />
-                  </svg>
+                      className="triangleLeft"
+                      width="12"
+                      height="14"
+                      viewBox="0 0 12 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        onClick={() => onClickCategory(4)}
+                        d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                        fill="#BABABA"
+                      />
+                    </svg>
+                  )}
                 </div>
                 {openedCategories.includes(4) && (
                   <div className="filter_opened" id="filter_cities">
