@@ -10,6 +10,7 @@ import Star from '../components/Star';
 import newsware_data from '../data/newsware_data.json';
 import users_data from '../data/users_data.json';
 import interest_data from '../data/interest_data.json';
+import cities from '../data/russian-cities.json';
 
 import { userId, defaultUser } from '../App';
 
@@ -17,6 +18,9 @@ import '../css/Search.css';
 import '../css/Newsware.css';
 
 const Search = () => {
+  const forms = ['Платная', 'Бесплатная', 'Волонтерство'];
+  const format = ['Онлайн', 'Офлайн'];
+
   const [isLoaded, setIsLoaded] = React.useState(false); //comp
   const [userPosts, setUserPosts] = React.useState([]); //App
   const [userCases, setUserCases] = React.useState([]); //App
@@ -67,6 +71,16 @@ const Search = () => {
     setUsers(users.users_data);
     setIsLoaded(true);
   }, []);
+
+  const onClickCategory = (cat) => {
+    if (openedCategories.includes(cat))
+      setOpenedCategories(
+        openedCategories.filter((obj) => {
+          return obj !== cat;
+        }),
+      );
+    else setOpenedCategories([...openedCategories, cat]);
+  };
 
   const [activeCategory, setActiveCategory] = React.useState(0); //Comp
   return (
@@ -174,7 +188,10 @@ const Search = () => {
         </div>
       )}
       {activeCategory === 4 && (
-        <div className="global_search_container">
+        <div
+          className={
+            isFiltersOpen ? 'global_search_container set_margin' : 'global_search_container'
+          }>
           <div className="filter_container">
             <div
               className="filter_button"
@@ -209,39 +226,99 @@ const Search = () => {
           </div>
           {isFiltersOpen && (
             <div className="filters_list">
-              <div
-                className="filters_element"
-                onClick={() => {
-                  if (openedCategories.includes(1))
-                    setOpenedCategories(
-                      openedCategories.filter((obj) => {
-                        return obj !== 1;
-                      }),
-                    );
-                  else setOpenedCategories([...openedCategories, 1]);
-                  console.log(openedCategories);
-                }}>
-                <p className="filter_name">Направление</p>
-                <svg
-                  width="12"
-                  height="14"
-                  viewBox="0 0 12 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                    fill="#BABABA"
-                  />
-                </svg>
+              <div className="filters_element">
+                <div className="filters_top">
+                  <div className="filter_name_container" onClick={() => onClickCategory(1)}>
+                    <svg
+                      className="vertical_line"
+                      width="1"
+                      height="14"
+                      viewBox="0 0 1 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                    </svg>
+                    <p className="filter_name">Направление</p>
+                  </div>
+
+                  <svg
+                    onClick={() => onClickCategory(1)}
+                    className="triangleLeft"
+                    width="12"
+                    height="14"
+                    viewBox="0 0 12 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      onClick={() => onClickCategory(1)}
+                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                      fill="#BABABA"
+                    />
+                  </svg>
+                </div>
                 {openedCategories.includes(1) && (
-                  <div className="filter_direction">
-                    <p className="list_sign"></p>
-                    <ul className="direction_list">
+                  <div className="filter_opened" id="filter_direction">
+                    <ul className="direction_list" id="dir_list">
                       {interest_data.map((el, idx) => {
                         return (
                           <li key={idx} className="list_el">
                             <p className="list_el_sign">{el.name}</p>
-                            <div className="list_el_box"></div>
+                            {selectedFilters.direction.includes(idx) ? (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    direction: selectedFilters.direction.filter((obj) => {
+                                      return obj !== idx;
+                                    }),
+                                  });
+                                }}
+                                className="filter_checkbox check_selected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      direction: selectedFilters.direction.filter((obj) => {
+                                        return obj !== idx;
+                                      }),
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  fill="#7E52EE"
+                                  stroke="#7E52EE"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    direction: [...selectedFilters.direction, idx],
+                                  });
+                                }}
+                                className="filter_checkbox check_unselected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      direction: [...selectedFilters.direction, idx],
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  stroke="#BABABA"
+                                />
+                              </svg>
+                            )}
                           </li>
                         );
                       })}
@@ -249,83 +326,302 @@ const Search = () => {
                   </div>
                 )}
               </div>
-              <div
-                id="filter_form"
-                className="filters_element"
-                onClick={() => {
-                  if (openedCategories.includes(2))
-                    setOpenedCategories(
-                      openedCategories.filter((obj) => {
-                        return obj !== 2;
-                      }),
-                    );
-                  else setOpenedCategories([...openedCategories, 2]);
-                  console.log(openedCategories);
-                }}>
-                <p className="filter_name">Форма участия</p>
-                <svg
-                  width="12"
-                  height="14"
-                  viewBox="0 0 12 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                    fill="#BABABA"
-                  />
-                </svg>
+              <div className="filters_element">
+                <div className="filters_top">
+                  <div className="filter_name_container" onClick={() => onClickCategory(2)}>
+                    <svg
+                      className="vertical_line"
+                      width="1"
+                      height="14"
+                      viewBox="0 0 1 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                    </svg>
+                    <p className="filter_name">Форма участия</p>
+                  </div>
+                  <svg
+                    onClick={() => onClickCategory(2)}
+                    className="triangleLeft"
+                    width="12"
+                    height="14"
+                    viewBox="0 0 12 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      onClick={() => onClickCategory(2)}
+                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                      fill="#BABABA"
+                    />
+                  </svg>
+                </div>
+                {openedCategories.includes(2) && (
+                  <div className="filter_opened" id="filter_form">
+                    <ul className="direction_list">
+                      {forms.map((el, idx) => {
+                        return (
+                          <li key={idx} className="list_el">
+                            <p className="list_el_sign">{el}</p>
+                            {selectedFilters.forma.includes(idx) ? (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    forma: selectedFilters.forma.filter((obj) => {
+                                      return obj !== idx;
+                                    }),
+                                  });
+                                }}
+                                className="filter_checkbox check_selected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      forma: selectedFilters.forma.filter((obj) => {
+                                        return obj !== idx;
+                                      }),
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  fill="#7E52EE"
+                                  stroke="#7E52EE"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    forma: [...selectedFilters.forma, idx],
+                                  });
+                                }}
+                                className="filter_checkbox check_unselected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      forma: [...selectedFilters.forma, idx],
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  stroke="#BABABA"
+                                />
+                              </svg>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-              <div
-                id="filter_format"
-                className="filters_element"
-                onClick={() => {
-                  if (openedCategories.includes(3))
-                    setOpenedCategories(
-                      openedCategories.filter((obj) => {
-                        return obj !== 3;
-                      }),
-                    );
-                  else setOpenedCategories([...openedCategories, 3]);
-                  console.log(openedCategories);
-                }}>
-                <p className="filter_name">Формат</p>
-                <svg
-                  width="12"
-                  height="14"
-                  viewBox="0 0 12 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                    fill="#BABABA"
-                  />
-                </svg>
+              <div className="filters_element">
+                <div className="filters_top">
+                  <div className="filter_name_container" onClick={() => onClickCategory(3)}>
+                    <svg
+                      className="vertical_line"
+                      width="1"
+                      height="14"
+                      viewBox="0 0 1 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                    </svg>
+                    <p className="filter_name">Формат</p>
+                  </div>
+                  <svg
+                    onClick={() => onClickCategory(3)}
+                    className="triangleLeft"
+                    width="12"
+                    height="14"
+                    viewBox="0 0 12 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      onClick={() => onClickCategory(3)}
+                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                      fill="#BABABA"
+                    />
+                  </svg>
+                </div>
+                {openedCategories.includes(3) && (
+                  <div className="filter_opened " id="filter_format">
+                    <ul className="direction_list">
+                      {format.map((el, idx) => {
+                        return (
+                          <li key={idx} className="list_el">
+                            <p className="list_el_sign">{el}</p>
+                            {selectedFilters.format.includes(idx) ? (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    format: selectedFilters.format.filter((obj) => {
+                                      return obj !== idx;
+                                    }),
+                                  });
+                                }}
+                                className="filter_checkbox check_selected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      format: selectedFilters.format.filter((obj) => {
+                                        return obj !== idx;
+                                      }),
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  fill="#7E52EE"
+                                  stroke="#7E52EE"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    format: [...selectedFilters.format, idx],
+                                  });
+                                }}
+                                className="filter_checkbox check_unselected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      format: [...selectedFilters.format, idx],
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  stroke="#BABABA"
+                                />
+                              </svg>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-              <div
-                id="filter_city"
-                className="filters_element"
-                onClick={() => {
-                  if (openedCategories.includes(4))
-                    setOpenedCategories(
-                      openedCategories.filter((obj) => {
-                        return obj !== 4;
-                      }),
-                    );
-                  else setOpenedCategories([...openedCategories, 4]);
-                  console.log(openedCategories);
-                }}>
-                <p className="filter_name">Город</p>
-                <svg
-                  width="12"
-                  height="14"
-                  viewBox="0 0 12 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                    fill="#BABABA"
-                  />
-                </svg>
+              <div className="filters_element">
+                <div className="filters_top">
+                  <div className="filter_name_container" onClick={() => onClickCategory(4)}>
+                    <svg
+                      className="vertical_line"
+                      width="1"
+                      height="14"
+                      viewBox="0 0 1 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0.978516V13.0201" stroke="black" strokeWidth="0.5" />
+                    </svg>
+                    <p className="filter_name">Город</p>
+                  </div>
+                  <svg
+                    onClick={() => onClickCategory(4)}
+                    className="triangleLeft"
+                    width="12"
+                    height="14"
+                    viewBox="0 0 12 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      onClick={() => onClickCategory(4)}
+                      d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
+                      fill="#BABABA"
+                    />
+                  </svg>
+                </div>
+                {openedCategories.includes(4) && (
+                  <div className="filter_opened" id="filter_cities">
+                    <ul className="direction_list">
+                      {cities.map((el, idx) => {
+                        return (
+                          <li key={idx} className="list_el">
+                            <p className="list_el_sign">{el.name}</p>
+                            {selectedFilters.city.includes(idx) ? (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    city: selectedFilters.city.filter((obj) => {
+                                      return obj !== idx;
+                                    }),
+                                  });
+                                }}
+                                className="filter_checkbox check_selected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      city: selectedFilters.city.filter((obj) => {
+                                        return obj !== idx;
+                                      }),
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  fill="#7E52EE"
+                                  stroke="#7E52EE"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                onClick={() => {
+                                  setSelectedFilters({
+                                    ...selectedFilters,
+                                    city: [...selectedFilters.city, idx],
+                                  });
+                                }}
+                                className="filter_checkbox check_unselected"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                  onClick={() => {
+                                    setSelectedFilters({
+                                      ...selectedFilters,
+                                      city: [...selectedFilters.city, idx],
+                                    });
+                                  }}
+                                  d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                  stroke="#BABABA"
+                                />
+                              </svg>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
               <div className="filters_down">
                 <button
@@ -350,9 +646,16 @@ const Search = () => {
               </div>
             </div>
           )}
-          {userEvents.map((user, idx) => {
+          {
+            /* {userEvents.map((user, idx) => {
             return <EventCard {...user} key={idx} />;
-          })}
+          })} */
+
+            isLoaded && // ЭТО ПОСТЫ ВМЕСТО МЕРОПРИЯТИЙ, УБРАТЬ ИХ ПОТОМ
+              userPosts.map((item) => {
+                return <PostCard {...item} key={item.newswareId} />;
+              })
+          }
         </div>
       )}
       <Footer />

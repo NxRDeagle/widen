@@ -84,6 +84,10 @@
   width: var(--max-width);
 }
 
+.set_margin {
+  margin-bottom: 75%;
+}
+
 @keyframes main {
   0% {
     opacity: 0;
@@ -108,10 +112,12 @@
 
 .filter_container {
   width: var(--max-width);
-  height: fit-content;
+  height: 50px;
 }
 
 .filter_button {
+  z-index: 20 !important;
+  position: absolute;
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -134,8 +140,11 @@
 }
 
 .filters_list {
-  width: var(--max-width);
-  margin: 0 20px;
+  box-sizing: border-box;
+  z-index: 10 !important;
+  position: absolute;
+  top: 170px;
+  width: calc(100% - 40px);
   height: fit-content;
   z-index: 10;
   background: #ffffff;
@@ -144,12 +153,9 @@
 }
 
 .filters_element {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30px;
-  align-items: center;
-  height: 55px;
-  width: 100%;
+  min-height: 55px;
+  max-height: fit-content;
+  width: var(--max-width);
   border-bottom: 1px solid #bababa;
 }
 
@@ -201,6 +207,7 @@
 
 .direction_list {
   list-style: none;
+  width: 100%;
 }
 
 .list_el {
@@ -209,4 +216,69 @@
   align-items: center;
   height: 20px;
   width: 100%;
+}
+
+.filter_opened {
+  width: 100%;
+  display: flex;
+  position: relative;
+  height: fit-content;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+#filter_direction {
+  height: 300px !important;
+  overflow-y: scroll;
+}
+
+#filter_cities {
+  height: 250px !important;
+  overflow-y: scroll;
+}
+
+#filter_form,
+#filter_format {
+  height: fit-content !important;
+}
+
+.filters_top {
+  width: 100% !important;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+  align-items: center;
+}
+
+.list_el {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  height: fit-content;
+}
+
+.list_el_sign {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: black;
+  margin-left: 60px;
+}
+
+.filter_checkbox {
+  margin-right: 30px;
+}
+
+.filter_name_container {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.vertical_line {
+  margin-right: 5px;
+  align-self: center;
 }
