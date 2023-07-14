@@ -7,7 +7,6 @@ const Sphere = ({ sign, bg, num }) => {
   const [isSelected, setIsSelected] = React.useState(false);
   const interestRef = React.useRef();
 
-  // let image = require(`../img/spheres/icon${icon}.svg`);
   const selectInterest = () => {
     setIsSelected(!isSelected);
     isSelected

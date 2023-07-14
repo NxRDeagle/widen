@@ -1,143 +1,36 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-import { mainContext } from '../App';
-import { userId, defaultUser } from '../App';
+import { mainContext, userId } from '../App';
+
+import { NewswareContext } from '../components/Newsware';
 
 import '../css/EventCard.css';
 
-import users_data from '../data/users_data.json';
-
-const EventCard = (props) => {
-  const navigate = useNavigate();
-  const location = useLocation();
+const EventCard = () => {
 
   const {
-    setFullImages,
-    setCommentNewswareId,
-    setProfile,
     page,
-    setPage,
-    Conversion,
-    setMessage,
-    loc,
+    goToComments,
+    goToFullMode,
+    goToPreview
   } = React.useContext(mainContext);
 
   const {
-    full = false,
-    newswareId = 0,
-    authorId = 0,
-    imgs = [
-      'https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg',
-    ],
-    signImgs = ['Что-то пошло не так и я не отобразился('],
-    stats = {
-      likes: [],
-      comments: [],
-      favorites: [],
-      reposts: [],
-      views: [],
-    },
-    geoposition = 'Тридевятое царство',
-    time = new Date(),
-    tags = [],
-  } = props;
-
-  let statsCount = {};
-
-  for (const key in stats) {
-    statsCount[key] = Conversion('count', stats[key].length);
-  }
-
-  const profile = users_data.find((obj) => obj.userId === authorId)
-    ? users_data.find((obj) => obj.userId === authorId)
-    : defaultUser;
-  const myProfile = users_data.find((obj) => obj.userId === userId)
-    ? users_data.find((obj) => obj.userId === userId)
-    : defaultUser;
-
-  const CONTENT_LIMIT = 10;
-
-  const [isSub, setIsSub] = React.useState(myProfile.subscriptions.includes(authorId));
-  const [newswareStates, setNewswareStates] = React.useState({
-    activeLike: stats.likes.includes(userId) ? true : false,
-    activeFavorite: stats.favorites.includes(userId) ? true : false,
-  });
-
-  const goToComments = () => {
-    loc.push(location.pathname);
-    setMessage(true);
-    setCommentNewswareId(newswareId);
-    navigate('/comments');
-  };
-
-  const onClickIcon = (icon) => {
-    switch (icon) {
-      case 'icon-like':
-        stats.likes.includes(userId)
-          ? (stats.likes = stats.likes.filter((obj) => {
-              return obj !== userId;
-            }))
-          : stats.likes.push(userId);
-        setNewswareStates({
-          ...newswareStates,
-          activeLike: !newswareStates.activeLike,
-        });
-        break;
-      case 'icon-comment':
-        goToComments();
-        break;
-      case 'icon-repost':
-        break;
-      case 'icon-flag':
-        stats.favorites.includes(userId)
-          ? (stats.favorites = stats.favorites.filter((obj) => {
-              return obj !== userId;
-            }))
-          : stats.favorites.push(userId);
-        setNewswareStates({
-          ...newswareStates,
-          activeFavorite: !newswareStates.activeFavorite,
-        });
-        break;
-      default:
-        return;
-    }
-  };
-
-  const goToFullMode = (imgs, firstImg) => {
-    const imgs_clone = Array.from(imgs);
-    if (imgs_clone.length > 1)
-      imgs_clone.sort(function (x, y) {
-        return x === firstImg ? -1 : y === firstImg ? 1 : 0;
-      });
-    setFullImages(imgs_clone);
-    loc.push(location.pathname);
-    navigate('/full_image');
-  };
-
-  const goToPreview = () => {
-    setProfile(profile);
-    if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
-      goToProfile();
-    } else {
-      if (
-        location.pathname !== `/user_profile/${profile.nickname}` &&
-        location.pathname !== '/profile'
-      ) {
-        loc.push(location.pathname);
-        navigate('/preview');
-      }
-    }
-  };
-
-  const goToProfile = () => {
-    setProfile(profile);
-    profile.userId !== userId
-      ? navigate(`/user_profile/${profile.nickname}`)
-      : navigate('/profile');
-    setPage('profile');
-  };
+    onClickIcon,
+    statsCount,
+    profile,
+    CONTENT_LIMIT,
+    full,
+    newswareId,
+    authorId,
+    imgs,
+    signImgs,
+    geoposition,
+    time,
+    tags,
+    newswareStates,
+    onClickSub
+  } = React.useContext(NewswareContext);
 
   return (
     <div className={full ? 'newsware_item open_newsware_item' : 'newsware_item'}>
@@ -148,11 +41,11 @@ const EventCard = (props) => {
               className="avatar_picture"
               src={profile.avatar}
               alt="userAvatar"
-              onClick={goToPreview}
+              onClick={() => goToPreview(profile)}
             />
           </div>
           <div className="author_nick">
-            <p className="nickname" onClick={goToPreview}>
+            <p className="nickname" onClick={() => goToPreview(profile)}>
               {profile.nickname}
             </p>
             <p className="geolocation">
@@ -162,9 +55,9 @@ const EventCard = (props) => {
           </div>
           {page !== 'profile' && !page.includes('user_profile') && authorId !== userId ? (
             <div
-              onClick={() => setIsSub(!isSub)}
-              className={isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
-              {isSub === true ? (
+              onClick={() => onClickSub()}
+              className={ newswareStates.isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
+              { newswareStates.isSub === true ? (
                 <svg
                   width="18"
                   height="15"
@@ -214,7 +107,7 @@ const EventCard = (props) => {
               className="avatar_picture"
               src={profile.avatar}
               alt="user avatar"
-              onClick={goToProfile}
+              onClick={() => goToPreview(profile)}
             />
           </div>
 
@@ -227,9 +120,9 @@ const EventCard = (props) => {
           </p>
           {page !== 'profile' && !page.includes('user_profile') && authorId !== userId ? (
             <div
-              onClick={() => setIsSub(!isSub)}
-              className={isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
-              {isSub === true ? (
+              onClick={() => onClickSub()}
+              className={ newswareStates.isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
+              { newswareStates.isSub === true ? (
                 <svg
                   width="18"
                   height="15"

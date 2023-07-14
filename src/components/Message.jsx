@@ -1,9 +1,12 @@
 import users_data from '../data/users_data.json';
+import React from 'react';
 
-import { defaultUser } from '../App';
+import { defaultUser, mainContext } from '../App';
 
 const Message = (props) => {
   const { companionId, messages } = props;
+
+  const {goToPreview} = React.useContext(mainContext);
 
   /*Объект последнего сообщения*/
   const Message = messages[messages.length - 1];
@@ -14,7 +17,7 @@ const Message = (props) => {
 
   return (
     <div className="chat_box">
-      <div className="chat_user_avatar_box">
+      <div onClick={()=>goToPreview(user)} className="chat_user_avatar_box">
         <img className="avatar_picture" src={user.avatar} alt={user.nickname} />
       </div>
 
@@ -24,7 +27,7 @@ const Message = (props) => {
           className={
             Message.who === 'iam' ? 'chat_user_message your_message' : 'chat_user_message'
           }>
-          {Message.message}
+          30simv
         </p>
       </div>
 

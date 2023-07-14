@@ -1,19 +1,15 @@
 import React, { useEffect } from 'react';
 
 import '../css/Comments.css';
-import { useNavigate, useLocation } from 'react-router-dom';
 import Reply from '../components/Reply';
 
-import { mainContext } from '../App';
-import { userId, defaultUser } from '../App';
+import { mainContext, defaultUser, defaultComment} from '../App';
 import users_data from '../data/users_data.json';
 import comments_data from '../data/comments_data.json';
 
 const Comment = ({ authorCommentId, commentId }) => {
 
-  const { setPage, setProfile, Conversion, setMessageText, loc } = React.useContext(mainContext);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { Conversion, setMessageText, goToPreview } = React.useContext(mainContext);
 
   const [wrap, setWrap] = React.useState(false);//comp
 
@@ -33,29 +29,9 @@ const Comment = ({ authorCommentId, commentId }) => {
 
 
   const profile = users_data.find((obj) => obj.userId === authorCommentId) ? users_data.find((obj) => obj.userId === authorCommentId) : defaultUser;
-  const comment = comments_data.find((obj) => obj.commentId === commentId);
+  const comment = comments_data.find((obj) => obj.commentId === commentId) ? comments_data.find((obj) => obj.commentId === commentId) : defaultComment;
   const likesCount = Conversion('count', comment.likes.length);
   const replysCount = Conversion('count', comment.replies.length);
-  const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;
-
-  const goToPreview = () => {
-    setProfile(profile);
-    if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
-      goToProfile();
-    }
-    else {
-      loc.push(location.pathname);
-      navigate("/preview");
-    }
-  };
-
-  const goToProfile = () => {
-    setProfile(profile);
-    profile.userId !== userId
-      ? navigate(`/user_profile/${profile.nickname}`)
-      : navigate('/profile');
-    setPage('profile');
-  };
 
   return (
     <>
@@ -73,7 +49,7 @@ const Comment = ({ authorCommentId, commentId }) => {
               }}
             >
               <div className="comment_user_avatar_box">
-                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={goToPreview} />
+                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={() => goToPreview(profile)} />
               </div>
               <div className="comment_text_box">
                 <p className="comment_user_nickname">

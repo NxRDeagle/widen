@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -11,14 +10,8 @@ import arrowSvg from '../img/arrow.svg';
 import '../css/NotFound.css';
 
 const NotFound = () => {
-  const navigate = useNavigate();//App
 
-  const { setPage } = React.useContext(mainContext);
-
-  const goBack = () => {
-    navigate('/input');
-    setPage('input');
-  };
+  const { goInput } = React.useContext(mainContext);
 
   return (
     <>
@@ -27,7 +20,7 @@ const NotFound = () => {
         <h1 className="not_found_header">
           Страница не найдена <span className="emoji">😔</span>
         </h1>
-        <div className="go_back" onClick={goBack}>
+        <div className="go_back" onClick={() => goInput()}>
           <img className="go_back_arrow" src={arrowSvg} alt="Arrow" />
           <button className="go_back_button">Вернуться на главную</button>
         </div>

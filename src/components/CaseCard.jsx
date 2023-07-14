@@ -1,114 +1,34 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-import { mainContext } from '../App';
-import { userId, defaultUser } from '../App';
+import { mainContext, userId } from '../App';
+
+import { NewswareContext } from '../components/Newsware';
 
 import '../css/CaseCard.css';
 
-import users_data from '../data/users_data.json';
-
-
-const CaseCard = (props) => {
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const { setFullImages, setCommentNewswareId, setProfile, page, setPage, Conversion, setMessage, loc} =
-        React.useContext(mainContext);
+const CaseCard = () => {
 
     const {
-        full = false,
-        newswareId = 0,
-        authorId = 0,
-        imgs = ['https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg'],
-        signImgs = ['Что-то пошло не так и я не отобразился('],
-        stats = {
-            likes: [],
-            comments: [],
-            favorites: [],
-            reposts: [],
-            views: []
-        },
-        geoposition = 'Тридевятое царство',
-        time = new Date(),
-        tags = []
-    } = props;
+        page,
+        goToComments,
+        goToPreview
+    } = React.useContext(mainContext);
 
-    let statsCount = {};
-
-    for (const key in stats) {
-        statsCount[key] = Conversion('count', stats[key].length);
-    }
-
-    const profile = users_data.find((obj) => obj.userId === authorId) ? users_data.find((obj) => obj.userId === authorId) : defaultUser;
-    const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;
-
-    const [isSub, setIsSub] = React.useState(myProfile.subscriptions.includes(authorId));
-
-    const [newswareStates, setNewswareStates] = React.useState({
-        activeLike: stats.likes.includes(userId) ? true : false,
-        activeFavorite: stats.favorites.includes(userId) ? true : false
-    })
-
-
-
-    const goToComments = () => {
-        loc.push(location.pathname);
-        setMessage(true);
-        setCommentNewswareId(newswareId);
-        navigate('/comments');
-    };
-
-    const onClickIcon = (icon) => {
-        switch(icon){
-            case "icon-like":
-                stats.likes.includes(userId) ? stats.likes = stats.likes.filter((obj) => {return obj !== userId}) : stats.likes.push(userId);
-                setNewswareStates({
-                    ...newswareStates,
-                    activeLike: !newswareStates.activeLike
-                })
-                break;
-            case "icon-comment":
-                goToComments();
-                break;
-            case "icon-repost":
-                break;
-            case 'icon-flag':
-                stats.favorites.includes(userId) ? stats.favorites = stats.favorites.filter((obj) => {return obj !== userId}) : stats.favorites.push(userId);
-                setNewswareStates({
-                    ...newswareStates,
-                    activeFavorite: !newswareStates.activeFavorite
-                })
-                break;
-            default:
-                return;
-        }
-    };
-
-
-    const goToPreview = () => {
-        setProfile(profile);
-        if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
-            goToProfile();
-        } else {
-            if (
-                location.pathname !== `/user_profile/${profile.nickname}` &&
-                location.pathname !== '/profile'
-            ) {
-                loc.push(location.pathname);
-                navigate('/preview');
-            }
-        }
-    };
-
-    const goToProfile = () => {
-        setProfile(profile);
-        profile.userId !== userId
-            ? navigate(`/user_profile/${profile.nickname}`)
-            : navigate('/profile');
-        setPage('profile');
-    };
-
+    const {
+        onClickIcon,
+        statsCount,
+        profile,
+        full,
+        newswareId,
+        authorId,
+        imgs,
+        signImgs,
+        geoposition,
+        time,
+        tags,
+        newswareStates,
+        onClickSub
+    } = React.useContext(NewswareContext);
 
     return (
         <div className={full ? 'newsware_item open_newsware_item' : page !== 'search' ? 'newsware_item' : ''}>
@@ -119,11 +39,11 @@ const CaseCard = (props) => {
                             className="avatar_picture"
                             src={profile.avatar}
                             alt="userAvatar"
-                            onClick={goToPreview}
+                            onClick={() => goToPreview(profile)}
                         />
                     </div>
                     <div className="author_nick">
-                        <p className="nickname" onClick={goToPreview}>
+                        <p className="nickname" onClick={() => goToPreview(profile)}>
                             {profile.nickname}
                         </p>
                         <p className="geolocation">
@@ -133,9 +53,11 @@ const CaseCard = (props) => {
                     </div>
                     {
                         page !== 'profile' && !page.includes('user_profile') && authorId !== userId ?
-                            <div onClick={() => setIsSub(!isSub)} className={isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
+                            <div
+                                onClick={() => onClickSub()}
+                                className={newswareStates.isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
                                 {
-                                    isSub === true ?
+                                    newswareStates.isSub === true ?
                                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.5 3C13.5 4.38071 12.3807 5.5 11 5.5C9.61929 5.5 8.5 4.38071 8.5 3C8.5 1.61929 9.61929 0.5 11 0.5C12.3807 0.5 13.5 1.61929 13.5 3Z" stroke="black" />
                                             <path d="M8.5 13.5H16.7681C17.2681 12.8333 18.2321 11 16.5001 9.5C15.4099 8.55583 12.6667 8 11.5001 8C10.3334 8 7.7 8.3 6.5 9.5M5.5 6.5L3 13.5L1 10.5" stroke="black" />
@@ -166,7 +88,7 @@ const CaseCard = (props) => {
                             className="avatar_picture"
                             src={profile.avatar}
                             alt="user avatar"
-                            onClick={goToPreview}
+                            onClick={() => goToPreview(profile)}
                         />
                     </div>
 
@@ -179,9 +101,11 @@ const CaseCard = (props) => {
                     </p>
                     {
                         page !== 'profile' && !page.includes('user_profile') && authorId !== userId ?
-                            <div onClick={() => setIsSub(!isSub)} className={isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
+                            <div
+                                onClick={() => onClickSub()}
+                                className={newswareStates.isSub === true ? 'remove_friend_box ' : 'add_friend_box'}>
                                 {
-                                    isSub === true ?
+                                    newswareStates.isSub === true ?
                                         <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M13.5 3C13.5 4.38071 12.3807 5.5 11 5.5C9.61929 5.5 8.5 4.38071 8.5 3C8.5 1.61929 9.61929 0.5 11 0.5C12.3807 0.5 13.5 1.61929 13.5 3Z" stroke="black" />
                                             <path d="M8.5 13.5H16.7681C17.2681 12.8333 18.2321 11 16.5001 9.5C15.4099 8.55583 12.6667 8 11.5001 8C10.3334 8 7.7 8.3 6.5 9.5M5.5 6.5L3 13.5L1 10.5" stroke="black" />
@@ -203,14 +127,14 @@ const CaseCard = (props) => {
             {
                 !full ? (
                     <div className={page === 'search' ? 'search_case_box' : 'case_box'}>
-                        <img onClick={goToComments} className='case_picture' src={imgs[0]} alt='case' />
+                        <img onClick={() => goToComments(newswareId)} className='case_picture' src={imgs[0]} alt='case' />
                         <p className={page === 'search' ? 'search_case_header' : 'case_header'}>{signImgs[0]}</p>
                         <div className={page === 'search' ? 'search_author_case_avatar' : 'author_case_avatar'}>
                             <img
                                 className="avatar_picture"
                                 src={profile.avatar}
                                 alt="user avatar"
-                                onClick={goToPreview}
+                                onClick={() => goToPreview(profile)}
                             />
                         </div>
                         <p className={page === 'search' ? 'search_author_case_nickname' : 'author_case_nickname'}>{profile.nickname}</p>
@@ -219,7 +143,7 @@ const CaseCard = (props) => {
                                 <svg className='favorite_search_case_icon' width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 14.95L7 12.8L12 14.95V2H2V14.95ZM1.4 17.4C1.06667 17.5333 0.75 17.504 0.45 17.312C0.15 17.1207 0 16.8417 0 16.475V2C0 1.45 0.196 0.979 0.588 0.587C0.979333 0.195667 1.45 0 2 0H12C12.55 0 13.021 0.195667 13.413 0.587C13.8043 0.979 14 1.45 14 2V16.475C14 16.8417 13.85 17.1207 13.55 17.312C13.25 17.504 12.9333 17.5333 12.6 17.4L7 15L1.4 17.4ZM2 2H12H7H2Z" fill="white" />
                                     <path d="M2 14.95L7 12.8L12 14.95V2H7H2V14.95Z" fill="white" />
-                                </svg> 
+                                </svg>
                                 :
                                 null
                         }
@@ -335,11 +259,11 @@ const CaseCard = (props) => {
             {
                 full && tags ?
                     <div className='tags_box'>
-                       {
-                         tags.map((item, index) => {
-                            return <button key={index} className='tag'>{item}</button>
-                         })
-                       }
+                        {
+                            tags.map((item, index) => {
+                                return <button key={index} className='tag'>{item}</button>
+                            })
+                        }
                     </div>
                     :
                     null

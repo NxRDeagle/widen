@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { mainContext } from '../App';
 
@@ -7,10 +6,9 @@ import '../css/Preview.css';
 import Footer from '../components/Footer';
 
 const Preview = () => {
-  const navigate = useNavigate();//App
   const [isLoaded, setIsLoaded] = React.useState(false);//Comp
 
-  const { setPage, profile, Conversion, message, loc } = React.useContext(mainContext);
+  const { navigate, profile, Conversion, message, goToProfile, goBack } = React.useContext(mainContext);
 
   let subsriptions = Conversion('count', profile.subscribers.length);
   let subscribers = Conversion('count', profile.subscribers.length);
@@ -22,15 +20,6 @@ const Preview = () => {
     setIsLoaded(true);
   }, []);
 
-  const goBack = () => {
-    navigate(loc.pop());
-  };
-
-  const goToProfile = () => {
-    setPage('profile');
-    navigate(`/user_profile/${profile.nickname}`);
-  };
-
   return (
     <>
       <div
@@ -39,7 +28,7 @@ const Preview = () => {
           isLoaded ? { background: `url(${profile.background})` } : { backgroundColor: '#7e52ee' }
         }>
         <div className="preview_user_avatar">
-          <img className="avatar_picture" src={profile.avatar} alt="avatar" onClick={goToProfile} />
+          <img className="avatar_picture" src={profile.avatar} alt="avatar" onClick={() => goToProfile(profile)} />
         </div>
         <div className="preview_user_nickname_box">
           <h1 className="preview_user_nickname">{profile.nickname}</h1>
@@ -58,7 +47,7 @@ const Preview = () => {
           </div>
           <p className="idea_sign">{profile.idea}</p>
         </div>
-        <i onClick={goBack} className="icon-rowupp rowupp"></i>
+        <i onClick={() => goBack()} className="icon-rowupp rowupp"></i>
       </div>
       <Footer message={message} preview={true} />
     </>

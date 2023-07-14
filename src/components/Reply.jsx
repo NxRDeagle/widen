@@ -1,24 +1,19 @@
 import React from 'react';
 
 import '../css/Reply.css';
-import { useLocation, useNavigate } from 'react-router-dom';
 
-import { mainContext } from '../App';
-import { userId, defaultUser } from '../App';
+import { mainContext, defaultUser, defaultComment } from '../App';
 
 import users_data from '../data/users_data.json';
 import comments_data from '../data/comments_data.json';
 
 const Reply = ({ replyId, authorReplyId }) => {
 
-    const { setPage, setProfile, Conversion, setMessageText, loc } = React.useContext(mainContext);
-    const navigate = useNavigate();//app
-    const location = useLocation();//app
+    const {Conversion, setMessageText, goToPreview } = React.useContext(mainContext);
 
-    const reply = comments_data.find((obj) => obj.commentId === replyId);
-    const likesCount = Conversion('count', reply.likes.length);
+    const reply = comments_data.find((obj) => obj.commentId === replyId) ? comments_data.find((obj) => obj.commentId === replyId) : defaultComment;
     let profile = users_data.find((obj) => obj.userId === authorReplyId) ? users_data.find((obj) => obj.userId === authorReplyId) : defaultUser;
-    const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;
+    const likesCount = Conversion('count', reply.likes.length);
 
     React.useEffect(() => {
         if (document.querySelectorAll('.reply_text')) {
@@ -28,24 +23,6 @@ const Reply = ({ replyId, authorReplyId }) => {
             });
         }
     }, [])
-
-    const goToPreview = () => {
-        setProfile(profile);
-        if (myProfile.viewUsers.find((obj) => obj === profile.userId) || profile.userId === userId) {
-            goToProfile();
-        }
-        else {
-            loc.push(location.pathname);
-            navigate('/preview');
-        }
-    };
-
-    const goToProfile = () => {
-        profile.userId !== userId
-            ? navigate(`/user_profile/${profile.nickname}`)
-            : navigate('/profile');
-        setPage('profile');
-    };
 
     return (
         <div
@@ -58,7 +35,7 @@ const Reply = ({ replyId, authorReplyId }) => {
             }}
         >
             <div className="reply_user_avatar_box">
-                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={goToPreview} />
+                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={()=>goToPreview(profile)} />
             </div>
             <div className="reply_text_box">
                 <p className="reply_user_nickname">
@@ -70,7 +47,7 @@ const Reply = ({ replyId, authorReplyId }) => {
                         console.log(e.target.closest('p'));
                         if (e.target.tagName === 'A') {
                             profile = users_data.find((obj) => obj.nickname === e.target.textContent);
-                            goToPreview();
+                            goToPreview(profile);
                         }
                     }}
                     className="reply_text"

@@ -1,21 +1,15 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import '../css/Footer.css';
 
-import { mainContext } from '../App';
-import { userId, defaultUser } from '../App';
-import users_data from '../data/users_data.json';
+import { mainContext} from '../App';
+import { myProfile } from '../App';
 
 const Footer = (props) => {
-  const location = useLocation();
-  const { page, setMessageText, messageText, setLoc } = React.useContext(mainContext);
+  const { page, setMessageText, messageText, location, resetLoc} = React.useContext(mainContext);
 
   const { message = false, preview = false } = props;
-
-  const myProfile = users_data.find((obj) => obj.userId === userId)
-    ? users_data.find((obj) => obj.userId === userId)
-    : defaultUser;
 
   return (
     <footer className={preview ? 'foot_container foot_notview' : 'foot_container'}>
@@ -103,7 +97,7 @@ const Footer = (props) => {
         <ul
           className="nav_icon_items"
           onClick={() => {
-            setLoc([]);
+            resetLoc();
           }}>
           <Link to="/">
             <li

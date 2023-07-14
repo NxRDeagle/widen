@@ -24,7 +24,7 @@ const History = ({ isView, avatar, nickname = 'ANONIM' }) => {
       <div className={isView ? 'view' : 'not_view'}>
         <div className="user_history_avatar">
           {avatar ? (
-            <img className="avatar_picture" src={avatar} />
+            <img className="avatar_picture" src={avatar} alt='avatar' />
           ) : (
             <i className="icon-profile none_picture"></i>
           )}

@@ -5,32 +5,23 @@ import Newsware from '../components/Newsware';
 
 import '../css/Comments.css';
 
-import { mainContext } from '../App';
+import { mainContext, defaultPost } from '../App';
 import newsware_data from '../data/newsware_data.json';
 import comments_data from '../data/comments_data.json';
 import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
 
 const Comments = () => {
-  const { commentNewswareId, Conversion, setMessageText, message, setMessage, loc} = React.useContext(mainContext);
-  const navigate = useNavigate();//app
+  const { commentNewswareId, Conversion, message, goBack} = React.useContext(mainContext);
 
-  const newsware = newsware_data.find((obj) => obj.newswareId === commentNewswareId) ? newsware_data.find((obj) => obj.newswareId === commentNewswareId) : null;//comp
+  const newsware = newsware_data.find((obj) => obj.newswareId === commentNewswareId) ? newsware_data.find((obj) => obj.newswareId === commentNewswareId) : defaultPost;//comp
 
   const commentsCount = Conversion('count', newsware.stats.comments.length);
   const commentsSign = Conversion('comments', newsware.stats.comments.length);
-
-
-  const goBack = () => {
-    setMessageText('');
-    setMessage(false);
-    loc.length > 0 ? navigate(loc.pop()) : navigate('/');
-  };
-
+  
   return (
     <>
       <div className="head_comments_container">
-        <i className='icon_close' onClick={goBack}>
+        <i className='icon_close' onClick={() => goBack()}>
           <svg width="23" height="12" viewBox="0 0 23 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 6H23M1 6L8 1M1 6L8 11" stroke="#7E52EE" />
           </svg>

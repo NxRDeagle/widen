@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import logoSvg from '../img/logoInput.svg';
 import { mainContext } from '../App';
 import add_icon from '../img/plus.svg';
@@ -21,8 +20,7 @@ const Input = () => {
     inputCount: 3,
   }); //Comp
 
-  const navigate = useNavigate(); //App
-  const { setPage } = React.useContext(mainContext);
+  const { goHome } = React.useContext(mainContext);
 
   const handleChange = (e) => {
     setInputStates({
@@ -53,8 +51,7 @@ const Input = () => {
       }
     });
     if (inputStates.activeBox === 1 && logic) {
-      navigate('/');
-      setPage('home');
+      goHome();
     }
     if (inputStates.activeBox === 2 && logic) {
       setInputStates({
@@ -91,11 +88,6 @@ const Input = () => {
     input.placeholder = `${inputStates.inputCount}. Я интересуюсь...`;
     document.querySelector('.more_container').appendChild(input);
     input.focus();
-  };
-
-  const goHome = () => {
-    navigate('/');
-    setPage('home');
   };
 
   return (
@@ -307,7 +299,7 @@ const Input = () => {
             <input className="more_input" placeholder="2. Я интересуюсь..." />
           </div>
           <img className="more_add" src={add_icon} onClick={AddInput} alt="Add" />
-          <button onClick={goHome} className="more_ready">
+          <button onClick={() => goHome()} className="more_ready">
             Готово
           </button>
         </div>

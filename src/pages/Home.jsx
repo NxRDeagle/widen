@@ -7,22 +7,16 @@ import Footer from '../components/Footer';
 import Preload from '../components/Preload';
 
 import newsware_data from '../data/newsware_data.json';
-import users_data from '../data/users_data.json';
 
-import { mainContext, userId, defaultUser } from '../App';
+import { mainContext, userId, myProfile } from '../App';
 
 import '../css/Home.css';
 
 const Home = () => {
-  const { currentFilter, setMessage } = React.useContext(mainContext);
-
-  const myProfile = users_data.find((obj) => obj.userId === userId)
-    ? users_data.find((obj) => obj.userId === userId)
-    : defaultUser; //app
+  const { currentNewswareFilter } = React.useContext(mainContext);
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
-  setMessage(false);
 
   setTimeout(() => {
     setIsLoading(false);
@@ -60,7 +54,7 @@ const Home = () => {
             newsware_data.map((item, id) => {
               return (item.authorId === userId ||
                 myProfile.subscriptions.includes(item.authorId)) &&
-                (item.type === currentFilter || currentFilter === 'all') ? (
+                (item.type === currentNewswareFilter || currentNewswareFilter === 'all') ? (
                 <Newsware {...item} key={id} />
               ) : null;
             })

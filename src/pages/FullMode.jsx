@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate} from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import '../css/FullMode.css';
@@ -9,16 +8,14 @@ import { mainContext } from '../App';
 const FullMode = ({ imgs }) => {
 
   const [currentSlide, setCurrentSlide] = React.useState(1);//comp
-  const navigate = useNavigate(); //App
-  const {loc} = React.useContext(mainContext);
-
+  const {goBack} = React.useContext(mainContext);
 
   return (
     <div className="full_mode">
       <i
         className="icon-cancel close_full"
         onClick={() => {
-          navigate(loc.pop());
+          goBack()
         }}></i>
 
       <Swiper

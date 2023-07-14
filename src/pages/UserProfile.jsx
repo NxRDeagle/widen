@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import ContentLoader from 'react-content-loader';
 
 import Footer from '../components/Footer';
@@ -9,30 +8,20 @@ import Newsware from '../components/Newsware';
 import '../css/Profile.css';
 
 import newsware_data from '../data/newsware_data.json';
-import users_data from '../data/users_data.json';
-import { mainContext, defaultUser } from '../App';
+import { mainContext } from '../App';
 
 const UserProfile = () => {
-  const navigate = useNavigate(); //App 
 
-  const { Conversion } = React.useContext(mainContext);
-
-  const nickname = useParams().nickname; //Comp
-  const profile = users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase()) ? users_data.find((obj) => obj.nickname.toLowerCase() === nickname.toLowerCase()) : defaultUser; //Comp
+  const { Conversion, navigate, profile, setUserProfileNewsware, userProfileNewswareItems} = React.useContext(mainContext);
 
   const [activeIcon, setActiveIcon] = React.useState(0); //App
-  const [userPosts, setUserPosts] = React.useState([]); //App
 
   const [isLoaded, setIsLoaded] = React.useState(false); //Comp
 
   const [notification, setNotification] = React.useState(false); //Ненужон
 
   React.useEffect(() => {
-    setUserPosts(
-      newsware_data.filter((item) => {
-        return item.authorId === profile.userId;
-      }),
-    );
+    setUserProfileNewsware(newsware_data.filter((item) => {return item.authorId === profile.userId}));
     setIsLoaded(true);
   }, [profile]);
 
@@ -76,7 +65,7 @@ const UserProfile = () => {
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">{profile.idea}</p>
+            <p className="profile_idea_sign">simv180</p>
           </div>
           {isLoaded && document.querySelector('.profile_idea_sign').textContent.length > 180 && (
             <p
@@ -219,10 +208,10 @@ const UserProfile = () => {
 
           <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}>
             <div className="mainBackground">
-              {userPosts.length === 0 ? (
+              {userProfileNewswareItems.length === 0 ? (
                 <p className="no_posts">У пользователя ещё нет постов...</p>
               ) : isLoaded ? (
-                userPosts.map((item) => {
+                userProfileNewswareItems.map((item) => {
                   return <Newsware {...item} key={item.newswareId} />;
                 })
               ) : (

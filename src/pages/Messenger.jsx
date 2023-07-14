@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Footer from '../components/Footer';
 import Message from '../components/Message';
 
-import { userId, defaultUser } from '../App';
+import { myProfile, mainContext } from '../App';
 
 import chat_data from '../data/chat_data.json';
-import users_data from '../data/users_data.json';
 
 import '../css/Messenger.css';
 
 const Messenger = () => {
-  const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;//App
-  const [chatFilter, setChatFilter] = useState(myProfile.chatNames[0]);//Comp
-  const [activeChats, setActiveChats] = useState(
-    chat_data.filter((chat) => chat.chatName === myProfile.chatNames[0]),
-  );//Comp
-
-  useEffect(() => {
-    setActiveChats(chat_data.filter((chat) => chat.chatName === chatFilter));
-  }, [chatFilter]);
+  
+  const {chatFilter, activeChats, setChatFilter} = React.useContext(mainContext);
 
   return (
     <>
