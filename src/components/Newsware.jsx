@@ -13,11 +13,7 @@ import '../css/Newsware.css';
 export const NewswareContext = React.createContext();
 
 const Newsware = (props) => {
-
-  const {
-    goToComments,
-    Conversion
-  } = React.useContext(mainContext);
+  const { goToComments, Conversion } = React.useContext(mainContext);
 
   const {
     full = false,
@@ -42,7 +38,8 @@ const Newsware = (props) => {
   const [newswareStates, setNewswareStates] = React.useState({
     activeLike: stats.likes.includes(userId) ? true : false,
     activeFavorite: stats.favorites.includes(userId) ? true : false,
-    isSub: myProfile.subscriptions.includes(authorId)
+    isSub: myProfile.subscriptions.includes(authorId),
+    isInterested: false,
   });
 
   let statsCount = {};
@@ -62,8 +59,8 @@ const Newsware = (props) => {
       case 'icon-like':
         stats.likes.includes(userId)
           ? (stats.likes = stats.likes.filter((obj) => {
-            return obj !== userId;
-          }))
+              return obj !== userId;
+            }))
           : stats.likes.push(userId);
         setNewswareStates({
           ...newswareStates,
@@ -78,12 +75,18 @@ const Newsware = (props) => {
       case 'icon-flag':
         stats.favorites.includes(userId)
           ? (stats.favorites = stats.favorites.filter((obj) => {
-            return obj !== userId;
-          }))
+              return obj !== userId;
+            }))
           : stats.favorites.push(userId);
         setNewswareStates({
           ...newswareStates,
           activeFavorite: !newswareStates.activeFavorite,
+        });
+        break;
+      case 'icon-interest':
+        setNewswareStates({
+          ...newswareStates,
+          isInterested: !newswareStates.isInterested,
         });
         break;
       default:
@@ -94,13 +97,14 @@ const Newsware = (props) => {
   const onClickSub = () => {
     setNewswareStates({
       ...newswareStates,
-      isSub:!newswareStates.isSub
+      isSub: !newswareStates.isSub,
     });
-    myProfile.subscriptions.includes(authorId) ?
-      myProfile.subscriptions = myProfile.subscriptions.filter((obj) => { return obj !== authorId; })
-      :
-      myProfile.subscriptions.push(authorId);
-  }
+    myProfile.subscriptions.includes(authorId)
+      ? (myProfile.subscriptions = myProfile.subscriptions.filter((obj) => {
+          return obj !== authorId;
+        }))
+      : myProfile.subscriptions.push(authorId);
+  };
 
   switch (props.type) {
     case 'post':
@@ -120,12 +124,11 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            onClickSub
-          }}
-        >
-          <PostCard/>
+            onClickSub,
+          }}>
+          <PostCard />
         </NewswareContext.Provider>
-      )
+      );
     case 'case':
       return (
         <NewswareContext.Provider
@@ -142,12 +145,11 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            onClickSub
-          }}
-        >
-          <CaseCard/>
+            onClickSub,
+          }}>
+          <CaseCard />
         </NewswareContext.Provider>
-      )
+      );
     case 'event':
       return (
         <NewswareContext.Provider
@@ -165,12 +167,11 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            onClickSub
-          }}
-        >
-          <EventCard/>
+            onClickSub,
+          }}>
+          <EventCard />
         </NewswareContext.Provider>
-      )
+      );
     default:
       return null;
   }
