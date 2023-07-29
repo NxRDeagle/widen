@@ -45,7 +45,7 @@ const Preview = () => {
               <p className="count_sign">Подписчики</p>
             </div>
           </div>
-          <p className="idea_sign">{profile.idea}</p>
+          <p className="idea_sign">{Conversion('previewIdea', profile.idea)}</p>
         </div>
         <i onClick={() => goBack()} className="icon-rowupp rowupp"></i>
       </div>

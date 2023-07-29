@@ -48,21 +48,37 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
             setIsFiltersOpen(!isFiltersOpen);
           }}>
           <svg
+            className="filters_icon"
             width="20"
             height="15"
             viewBox="0 0 20 15"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path
+              className="filters_icon"
               d="M0 3.5H5M5 3.5C5 4.33333 5.5 6 7.5 6C9.5 6 10 4.33333 10 3.5M5 3.5C5 2.66667 5.5 1 7.5 1C9.5 1 10 2.66667 10 3.5M10 3.5H20"
               stroke="black"
             />
             <path
+              className="filters_icon"
               d="M20 11.5L15 11.5M15 11.5C15 10.6667 14.5 9 12.5 9C10.5 9 10 10.6667 10 11.5M15 11.5C15 12.3333 14.5 14 12.5 14C10.5 14 10 12.3333 10 11.5M10 11.5L0 11.5"
               stroke="black"
             />
           </svg>
           <p className="filter_sign">Отфильтровать</p>
+          {selectedFilters.city.length +
+            selectedFilters.direction.length +
+            selectedFilters.forma.length +
+            selectedFilters.format.length >
+            0 >
+            0 && (
+            <p className="count_filters" id="count_filters_main">
+              {selectedFilters.city.length +
+                selectedFilters.direction.length +
+                selectedFilters.forma.length +
+                selectedFilters.format.length}
+            </p>
+          )}
           {isFiltersOpen ? (
             selectedFilters.city.length +
               selectedFilters.direction.length +
@@ -70,7 +86,6 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
               selectedFilters.format.length >
             0 ? (
               <svg
-                className="triangleBottomColor"
                 width="13"
                 height="12"
                 viewBox="0 0 13 12"
@@ -80,7 +95,6 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
               </svg>
             ) : (
               <svg
-                className="triangleBottom"
                 width="13"
                 height="12"
                 viewBox="0 0 13 12"
@@ -95,7 +109,6 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
               selectedFilters.format.length >
             0 ? (
             <svg
-              className="triangleLeftColor"
               width="12"
               height="14"
               viewBox="0 0 12 14"
@@ -108,7 +121,6 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
             </svg>
           ) : (
             <svg
-              className="triangleLeft"
               width="12"
               height="14"
               viewBox="0 0 12 14"
@@ -208,6 +220,11 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                     fill="#BABABA"
                   />
                 </svg>
+              )}
+              {selectedFilters.direction.length > 0 && (
+                <p className="count_filters" onClick={() => onClickCategory(1)}>
+                  {selectedFilters.direction.length}
+                </p>
               )}
             </div>
             {openedCategories.includes(1) && (
@@ -373,6 +390,11 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                   />
                 </svg>
               )}
+              {selectedFilters.forma.length > 0 && (
+                <p className="count_filters" onClick={() => onClickCategory(2)}>
+                  {selectedFilters.forma.length}
+                </p>
+              )}
             </div>
             {openedCategories.includes(2) && (
               <div className="filter_opened" id="filter_form">
@@ -529,6 +551,11 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                   />
                 </svg>
               )}
+              {selectedFilters.format.length > 0 && (
+                <p className="count_filters" onClick={() => onClickCategory(3)}>
+                  {selectedFilters.format.length}
+                </p>
+              )}
             </div>
             {openedCategories.includes(3) && (
               <div className="filter_opened " id="filter_format">
@@ -684,6 +711,11 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                     fill="#BABABA"
                   />
                 </svg>
+              )}
+              {selectedFilters.city.length > 0 && (
+                <p className="count_filters" onClick={() => onClickCategory(4)}>
+                  {selectedFilters.city.length}
+                </p>
               )}
             </div>
             {openedCategories.includes(4) && (

@@ -5,7 +5,7 @@ import Newsware from '../components/Newsware';
 
 import '../css/Comments.css';
 
-import { mainContext, defaultPost } from '../App';
+import { mainContext, defaultPost, userId } from '../App';
 import newsware_data from '../data/newsware_data.json';
 import comments_data from '../data/comments_data.json';
 import Footer from '../components/Footer';
@@ -17,6 +17,12 @@ const Comments = () => {
 
   const commentsCount = Conversion('count', newsware.stats.comments.length);
   const commentsSign = Conversion('comments', newsware.stats.comments.length);
+
+  React.useEffect(()=>{
+    if(!newsware.stats.views.includes(userId)){
+      newsware.stats.views.push(userId)
+    };
+  },[])
   
   return (
     <>

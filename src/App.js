@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import defaultAvatar from '../src/img/defaultAvatar.png';
 import { reducer } from '../src/reducer';
 import users_data from '../src/data/users_data.json';
@@ -120,12 +119,38 @@ function App() {
               ? 'комментариев'
               : 'комментария';
         break;
+      case 'previewIdea':
+        element = stats.length > 200 ? stats.substr(0, 200) + '...' : stats;
+        break;
+      case 'chatText':
+        element = stats.length > 30 ? stats.substr(0, 27) + '...' : stats;
+        break;
+      case 'profileIdea':
+        element = stats.length > 180 ? true : false;
+        break;
+      case 'previewSign':
+        element = {
+          large: stats.length > 180 ? true : false,
+          sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats
+        };
+        break;
       default:
         return element;
     }
     return element;
   }
 
+  function TagFilterHandler(tagFilter, tags) {
+    if (!tagFilter.length) {
+      return true;
+    }
+    for (let tag of tagFilter) {
+      if (tags.includes(tag)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 
   /*Стейты Приложения*/
@@ -139,17 +164,17 @@ function App() {
     commentNewswareId: localStorage.getItem('commentNewswareId') ? JSON.parse(localStorage.getItem('commentNewswareId')) : 0,
     profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {},
     scrollValue: localStorage.getItem('scrollValue') ? JSON.parse(localStorage.getItem('scrollValue')) : 0,
-    loc: [],
     messageText: '',
     userProfileNewswareItems: [],
     chatFilter: localStorage.getItem('activeChat') ? JSON.parse(localStorage.getItem('activeChat')) : myProfile.chatNames[0],
     activeChats: chat_data.filter((chat) => chat.chatName === myProfile.chatNames[0]),
     activeGlobalSearch: localStorage.getItem('activeGlobalSearch') ? JSON.parse(localStorage.getItem('activeGlobalSearch')) : 'globalCase',
-    globalPosts: newsware_data.filter((item) => {return (item.type === 'post' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId);}),
-    globalCases: newsware_data.filter((item) => {return (item.type === 'case' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId);}),
+    globalPosts: newsware_data.filter((item) => { return (item.type === 'post' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId); }),
+    globalCases: newsware_data.filter((item) => { return (item.type === 'case' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId); }),
     globalRisingStars: users_data,
     globalSharks: users_data,
-    globalEvents: newsware_data.filter((item) => {return (item.type === 'event' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId);})
+    globalEvents: newsware_data.filter((item) => { return (item.type === 'event' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId); }),
+    tagFilter: []
   };
 
   const [appvalue, dispatch] = React.useReducer(reducer, appState);
@@ -166,12 +191,7 @@ function App() {
     dispatch({ type: 'SET_MESSAGE_TEXT', payload: text });
   };
 
-  appvalue.resetLoc = () => {
-    dispatch({ type: 'RESET_LOC' });
-  };
-
   appvalue.goToComments = (newswareId) => {
-    appvalue.loc.push(location.pathname);
     dispatch({ type: 'GO_TO_COMMENTS', payload: newswareId });
     navigate('/comments');
   };
@@ -183,7 +203,6 @@ function App() {
         return x === firstImg ? -1 : y === firstImg ? 1 : 0;
       });
     dispatch({ type: 'SET_FULL_IMGS', payload: imgs_clone });
-    appvalue.loc.push(location.pathname);
     navigate('/full_image');
   };
 
@@ -201,7 +220,6 @@ function App() {
         location.pathname !== `/user_profile/${profile.nickname}` &&
         location.pathname !== '/profile'
       ) {
-        appvalue.loc.push(location.pathname);
         navigate('/preview');
       }
     }
@@ -217,7 +235,7 @@ function App() {
   };
 
   appvalue.goBack = () => {
-    appvalue.loc.length > 0 ? navigate(appvalue.loc.pop()) : appvalue.goHome();
+    navigate(-1);
     if (location.pathname === 'comments') {
       dispatch({ type: "GO_BACK_COMMENTS" });
     };
@@ -242,15 +260,21 @@ function App() {
     dispatch({ type: 'SET_CHAT_FILTER', payload: filter });
   };
 
-  appvalue.setActiveGlobalSearch = (globalSearchName) =>{
+  appvalue.setActiveGlobalSearch = (globalSearchName) => {
     localStorage.setItem('activeGlobalSearch', JSON.stringify(globalSearchName));
-    dispatch({type:'SET_ACTIVE_GLOBAL_SEARCH', payload:globalSearchName});
+    dispatch({ type: 'SET_ACTIVE_GLOBAL_SEARCH', payload: globalSearchName });
   };
+
+  appvalue.clickTag = (globalSearchName, tagFilter) => {
+    appvalue.setActiveGlobalSearch(globalSearchName);
+    appvalue.tagFilter.push(tagFilter);
+    navigate("/search");
+  }
 
   /*Эффекты приложения*/
 
   React.useEffect(() => {
-    window.scrollTo(0, appvalue.scrollValue);
+    // window.scrollTo(0, appvalue.scrollValue);
     dispatch({ type: 'CHANGE_PAGE', payload: location.pathname === '/' ? 'home' : location.pathname.substring(1) });
     if (location.pathname.includes('user_profile')) {
       const userNickname = location.pathname.split('/')[2];
@@ -258,7 +282,10 @@ function App() {
         users_data.find((obj) => obj.nickname.toLowerCase() === userNickname.toLowerCase())
         : defaultUser;
       dispatch({ type: 'SET_PROFILE', payload: userProfile });
-    }
+    };
+    if(location.pathname === '/'){
+      dispatch({type:'CLEAR_TAG_FILTER'});
+    };
   }, [location.pathname]);
 
   React.useEffect(() => {
@@ -298,21 +325,22 @@ function App() {
           ...appvalue,
           location,
           navigate,
-          Conversion
+          Conversion,
+          TagFilterHandler
         }}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/comments" element={<Comments />} />
-          <Route path="/preview" element={<Preview />} />
-          <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/vacancies" element={<Vacancies />} />
-          <Route path="/messenger" element={<Messenger />} />
-          <Route path="/forum" element={<Forum />} />
-          <Route path="/profile" element={<Profile userId={userId} />} />
-          <Route path="/user_profile/:nickname" element={<UserProfile />} />
-          <Route index path="/input" element={<Input />} />
-          <Route path="*" element={<NotFound />} />
+            <Route index path="/" element={<Home />} />
+            <Route path="/comments" element={<Comments />} />
+            <Route path="/preview" element={<Preview />} />
+            <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/vacancies" element={<Vacancies />} />
+            <Route path="/messenger" element={<Messenger />} />
+            <Route path="/forum" element={<Forum />} />
+            <Route path="/profile" element={<Profile userId={userId} />} />
+            <Route path="/user_profile/:nickname" element={<UserProfile />} />
+            <Route path="/input" element={<Input />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>
     </div>

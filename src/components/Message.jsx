@@ -6,7 +6,7 @@ import { defaultUser, mainContext } from '../App';
 const Message = (props) => {
   const { companionId, messages } = props;
 
-  const {goToPreview} = React.useContext(mainContext);
+  const {goToPreview, Conversion} = React.useContext(mainContext);
 
   /*Объект последнего сообщения*/
   const Message = messages[messages.length - 1];
@@ -27,7 +27,7 @@ const Message = (props) => {
           className={
             Message.who === 'iam' ? 'chat_user_message your_message' : 'chat_user_message'
           }>
-          30simv
+          {Conversion('chatText', Message.message)}
         </p>
       </div>
 

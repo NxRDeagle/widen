@@ -44,7 +44,6 @@ const Reply = ({ replyId, authorReplyId }) => {
                 <p
                     id={`reply_author_id_${reply.authorCommentId}`}
                     onClick={(e) => {
-                        console.log(e.target.closest('p'));
                         if (e.target.tagName === 'A') {
                             profile = users_data.find((obj) => obj.nickname === e.target.textContent);
                             goToPreview(profile);

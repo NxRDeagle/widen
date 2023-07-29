@@ -173,6 +173,10 @@
     margin: 0 4px 4px 0;
 }
 
+.sign_wrap{
+   color: var(--color_active); 
+}
+
 @keyframes postIconAnimation {
     25% {
         transform: translateY(-4px);

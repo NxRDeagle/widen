@@ -4,26 +4,18 @@ import ContentLoader from 'react-content-loader';
 import Footer from '../components/Footer';
 import Star from '../components/Star';
 import Newsware from '../components/Newsware';
-import Filters from '../components/Filters';
+import Filters from  '../components/Filters';
 
 import { mainContext } from '../App';
 
 import '../css/Search.css';
 
 const Search = () => {
-  const {
-    activeGlobalSearch,
-    setActiveGlobalSearch,
-    globalPosts,
-    globalCases,
-    globalRisingStars,
-    globalSharks,
-    globalEvents,
-  } = React.useContext(mainContext);
-
-  const [isFiltersOpen, setIsFiltersOpen] = React.useState(false);
+  const { activeGlobalSearch, setActiveGlobalSearch, globalPosts, globalCases, globalRisingStars, globalSharks, globalEvents } = React.useContext(mainContext);
 
   const [isLoaded, setIsLoaded] = React.useState(false); //comp
+
+  const [isFiltersOpen, setIsFiltersOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoaded(true);
@@ -44,55 +36,35 @@ const Search = () => {
       </div>
       <div className="search_filter">
         <button
-          className={
-            activeGlobalSearch === 'globalCase'
-              ? 'search_filter_btn active_btn'
-              : 'search_filter_btn'
-          }
+          className={activeGlobalSearch === 'globalCase' ? 'search_filter_btn active_btn' : 'search_filter_btn'}
           onClick={() => {
             setActiveGlobalSearch('globalCase');
           }}>
           <p className="search_btn_sign">Кейсы</p>
         </button>
         <button
-          className={
-            activeGlobalSearch === 'globalPost'
-              ? 'search_filter_btn active_btn'
-              : 'search_filter_btn'
-          }
+          className={activeGlobalSearch === 'globalPost' ? 'search_filter_btn active_btn' : 'search_filter_btn'}
           onClick={() => {
             setActiveGlobalSearch('globalPost');
           }}>
           <p className="search_btn_sign">Посты</p>
         </button>
         <button
-          className={
-            activeGlobalSearch === 'globalRisingStar'
-              ? 'search_filter_btn active_btn'
-              : 'search_filter_btn'
-          }
+          className={activeGlobalSearch === 'globalRisingStar' ? 'search_filter_btn active_btn' : 'search_filter_btn'}
           onClick={() => {
             setActiveGlobalSearch('globalRisingStar');
           }}>
           <p className="search_btn_sign">Восходящие звезды</p>
         </button>
         <button
-          className={
-            activeGlobalSearch === 'globalShark'
-              ? 'search_filter_btn active_btn'
-              : 'search_filter_btn'
-          }
+          className={activeGlobalSearch === 'globalShark' ? 'search_filter_btn active_btn' : 'search_filter_btn'}
           onClick={() => {
             setActiveGlobalSearch('globalShark');
           }}>
           <p className="search_btn_sign">Акулы индустрии</p>
         </button>
         <button
-          className={
-            activeGlobalSearch === 'globalEvent'
-              ? 'search_filter_btn active_btn'
-              : 'search_filter_btn'
-          }
+          className={activeGlobalSearch === 'globalEvent' ? 'search_filter_btn active_btn' : 'search_filter_btn'}
           onClick={() => {
             setActiveGlobalSearch('globalEvent');
           }}>
@@ -142,7 +114,12 @@ const Search = () => {
       {(activeGlobalSearch === 'globalRisingStar' || activeGlobalSearch === 'globalShark') && (
         <div className="global_search_container">
           {globalRisingStars.map((profile) => {
-            return <Star {...profile} key={profile.userId} />;
+            return (
+              <Star
+                {...profile}
+                key={profile.userId}
+              />
+            );
           })}
         </div>
       )}
@@ -154,17 +131,18 @@ const Search = () => {
           <Filters isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} />
 
           {
-            /* {userEvents.map((user, idx) => {
-            return <EventCard {...user} key={idx} />;
-          })} */
-
             isLoaded && // ЭТО ПОСТЫ ВМЕСТО МЕРОПРИЯТИЙ, УБРАТЬ ИХ ПОТОМ
-              globalEvents.map((item) => {
-                return <Newsware {...item} key={item.newswareId} />;
-              })
+            globalEvents.map((item) => {
+              return <Newsware {...item} key={item.newswareId} />;
+            })
           }
         </div>
       )}
+      {
+        /* {userEvents.map((user, idx) => {
+        return <EventCard {...user} key={idx} />;
+      })} */
+      }
       <Footer />
     </>
   );

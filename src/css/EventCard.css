@@ -1,0 +1,34 @@
+.event_sign {
+    display: flex;
+    flex-direction: column;
+    margin: 13px 0;
+    max-height: fit-content;
+    position: relative;
+}
+
+.event_text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 16px;
+    max-width: 80%;
+}
+
+.event_one_item {
+    max-width: 90%;
+    width: fit-content;
+    max-height: 600px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.event_tag_sign {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--color_active);
+    margin: 5px 5px 0 0;
+    text-decoration: underline;
+}

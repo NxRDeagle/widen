@@ -68,13 +68,13 @@ const Comment = ({ authorCommentId, commentId }) => {
                 <p className='likes_count'>{likesCount}</p>
               </div>
             </div>
-            <div onClick={() => setWrap(!wrap)} className={comment.replies.length > 0 ? 'unwrap_box' : 'unwrap_box none_active'}>
+            <div onClick={() => setWrap(!wrap)} className={comment.replies.length? 'unwrap_box' : 'unwrap_box none_active'}>
               <p className='unwrap_replys'>{wrap ? 'Скрыть ответы' : 'Показать ответы'}</p>
               <p className='replys_count'>({replysCount})</p>
               <i className={wrap ? 'unwrap_icon icon-down-open' : 'unwrap_icon icon-up-open'}></i>
             </div>
             {
-              comment.replies.length > 0 ?
+              comment.replies.length?
                 <div id={`replys_${comment.commentId}`} className={wrap ? 'replys_box unwrap' : 'replys_box'}>
                   {
                     comment.replies.map((replyId) => {

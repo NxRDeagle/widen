@@ -7,7 +7,7 @@ import { mainContext} from '../App';
 import { myProfile } from '../App';
 
 const Footer = (props) => {
-  const { page, setMessageText, messageText, location, resetLoc} = React.useContext(mainContext);
+  const { page, setMessageText, messageText, location} = React.useContext(mainContext);
 
   const { message = false, preview = false } = props;
 
@@ -94,11 +94,7 @@ const Footer = (props) => {
           </li>
         </ul>
       ) : (
-        <ul
-          className="nav_icon_items"
-          onClick={() => {
-            resetLoc();
-          }}>
+        <ul className="nav_icon_items">
           <Link to="/">
             <li
               id="home"

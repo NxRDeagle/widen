@@ -65,19 +65,21 @@ const UserProfile = () => {
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">simv180</p>
+            <p className="profile_idea_sign">{profile.idea}</p>
           </div>
-          {isLoaded && document.querySelector('.profile_idea_sign').textContent.length > 180 && (
-            <p
-              className="btn_unwrap"
-              onClick={(e) => {
-                document.querySelector('.profile_idea_box').classList.toggle('full_idea');
-                e.target.textContent =
-                  e.target.textContent === 'Развернуть' ? 'Свернуть' : 'Развернуть';
-              }}>
-              Развернуть
-            </p>
-          )}
+          {
+            Conversion('profileIdea', profile.idea) && (
+              <p
+                className="btn_unwrap"
+                onClick={(e) => {
+                  document.querySelector('.profile_idea_box').classList.toggle('full_idea');
+                  e.target.textContent =
+                    e.target.textContent === 'Развернуть' ? 'Свернуть' : 'Развернуть';
+                }}>
+                Развернуть
+              </p>
+            )
+          }
 
           <div className="btn_profile_box">
             <button className="btn_profile">Сообщение</button>
@@ -208,7 +210,7 @@ const UserProfile = () => {
 
           <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}>
             <div className="mainBackground">
-              {userProfileNewswareItems.length === 0 ? (
+              {!userProfileNewswareItems.length? (
                 <p className="no_posts">У пользователя ещё нет постов...</p>
               ) : isLoaded ? (
                 userProfileNewswareItems.map((item) => {

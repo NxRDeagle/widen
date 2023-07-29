@@ -20,7 +20,7 @@ const Input = () => {
     inputCount: 3,
   }); //Comp
 
-  const { goHome } = React.useContext(mainContext);
+  const {goHome} = React.useContext(mainContext);
 
   const handleChange = (e) => {
     setInputStates({

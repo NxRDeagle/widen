@@ -4,21 +4,21 @@ import ContentLoader from 'react-content-loader';
 import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Newsware from '../components/Newsware';
-import { mainContext, userId, myProfile} from '../App';
+import { mainContext, userId, myProfile } from '../App';
 
 import newsware_data from '../data/newsware_data.json';
 
 import '../css/Profile.css';
 
 const Profile = () => {
-  const { Conversion, setUserProfileNewsware, userProfileNewswareItems} = React.useContext(mainContext);
+  const { Conversion, setUserProfileNewsware, userProfileNewswareItems } = React.useContext(mainContext);
 
   const [activeIcon, setActiveIcon] = React.useState(0); //App
 
   const [isLoaded, setIsLoaded] = React.useState(false); //Comp
-  
+
   React.useEffect(() => {
-    setUserProfileNewsware(newsware_data.filter((item) => {return item.authorId === userId}));
+    setUserProfileNewsware(newsware_data.filter((item) => { return item.authorId === userId }));
     setIsLoaded(true);
   }, []);
 
@@ -28,10 +28,10 @@ const Profile = () => {
   return (
     <>
       <div
-        name = "upd"
+        name="upd"
         className="profile_container"
         style={{ backgroundImage: `url(${myProfile.background})` }}>
-        <Update/>
+        <Update />
         <div className="burger_box">
           <span className="burger_line"></span>
           <span className="burger_line"></span>
@@ -66,19 +66,21 @@ const Profile = () => {
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">simv180</p>
+            <p className="profile_idea_sign">{myProfile.idea}</p>
           </div>
-          {isLoaded && document.querySelector('.profile_idea_sign').textContent.length > 180 && (
-            <p
-              className="btn_unwrap"
-              onClick={(e) => {
-                document.querySelector('.profile_idea_box').classList.toggle('full_idea');
-                e.target.textContent =
-                  e.target.textContent === 'Развернуть' ? 'Свернуть' : 'Развернуть';
-              }}>
-              Развернуть
-            </p>
-          )}
+          {
+            Conversion('profileIdea', myProfile.idea) && (
+              <p
+                className="btn_unwrap"
+                onClick={(e) => {
+                  document.querySelector('.profile_idea_box').classList.toggle('full_idea');
+                  e.target.textContent =
+                    e.target.textContent === 'Развернуть' ? 'Свернуть' : 'Развернуть';
+                }}>
+                Развернуть
+              </p>
+            )
+          }
           <div className="btn_profile_box">
             <button className="btn_profile">Редактировать</button>
             <button className="btn_profile">Опубликовать</button>
@@ -199,7 +201,7 @@ const Profile = () => {
           </ul>
           <div className={activeIcon === 0 ? 'postItems' : 'postItems none_active'}>
             <div className="mainBackground">
-              {userProfileNewswareItems.length === 0 ? (
+              {!userProfileNewswareItems.length? (
                 <p className="no_posts">У вас ещё нет постов...</p>
               ) : isLoaded ? (
                 userProfileNewswareItems.map((item) => {

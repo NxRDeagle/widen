@@ -16,11 +16,6 @@ export function reducer(state, {type,payload}){
                 ...state,
                 messageText: payload
             };
-        case "RESET_LOC":
-            return{
-                ...state,
-                loc: []
-            };
         case "CHANGE_PAGE":
             return{
                 ...state,
@@ -72,6 +67,11 @@ export function reducer(state, {type,payload}){
             return{
                 ...state,
                 activeGlobalSearch: payload
+            };
+        case "CLEAR_TAG_FILTER":
+            return{
+                ...state,
+                tagFilter: []
             };
         default:
             return state;
