@@ -418,5 +418,26 @@
         "interests": [],
         "lastTime": "",
         "chatNames": ["Коллеги","Заказчики"]
+    },
+    {
+        "userId" : 21,
+        "avatar": "https://sun9-80.userapi.com/impg/ob3urd7Yt0W6lW3i4_182rk9W3huwaPwDCshVw/igRvZj4grEE.jpg?size=603x477&quality=95&sign=e9acdc615790b88258383255c2fcc0fd&type=album",
+        "background": "https://podarokmos.ru/wp-content/uploads/6/0/2/602dc03278e85c447039c96e0eebed00.gif",
+        "nickname": "Best_Kachkazavrs",
+        "firstName": "Алексей",
+        "lastName": "Яценко",
+        "subscribers": [5,3,20],
+        "subscriptions": [2,3,4,5,6,7,8,9,10,11,12],
+        "viewUsers": [1,2,3,4,5,6,7,8,9,10,11,12,20],
+        "role": "Frontend",
+        "softSkills": [],
+        "status": "online",
+        "idea": "Крутые пацаны раскачивают эту сеть ежжи. А тепрь тра тра тра тра тра тра тра тра тра тра тра. В кого попали тот лох. Пригнулись! Тра тра тра тра тра тра тра. Это френдли фаер попал по своим. Раскум пошёл",
+        "who": "professional",
+        "achievements": [],
+        "notification": true,
+        "interests": [],
+        "lastTime": "",
+        "chatNames": ["Коллеги","Заказчики"]
     }
 ]

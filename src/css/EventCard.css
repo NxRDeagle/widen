@@ -23,12 +23,19 @@
     margin-bottom: 10px;
 }
 
-.event_tag_sign {
+.event_tags_box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.event_category {
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    color: var(--color_active);
+    color: black;
     margin: 5px 5px 0 0;
     text-decoration: underline;
 }

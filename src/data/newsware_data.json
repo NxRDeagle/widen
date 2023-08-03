@@ -16,10 +16,10 @@
         "time" : "",
         "tags": ["Крутыши","Крутое рисование"],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
         }
     },
     {
@@ -39,10 +39,10 @@
         "time" : "",
         "tags": ["Крутой","Вкусный вкус","Кечунез"],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
         }
     },
     {
@@ -62,10 +62,10 @@
         "time" : "",
         "tags": [],
         "eventTags":{
-            "direction" : ["Графический дизайн","Пупа"],
-            "forma": ["Платная"],
-            "format": ["Онлайн"],
-            "city": ["Тамбов"]
+            "tags" : ["Графический дизайн","Пупа"],
+            "forms": ["Платная"],
+            "formats": ["Онлайн"],
+            "cities": ["Тамбов","Пермь"]
         }
     },
     {
@@ -85,10 +85,10 @@
         "time" : "",
         "tags": ["Гивочки","Картиночки","Сочные сливочки"],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
         }
     },
     {
@@ -108,10 +108,10 @@
         "time" : "",
         "tags": [],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
         }
     },
     {
@@ -131,10 +131,10 @@
         "time" : "",
         "tags": ["В мире животных","Лютый движ"],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
         }
     },
     {
@@ -154,10 +154,10 @@
         "time" : "",
         "tags": ["В мире животных","Лютый движ"],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
         }
     },
     {
@@ -177,10 +177,56 @@
         "time" : "",
         "tags": ["Кс Го","Игры"],
         "eventTags":{
-            "direction" : [],
-            "forma": [],
-            "format": [],
-            "city": []
+            "tags" : [],
+            "forms": [],
+            "formats": [],
+            "cities": []
+        }
+    },
+    {
+        "newswareId": 9,
+        "type": "event",
+        "authorId": 12,
+        "stats":{
+            "likes": [6,8],
+            "comments": [6],
+            "favorites": [5,6],
+            "reposts": [],
+            "views": [5,6,8,15]
+        },
+        "imgs": ["https://kartinkin.net/uploads/posts/2022-03/1647077874_16-kartinkin-net-p-tusa-kartinki-16.jpg","https://talantikam.ru/800/600/https/www.vetenskaphalsa.se/wp-content/uploads/2015/03/COLOURBOX12780968.jpg"],
+        "signImgs": ["Намечается туса в Zoom, Она если чо онлайн, так что заплатите и проходите,если вам это интересно! Стоимость будет около 20к рупиев. Понимаю это дорого, но знайте всё с кайфом. Если что я не инфоциган","Мы будем обсуждать, как правильно наваливать боком и током!"],
+        "geoposition" : "Москва",
+        "time" : "",
+        "tags": [],
+        "eventTags":{
+            "tags" : ["Графический дизайн","Маркетинг"],
+            "forms": ["Платная"],
+            "formats": ["Онлайн"],
+            "cities": ["Тамбов","Пермь"]
+        }
+    },
+    {
+        "newswareId": 10,
+        "type": "event",
+        "authorId": 21,
+        "stats":{
+            "likes": [6,8],
+            "comments": [7,8],
+            "favorites": [5,6],
+            "reposts": [],
+            "views": [5,6,8,15,4,21]
+        },
+        "imgs": ["https://gymnasia2.ru/wp-content/uploads/a/4/4/a44f23b4a2b1906467f3048a40918c1d.jpeg","https://dosuga.net/uploads/posts/2023-04/2.jpg","https://otkritkis.com/wp-content/uploads/2022/07/hr2rm.gif"],
+        "signImgs": ["Приглашаем всех в баню, платим все волонтёрим","С собой хорошее настроение и пиво!","Не забываем про волонтёрскую дань"],
+        "geoposition" : "Пермь",
+        "time" : "",
+        "tags": [],
+        "eventTags":{
+            "tags" : ["Графический дизайн","Моушн-дизайн"],
+            "forms": ["Волонтерство"],
+            "formats": ["Офлайн"],
+            "cities": ["Пермь"]
         }
     }
 

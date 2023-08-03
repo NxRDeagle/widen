@@ -5,23 +5,25 @@ import '../css/FullMode.css';
 import 'swiper/css';
 import { mainContext } from '../App';
 
-const FullMode = ({ imgs }) => {
+const FullMode = ({ imgs, idx }) => {
+  const { goBack } = React.useContext(mainContext);
 
-  const [currentSlide, setCurrentSlide] = React.useState(1);//comp
-  const {goBack} = React.useContext(mainContext);
+  let startIndex = idx;
+  const [currentSlide, setCurrentSlide] = React.useState(idx + 1); //comp
 
   return (
     <div className="full_mode">
       <i
         className="icon-cancel close_full"
         onClick={() => {
-          goBack()
+          goBack();
         }}></i>
 
       <Swiper
         spaceBetween={40}
         grabCursor={true}
         centeredSlides={true}
+        initialSlide={idx}
         loop={true}
         slidesPerView={1}
         onSlideChange={(swiper) => {

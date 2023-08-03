@@ -52,5 +52,23 @@
         "replies": [],
         "time": "",
         "isReply": false
+    },
+    {
+        "commentId": 7,
+        "authorCommentId": 4,
+        "text": "Какие бани вы чо?",
+        "likes": [],
+        "replies": [8],
+        "time": "",
+        "isReply": false
+    },
+    {
+        "commentId": 8,
+        "authorCommentId": 21,
+        "text": "Личико прикрыл и бан!",
+        "likes": [],
+        "replies": [],
+        "time": "",
+        "isReply": true
     }
 ]
