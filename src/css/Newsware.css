@@ -112,6 +112,7 @@
     width: 90%;
     padding-bottom: 8px;
     color: black;
+    height: fit-content;
 }
 
 .newsware_icon_box {
@@ -177,33 +178,54 @@
     color: var(--color_active);
 }
 
-.interested {
+.useful{
     z-index: 10;
     position: absolute;
-    width: 130px;
-    height: fit-content;
-    animation: interestAnimation 0.2s ease-in;
-    left: 10px;
-    top: 5px
+    left: 11px;
+    bottom: 0;
+    top: 10px;
 }
 
-@keyframes interestAnimation {
+.not_useful {
+    animation: activeUsefulBtnAnimation 0.2s ease-in;
+    animation-fill-mode: forwards
+}
+
+.is_useful{
+    animation: clickUsefulBtnAnimation 0.2s ease-in;
+    animation-fill-mode: forwards
+}
+
+@keyframes activeUsefulBtnAnimation {
     0% {
         opacity: 0;
-        height: 0;
         width: 0;
     }
 
     50% {
         opacity: 0.5;
-        height: 35px;
         width: 65px;
     }
 
     100% {
         opacity: 1;
-        height: fit-content;
         width: 130px;
+    }
+}
+
+@keyframes clickUsefulBtnAnimation {
+    0% {
+        opacity: 1;
+        width: 130px;
+    }
+
+    50% {
+        opacity: 0.5;
+        width: 65px;
+    }
+
+    100% {
+        opacity: 0;
     }
 }
 

@@ -13,11 +13,7 @@ import '../css/Newsware.css';
 export const NewswareContext = React.createContext();
 
 const Newsware = (props) => {
-
-  const {
-    goToComments,
-    Conversion
-  } = React.useContext(mainContext);
+  const { goToComments, Conversion } = React.useContext(mainContext);
 
   const {
     full = false,
@@ -33,18 +29,20 @@ const Newsware = (props) => {
       favorites: [],
       reposts: [],
       views: [],
+      useful: [],
     },
     geoposition = 'Тридевятое царство',
     time = new Date(),
     tags = [],
-    eventTags = {}
+    eventTags = {},
   } = props;
 
   const [newswareStates, setNewswareStates] = React.useState({
-    activeLike: stats.likes.includes(userId) ? true : false,
-    activeFavorite: stats.favorites.includes(userId) ? true : false,
+    activeLike: stats.likes.includes(userId),
+    activeFavorite: stats.favorites.includes(userId),
     isSub: myProfile.subscriptions.includes(authorId),
-    isInterested: false //Обдумать
+    isUseful: stats.useful.includes(userId),
+    clickUseful: stats.useful.includes(userId),
   });
 
   let statsCount = {};
@@ -64,8 +62,8 @@ const Newsware = (props) => {
       case 'icon-like':
         stats.likes.includes(userId)
           ? (stats.likes = stats.likes.filter((obj) => {
-            return obj !== userId;
-          }))
+              return obj !== userId;
+            }))
           : stats.likes.push(userId);
         setNewswareStates({
           ...newswareStates,
@@ -80,19 +78,30 @@ const Newsware = (props) => {
       case 'icon-flag':
         stats.favorites.includes(userId)
           ? (stats.favorites = stats.favorites.filter((obj) => {
-            return obj !== userId;
-          }))
+              return obj !== userId;
+            }))
           : stats.favorites.push(userId);
         setNewswareStates({
           ...newswareStates,
           activeFavorite: !newswareStates.activeFavorite,
         });
         break;
-      case 'icon-interest':
+      case 'icon-useful':
+        stats.useful.includes(userId)
+          ? (stats.useful = stats.useful.filter((obj) => {
+              return obj !== userId;
+            }))
+          : stats.useful.push(userId);
         setNewswareStates({
           ...newswareStates,
-          isInterested: !newswareStates.isInterested,
+          isUseful: !newswareStates.isUseful,
         });
+        setTimeout(() => {
+          setNewswareStates({
+            ...newswareStates,
+            clickUseful: true,
+          });
+        }, 500);
         break;
       default:
         return;
@@ -102,13 +111,14 @@ const Newsware = (props) => {
   const onClickSub = () => {
     setNewswareStates({
       ...newswareStates,
-      isSub: !newswareStates.isSub
+      isSub: !newswareStates.isSub,
     });
-    myProfile.subscriptions.includes(authorId) ?
-      myProfile.subscriptions = myProfile.subscriptions.filter((obj) => { return obj !== authorId; })
-      :
-      myProfile.subscriptions.push(authorId);
-  }
+    myProfile.subscriptions.includes(authorId)
+      ? (myProfile.subscriptions = myProfile.subscriptions.filter((obj) => {
+          return obj !== authorId;
+        }))
+      : myProfile.subscriptions.push(authorId);
+  };
 
   switch (props.type) {
     case 'post':
@@ -128,12 +138,12 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            onClickSub
-          }}
-        >
+            setNewswareStates,
+            onClickSub,
+          }}>
           <PostCard />
         </NewswareContext.Provider>
-      )
+      );
     case 'case':
       return (
         <NewswareContext.Provider
@@ -150,12 +160,12 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            onClickSub
-          }}
-        >
+            setNewswareStates,
+            onClickSub,
+          }}>
           <CaseCard />
         </NewswareContext.Provider>
-      )
+      );
     case 'event':
       return (
         <NewswareContext.Provider
@@ -174,12 +184,12 @@ const Newsware = (props) => {
             tags,
             eventTags,
             newswareStates,
-            onClickSub
-          }}
-        >
+            setNewswareStates,
+            onClickSub,
+          }}>
           <EventCard />
         </NewswareContext.Provider>
-      )
+      );
     default:
       return null;
   }

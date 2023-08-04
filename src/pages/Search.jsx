@@ -38,7 +38,7 @@ const Search = () => {
         globalFilters.tags.length?
           (
             <>
-              <div className='global_tags_container'>
+              <div style={{filter:"drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25))"}} className='global_tags_container'>
                 {
                   globalFilters.tags.map((item, index) => {
                     return (

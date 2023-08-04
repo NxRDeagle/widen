@@ -17,6 +17,7 @@ const Message = (props) => {
 
   return (
     <div className="chat_box">
+      
       <div onClick={()=>goToPreview(user)} className="chat_user_avatar_box">
         <img className="avatar_picture" src={user.avatar} alt={user.nickname} />
       </div>

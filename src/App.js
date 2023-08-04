@@ -61,9 +61,7 @@ export const defaultPost = {
     reposts: [],
     views: [],
   },
-  imgs: [
-    'https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg',
-  ],
+  imgs: ['https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg'],
   signImgs: ['Пост не найден :('],
   geoposition: '',
   time: '',
@@ -94,13 +92,13 @@ export const defaultComment = {
   isReply: false,
 };
 
-export const myProfile = users_data.find((obj) => obj.userId === userId)
-  ? users_data.find((obj) => obj.userId === userId)
-  : defaultUser;
+export const myProfile = users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser;
 
 function App() {
+
   const location = useLocation();
   const navigate = useNavigate();
+
 
   function Conversion(type, stats) {
     let element = null;
@@ -110,16 +108,16 @@ function App() {
           stats >= 1000000
             ? Math.floor(stats / 1000000) + 'm'
             : stats >= 1000
-            ? Math.floor(stats / 1000) + 'k'
-            : stats;
+              ? Math.floor(stats / 1000) + 'k'
+              : stats;
         break;
       case 'comments':
         element =
           stats % 10 === 1
             ? 'комментарий'
             : stats % 10 === 0 || stats % 10 >= 5
-            ? 'комментариев'
-            : 'комментария';
+              ? 'комментариев'
+              : 'комментария';
         break;
       case 'previewIdea':
         element = stats.length > 200 ? stats.substr(0, 200) + '...' : stats;
@@ -128,12 +126,12 @@ function App() {
         element = stats.length > 30 ? stats.substr(0, 27) + '...' : stats;
         break;
       case 'profileIdea':
-        element = stats.length > 180 ? true : false;
+        element = stats.length > 180;
         break;
       case 'previewSign':
         element = {
-          large: stats.length > 180 ? true : false,
-          sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats,
+          large: stats.length > 180,
+          sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats
         };
         break;
       default:
@@ -158,19 +156,21 @@ function App() {
     for (const [key, value] of Object.entries(globalFilters)) {
       if (!value.length) {
         continue;
-      } else {
-        for (let index = 0; index < eventTags[key].length; index++) {
-          if (value.includes(eventTags[key][index])) {
+      }
+      else {
+        for(let index = 0; index < eventTags[key].length; index++){
+          if(value.includes(eventTags[key][index])){
             break;
           }
-          if (index === eventTags[key].length - 1) {
+          if(index === eventTags[key].length - 1){
             return false;
           }
         }
       }
     }
     return true;
-  }
+  };
+
 
   /*Стейты Приложения*/
 
@@ -180,51 +180,26 @@ function App() {
     message: false,
     page: location.pathname === '/' ? 'home' : location.pathname.substring(1),
     fullImages: [''],
-    commentNewswareId: localStorage.getItem('commentNewswareId')
-      ? JSON.parse(localStorage.getItem('commentNewswareId'))
-      : 0,
+    fullImgIndex: 0,
+    commentNewswareId: localStorage.getItem('commentNewswareId') ? JSON.parse(localStorage.getItem('commentNewswareId')) : 0,
     profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {},
-    scrollValue: localStorage.getItem('scrollValue')
-      ? JSON.parse(localStorage.getItem('scrollValue'))
-      : 0,
+    scrollValue: localStorage.getItem('scrollValue') ? JSON.parse(localStorage.getItem('scrollValue')) : 0,
     messageText: '',
     userProfileNewswareItems: [],
-    chatFilter: localStorage.getItem('activeChat')
-      ? JSON.parse(localStorage.getItem('activeChat'))
-      : myProfile.chatNames[0],
+    chatFilter: localStorage.getItem('activeChat') ? JSON.parse(localStorage.getItem('activeChat')) : myProfile.chatNames[0],
     activeChats: chat_data.filter((chat) => chat.chatName === myProfile.chatNames[0]),
-    activeGlobalSearch: localStorage.getItem('activeGlobalSearch')
-      ? JSON.parse(localStorage.getItem('activeGlobalSearch'))
-      : 'globalCase',
-    globalPosts: newsware_data.filter((item) => {
-      return (
-        item.type === 'post' &&
-        !myProfile.subscriptions.includes(item.authorId) &&
-        item.authorId !== userId
-      );
-    }),
-    globalCases: newsware_data.filter((item) => {
-      return (
-        item.type === 'case' &&
-        !myProfile.subscriptions.includes(item.authorId) &&
-        item.authorId !== userId
-      );
-    }),
+    activeGlobalSearch: localStorage.getItem('activeGlobalSearch') ? JSON.parse(localStorage.getItem('activeGlobalSearch')) : 'globalCase',
+    globalPosts: newsware_data.filter((item) => { return (item.type === 'post' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId); }),
+    globalCases: newsware_data.filter((item) => { return (item.type === 'case' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId); }),
     globalRisingStars: users_data,
     globalSharks: users_data,
-    globalEvents: newsware_data.filter((item) => {
-      return (
-        item.type === 'event' &&
-        !myProfile.subscriptions.includes(item.authorId) &&
-        item.authorId !== userId
-      );
-    }),
+    globalEvents: newsware_data.filter((item) => { return (item.type === 'event' && !myProfile.subscriptions.includes(item.authorId) && item.authorId !== userId); }),
     globalFilters: {
       tags: [],
       forms: [],
       formats: [],
-      cities: [],
-    },
+      cities: []
+    }
   };
 
   const [appvalue, dispatch] = React.useReducer(reducer, appState);
@@ -246,25 +221,18 @@ function App() {
     navigate('/comments');
   };
 
-  const [idx, setIdx] = React.useState(0);
-  appvalue.goToFullMode = (imgs, currentImg, index) => {
-    setIdx(index);
-    const imgs_clone = Array.from(imgs);
-    // if (imgs_clone.length > 1)
-    //   imgs_clone.sort(function (x, y) {
-    //     return x === currentImg ? -1 : y === currentImg ? 1 : 0;
-    //   });
-    dispatch({ type: 'SET_FULL_IMGS', payload: imgs_clone });
+  appvalue.goToFullMode = (imgs, index) => {
+    dispatch({ type: 'SET_FULL_IMGS', payload: {imgs:imgs, index:index}});
     navigate('/full_image');
   };
 
   appvalue.goToPreview = (profile) => {
     dispatch({ type: 'SET_PROFILE', payload: profile });
     if (
-      myProfile.viewUsers.find((obj) => obj === profile.userId) ||
-      profile.userId === userId ||
-      location.pathname === 'preview' ||
-      myProfile.subscriptions.find((obj) => obj === profile.userId)
+      myProfile.viewUsers.find((obj) => obj === profile.userId)
+      || profile.userId === userId
+      || location.pathname === 'preview'
+      || myProfile.subscriptions.find((obj) => obj === profile.userId)
     ) {
       appvalue.goToProfile(profile);
     } else {
@@ -279,8 +247,8 @@ function App() {
 
   appvalue.goToProfile = (profile) => {
     if (!myProfile.viewUsers.includes(profile.userId)) {
-      myProfile.viewUsers.push(profile.userId);
-    }
+      myProfile.viewUsers.push(profile.userId)
+    };
     profile.userId !== userId
       ? navigate(`/user_profile/${profile.nickname}`)
       : navigate('/profile');
@@ -289,8 +257,8 @@ function App() {
   appvalue.goBack = () => {
     navigate(-1);
     if (location.pathname === 'comments') {
-      dispatch({ type: 'GO_BACK_COMMENTS' });
-    }
+      dispatch({ type: "GO_BACK_COMMENTS" });
+    };
     if (location.pathname === '*') {
       navigate('/input');
     }
@@ -323,41 +291,35 @@ function App() {
       case 'tag':
         if (!appvalue.globalFilters.tags.includes(filterSign)) {
           appvalue.globalFilters.tags.push(filterSign);
-        }
+        };
         break;
       case 'form':
         if (!appvalue.globalFilters.forms.includes(filterSign)) {
           appvalue.globalFilters.forms.push(filterSign);
-        }
+        };
         break;
       case 'format':
         if (!appvalue.globalFilters.formats.includes(filterSign)) {
           appvalue.globalFilters.formats.push(filterSign);
-        }
+        };
         break;
       case 'city':
         if (!appvalue.globalFilters.cities.includes(filterSign)) {
           appvalue.globalFilters.cities.push(filterSign);
-        }
+        };
         break;
       default:
         return;
-    }
-    navigate('/search');
+    };
+    navigate("/search");
   };
 
   appvalue.addGlobalFilter = (category, globalFilter) => {
-    dispatch({
-      type: 'ADD_GLOBAL_FILTER',
-      payload: { category: category, globalFilter: globalFilter },
-    });
+    dispatch({ type: "ADD_GLOBAL_FILTER", payload: { category: category, globalFilter: globalFilter } });
   };
 
   appvalue.dropGlobalFilter = (category, globalFilter) => {
-    dispatch({
-      type: 'DROP_GLOBAL_FILTER',
-      payload: { category: category, globalFilter: globalFilter },
-    });
+    dispatch({ type: "DROP_GLOBAL_FILTER", payload: { category: category, globalFilter: globalFilter } });
   };
 
   appvalue.dropGlobalFilters = () => {
@@ -368,28 +330,23 @@ function App() {
 
   React.useEffect(() => {
     window.scrollTo(0, appvalue.scrollValue);
-    dispatch({
-      type: 'CHANGE_PAGE',
-      payload: location.pathname === '/' ? 'home' : location.pathname.substring(1),
-    });
+    dispatch({ type: 'CHANGE_PAGE', payload: location.pathname === '/' ? 'home' : location.pathname.substring(1) });
     if (location.pathname.includes('user_profile')) {
       const userNickname = location.pathname.split('/')[2];
-      const userProfile = users_data.find(
-        (obj) => obj.nickname.toLowerCase() === userNickname.toLowerCase(),
-      )
-        ? users_data.find((obj) => obj.nickname.toLowerCase() === userNickname.toLowerCase())
+      const userProfile = users_data.find((obj) => obj.nickname.toLowerCase() === userNickname.toLowerCase()) ?
+        users_data.find((obj) => obj.nickname.toLowerCase() === userNickname.toLowerCase())
         : defaultUser;
       dispatch({ type: 'SET_PROFILE', payload: userProfile });
-    }
+    };
     if (location.pathname === '/') {
       dispatch({ type: 'CLEAR_GLOBAL_FILTERS' });
-    }
+    };
   }, [location.pathname]);
 
   React.useEffect(() => {
     const onScroll = (e) => {
       if (e.target.documentElement.scrollTop !== 0)
-        dispatch({ type: 'SET_SCROLL_VALUE', payload: e.target.documentElement.scrollTop });
+        dispatch({ type: "SET_SCROLL_VALUE", payload: e.target.documentElement.scrollTop })
       try {
         localStorage.setItem('scrollValue', JSON.stringify(appvalue.scrollValue));
       } catch (err) {
@@ -413,10 +370,7 @@ function App() {
 
   React.useEffect(() => {
     localStorage.setItem('activeChat', JSON.stringify(appvalue.chatFilter));
-    dispatch({
-      type: 'SET_ACTIVE_CHATS',
-      payload: chat_data.filter((chat) => chat.chatName === appvalue.chatFilter),
-    });
+    dispatch({ type: 'SET_ACTIVE_CHATS', payload: chat_data.filter((chat) => chat.chatName === appvalue.chatFilter) });
   }, [appvalue.chatFilter]);
 
   return (
@@ -428,13 +382,13 @@ function App() {
           navigate,
           Conversion,
           OtherGlobalFilterHandler,
-          EventGlobalFilterHandler,
+          EventGlobalFilterHandler
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/comments" element={<Comments />} />
           <Route path="/preview" element={<Preview />} />
-          <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} idx={idx} />} />
+          <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} index={appvalue.fullImgIndex}/>} />
           <Route path="/search" element={<Search />} />
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/messenger" element={<Messenger />} />

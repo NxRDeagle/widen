@@ -16,7 +16,7 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
     const tags = interest_data.map((item) => { return item.name });
     const cities = rcities.map((item) => { return item.name });
 
-    const [openedCategories, setOpenedCategories] = React.useState([]);
+    const [openedCategories, setOpenedCategories] = React.useState('');
 
     const [inputStates, setInputStates] = React.useState({
         tag: '',
@@ -26,9 +26,9 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
     });
 
     const onClickCategory = (category) => {
-        openedCategories.includes(category) ?
-            setOpenedCategories(openedCategories.filter((obj) => { return obj !== category }))
-            : setOpenedCategories([...openedCategories, category]);
+        openedCategories === category ?
+            setOpenedCategories('')
+            : setOpenedCategories(category);
     };
 
     const handleChange = (e) => {
@@ -66,7 +66,7 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
             <div className="filters_element">
                 <div className="filters_top">
                     <div className="filter_name_container">
-                        {openedCategories.includes(category) ? (
+                        {openedCategories === category ? (
                             <input
                                 onChange={(e) => {handleChange(e)}}
                                 className="filter_input"
@@ -80,7 +80,7 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                             <p className='filter_name' onClick={() => onClickCategory(category)}>{categorySign}</p>
                         }
                     </div>
-                    {openedCategories.includes(category) ?
+                    {openedCategories === category ?
                         <svg
                             onClick={() => onClickCategory(category)}
                             className="triangleBottomColor"
@@ -115,7 +115,7 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                         <p className="count_filters" style={{ right: '10px' }} onClick={() => onClickCategory(category)}>{categoryFilters.length}</p>
                     )}
                 </div>
-                {openedCategories.includes(category) && (
+                {openedCategories === category && (
                     <div
                         className={
                             inputFilter.length > 0 ? 'filter_opened filter_fit' : 'filter_opened'
