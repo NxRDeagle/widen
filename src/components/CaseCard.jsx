@@ -33,6 +33,9 @@ const CaseCard = () => {
     onClickSub,
   } = React.useContext(NewswareContext);
 
+  const [isActionsOpened, setIsActionsOpened] = React.useState(false);
+  const [selectedAction, setSelectedAction] = React.useState(0);
+
   return (
     <>
       {OtherGlobalFilterHandler(tags, globalFilters.tags) ? (
@@ -170,6 +173,61 @@ const CaseCard = () => {
 
           {!full ? (
             <div className={page === 'search' ? 'search_case_box' : 'case_box'}>
+              <svg
+                className="case_actions_icon"
+                onClick={() => {
+                  setIsActionsOpened(!isActionsOpened);
+                }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="5"
+                viewBox="0 0 21 5"
+                fill="none">
+                <circle cx="2.5" cy="2.5" r="2.5" fill="#BABABA" />
+                <circle cx="10.5" cy="2.5" r="2.5" fill="#BABABA" />
+                <circle cx="18.5" cy="2.5" r="2.5" fill="#BABABA" />
+              </svg>
+              {isActionsOpened && (
+                <div className="case_actions_container">
+                  <div
+                    className={
+                      selectedAction === 1 ? 'action_div action_is_selected' : 'action_div'
+                    }
+                    onClick={() => {
+                      setSelectedAction(1);
+                    }}>
+                    Уведомлять о новых записях {profile.nickname}
+                  </div>
+                  <div
+                    className={
+                      selectedAction === 2 ? 'action_div action_is_selected' : 'action_div'
+                    }
+                    onClick={() => {
+                      setSelectedAction(2);
+                    }}>
+                    Мне это не интересно
+                  </div>
+                  <div
+                    className={
+                      selectedAction === 3 ? 'action_div action_is_selected' : 'action_div'
+                    }
+                    onClick={() => {
+                      setSelectedAction(3);
+                    }}>
+                    Скрывать записи {profile.nickname}
+                  </div>
+
+                  <div
+                    className={
+                      selectedAction === 4 ? 'action_div action_is_selected' : 'action_div'
+                    }
+                    onClick={() => {
+                      setSelectedAction(4);
+                    }}>
+                    Пожаловаться
+                  </div>
+                </div>
+              )}
               <img
                 onClick={() => goToComments(newswareId)}
                 className="case_picture"
