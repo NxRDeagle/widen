@@ -176,21 +176,23 @@ const EventCard = () => {
           )}
 
           <div className="post_sign">
-            <svg
-              className="actions_icon"
-              onClick={() => {
-                setIsActionsOpened(!isActionsOpened);
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              width="21"
-              height="5"
-              viewBox="0 0 21 5"
-              fill="none">
-              <circle cx="2.5" cy="2.5" r="2.5" fill="#BABABA" />
-              <circle cx="10.5" cy="2.5" r="2.5" fill="#BABABA" />
-              <circle cx="18.5" cy="2.5" r="2.5" fill="#BABABA" />
-            </svg>
-            {isActionsOpened && (
+            {!full && (
+              <svg
+                className="actions_icon"
+                onClick={() => {
+                  setIsActionsOpened(!isActionsOpened);
+                }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="5"
+                viewBox="0 0 21 5"
+                fill="none">
+                <circle cx="2.5" cy="2.5" r="2.5" fill="#BABABA" />
+                <circle cx="10.5" cy="2.5" r="2.5" fill="#BABABA" />
+                <circle cx="18.5" cy="2.5" r="2.5" fill="#BABABA" />
+              </svg>
+            )}
+            {!full && isActionsOpened && (
               <div className="actions_container">
                 <div
                   className={selectedAction === 1 ? 'action_div action_is_selected' : 'action_div'}
