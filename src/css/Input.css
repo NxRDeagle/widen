@@ -414,6 +414,22 @@
   line-height: normal;
 }
 
+.code_input_div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 85%;
+  height: 50px;
+}
+
+.code_input {
+  display: flex;
+  width: 30px;
+  max-width: 20%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 @keyframes main {
   0% {
     opacity: 0;
