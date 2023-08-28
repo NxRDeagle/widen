@@ -42,7 +42,7 @@ const Newsware = (props) => {
     activeFavorite: stats.favorites.includes(userId),
     isSub: myProfile.subscriptions.includes(authorId),
     isUseful: stats.useful.includes(userId),
-    clickUseful: stats.useful.includes(userId),
+    clickUseful: stats.likes.includes(userId) || stats.useful.includes(userId),
   });
 
   let statsCount = {};

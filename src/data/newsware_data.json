@@ -28,7 +28,7 @@
         "type": "case",
         "authorId": 5,
         "stats":{
-            "likes": [1,6,8],
+            "likes": [6,8],
             "comments": [1,2,3,4,5],
             "favorites": [5,6],
             "reposts": [],

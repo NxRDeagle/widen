@@ -9,7 +9,7 @@ import '../css/Search.css';
 
 const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
 
-    const {dropGlobalFilters, dropGlobalFilter, globalFilters, addGlobalFilter} = React.useContext(mainContext);
+    const { dropGlobalFilters, dropGlobalFilter, globalFilters, addGlobalFilter } = React.useContext(mainContext);
 
     const forms = ['Платная', 'Бесплатная', 'Волонтерство'];
     const formats = ['Онлайн', 'Офлайн'];
@@ -47,7 +47,7 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
         return length;
     };
 
-    const clearEventFilters = () =>{
+    const clearEventFilters = () => {
         setInputStates({
             tag: '',
             form: '',
@@ -57,7 +57,7 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
         dropGlobalFilters();
     };
 
-    const clickCategoryItem = (active, categoryItemSign, category) =>{
+    const clickCategoryItem = (active, categoryItemSign, category) => {
         active ? dropGlobalFilter(category, categoryItemSign) : addGlobalFilter(category, categoryItemSign);
     };
 
@@ -68,9 +68,9 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                     <div className="filter_name_container">
                         {openedCategories === category ? (
                             <input
-                                onChange={(e) => {handleChange(e)}}
+                                onChange={(e) => { handleChange(e) }}
                                 className="filter_input"
-                                maxLength={10}
+                                maxLength={20}
                                 type="text"
                                 name={category}
                                 value={inputFilter}
@@ -80,75 +80,52 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                             <p className='filter_name' onClick={() => onClickCategory(category)}>{categorySign}</p>
                         }
                     </div>
-                    {openedCategories === category ?
-                        <svg
-                            onClick={() => onClickCategory(category)}
-                            className="triangleBottomColor"
-                            width="13"
-                            height="12"
-                            viewBox="0 0 13 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                onClick={() => onClickCategory(category)}
-                                d="M6.5 12L0.00480938 0.75L12.9952 0.75L6.5 12Z"
-                                fill={categoryFilters.length > 0 ? "#7E52EE" : "#BABABA"}
-                            />
-                        </svg>
-                        :
-                        <svg
-                            onClick={() => onClickCategory(category)}
-                            className="triangleLeftColor"
-                            width="12"
-                            height="14"
-                            viewBox="0 0 12 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                onClick={() => onClickCategory(category)}
-                                d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                                fill={categoryFilters.length > 0 ? "#7E52EE" : "#BABABA"}
-                            />
-                        </svg>
-                    }
+
+                    <div className={openedCategories === category ?
+                        categoryFilters.length > 0 ? 'triangle_left triangle_bottom triangle_active'
+                            : 'triangle_left triangle_bottom triangle_none_active'
+                        : categoryFilters.length > 0 ? 'triangle_left triangle_active'
+                            : 'triangle_left triangle_none_active'}
+                        onClick={() => onClickCategory(category)}
+                    >
+                    </div>
+
                     {categoryFilters.length > 0 && (
-                        <p className="count_filters" style={{ right: '10px' }} onClick={() => onClickCategory(category)}>{categoryFilters.length}</p>
+                        <p style={{ right: '50px' }} className="count_filters" onClick={() => onClickCategory(category)}>{categoryFilters.length}</p>
                     )}
                 </div>
-                {openedCategories === category && (
-                    <div
-                        className={
-                            inputFilter.length > 0 ? 'filter_opened filter_fit' : 'filter_opened'
-                        }
-                        id={"filter_" + category}>
-                        <ul className="direction_list" id="dir_list">
-                            {categoryList
-                                .filter((item) =>
-                                    item.toLowerCase().includes(inputFilter.toLowerCase()),
-                                )
-                                .map((el, idx) => {
-                                    return (
-                                        <li onClick={() => {clickCategoryItem(categoryFilters.includes(el), el, category)}} key={idx} className="list_el">
-                                            <p className="list_el_sign">{el}</p>
-                                            <svg
-                                                className={categoryFilters.includes(el) ? "filter_checkbox check_selected" : "filter_checkbox check_unselected"}
-                                                width="16"
-                                                height="16"
-                                                viewBox="0 0 16 16"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
-                                                    fill={categoryFilters.includes(el) ? "#7E52EE" : "none"}
-                                                    stroke={categoryFilters.includes(el) ? "#7E52EE" : "#BABABA"}
-                                                />
-                                            </svg>
-                                        </li>
-                                    );
-                                })}
-                        </ul>
-                    </div>
-                )}
+                <div
+                    className={openedCategories === category ?
+                        inputFilter.length > 0 ? `filter_opened filter_${category} filter_fit`
+                            : `filter_opened filter_${category}`
+                        : 'filter_opened'}>
+                    <ul className="direction_list" id="dir_list">
+                        {categoryList
+                            .filter((item) =>
+                                item.toLowerCase().includes(inputFilter.toLowerCase()),
+                            )
+                            .map((el, idx) => {
+                                return (
+                                    <li onClick={() => { clickCategoryItem(categoryFilters.includes(el), el, category) }} key={idx} className="list_el">
+                                        <p className="list_el_sign">{el}</p>
+                                        <svg
+                                            className={categoryFilters.includes(el) ? "filter_checkbox check_selected" : "filter_checkbox check_unselected"}
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 16 16"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M0.5 15.5V0.5H15.5V15.5H0.5Z"
+                                                fill={categoryFilters.includes(el) ? "#7E52EE" : "none"}
+                                                stroke={categoryFilters.includes(el) ? "#7E52EE" : "#BABABA"}
+                                            />
+                                        </svg>
+                                    </li>
+                                );
+                            })}
+                    </ul>
+                </div>
             </div>
         );
     }
@@ -180,50 +157,34 @@ const Filters = ({ isFiltersOpen, setIsFiltersOpen }) => {
                         />
                     </svg>
                     <p className="filter_sign">Отфильтровать</p>
+
                     {AllCountFilters(globalFilters) >
-                        0 && (
-                            <p className="count_filters" id="count_filters_main"> {AllCountFilters(globalFilters)}</p>
-                        )}
-                    {
-                        isFiltersOpen ? (
-                            <svg
-                                width="13"
-                                height="12"
-                                viewBox="0 0 13 12"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.5 12L0.00480938 0.75L12.9952 0.75L6.5 12Z" fill={AllCountFilters(globalFilters) ? "#7E52EE" : "#BABABA"} />
-                            </svg>
-                        )
-                            :
-                            (
-                                <svg
-                                    width="12"
-                                    height="14"
-                                    viewBox="0 0 12 14"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0.0351563 6.52344L11.2852 0.0282469V13.0186L0.0351563 6.52344Z"
-                                        fill={AllCountFilters(globalFilters) ? "#7E52EE" : "#BABABA"}
-                                    />
-                                </svg>
-                            )
+                        0 && (<p className="count_filters" id="count_filters_main"> {AllCountFilters(globalFilters)}</p>)
                     }
-                </div>
-            </div>
-            {isFiltersOpen && (
-                <div className="filters_list">
-                    {RenderCategory('tag', 'Направление', globalFilters.tags, inputStates.tag, tags)}
-                    {RenderCategory('form', 'Форма участия', globalFilters.forms, inputStates.form, forms)}
-                    {RenderCategory('format', 'Формат', globalFilters.formats, inputStates.format, formats)}
-                    {RenderCategory('city', 'Город', globalFilters.cities, inputStates.city, cities)}
-                    <div className="filters_down">
-                        <button className="btn_reset" onClick={() => {clearEventFilters();}}>Сбросить фильтры</button>
-                        <button className="btn_ready" onClick={() => {setIsFiltersOpen(false);}}>Готово</button>
+                    <div className={isFiltersOpen ?
+                        AllCountFilters(globalFilters) ? 'triangle_left triangle_bottom triangle_active'
+                            : 'triangle_left triangle_bottom triangle_none_active'
+                        : AllCountFilters(globalFilters) ? 'triangle_left triangle_active'
+                            : 'triangle_left triangle_none_active'}
+                    >
                     </div>
                 </div>
-            )}
+            </div>
+
+            <div className={isFiltersOpen ?
+                openedCategories.length > 0 ?
+                    'filters_list filters_list_open filter_fit'
+                    : 'filters_list filters_list_open'
+                : 'filters_list'}>
+                {RenderCategory('tag', 'Направление', globalFilters.tags, inputStates.tag, tags)}
+                {RenderCategory('form', 'Форма участия', globalFilters.forms, inputStates.form, forms)}
+                {RenderCategory('format', 'Формат', globalFilters.formats, inputStates.format, formats)}
+                {RenderCategory('city', 'Город', globalFilters.cities, inputStates.city, cities)}
+                <div className="filters_down">
+                    <button className="btn_reset" onClick={() => { clearEventFilters(); }}>Сбросить фильтры</button>
+                    <button className="btn_ready" onClick={() => { setIsFiltersOpen(false); }}>Готово</button>
+                </div>
+            </div>
         </>
     );
 };

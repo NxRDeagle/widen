@@ -6,7 +6,7 @@
         "nickname": "Smile_Face",
         "firstName": "Аркадий",
         "lastName": "Паровозов",
-        "subscribers": [2],
+        "subscribers": [2,3,4],
         "subscriptions": [2,3,4,5,6,7,8,9,10],
         "viewUsers": [2,3,4,5,6,7,8,9,10,11],
         "role": "Бизнес",
@@ -18,7 +18,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики","Крутые перцы"]
+        "tabsName": ["Коллеги","Заказчики","Крутые перцы"]
     },
     {
         "userId" : 2,
@@ -39,7 +39,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 3,
@@ -49,8 +49,8 @@
         "firstName": "Мария",
         "lastName": "Лебедева",
         "subscribers": [1,4],
-        "subscriptions": [4],
-        "viewUsers": [4],
+        "subscriptions": [1,4],
+        "viewUsers": [1,4],
         "role": "Графический дизайн",
         "softSkills": [],
         "status": "online",
@@ -60,7 +60,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 4,
@@ -70,8 +70,8 @@
         "firstName": "Кирилл",
         "lastName": "Лапин",
         "subscribers": [1,3],
-        "subscriptions": [3],
-        "viewUsers": [3],
+        "subscriptions": [1,3],
+        "viewUsers": [1,3],
         "role": "Спорт",
         "softSkills": [],
         "status": "online",
@@ -81,11 +81,11 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 5,
-        "avatar": "https://media.1istochnik.ru/attachments/istochnik/publications/0/9034/large_1478262950-5572de69a2.jpg",
+        "avatar": "https://media.tenor.com/quK_U-vx4D0AAAAM/%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80-%D0%BA%D1%83%D0%B7%D1%8F.gif",
         "background": "https://i.gifer.com/3ZuA.gif",
         "nickname": "Tornado",
         "firstName": "Эдуард",
@@ -102,7 +102,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 6,
@@ -123,7 +123,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 7,
@@ -144,7 +144,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 8,
@@ -165,7 +165,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 9,
@@ -186,7 +186,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 10,
@@ -207,7 +207,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 11,
@@ -228,7 +228,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 12,
@@ -249,7 +249,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 13,
@@ -270,7 +270,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 14,
@@ -291,7 +291,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Исполнители"]
+        "tabsName": ["Коллеги","Исполнители"]
     },
     {
         "userId" : 15,
@@ -312,7 +312,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 16,
@@ -333,7 +333,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 17,
@@ -354,7 +354,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 18,
@@ -375,7 +375,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 19,
@@ -396,7 +396,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 20,
@@ -417,7 +417,7 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     },
     {
         "userId" : 21,
@@ -438,6 +438,6 @@
         "notification": true,
         "interests": [],
         "lastTime": "",
-        "chatNames": ["Коллеги","Заказчики"]
+        "tabsName": ["Коллеги","Заказчики"]
     }
 ]

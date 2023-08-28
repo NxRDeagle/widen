@@ -8,6 +8,7 @@ import '../css/PostCard.css';
 
 const PostCard = () => {
   const {
+    navigate,
     page,
     goToComments,
     goToFullMode,
@@ -40,6 +41,15 @@ const PostCard = () => {
 
   const [isActionsOpened, setIsActionsOpened] = React.useState(false);
   const [selectedAction, setSelectedAction] = React.useState(0);
+
+  const chooseAction = (act) => {
+    setSelectedAction(act);
+    setTimeout(() => {
+      setIsActionsOpened(false);
+      if (act === 4) navigate('/complaint');
+      setSelectedAction(0);
+    }, 250);
+  };
 
   return (
     <>
@@ -194,31 +204,23 @@ const PostCard = () => {
               <div className="actions_container">
                 <div
                   className={selectedAction === 1 ? 'action_div action_is_selected' : 'action_div'}
-                  onClick={() => {
-                    setSelectedAction(1);
-                  }}>
+                  onClick={() => chooseAction(1)}>
                   Уведомлять о новых записях {profile.nickname}
                 </div>
                 <div
                   className={selectedAction === 2 ? 'action_div action_is_selected' : 'action_div'}
-                  onClick={() => {
-                    setSelectedAction(2);
-                  }}>
+                  onClick={() => chooseAction(2)}>
                   Мне это не интересно
                 </div>
                 <div
                   className={selectedAction === 3 ? 'action_div action_is_selected' : 'action_div'}
-                  onClick={() => {
-                    setSelectedAction(3);
-                  }}>
+                  onClick={() => chooseAction(3)}>
                   Скрывать записи {profile.nickname}
                 </div>
 
                 <div
                   className={selectedAction === 4 ? 'action_div action_is_selected' : 'action_div'}
-                  onClick={() => {
-                    setSelectedAction(4);
-                  }}>
+                  onClick={() => chooseAction(4)}>
                   Пожаловаться
                 </div>
               </div>

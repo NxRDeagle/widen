@@ -1,12 +1,14 @@
 [
     {
         "chatId": 1,
-        "companionId": 4,
-        "chatName" : "Крутые перцы",
+        "companionsId": [4,5,6],
+        "tabsName" : ["Крутые перцы"],
+        "conversationName": "Кукусики",
+        "conversationAvatar": "https://cs6.pikabu.ru/post_img/2014/10/01/10/1412175957_158274204.gif",
         "fullStatus" : "unread",
         "messages": [
             {
-                "who": "iam",
+                "companionId": 1,
                 "message": "Крутой пляшем",
                 "status": "unread",
                 "time": "12:30"
@@ -15,12 +17,14 @@
     },
     {
         "chatId": 2,
-        "companionId": 5,
-        "chatName" : "Крутые перцы",
+        "companionsId": [5],
+        "tabsName" : ["Крутые перцы"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "read",
         "messages": [
             {
-                "who": "user",
+                "companionId": 5,
                 "message": "Пельмеши супер",
                 "status": "read",
                 "time": "11:30"
@@ -29,12 +33,14 @@
     },
     {
         "chatId": 3,
-        "companionId": 6,
-        "chatName" : "Крутые перцы",
+        "companionsId": [6,8],
+        "tabsName" : ["Крутые перцы"],
+        "conversationName": "Прикуска",
+        "conversationAvatar": "https://proprikol.ru/wp-content/uploads/2020/12/kartinki-smeh-49.jpg",
         "fullStatus" : "unread",
         "messages": [
             {
-                "who": "user",
+                "companionId": 6,
                 "message": "100 жмёшь?",
                 "status": "unread",
                 "time": "10:30"
@@ -43,12 +49,14 @@
     },
     {
         "chatId": 4,
-        "companionId": 8,
-        "chatName" : "Крутые перцы",
+        "companionsId": [8],
+        "tabsName" : ["Крутые перцы"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "read",
         "messages": [
             {
-                "who": "iam",
+                "companionId": 1,
                 "message": "Зачёт",
                 "status": "read",
                 "time": "9:30"
@@ -57,12 +65,14 @@
     },
     {
         "chatId": 5,
-        "companionId": 7,
-        "chatName" : "Крутые перцы",
+        "companionsId": [7],
+        "tabsName" : ["Крутые перцы"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "read",
         "messages": [
             {
-                "who": "iam",
+                "companionId": 1,
                 "message": "Скоро буду делать тестовое и ещё",
                 "status": "read",
                 "time": "8:30"
@@ -71,18 +81,20 @@
     },
     {
         "chatId": 6,
-        "companionId": 11,
-        "chatName" : "Коллеги",
+        "companionsId": [11],
+        "tabsName" : ["Коллеги","Крутые перцы"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "unread",
         "messages": [
             {
-                "who": "user",
+                "companionId": 11,
                 "message": "Привет",
                 "status": "unread",
                 "time": "8:30"
             },
             {
-                "who": "user",
+                "companionId": 11,
                 "message": "Есть дело",
                 "status": "unread",
                 "time": "8:32"
@@ -91,18 +103,20 @@
     },
     {
         "chatId": 7,
-        "companionId": 12,
-        "chatName" : "Коллеги",
+        "companionsId": [12],
+        "tabsName" : ["Коллеги"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "read",
         "messages": [
             {
-                "who": "user",
+                "companionId": 12,
                 "message": "Привет",
                 "status": "read",
                 "time": "5:30"
             },
             {
-                "who": "user",
+                "companionId": 12,
                 "message": "Я это я!",
                 "status": "read",
                 "time": "6:32"
@@ -111,12 +125,14 @@
     },
     {
         "chatId": 8,
-        "companionId": 13,
-        "chatName" : "Заказчики",
+        "companionsId": [13],
+        "tabsName" : ["Заказчики"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "read",
         "messages": [
             {
-                "who": "user",
+                "companionId": 13,
                 "message": "Есть работа",
                 "status": "read",
                 "time": "21:13"
@@ -125,16 +141,36 @@
     },
     {
         "chatId": 9,
-        "companionId": 14,
-        "chatName" : "Заказчики",
+        "companionsId": [14],
+        "tabsName" : ["Заказчики"],
+        "conversationName": "",
+        "conversationAvatar": "",
         "fullStatus" : "read",
         "messages": [
             {
-                "who": "iam",
+                "companionId": 1,
                 "message": "Есть работа?",
                 "status": "read",
                 "time": "14:12"
             }
         ]
+    },
+    {
+        "chatId": 10,
+        "companionsId": [20],
+        "tabsName" : ["Заказчики"],
+        "conversationName": "",
+        "conversationAvatar": "",
+        "fullStatus" : "read",
+        "messages": []
+    },
+    {
+        "chatId": 11,
+        "companionsId": [6,8,9],
+        "tabsName" : ["Заказчики"],
+        "conversationName": "Япы",
+        "conversationAvatar": "https://licensingrussia.ru/media/cache/4c/00/4c00baddab18d96b8e60f5a132e1afc9.jpg",
+        "fullStatus" : "read",
+        "messages": []
     }
 ]

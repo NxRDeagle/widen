@@ -235,10 +235,7 @@ const Profile = () => {
           </div>
           <div className={activeIcon === 1 ? 'editItems' : 'editItems none_active'}></div>
           <div className={activeIcon === 2 ? 'scopeItems' : 'scopeItems none_active'}></div>
-          <div
-            className={
-              activeIcon === 3 ? 'achievementItems' : 'achievementItems none_active'
-            }></div>
+          <div className={activeIcon === 3 ? 'achievementItems' : 'achievementItems none_active'}></div>
         </div>
       </div>
       <Footer />

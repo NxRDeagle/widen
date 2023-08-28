@@ -153,6 +153,11 @@ export function reducer(state, { type, payload }) {
                     default:
                         return state;
                 };
+            case 'SET_CONFIRMATION_OPEN':
+                return{
+                    ...state,
+                    confirmationOpen: !state.confirmationOpen
+                }
         default:
             return state;
     }

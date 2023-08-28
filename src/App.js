@@ -21,6 +21,7 @@ import Input from './pages/Input';
 import Comments from './pages/Comments';
 import Preview from './pages/Preview';
 import FullMode from './pages/FullMode';
+import Complaint from './pages/Complaint';
 
 /*Колонка constant*/
 export const mainContext = React.createContext();
@@ -47,7 +48,7 @@ export const defaultUser = {
   notification: 'false',
   interests: [],
   lastTime: '',
-  chatNames: ['Коллеги', 'Заказчики'],
+  tabsName: ['Коллеги', 'Заказчики'],
 };
 
 export const defaultPost = {
@@ -136,6 +137,9 @@ function App() {
           sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats,
         };
         break;
+      case 'chatUnreadCount':
+        element = stats.length > 100 ? '100+' : stats.length;
+        break;
       default:
         return element;
     }
@@ -192,8 +196,8 @@ function App() {
     userProfileNewswareItems: [],
     chatFilter: localStorage.getItem('activeChat')
       ? JSON.parse(localStorage.getItem('activeChat'))
-      : myProfile.chatNames[0],
-    activeChats: chat_data.filter((chat) => chat.chatName === myProfile.chatNames[0]),
+      : myProfile.tabsName[0],
+    activeChats: chat_data.filter((chat) => chat.tabsName.includes(myProfile.tabsName[0])),
     activeGlobalSearch: localStorage.getItem('activeGlobalSearch')
       ? JSON.parse(localStorage.getItem('activeGlobalSearch'))
       : 'globalCase',
@@ -226,6 +230,7 @@ function App() {
       formats: [],
       cities: [],
     },
+    confirmationOpen: false,
   };
 
   const [appvalue, dispatch] = React.useReducer(reducer, appState);
@@ -358,13 +363,14 @@ function App() {
     dispatch({ type: 'CLEAR_GLOBAL_FILTERS' });
   };
 
+  appvalue.setConfirmationOpen = () => {
+    dispatch({ type: 'SET_CONFIRMATION_OPEN' });
+  };
+
   /*Эффекты приложения*/
 
   React.useEffect(() => {
-    location.pathname === '/comments'
-      ? window.scrollTo(0, 0)
-      : window.scrollTo(0, appvalue.scrollValue);
-
+    window.scrollTo(0, appvalue.scrollValue);
     dispatch({
       type: 'CHANGE_PAGE',
       payload: location.pathname === '/' ? 'home' : location.pathname.substring(1),
@@ -412,7 +418,7 @@ function App() {
     localStorage.setItem('activeChat', JSON.stringify(appvalue.chatFilter));
     dispatch({
       type: 'SET_ACTIVE_CHATS',
-      payload: chat_data.filter((chat) => chat.chatName === appvalue.chatFilter),
+      payload: chat_data.filter((chat) => chat.tabsName.includes(appvalue.chatFilter)),
     });
   }, [appvalue.chatFilter]);
 
@@ -442,6 +448,7 @@ function App() {
           <Route path="/profile" element={<Profile userId={userId} />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
+          <Route path="/complaint" element={<Complaint />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

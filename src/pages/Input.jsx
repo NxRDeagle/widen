@@ -17,7 +17,7 @@ const Input = () => {
     loginpassword: '',
     secondpassword: '',
     telem: '',
-    code: '',
+    code: ['', '', '', ''],
     inputCount: 3,
     isPasswordVisible: false,
     isRepeatPasswordVisible: false,
@@ -26,16 +26,37 @@ const Input = () => {
   const { goHome } = React.useContext(mainContext);
 
   const handleChange = (e) => {
-    setInputStates({
-      ...inputStates,
-      [e.target.name]: e.target.value,
-    });
+    function handleCode() {
+      let kod = inputStates.code;
+      kod[e.target.id[4] - 1] = e.target.value;
+      setInputStates({
+        ...inputStates,
+        code: kod,
+      });
+      if (e.target.id === 'code1' && e.target.value.length > 0) {
+        document.getElementById('code2').focus();
+      } else if (e.target.id === 'code2' && e.target.value.length > 0) {
+        document.getElementById('code3').focus();
+      } else if (e.target.id === 'code3' && e.target.value.length > 0) {
+        document.getElementById('code4').focus();
+      }
+    }
+    e.target.name === 'code'
+      ? handleCode()
+      : setInputStates({
+          ...inputStates,
+          [e.target.name]: e.target.value,
+        });
+    e.target.value.length > 0
+      ? e.target.classList.add('filled_field')
+      : e.target.classList.remove('filled_field');
   };
 
-  const onFocusInput = () => {
-    document.querySelectorAll('input').forEach((input) => {
-      input.className = '';
-    });
+  const onFocusInput = (e) => {
+    // document.querySelectorAll('input').forEach((input) => {
+    //   input.className = '';
+    // });
+    e.target.className = '';
     document.querySelectorAll('.error_label').forEach((label) => {
       label.classList.add('none_active');
     });
@@ -132,6 +153,7 @@ const Input = () => {
               name="login"
               value={inputStates.login}
               placeholder="Логин"
+              maxLength="16"
             />
 
             <div className="password_input">
@@ -143,6 +165,7 @@ const Input = () => {
                 name="password"
                 value={inputStates.password}
                 placeholder="Пароль"
+                maxLength="16"
               />
 
               {!inputStates.isPasswordVisible ? (
@@ -239,7 +262,7 @@ const Input = () => {
         <div className="input_container">
           <img className="logo_icon" src={logo_icon} alt="logo_icon" />
 
-          <form className="input_form" action="#" style={{ height: '45vh' }}>
+          <form className="input_form" action="#" style={{ height: '50vh' }}>
             <h1 className="input_form_sign">Регистрация</h1>
             <p className="registration_advice">Укажите, пожалуйста, адрес эл. почты или телефон </p>
             <input
@@ -308,7 +331,7 @@ const Input = () => {
         <div className="input_container">
           <img className="logo_icon" src={logo_icon} alt="logo_icon" />
 
-          <form className="input_form" action="#" style={{ height: '50vh' }}>
+          <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 className="input_form_sign_code">Введите, пожалуйста, код подтверждения </h1>
             <p className="registration_advice" id="reg_code_sign">
               Мы отправили код подтверждения
@@ -318,39 +341,39 @@ const Input = () => {
             <div className="code_input_div">
               <input
                 className="code_input"
-                // onFocus={onFocusInput}
                 onChange={handleChange}
-                type="number"
-                name="code1"
+                type="text"
+                name="code"
                 id="code1"
-                maxLength={1}
+                maxLength="1"
+                value={inputStates.code[0]}
               />
               <input
                 className="code_input"
-                // onFocus={onFocusInput}
                 onChange={handleChange}
-                type="number"
-                name="code2"
+                type="text"
+                name="code"
                 id="code2"
-                maxLength={1}
+                maxLength="1"
+                value={inputStates.code[1]}
               />
               <input
                 className="code_input"
-                //onFocus={onFocusInput}
                 onChange={handleChange}
-                type="number"
-                name="code3"
+                type="text"
+                name="code"
                 id="code3"
-                maxLength={1}
+                maxLength="1"
+                value={inputStates.code[2]}
               />
               <input
                 className="code_input"
-                //onFocus={onFocusInput}
                 onChange={handleChange}
-                type="number"
-                name="code4"
+                type="text"
+                name="code"
                 id="code4"
-                maxLength={1}
+                maxLength="1"
+                value={inputStates.code[3]}
               />
             </div>
             <p className="error_label none_active">Неверный код подтверждения!</p>
@@ -386,8 +409,8 @@ const Input = () => {
                 onFocus={onFocusInput}
                 onChange={handleChange}
                 type={inputStates.isPasswordVisible ? 'text' : 'password'}
-                name="password"
-                value={inputStates.password}
+                name="loginpassword"
+                value={inputStates.loginpassword}
                 placeholder="Вот тут придумайте*"
               />
 
@@ -450,8 +473,8 @@ const Input = () => {
                 onFocus={onFocusInput}
                 onChange={handleChange}
                 type={inputStates.isRepeatPasswordVisible ? 'text' : 'password'}
-                name="password"
-                value={inputStates.password}
+                name="secondpassword"
+                value={inputStates.secondpassword}
                 placeholder="Вот тут повторите*"
               />
 
@@ -523,7 +546,7 @@ const Input = () => {
         <div className="input_container">
           <img className="logo_icon" src={logo_icon} alt="logo_icon" />
 
-          <form className="input_form" action="#" style={{ height: '40vh' }}>
+          <form className="input_form" action="#" style={{ height: '50vh' }}>
             <h1 className="input_form_sign_code">
               Придумайте, пожалуйста,
               <br /> никнейм
@@ -652,7 +675,7 @@ const Input = () => {
           <p className="recovery_header">Восстановление</p>
           <img className="logo_icon" src={logo_icon} alt="logo_icon" />
 
-          <form className="input_form" action="#" style={{ height: '50vh' }}>
+          <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 id="recovery_header" className="input_form_sign">
               Укажите, пожалуйста,
               <br /> адрес эл. почты или
@@ -701,26 +724,57 @@ const Input = () => {
           <p className="recovery_header">Восстановление</p>
           <img className="logo_icon" src={logo_icon} alt="logo_icon" />
 
-          <form className="input_form" action="#" style={{ height: '50vh' }}>
+          <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 className="input_form_sign_code">Введите, пожалуйста, код подтверждения </h1>
             <p className="registration_advice" id="reg_code_sign">
               Мы отправили код подтверждения
               <br />
               на телефон +7 123 456 78 90
             </p>
-            <input
-              onFocus={onFocusInput}
-              onChange={handleChange}
-              type="text"
-              name="code"
-              placeholder="Код подтверждения"
-            />
+            <div className="code_input_div">
+              <input
+                className="code_input"
+                onChange={handleChange}
+                type="text"
+                name="code"
+                id="code1"
+                maxLength="1"
+                value={inputStates.code[0]}
+              />
+              <input
+                className="code_input"
+                onChange={handleChange}
+                type="text"
+                name="code"
+                id="code2"
+                maxLength="1"
+                value={inputStates.code[1]}
+              />
+              <input
+                className="code_input"
+                onChange={handleChange}
+                type="text"
+                name="code"
+                id="code3"
+                maxLength="1"
+                value={inputStates.code[2]}
+              />
+              <input
+                className="code_input"
+                onChange={handleChange}
+                type="text"
+                name="code"
+                id="code4"
+                maxLength="1"
+                value={inputStates.code[3]}
+              />
+            </div>
             <p className="error_label none_active">Неверный код подтверждения!</p>
 
             <button
               className="login_btn"
               onClick={() => {
-                setInputStates({ ...inputStates, activeBox: 11 });
+                setInputStates({ ...inputStates, activeBox: 4 });
               }}>
               Продолжить
             </button>
@@ -767,8 +821,8 @@ const Input = () => {
                 onFocus={onFocusInput}
                 onChange={handleChange}
                 type={inputStates.isPasswordVisible ? 'text' : 'password'}
-                name="password"
-                value={inputStates.password}
+                name="loginpassword"
+                value={inputStates.loginpassword}
                 placeholder="Вот тут придумайте*"
               />
 
@@ -831,8 +885,8 @@ const Input = () => {
                 onFocus={onFocusInput}
                 onChange={handleChange}
                 type={inputStates.isRepeatPasswordVisible ? 'text' : 'password'}
-                name="password"
-                value={inputStates.password}
+                name="secondpassword"
+                value={inputStates.secondpassword}
                 placeholder="Вот тут повторите*"
               />
 

@@ -8,7 +8,7 @@ import Newsware from '../components/Newsware';
 import '../css/Profile.css';
 
 import newsware_data from '../data/newsware_data.json';
-import { mainContext } from '../App';
+import { mainContext, userId } from '../App';
 
 const UserProfile = () => {
 
@@ -19,6 +19,8 @@ const UserProfile = () => {
   const [isLoaded, setIsLoaded] = React.useState(false); //Comp
 
   const [notification, setNotification] = React.useState(false); //Ненужон
+
+  const[isSub, setIsSub] = React.useState(profile.subscribers.includes(userId));
 
   React.useEffect(() => {
     setUserProfileNewsware(newsware_data.filter((item) => {return item.authorId === profile.userId}));
@@ -83,7 +85,7 @@ const UserProfile = () => {
 
           <div className="btn_profile_box">
             <button className="btn_profile">Сообщение</button>
-            <button className="btn_profile">Подписаться</button>
+            <button onClick={() => setIsSub(!isSub)} className="btn_profile">{isSub ? "Отписаться" : "Подписаться"}</button>
             <div onClick={() => setNotification(!notification)} className="profile_user_notific">
               <i
                 className={
@@ -244,10 +246,7 @@ const UserProfile = () => {
           </div>
           <div className={activeIcon === 1 ? 'editItems' : 'editItems none_active'}></div>
           <div className={activeIcon === 2 ? 'scopeItems' : 'scopeItems none_active'}></div>
-          <div
-            className={
-              activeIcon === 3 ? 'achievementItems' : 'achievementItems none_active'
-            }></div>
+          <div className={activeIcon === 3 ? 'achievementItems' : 'achievementItems none_active'}></div>
         </div>
       </div>
       <Footer />
