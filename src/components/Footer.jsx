@@ -12,7 +12,9 @@ const Footer = (props) => {
   const { message = false, preview = false } = props;
 
   return (
-    <footer className={preview ? 'foot_container foot_notview' : 'foot_container'}>
+    <footer
+      className={preview ? 'foot_container foot_notview' : 'foot_container'}
+      style={location.pathname === '/dialog' ? { backgroundColor: 'transparent' } : {}}>
       {page === 'comments' || message ? (
         <ul className="nav_comment_items" style={{ padding: '0 28px 0 28px' }}>
           <li style={{ marginRight: '7px' }}>
@@ -30,7 +32,9 @@ const Footer = (props) => {
                 }}
                 onBlur={() => {
                   messageText === ''
-                    ? (document.querySelector('blockquote').textContent = 'Комментировать...')
+                    ? location.pathname === '/dialog'
+                      ? (document.querySelector('blockquote').textContent = 'Сообщение')
+                      : (document.querySelector('blockquote').textContent = 'Комментировать...')
                     : (document.querySelector('blockquote').innerHTML = `${messageText}`);
                 }}
                 onInput={() => {
@@ -38,7 +42,7 @@ const Footer = (props) => {
                 }}
                 className="user_comment_input"
                 contentEditable="true">
-                Комментировать...
+                {location.pathname === '/dialog' ? 'Сообщение' : 'Комментировать...'}
               </blockquote>
               <svg
                 width="16"

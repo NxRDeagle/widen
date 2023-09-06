@@ -22,6 +22,7 @@ import Comments from './pages/Comments';
 import Preview from './pages/Preview';
 import FullMode from './pages/FullMode';
 import Complaint from './pages/Complaint';
+import Dialog from './pages/dialog';
 
 /*Колонка constant*/
 export const mainContext = React.createContext();
@@ -231,9 +232,25 @@ function App() {
       cities: [],
     },
     confirmationOpen: false,
+    dialogInfo: {
+      nickname: '',
+      conversation_name: '',
+      conversation_avatar: '',
+    },
   };
 
   const [appvalue, dispatch] = React.useReducer(reducer, appState);
+
+  appvalue.setDialogInfo = (nickname, conversation_name, conversation_avatar) => {
+    dispatch({
+      type: 'SET_DIALOG_INFO',
+      payload: {
+        nickname: nickname,
+        conversation_name: conversation_name,
+        conversation_avatar: conversation_avatar,
+      },
+    });
+  };
 
   appvalue.onClickHeaderFilter = (filter) => {
     dispatch({ type: 'CLICK_HEADER_FILTER', payload: filter });
@@ -449,6 +466,7 @@ function App() {
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
           <Route path="/complaint" element={<Complaint />} />
+          <Route path="/dialog" element={<Dialog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </mainContext.Provider>

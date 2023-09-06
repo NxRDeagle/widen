@@ -7,11 +7,11 @@ import TabEditor from '../components/TabEditor';
 import { myProfile, mainContext, userId } from '../App';
 
 import chat_data from '../data/chat_data.json';
+import users_data from '../data/users_data.json';
 
 import '../css/Messenger.css';
 
 const Messenger = () => {
-
   const { chatFilter, activeChats, setChatFilter, Conversion } = React.useContext(mainContext);
 
   const [messengerStates, setMessengerStates] = React.useState({
@@ -26,8 +26,8 @@ const Messenger = () => {
     changeTabPosition: -1,
     clickChatId: -1,
     confirmSign: '',
-    whatConfirm: ''
-  })
+    whatConfirm: '',
+  });
 
   let timeout = null;
 
@@ -36,15 +36,17 @@ const Messenger = () => {
       setMessengerStates({
         ...messengerStates,
         openEditorBtn: true,
-        tabPosition: messengerStates.tabsName.findIndex(item => item === e.target.getAttribute('name'))
+        tabPosition: messengerStates.tabsName.findIndex(
+          (item) => item === e.target.getAttribute('name'),
+        ),
       });
       setChatFilter(e.target.getAttribute('name'));
-    }, 1000)
-  }
+    }, 1000);
+  };
 
   const tabEndHandler = () => {
     clearTimeout(timeout);
-  }
+  };
 
   const goToTabEditor = (e, filter) => {
     e.target.style.backgroundColor = '#BABABA';
@@ -55,7 +57,9 @@ const Messenger = () => {
             ...messengerStates,
             openEditorBtn: false,
             isOpenEditor: true,
-            activeTabChats: chat_data.filter((chat) => chat.tabsName.includes(messengerStates.tabsName[messengerStates.tabPosition]))
+            activeTabChats: chat_data.filter((chat) =>
+              chat.tabsName.includes(messengerStates.tabsName[messengerStates.tabPosition]),
+            ),
           });
           break;
         case 'new':
@@ -65,19 +69,18 @@ const Messenger = () => {
             openEditorBtn: false,
             isNewTab: true,
             tabsName: [...messengerStates.tabsName, 'Название вкладки'],
-            tabPosition: messengerStates.tabsName.length
-          })
+            tabPosition: messengerStates.tabsName.length,
+          });
           break;
         default:
           break;
       }
-      e.target.style.backgroundColor = "white";
+      e.target.style.backgroundColor = 'white';
     }, 50);
-  }
+  };
 
   return (
     <>
-
       <TabEditor messengerStates={messengerStates} setMessengerStates={setMessengerStates} />
 
       <div className="search_container">
@@ -97,8 +100,8 @@ const Messenger = () => {
                 setChatFilter(item);
                 setMessengerStates({
                   ...messengerStates,
-                  openEditorBtn: false
-                })
+                  openEditorBtn: false,
+                });
               }}
               onTouchStart={tabStartHandler}
               onTouchEnd={tabEndHandler}
@@ -109,8 +112,12 @@ const Messenger = () => {
                   : 'chat_search_filter_btn'
               }>
               {item}
-              {chat_data.filter((chat) => chat.tabsName.includes(item) && chat.fullStatus === 'unread' && chat.messages[chat.messages.length - 1].companionId !== userId)
-                .length ? (
+              {chat_data.filter(
+                (chat) =>
+                  chat.tabsName.includes(item) &&
+                  chat.fullStatus === 'unread' &&
+                  chat.messages[chat.messages.length - 1].companionId !== userId,
+              ).length ? (
                 <div
                   className={
                     chatFilter === item
@@ -118,11 +125,15 @@ const Messenger = () => {
                       : 'not_view_message chat_active'
                   }>
                   <p>
-                    {
-                      Conversion('chatUnreadCount', chat_data.filter(
-                        (chat) => chat.tabsName.includes(item) && chat.fullStatus === 'unread' && chat.messages[chat.messages.length - 1].companionId !== userId
-                      ))
-                    }
+                    {Conversion(
+                      'chatUnreadCount',
+                      chat_data.filter(
+                        (chat) =>
+                          chat.tabsName.includes(item) &&
+                          chat.fullStatus === 'unread' &&
+                          chat.messages[chat.messages.length - 1].companionId !== userId,
+                      ),
+                    )}
                   </p>
                 </div>
               ) : null}
@@ -131,10 +142,19 @@ const Messenger = () => {
         })}
       </div>
 
-      <div className={messengerStates.openEditorBtn ? 'chat_search_btn_editor chat_search_btn_editor_active' : 'chat_search_btn_editor'}>
-        <p onClick={(e) => goToTabEditor(e, 'management')} className='chat_editor_sign'>Управлять вкладкой "{messengerStates.tabsName[messengerStates.tabPosition]}"</p>
+      <div
+        className={
+          messengerStates.openEditorBtn
+            ? 'chat_search_btn_editor chat_search_btn_editor_active'
+            : 'chat_search_btn_editor'
+        }>
+        <p onClick={(e) => goToTabEditor(e, 'management')} className="chat_editor_sign">
+          Управлять вкладкой "{messengerStates.tabsName[messengerStates.tabPosition]}"
+        </p>
         <div className="line"></div>
-        <p onClick={(e) => goToTabEditor(e, 'new')} className='chat_editor_sign'>Создать новую вкладку</p>
+        <p onClick={(e) => goToTabEditor(e, 'new')} className="chat_editor_sign">
+          Создать новую вкладку
+        </p>
       </div>
 
       <div className="chats_container">
