@@ -1,17 +1,16 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Newsware from '../components/Newsware';
-import { mainContext, userId, myProfile } from '../App';
+import { mainContext, userId} from '../App';
 
 import newsware_data from '../data/newsware_data.json';
 
 import '../css/Profile.css';
 
 const Profile = () => {
-  const { Conversion, setUserProfileNewsware, userProfileNewswareItems } = React.useContext(mainContext);
+  const { Conversion, setUserProfileNewsware, userProfileNewswareItems, myProfile } = React.useContext(mainContext);
 
   const [activeIcon, setActiveIcon] = React.useState(0); //App
 
@@ -41,7 +40,7 @@ const Profile = () => {
         <i className="icon-bell profile_notific"></i>
 
         <div className="profile_avatar">
-          <img className="avatar_picture" src={myProfile.avatar} alt="avatar" />
+          <img loading='lazy' className="avatar_picture" src={myProfile.avatar} alt="avatar" />
         </div>
 
         <div className="profile_box">
@@ -238,7 +237,6 @@ const Profile = () => {
           <div className={activeIcon === 3 ? 'achievementItems' : 'achievementItems none_active'}></div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

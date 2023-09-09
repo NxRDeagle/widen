@@ -22,7 +22,8 @@ import Comments from './pages/Comments';
 import Preview from './pages/Preview';
 import FullMode from './pages/FullMode';
 import Complaint from './pages/Complaint';
-import Dialog from './pages/dialog';
+import Footer from './components/Footer';
+import Dialog from './pages/Dialog';
 
 /*Колонка constant*/
 export const mainContext = React.createContext();
@@ -49,7 +50,7 @@ export const defaultUser = {
   notification: 'false',
   interests: [],
   lastTime: '',
-  tabsName: ['Коллеги', 'Заказчики'],
+  tabsName: ['Все чаты'],
 };
 
 export const defaultPost = {
@@ -73,17 +74,12 @@ export const defaultPost = {
 
 export const defaultChat = {
   chatId: 0,
-  companionId: 0,
-  chatName: '',
+  companionsId: [],
+  tabsName: [],
+  conversationName: '',
+  conversationAvatar: '',
   fullStatus: '',
-  messages: [
-    {
-      who: 'user',
-      message: 'Сообщение не найдено :(',
-      status: '',
-      time: '',
-    },
-  ],
+  messages: [],
 };
 
 export const defaultComment = {
@@ -96,13 +92,14 @@ export const defaultComment = {
   isReply: false,
 };
 
-export const myProfile = users_data.find((obj) => obj.userId === userId)
-  ? users_data.find((obj) => obj.userId === userId)
-  : defaultUser;
-
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  const scrollValues = React.useRef(
+    localStorage.getItem('scrollValue') ? JSON.parse(localStorage.getItem('scrollValue')) : [],
+  );
+
+  //Статические функции приложения
 
   function Conversion(type, stats) {
     let element = null;
@@ -117,9 +114,9 @@ function App() {
         break;
       case 'comments':
         element =
-          stats % 10 === 1
+          stats % 10 === 1 && stats % 100 !== 11
             ? 'комментарий'
-            : stats % 10 === 0 || stats % 10 >= 5
+            : stats % 10 === 0 || stats % 10 >= 5 || stats % 100 === 11
             ? 'комментариев'
             : 'комментария';
         break;
@@ -177,54 +174,62 @@ function App() {
     return true;
   }
 
+  function ColorClick(element, classElement) {
+    element.classList.contains(classElement)
+      ? element.classList.toggle('color_click')
+      : element.closest(`.${classElement}`).classList.toggle('color_click');
+  }
+
+  function getAllActiveChats() {
+    const activeChats = {};
+    (users_data.find((obj) => obj.userId === userId)
+      ? users_data.find((obj) => obj.userId === userId)
+      : defaultUser
+    ).tabsName.forEach(
+      (tabName) =>
+        (activeChats[tabName] = chat_data.filter((chat) => chat.tabsName.includes(tabName))),
+    );
+    activeChats['Все чаты'] = chat_data;
+    return activeChats;
+  }
+
+  function getUser(userId) {
+    return users_data.find((user) => user.userId === userId)
+      ? users_data.find((user) => user.userId === userId)
+      : defaultUser;
+  }
+
   /*Стейты Приложения*/
 
   const appState = {
     currentNewswareFilter: 'all',
     isNewswareFilterOpen: false,
-    message: false,
     page: location.pathname === '/' ? 'home' : location.pathname.substring(1),
     fullImages: [''],
     fullImgIndex: 0,
     commentNewswareId: localStorage.getItem('commentNewswareId')
       ? JSON.parse(localStorage.getItem('commentNewswareId'))
       : 0,
-    profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {},
-    scrollValue: localStorage.getItem('scrollValue')
-      ? JSON.parse(localStorage.getItem('scrollValue'))
-      : 0,
+    myProfile: users_data.find((obj) => obj.userId === userId)
+      ? users_data.find((obj) => obj.userId === userId)
+      : defaultUser,
+    userProfile: localStorage.getItem('userProfile')
+      ? JSON.parse(localStorage.getItem('userProfile'))
+      : defaultUser,
     messageText: '',
     userProfileNewswareItems: [],
     chatFilter: localStorage.getItem('activeChat')
       ? JSON.parse(localStorage.getItem('activeChat'))
-      : myProfile.tabsName[0],
-    activeChats: chat_data.filter((chat) => chat.tabsName.includes(myProfile.tabsName[0])),
+      : 'Все чаты',
+    activeChats: getAllActiveChats(),
     activeGlobalSearch: localStorage.getItem('activeGlobalSearch')
       ? JSON.parse(localStorage.getItem('activeGlobalSearch'))
       : 'globalCase',
-    globalPosts: newsware_data.filter((item) => {
-      return (
-        item.type === 'post' &&
-        !myProfile.subscriptions.includes(item.authorId) &&
-        item.authorId !== userId
-      );
-    }),
-    globalCases: newsware_data.filter((item) => {
-      return (
-        item.type === 'case' &&
-        !myProfile.subscriptions.includes(item.authorId) &&
-        item.authorId !== userId
-      );
-    }),
-    globalRisingStars: users_data,
-    globalSharks: users_data,
-    globalEvents: newsware_data.filter((item) => {
-      return (
-        item.type === 'event' &&
-        !myProfile.subscriptions.includes(item.authorId) &&
-        item.authorId !== userId
-      );
-    }),
+    globalPosts: [],
+    globalCases: [],
+    globalRisingStars: [],
+    globalSharks: [],
+    globalEvents: [],
     globalFilters: {
       tags: [],
       forms: [],
@@ -232,27 +237,17 @@ function App() {
       cities: [],
     },
     confirmationOpen: false,
-    dialogInfo: {
-      nickname: '',
-      conversation_name: '',
-      conversation_avatar: '',
-    },
+    confirmSign: '',
+    whatConfirm: '',
+    clickChat: localStorage.getItem('clickChat')
+      ? JSON.parse(localStorage.getItem('clickChat'))
+      : defaultChat,
+    chatActionsOpen: false,
   };
 
   const [appvalue, dispatch] = React.useReducer(reducer, appState);
 
-  appvalue.setDialogInfo = (nickname, conversation_name, conversation_avatar) => {
-    dispatch({
-      type: 'SET_DIALOG_INFO',
-      payload: {
-        nickname: nickname,
-        conversation_name: conversation_name,
-        conversation_avatar: conversation_avatar,
-      },
-    });
-  };
-
-  appvalue.onClickHeaderFilter = (filter) => {
+  appvalue.onClickHeaderFilter = (filter = 'all') => {
     dispatch({ type: 'CLICK_HEADER_FILTER', payload: filter });
   };
 
@@ -260,32 +255,32 @@ function App() {
     dispatch({ type: 'SET_NEWSWARE_FILTER_OPEN' });
   };
 
-  appvalue.setMessageText = (text) => {
+  appvalue.setMessageText = (text = '') => {
     dispatch({ type: 'SET_MESSAGE_TEXT', payload: text });
   };
 
-  appvalue.goToComments = (newswareId) => {
+  appvalue.goToComments = (newswareId = 0) => {
     dispatch({ type: 'GO_TO_COMMENTS', payload: newswareId });
     navigate('/comments');
   };
 
-  appvalue.goToFullMode = (imgs, index) => {
+  appvalue.goToFullMode = (imgs = [], index = 0) => {
     dispatch({ type: 'SET_FULL_IMGS', payload: { imgs: imgs, index: index } });
     navigate('/full_image');
   };
 
-  appvalue.goToPreview = (profile) => {
-    dispatch({ type: 'SET_PROFILE', payload: profile });
+  appvalue.goToPreview = (userProfile = defaultUser) => {
+    dispatch({ type: 'SET_PROFILE', payload: userProfile });
     if (
-      myProfile.viewUsers.find((obj) => obj === profile.userId) ||
-      profile.userId === userId ||
+      appvalue.myProfile.viewUsers.find((obj) => obj === userProfile.userId) ||
+      userProfile.userId === userId ||
       location.pathname === 'preview' ||
-      myProfile.subscriptions.find((obj) => obj === profile.userId)
+      appvalue.myProfile.subscriptions.find((obj) => obj === userProfile.userId)
     ) {
-      appvalue.goToProfile(profile);
+      appvalue.goToProfile(userProfile);
     } else {
       if (
-        location.pathname !== `/user_profile/${profile.nickname}` &&
+        location.pathname !== `/user_profile/${userProfile.nickname}` &&
         location.pathname !== '/profile'
       ) {
         navigate('/preview');
@@ -293,12 +288,10 @@ function App() {
     }
   };
 
-  appvalue.goToProfile = (profile) => {
-    if (!myProfile.viewUsers.includes(profile.userId)) {
-      myProfile.viewUsers.push(profile.userId);
-    }
-    profile.userId !== userId
-      ? navigate(`/user_profile/${profile.nickname}`)
+  appvalue.goToProfile = (userProfile = defaultUser) => {
+    appvalue.editMyProfile(userProfile.userId, 'viewUsers');
+    userProfile.userId !== userId
+      ? navigate(`/user_profile/${userProfile.nickname}`)
       : navigate('/profile');
   };
 
@@ -320,20 +313,24 @@ function App() {
     navigate('/input');
   };
 
-  appvalue.setUserProfileNewsware = (newswareItems) => {
+  appvalue.setUserProfileNewsware = (newswareItems = []) => {
     dispatch({ type: 'SET_USER_PROFILE_NEWSWARE', payload: newswareItems });
   };
 
-  appvalue.setChatFilter = (filter) => {
+  appvalue.setChatFilter = (filter = 'Все чаты') => {
     dispatch({ type: 'SET_CHAT_FILTER', payload: filter });
   };
 
-  appvalue.setActiveGlobalSearch = (globalSearchName) => {
+  appvalue.setActiveGlobalSearch = (globalSearchName = 'globalCase') => {
     localStorage.setItem('activeGlobalSearch', JSON.stringify(globalSearchName));
     dispatch({ type: 'SET_ACTIVE_GLOBAL_SEARCH', payload: globalSearchName });
   };
 
-  appvalue.clickGlobalFilter = (globalSearchName, filterSign, objGlobalFilter) => {
+  appvalue.clickGlobalFilter = (
+    globalSearchName = 'globalCase',
+    filterSign = '',
+    objGlobalFilter = 'tag',
+  ) => {
     appvalue.setActiveGlobalSearch(globalSearchName);
     switch (objGlobalFilter) {
       case 'tag':
@@ -362,14 +359,14 @@ function App() {
     navigate('/search');
   };
 
-  appvalue.addGlobalFilter = (category, globalFilter) => {
+  appvalue.addGlobalFilter = (category = '', globalFilter = '') => {
     dispatch({
       type: 'ADD_GLOBAL_FILTER',
       payload: { category: category, globalFilter: globalFilter },
     });
   };
 
-  appvalue.dropGlobalFilter = (category, globalFilter) => {
+  appvalue.dropGlobalFilter = (category = '', globalFilter = '') => {
     dispatch({
       type: 'DROP_GLOBAL_FILTER',
       payload: { category: category, globalFilter: globalFilter },
@@ -380,14 +377,99 @@ function App() {
     dispatch({ type: 'CLEAR_GLOBAL_FILTERS' });
   };
 
-  appvalue.setConfirmationOpen = () => {
-    dispatch({ type: 'SET_CONFIRMATION_OPEN' });
+  appvalue.setConfirmation = (confirmSign = '', whatConfirm = '') => {
+    dispatch({
+      type: 'SET_CONFIRMATION_OPEN',
+      payload: { confirmSign: confirmSign, whatConfirm: whatConfirm },
+    });
+  };
+
+  appvalue.setClickChat = (clickChat = defaultChat) => {
+    localStorage.setItem('clickChat', JSON.stringify(clickChat));
+    dispatch({ type: 'SET_CLICK_CHAT', payload: clickChat });
+  };
+
+  appvalue.setChatActions = (clickChat = defaultChat) => {
+    dispatch({ type: 'SET_CHAT_ACTIONS', payload: clickChat });
+  };
+
+  appvalue.deleteActiveChatsTab = (tabName = 'Все чаты') => {
+    delete appvalue.activeChats[tabName];
+    appvalue.setChatFilter();
+  };
+
+  appvalue.alreadyTabEditor = (
+    tabsName = 'Все чаты',
+    activeTab = 'Все чаты',
+    activeChatsTab = [],
+  ) => {
+    const newActiveChats = {};
+    tabsName.forEach((tabName) => {
+      newActiveChats[tabName] =
+        tabName === activeTab
+          ? activeChatsTab
+          : appvalue.activeChats[tabName]
+          ? appvalue.activeChats[tabName]
+          : [];
+    });
+    dispatch({ type: 'EDITED_CHATS', payload: newActiveChats });
+    appvalue.setChatFilter(activeTab);
+  };
+
+  appvalue.editedChats = (newChat = defaultChat) => {
+    const newActiveChats = {};
+    Object.keys(appvalue.activeChats).forEach((tabName) => {
+      if (newChat) {
+        newActiveChats[tabName] = appvalue.activeChats[tabName].map((chat) => {
+          return chat.chatId === appvalue.clickChat.chatId ? newChat : chat;
+        });
+      } else {
+        newActiveChats[tabName] = appvalue.activeChats[tabName].filter((chat) => {
+          return chat.chatId !== appvalue.clickChat.chatId;
+        });
+      }
+    });
+    dispatch({ type: 'EDITED_CHATS', payload: newActiveChats });
+  };
+
+  appvalue.editMyProfile = (itemId = 0, actionWithMyProfile = '') => {
+    switch (actionWithMyProfile) {
+      case 'subcriptions':
+        dispatch({
+          type: 'EDIT_MY_PROFILE',
+          payload: {
+            ...appvalue.myProfile,
+            subscriptions: appvalue.myProfile.subscriptions.includes(itemId)
+              ? appvalue.myProfile.subscriptions.filter((subscription) => subscription !== itemId)
+              : [...appvalue.myProfile.subscriptions, itemId],
+          },
+        });
+        break;
+      case 'viewUsers':
+        if (!appvalue.myProfile.viewUsers.includes(itemId)) {
+          appvalue.myProfile.viewUsers.push(itemId);
+        }
+        break;
+      default:
+        return;
+    }
   };
 
   /*Эффекты приложения*/
 
   React.useEffect(() => {
-    window.scrollTo(0, appvalue.scrollValue);
+    let scrollValue = scrollValues.current.find((scroll) => scroll.pathname === location.pathname);
+
+    if (scrollValue) {
+      window.scrollTo(0, +scrollValue.scroll);
+    } else {
+      scrollValues.current.push({
+        pathname: location.pathname,
+        scroll: 0,
+      });
+      window.scrollTo(0, 0);
+    }
+
     dispatch({
       type: 'CHANGE_PAGE',
       payload: location.pathname === '/' ? 'home' : location.pathname.substring(1),
@@ -407,11 +489,16 @@ function App() {
   }, [location.pathname]);
 
   React.useEffect(() => {
-    const onScroll = (e) => {
-      if (e.target.documentElement.scrollTop !== 0)
-        dispatch({ type: 'SET_SCROLL_VALUE', payload: e.target.documentElement.scrollTop });
+    const onScroll = () => {
+      if (window.scrollY !== 0) {
+        scrollValues.current = scrollValues.current.map((scrollValue) => {
+          return scrollValue.pathname === location.pathname
+            ? { ...scrollValue, scroll: +window.scrollY }
+            : scrollValue;
+        });
+      }
       try {
-        localStorage.setItem('scrollValue', JSON.stringify(appvalue.scrollValue));
+        localStorage.setItem('scrollValue', JSON.stringify(scrollValues.current));
       } catch (err) {
         return undefined;
       }
@@ -419,28 +506,24 @@ function App() {
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
-  }, [appvalue.scrollValue]);
+  }, [scrollValues.current]);
 
   React.useEffect(() => {
     try {
-      localStorage.setItem('profile', JSON.stringify(appvalue.profile));
+      localStorage.setItem('userProfile', JSON.stringify(appvalue.userProfile));
       localStorage.setItem('commentNewswareId', JSON.stringify(appvalue.commentNewswareId));
       localStorage.setItem('fullImages', JSON.stringify(appvalue.fullImages));
     } catch (err) {
       return undefined;
     }
-  }, [appvalue.profile, appvalue.commentNewswareId, appvalue.fullImages]);
+  }, [appvalue.userProfile, appvalue.commentNewswareId, appvalue.fullImages]);
 
   React.useEffect(() => {
     localStorage.setItem('activeChat', JSON.stringify(appvalue.chatFilter));
-    dispatch({
-      type: 'SET_ACTIVE_CHATS',
-      payload: chat_data.filter((chat) => chat.tabsName.includes(appvalue.chatFilter)),
-    });
   }, [appvalue.chatFilter]);
 
   return (
-    <div className="App">
+    <>
       <mainContext.Provider
         value={{
           ...appvalue,
@@ -449,6 +532,8 @@ function App() {
           Conversion,
           OtherGlobalFilterHandler,
           EventGlobalFilterHandler,
+          ColorClick,
+          getUser,
         }}>
         <Routes>
           <Route index path="/" element={<Home />} />
@@ -462,15 +547,16 @@ function App() {
           <Route path="/vacancies" element={<Vacancies />} />
           <Route path="/messenger" element={<Messenger />} />
           <Route path="/forum" element={<Forum />} />
-          <Route path="/profile" element={<Profile userId={userId} />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/user_profile/:nickname" element={<UserProfile />} />
           <Route path="/input" element={<Input />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/complaint" element={<Complaint />} />
           <Route path="/dialog" element={<Dialog />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
+        {!['/input', '/full_image'].includes(location.pathname) && <Footer />}
       </mainContext.Provider>
-    </div>
+    </>
   );
 }
 

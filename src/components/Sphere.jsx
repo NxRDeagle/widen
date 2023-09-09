@@ -26,7 +26,7 @@ const Sphere = ({ sign, bg, num }) => {
         ref={interestRef}
         className="interest_sphere"
         style={{ backgroundImage: `url('${bg}')` }}></div>
-      <img ref={selectionRef} src={ellipse} className="selected_int" alt="selected_int" />
+      <img loading='lazy' ref={selectionRef} src={ellipse} className="selected_int" alt="selected_int" />
       <p className="interest_sign">{sign}</p>
     </div>
   );

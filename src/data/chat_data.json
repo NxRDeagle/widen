@@ -6,6 +6,7 @@
         "conversationName": "Кукусики",
         "conversationAvatar": "https://cs6.pikabu.ru/post_img/2014/10/01/10/1412175957_158274204.gif",
         "fullStatus" : "unread",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
@@ -22,6 +23,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 5,
@@ -38,6 +40,7 @@
         "conversationName": "Прикуска",
         "conversationAvatar": "https://proprikol.ru/wp-content/uploads/2020/12/kartinki-smeh-49.jpg",
         "fullStatus" : "unread",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 6,
@@ -54,6 +57,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
@@ -70,6 +74,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
@@ -86,6 +91,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "unread",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 11,
@@ -108,6 +114,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 12,
@@ -130,6 +137,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 13,
@@ -146,6 +154,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
@@ -162,6 +171,7 @@
         "conversationName": "",
         "conversationAvatar": "",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": []
     },
     {
@@ -171,6 +181,7 @@
         "conversationName": "Япы",
         "conversationAvatar": "https://licensingrussia.ru/media/cache/4c/00/4c00baddab18d96b8e60f5a132e1afc9.jpg",
         "fullStatus" : "read",
+        "flagUnRead": false,
         "messages": []
     }
 ]

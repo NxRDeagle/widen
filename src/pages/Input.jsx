@@ -113,7 +113,7 @@ const Input = () => {
     <>
       {inputStates.activeBox === 0 && (
         <div className="first_input_container">
-          <img className="logo_input" src={logoSvg} alt="logo" />
+          <img loading='lazy' className="logo_input" src={logoSvg} alt="logo" />
           <div style={{ marginBottom: '30%' }}>
             <button
               onClick={() =>
@@ -141,8 +141,7 @@ const Input = () => {
       )}
       {inputStates.activeBox === 1 && (
         <div className="input_container">
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
-          {/* <img className="input_logo" src={logoSvg} alt="logo" /> */}
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '45vh' }}>
             <h1 className="input_form_sign">Вход</h1>
@@ -260,7 +259,7 @@ const Input = () => {
       )}
       {inputStates.activeBox === 2 && (
         <div className="input_container">
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '50vh' }}>
             <h1 className="input_form_sign">Регистрация</h1>
@@ -329,7 +328,7 @@ const Input = () => {
       )}
       {inputStates.activeBox === 3 && (
         <div className="input_container">
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 className="input_form_sign_code">Введите, пожалуйста, код подтверждения </h1>
@@ -395,7 +394,7 @@ const Input = () => {
       )}
       {inputStates.activeBox === 4 && (
         <div className="input_container">
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '50vh' }}>
             <h1 className="input_form_sign_code">
@@ -544,7 +543,7 @@ const Input = () => {
       )}
       {inputStates.activeBox === 5 && (
         <div className="input_container">
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '50vh' }}>
             <h1 className="input_form_sign_code">
@@ -646,7 +645,7 @@ const Input = () => {
             <input className="more_input" placeholder="2. Я интересуюсь..." />
           </div>
 
-          <img className="more_add" src={add_icon} onClick={AddInput} alt="Add" />
+          <img loading='lazy' className="more_add" src={add_icon} onClick={AddInput} alt="Add" />
           <button onClick={() => goHome()} className="more_ready">
             Готово
           </button>
@@ -673,7 +672,7 @@ const Input = () => {
             />
           </svg>
           <p className="recovery_header">Восстановление</p>
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 id="recovery_header" className="input_form_sign">
@@ -722,7 +721,7 @@ const Input = () => {
             />
           </svg>
           <p className="recovery_header">Восстановление</p>
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '60vh' }}>
             <h1 className="input_form_sign_code">Введите, пожалуйста, код подтверждения </h1>
@@ -807,7 +806,7 @@ const Input = () => {
             />
           </svg>
           <p className="recovery_header">Восстановление</p>
-          <img className="logo_icon" src={logo_icon} alt="logo_icon" />
+          <img loading='lazy' className="logo_icon" src={logo_icon} alt="logo_icon" />
 
           <form className="input_form" action="#" style={{ height: '50vh' }}>
             <h1 className="input_form_sign_code">

@@ -3,18 +3,17 @@ import React from 'react';
 import { mainContext } from '../App';
 
 import '../css/Preview.css';
-import Footer from '../components/Footer';
 
 const Preview = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);//Comp
 
-  const { navigate, profile, Conversion, message, goToProfile, goBack } = React.useContext(mainContext);
+  const { navigate, userProfile, Conversion, message, goToProfile, goBack } = React.useContext(mainContext);
 
-  let subsriptions = Conversion('count', profile.subscribers.length);
-  let subscribers = Conversion('count', profile.subscribers.length);
+  let subsriptions = Conversion('count', userProfile.subscribers.length);
+  let subscribers = Conversion('count', userProfile.subscribers.length);
 
   React.useEffect(() => {
-    if (!profile.nickname) {
+    if (!userProfile.nickname) {
       navigate('*');
     }
     setIsLoaded(true);
@@ -25,14 +24,14 @@ const Preview = () => {
       <div
         className="preview_user_container"
         style={
-          isLoaded ? { background: `url(${profile.background})` } : { backgroundColor: '#7e52ee' }
+          isLoaded ? { background: `url(${userProfile.background})` } : { backgroundColor: '#7e52ee' }
         }>
         <div className="preview_user_avatar">
-          <img className="avatar_picture" src={profile.avatar} alt="avatar" onClick={() => goToProfile(profile)} />
+          <img loading='lazy' className="avatar_picture" src={userProfile.avatar} alt="avatar" onClick={() => goToProfile(userProfile)} />
         </div>
         <div className="preview_user_nickname_box">
-          <h1 className="preview_user_nickname">{profile.nickname}</h1>
-          <p className="preview_user_role">{profile.role}</p>
+          <h1 className="preview_user_nickname">{userProfile.nickname}</h1>
+          <p className="preview_user_role">{userProfile.role}</p>
         </div>
         <div className="preview_user_sign_box">
           <div className="preview_user_count_container">
@@ -45,11 +44,10 @@ const Preview = () => {
               <p className="count_sign">Подписчики</p>
             </div>
           </div>
-          <p className="idea_sign">{Conversion('previewIdea', profile.idea)}</p>
+          <p className="idea_sign">{Conversion('previewIdea', userProfile.idea)}</p>
         </div>
         <i onClick={() => goBack()} className="icon-rowupp rowupp"></i>
       </div>
-      <Footer message={message} preview={true} />
     </>
   );
 };

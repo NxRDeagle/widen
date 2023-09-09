@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 35px 0;
     background-color: white;
     box-shadow: 0px 4px 15px 0px #9A7BE9;
     border-radius: 10px;
-    z-index: 200;
+    z-index: 300;
     width: 90%;
     transition: all .3s ease-out;
 }

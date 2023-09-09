@@ -32,7 +32,7 @@ const FullMode = ({ imgs, index }) => {
         {imgs.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <img className="full_picture" src={item} alt="full" />
+              <img loading='lazy' className="full_picture" src={item} alt="full" />
             </SwiperSlide>
           );
         })}

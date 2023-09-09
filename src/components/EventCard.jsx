@@ -17,12 +17,14 @@ const EventCard = () => {
     clickGlobalFilter,
     EventGlobalFilterHandler,
     globalFilters,
+    myProfile,
+    editMyProfile
   } = React.useContext(mainContext);
 
   const {
     onClickIcon,
     statsCount,
-    profile,
+    userProfile,
     CONTENT_LIMIT,
     full,
     newswareId,
@@ -33,8 +35,7 @@ const EventCard = () => {
     time,
     eventTags,
     newswareStates,
-    setNewswareStates,
-    onClickSub,
+    setNewswareStates
   } = React.useContext(NewswareContext);
 
   const previewSign = Conversion('previewSign', signImgs[0]);
@@ -61,14 +62,15 @@ const EventCard = () => {
               <div className="avatar_author_newsware_item">
                 <img
                   className="avatar_picture"
-                  src={profile.avatar}
+                  loading='lazy'
+                  src={userProfile.avatar}
                   alt="userAvatar"
-                  onClick={() => goToPreview(profile)}
+                  onClick={() => goToPreview(userProfile)}
                 />
               </div>
               <div className="author_nick">
-                <p className="nickname" onClick={() => goToPreview(profile)}>
-                  {profile.nickname}
+                <p className="nickname" onClick={() => goToPreview(userProfile)}>
+                  {userProfile.nickname}
                 </p>
                 <p className="geolocation">
                   <i className="icon-geolocation" style={{ fontSize: '12px' }}></i>
@@ -77,11 +79,11 @@ const EventCard = () => {
               </div>
               {page !== 'profile' && !page.includes('user_profile') && authorId !== userId ? (
                 <div
-                  onClick={() => onClickSub()}
+                  onClick={() => editMyProfile(userProfile.userId, 'subcriptions')}
                   className={
-                    newswareStates.isSub === true ? 'remove_friend_box ' : 'add_friend_box'
+                    myProfile.subscriptions.includes(userProfile.userId) ? 'remove_friend_box ' : 'add_friend_box'
                   }>
-                  {newswareStates.isSub === true ? (
+                  {myProfile.subscriptions.includes(userProfile.userId) ? (
                     <svg
                       width="18"
                       height="15"
@@ -129,14 +131,15 @@ const EventCard = () => {
               <div className="avatar_author_open_newsware_item ">
                 <img
                   className="avatar_picture"
-                  src={profile.avatar}
+                  loading='lazy'
+                  src={userProfile.avatar}
                   alt="user avatar"
-                  onClick={() => goToPreview(profile)}
+                  onClick={() => goToPreview(userProfile)}
                 />
               </div>
 
               <p className="nickname" style={{ paddingBottom: '2px' }}>
-                {profile.nickname}
+                {userProfile.nickname}
               </p>
               <p className="geolocation">
                 <i className="icon-geolocation" style={{ fontSize: '12px' }}></i>
@@ -144,11 +147,11 @@ const EventCard = () => {
               </p>
               {page !== 'profile' && !page.includes('user_profile') && authorId !== userId ? (
                 <div
-                  onClick={() => onClickSub()}
+                  onClick={() => editMyProfile(userProfile.userId, 'subcriptions')}
                   className={
-                    newswareStates.isSub === true ? 'remove_friend_box ' : 'add_friend_box'
+                    myProfile.subscriptions.includes(userProfile.userId) ? 'remove_friend_box ' : 'add_friend_box'
                   }>
-                  {newswareStates.isSub === true ? (
+                  {myProfile.subscriptions.includes(userProfile.userId) ? (
                     <svg
                       width="18"
                       height="15"
@@ -208,7 +211,7 @@ const EventCard = () => {
                 <div
                   className={selectedAction === 1 ? 'action_div action_is_selected' : 'action_div'}
                   onClick={() => chooseAction(1)}>
-                  Уведомлять о новых записях {profile.nickname}
+                  Уведомлять о новых записях {userProfile.nickname}
                 </div>
                 <div
                   className={selectedAction === 2 ? 'action_div action_is_selected' : 'action_div'}
@@ -218,7 +221,7 @@ const EventCard = () => {
                 <div
                   className={selectedAction === 3 ? 'action_div action_is_selected' : 'action_div'}
                   onClick={() => chooseAction(3)}>
-                  Скрывать записи {profile.nickname}
+                  Скрывать записи {userProfile.nickname}
                 </div>
 
                 <div
@@ -240,6 +243,7 @@ const EventCard = () => {
             )}
             <img
               className="post_one_item"
+              loading='lazy'
               src={imgs[0]}
               alt="Post"
               onClick={() => {
@@ -251,21 +255,22 @@ const EventCard = () => {
               <>
                 {imgs && imgs.length <= CONTENT_LIMIT
                   ? imgs.map((path, index) => {
-                      if (index !== 0)
-                        return (
-                          <div key={index}>
-                            {signImgs[index] ? (
-                              <p className="post_text">{signImgs[index]}</p>
-                            ) : null}
-                            <img
-                              className="post_one_item"
-                              src={path}
-                              alt="img post"
-                              onClick={() => goToFullMode(imgs, index)}
-                            />
-                          </div>
-                        );
-                    })
+                    if (index !== 0)
+                      return (
+                        <div key={index}>
+                          {signImgs[index] ? (
+                            <p className="post_text">{signImgs[index]}</p>
+                          ) : null}
+                          <img
+                            className="post_one_item"
+                            loading='lazy'
+                            src={path}
+                            alt="img post"
+                            onClick={() => goToFullMode(imgs, index)}
+                          />
+                        </div>
+                      );
+                  })
                   : null}
                 {/* {props.videos && props.videos.length <= CONTENT_LIMIT
               ? props.videos.map((path, index) => {

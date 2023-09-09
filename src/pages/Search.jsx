@@ -1,7 +1,6 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-import Footer from '../components/Footer';
 import Star from '../components/Star';
 import Newsware from '../components/Newsware';
 import Filters from '../components/Filters';
@@ -163,7 +162,6 @@ const Search = () => {
           }
         </div>
       )}
-      <Footer />
     </>
   );
 };

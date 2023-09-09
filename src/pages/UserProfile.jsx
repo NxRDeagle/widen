@@ -1,18 +1,17 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-import Footer from '../components/Footer';
 import Update from '../components/Update';
 import Newsware from '../components/Newsware';
 
 import '../css/Profile.css';
 
 import newsware_data from '../data/newsware_data.json';
-import { mainContext, userId } from '../App';
+import { mainContext} from '../App';
 
 const UserProfile = () => {
 
-  const { Conversion, navigate, profile, setUserProfileNewsware, userProfileNewswareItems} = React.useContext(mainContext);
+  const { Conversion, navigate, userProfile, setUserProfileNewsware, userProfileNewswareItems, myProfile, editMyProfile} = React.useContext(mainContext);
 
   const [activeIcon, setActiveIcon] = React.useState(0); //App
 
@@ -20,29 +19,28 @@ const UserProfile = () => {
 
   const [notification, setNotification] = React.useState(false); //Ненужон
 
-  const[isSub, setIsSub] = React.useState(profile.subscribers.includes(userId));
 
   React.useEffect(() => {
-    setUserProfileNewsware(newsware_data.filter((item) => {return item.authorId === profile.userId}));
+    setUserProfileNewsware(newsware_data.filter((item) => {return item.authorId === userProfile.userId}));
     setIsLoaded(true);
-  }, [profile]);
+  }, [userProfile]);
 
-  let subscriptions = Conversion('count', profile.subscriptions.length);
-  let subscribers = Conversion('count', profile.subscribers.length);
+  let subscriptions = Conversion('count', userProfile.subscriptions.length);
+  let subscribers = Conversion('count', userProfile.subscribers.length);
 
-  return !profile ? (
+  return !userProfile ? (
     navigate('*')
   ) : (
     <>
       <div
         name="upd"
         className="profile_container"
-        style={{ backgroundImage: `url(${profile.background})` }}>
+        style={{ backgroundImage: `url(${userProfile.background})` }}>
         <Update />
         <i className="icon-share share"></i>
 
         <div className="profile_avatar">
-          <img className="avatar_picture" src={profile.avatar} alt="avatar" />
+          <img loading='lazy' className="avatar_picture" src={userProfile.avatar} alt="avatar" />
         </div>
 
         <div className="profile_box">
@@ -58,19 +56,19 @@ const UserProfile = () => {
           </div>
 
           <div className="profile_nick_box">
-            <h1 className="profile_nickname">{profile.nickname}</h1>
+            <h1 className="profile_nickname">{userProfile.nickname}</h1>
             <p className="profile_fi">
-              {profile.firstName} {profile.lastName}
+              {userProfile.firstName} {userProfile.lastName}
             </p>
-            <p className="profile_role">{profile.role}</p>
+            <p className="profile_role">{userProfile.role}</p>
           </div>
 
           <div className="profile_idea_box">
             <p className="profile_idea">Идея:</p>
-            <p className="profile_idea_sign">{profile.idea}</p>
+            <p className="profile_idea_sign">{userProfile.idea}</p>
           </div>
           {
-            Conversion('profileIdea', profile.idea) && (
+            Conversion('profileIdea', userProfile.idea) && (
               <p
                 className="btn_unwrap"
                 onClick={(e) => {
@@ -85,7 +83,7 @@ const UserProfile = () => {
 
           <div className="btn_profile_box">
             <button className="btn_profile">Сообщение</button>
-            <button onClick={() => setIsSub(!isSub)} className="btn_profile">{isSub ? "Отписаться" : "Подписаться"}</button>
+            <button onClick={() => editMyProfile(userProfile.userId, 'subcriptions') } className="btn_profile">{myProfile.subscriptions.includes(userProfile.userId) ? "Отписаться" : "Подписаться"}</button>
             <div onClick={() => setNotification(!notification)} className="profile_user_notific">
               <i
                 className={
@@ -249,7 +247,6 @@ const UserProfile = () => {
           <div className={activeIcon === 3 ? 'achievementItems' : 'achievementItems none_active'}></div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

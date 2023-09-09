@@ -12,6 +12,7 @@
   width: var(--max-width);
   max-height: 240px;
   background-color: white;
+  z-index: 1;
 }
 
 .logo_box {
@@ -27,43 +28,90 @@
   margin: 51px 0 0 27px;
 }
 
-.logo_item i {
-  position: absolute;
-  margin: 10px 0 0 110px;
-  font-size: 15px;
+.arrow_box {
+  position: relative;
+  height: fit-content;
+  width: 20px;
+  height: 20px;
+  margin: 10px 0 0 -100px;
 }
 
-.filter_post_box {
+.arrow_right {
   position: absolute;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 85px 0 0 27px;
+  display: block;
+  background-color: black;
+  width: 65%;
+  height: 3px;
+  transform: rotate(-50deg);
+  border-radius: 5px;
+  left: 0;
+  top: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow_left {
+  position: absolute;
+  display: block;
+  background-color: black;
+  width: 65%;
+  height: 3px;
+  transform: rotate(50deg);
+  border-radius: 5px;
+  right: 0;
+  top: 6px;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow_open .arrow_right {
+  transform: rotate(50deg);
+}
+
+.arrow_open .arrow_left {
+  transform: rotate(-50deg);
+}
+
+.filter_newsware_box {
+  display: block;
+  position: absolute;
+  text-align: center;
+  list-style: none;
   width: 150px;
   height: 0;
-  background-color: white;
+  opacity: 0;
+  left: 27px;
+  top: 90px;
   border-radius: 10px;
-  z-index: 40;
+  border: 1px solid #BABABA;
+  background-color: white;
+  z-index: 1;
   overflow: hidden;
+  transition: all .3s ease-in-out;
 }
 
-.filter_post_box_open {
-  border: var(--border1) var(--color_gray);
-  animation: openFilter 0.5s forwards;
+.filter_newsware_box_open {
+  height: 175px;
+  opacity: 1;
 }
 
-.filter_post_item {
-  justify-content: center;
+.filter_newsware_item {
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 43px;
+  border-bottom: 1px solid #BABABA;
 }
 
-.filter_post_item p {
-  padding: 15px 0 10px 0;
+.filter_newsware_box li:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.filter_line {
-  height: 0px;
-  width: 150px;
-  border: var(--border1) var(--color_gray);
+.filter_newsware_box li:last-child {
+  border: none !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .search {
@@ -133,15 +181,5 @@
 
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes openFilter {
-  0% {
-    height: 0;
-  }
-
-  100% {
-    height: 140px;
   }
 }

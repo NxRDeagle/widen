@@ -1,33 +1,30 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
 import Message from '../components/Message';
 import TabEditor from '../components/TabEditor';
+import ChatActions from '../components/ChatActions';
+import Confirmation from '../components/Confirmation';
 
-import { myProfile, mainContext, userId } from '../App';
-
-import chat_data from '../data/chat_data.json';
-import users_data from '../data/users_data.json';
+import { mainContext, userId } from '../App';
 
 import '../css/Messenger.css';
 
 const Messenger = () => {
-  const { chatFilter, activeChats, setChatFilter, Conversion } = React.useContext(mainContext);
+
+  const { chatFilter, activeChats, setChatFilter, Conversion, chatActionsOpen, ColorClick } = React.useContext(mainContext);
+
 
   const [messengerStates, setMessengerStates] = React.useState({
     openEditorBtn: false,
     isOpenEditor: false,
     isNewTab: false,
     categoryFilter: '',
-    tabsName: myProfile.tabsName,
+    tabsName: Object.keys(activeChats),
     activeTabChats: [],
     tabPosition: 0,
     isChangePosition: false,
-    changeTabPosition: -1,
-    clickChatId: -1,
-    confirmSign: '',
-    whatConfirm: '',
-  });
+    changeTabPosition: -1
+  })
 
   let timeout = null;
 
@@ -36,20 +33,17 @@ const Messenger = () => {
       setMessengerStates({
         ...messengerStates,
         openEditorBtn: true,
-        tabPosition: messengerStates.tabsName.findIndex(
-          (item) => item === e.target.getAttribute('name'),
-        ),
+        tabPosition: messengerStates.tabsName.findIndex(item => item === e.target.getAttribute('name'))
       });
       setChatFilter(e.target.getAttribute('name'));
-    }, 1000);
-  };
+    }, 1000)
+  }
 
   const tabEndHandler = () => {
     clearTimeout(timeout);
-  };
+  }
 
-  const goToTabEditor = (e, filter) => {
-    e.target.style.backgroundColor = '#BABABA';
+  const goToTabEditor = (filter) => {
     setTimeout(() => {
       switch (filter) {
         case 'management':
@@ -57,9 +51,7 @@ const Messenger = () => {
             ...messengerStates,
             openEditorBtn: false,
             isOpenEditor: true,
-            activeTabChats: chat_data.filter((chat) =>
-              chat.tabsName.includes(messengerStates.tabsName[messengerStates.tabPosition]),
-            ),
+            activeTabChats: activeChats[chatFilter]
           });
           break;
         case 'new':
@@ -68,40 +60,49 @@ const Messenger = () => {
             isOpenEditor: true,
             openEditorBtn: false,
             isNewTab: true,
-            tabsName: [...messengerStates.tabsName, 'Название вкладки'],
-            tabPosition: messengerStates.tabsName.length,
-          });
+            tabsName: ['Название вкладки', ...messengerStates.tabsName],
+            tabPosition: 0
+          })
           break;
         default:
           break;
       }
-      e.target.style.backgroundColor = 'white';
     }, 50);
   };
 
   return (
     <>
+
       <TabEditor messengerStates={messengerStates} setMessengerStates={setMessengerStates} />
 
-      <div className="search_container">
+      <ChatActions />
+
+      <Confirmation
+        firstOption='Нет'
+        secondOption='Да'
+        states={messengerStates}
+        setStates={setMessengerStates}
+      />
+
+      <div style={chatActionsOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none' } : null} className="search_container">
         <div className="search_box">
           <i className="icon-search search_input"></i>
           <input type="text" id="global_search" placeholder="глобальный поиск" />
         </div>
       </div>
 
-      <div className="search_filter">
-        {myProfile.tabsName.map((item, index) => {
+      <div style={chatActionsOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none' } : null} className="search_filter">
+        {Object.keys(activeChats).map((item) => {
           return (
             <button
-              key={index}
+              key={item}
               name={item}
               onClick={() => {
                 setChatFilter(item);
                 setMessengerStates({
                   ...messengerStates,
-                  openEditorBtn: false,
-                });
+                  openEditorBtn: false
+                })
               }}
               onTouchStart={tabStartHandler}
               onTouchEnd={tabEndHandler}
@@ -112,12 +113,8 @@ const Messenger = () => {
                   : 'chat_search_filter_btn'
               }>
               {item}
-              {chat_data.filter(
-                (chat) =>
-                  chat.tabsName.includes(item) &&
-                  chat.fullStatus === 'unread' &&
-                  chat.messages[chat.messages.length - 1].companionId !== userId,
-              ).length ? (
+              {activeChats[item].filter((chat) => chat.fullStatus === 'unread' && chat.messages[chat.messages.length - 1].companionId !== userId)
+                .length ? (
                 <div
                   className={
                     chatFilter === item
@@ -125,15 +122,10 @@ const Messenger = () => {
                       : 'not_view_message chat_active'
                   }>
                   <p>
-                    {Conversion(
-                      'chatUnreadCount',
-                      chat_data.filter(
-                        (chat) =>
-                          chat.tabsName.includes(item) &&
-                          chat.fullStatus === 'unread' &&
-                          chat.messages[chat.messages.length - 1].companionId !== userId,
-                      ),
-                    )}
+                    {
+                      Conversion('chatUnreadCount',
+                        activeChats[item].filter((chat) => chat.fullStatus === 'unread' && chat.messages[chat.messages.length - 1].companionId !== userId))
+                    }
                   </p>
                 </div>
               ) : null}
@@ -142,28 +134,24 @@ const Messenger = () => {
         })}
       </div>
 
-      <div
-        className={
-          messengerStates.openEditorBtn
-            ? 'chat_search_btn_editor chat_search_btn_editor_active'
-            : 'chat_search_btn_editor'
-        }>
-        <p onClick={(e) => goToTabEditor(e, 'management')} className="chat_editor_sign">
-          Управлять вкладкой "{messengerStates.tabsName[messengerStates.tabPosition]}"
-        </p>
-        <div className="line"></div>
-        <p onClick={(e) => goToTabEditor(e, 'new')} className="chat_editor_sign">
-          Создать новую вкладку
-        </p>
+      <div style={chatActionsOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none' } : null} className={messengerStates.openEditorBtn ? 'chat_search_btn_editor chat_search_btn_editor_active' : 'chat_search_btn_editor'}>
+        {
+          chatFilter !== 'Все чаты' && (
+            <>
+              <p onTouchStart={(e) => ColorClick(e.target, 'chat_editor_sign')} onTouchEnd={(e) => ColorClick(e.target, 'chat_editor_sign')} onClick={() => goToTabEditor('management')} className='chat_editor_sign'>Управлять вкладкой "{messengerStates.tabsName[messengerStates.tabPosition]}"</p>
+              <div className="line"></div>
+            </>
+          )
+        }
+        <p onTouchStart={(e) => ColorClick(e.target, 'chat_editor_sign')} onTouchEnd={(e) => ColorClick(e.target, 'chat_editor_sign')} onClick={() => goToTabEditor('new')} className='chat_editor_sign'>Создать новую вкладку</p>
       </div>
 
-      <div className="chats_container">
-        {activeChats.map((item) => {
+      <div style={chatActionsOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none', overflow: 'hidden' } : null} className="chats_container">
+        {activeChats[chatFilter].map((item) => {
           return <Message key={item.chatId} {...item} />;
         })}
       </div>
 
-      <Footer />
     </>
   );
 };

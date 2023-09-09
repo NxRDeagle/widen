@@ -4,16 +4,14 @@ import PostCard from './PostCard';
 import CaseCard from './CaseCard';
 import EventCard from './EventCard';
 
-import { userId, defaultUser, myProfile, mainContext } from '../App';
-
-import users_data from '../data/users_data.json';
+import { userId, mainContext } from '../App';
 
 import '../css/Newsware.css';
 
 export const NewswareContext = React.createContext();
 
 const Newsware = (props) => {
-  const { goToComments, Conversion } = React.useContext(mainContext);
+  const { goToComments, Conversion, getUser } = React.useContext(mainContext);
 
   const {
     full = false,
@@ -40,7 +38,6 @@ const Newsware = (props) => {
   const [newswareStates, setNewswareStates] = React.useState({
     activeLike: stats.likes.includes(userId),
     activeFavorite: stats.favorites.includes(userId),
-    isSub: myProfile.subscriptions.includes(authorId),
     isUseful: stats.useful.includes(userId),
     clickUseful: stats.likes.includes(userId) || stats.useful.includes(userId),
   });
@@ -51,9 +48,7 @@ const Newsware = (props) => {
     statsCount[key] = Conversion('count', stats[key].length);
   }
 
-  const profile = users_data.find((obj) => obj.userId === authorId)
-    ? users_data.find((obj) => obj.userId === authorId)
-    : defaultUser;
+  const userProfile = getUser(authorId);
 
   const CONTENT_LIMIT = 10;
 
@@ -108,18 +103,6 @@ const Newsware = (props) => {
     }
   };
 
-  const onClickSub = () => {
-    setNewswareStates({
-      ...newswareStates,
-      isSub: !newswareStates.isSub,
-    });
-    myProfile.subscriptions.includes(authorId)
-      ? (myProfile.subscriptions = myProfile.subscriptions.filter((obj) => {
-          return obj !== authorId;
-        }))
-      : myProfile.subscriptions.push(authorId);
-  };
-
   switch (props.type) {
     case 'post':
       return (
@@ -127,7 +110,7 @@ const Newsware = (props) => {
           value={{
             onClickIcon,
             statsCount,
-            profile,
+            userProfile,
             CONTENT_LIMIT,
             full,
             newswareId,
@@ -138,8 +121,7 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            setNewswareStates,
-            onClickSub,
+            setNewswareStates
           }}>
           <PostCard />
         </NewswareContext.Provider>
@@ -150,7 +132,7 @@ const Newsware = (props) => {
           value={{
             onClickIcon,
             statsCount,
-            profile,
+            userProfile,
             full,
             newswareId,
             authorId,
@@ -160,8 +142,7 @@ const Newsware = (props) => {
             time,
             tags,
             newswareStates,
-            setNewswareStates,
-            onClickSub,
+            setNewswareStates
           }}>
           <CaseCard />
         </NewswareContext.Provider>
@@ -172,7 +153,7 @@ const Newsware = (props) => {
           value={{
             onClickIcon,
             statsCount,
-            profile,
+            userProfile,
             CONTENT_LIMIT,
             full,
             newswareId,
@@ -184,8 +165,7 @@ const Newsware = (props) => {
             tags,
             eventTags,
             newswareStates,
-            setNewswareStates,
-            onClickSub,
+            setNewswareStates
           }}>
           <EventCard />
         </NewswareContext.Provider>

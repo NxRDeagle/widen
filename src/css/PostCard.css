@@ -69,8 +69,3 @@
   background-color: #bababa !important;
   color: #fff !important;
 }
-
-.blurr {
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(7.5px);
-}

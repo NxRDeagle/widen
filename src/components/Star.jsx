@@ -8,13 +8,13 @@ const Star = (props) => {
 
   const { goToPreview } = React.useContext(mainContext);
   
-  const profile = props;
+  const userProfile = props;
 
   return (
     <div className="star_box">
-      <img onClick={() => goToPreview(profile)} className='star_avatar' src={profile.avatar} alt='avatar' />
-      <p className='star_nickname'>{profile.nickname}</p>
-      <p className='star_role'>{profile.role}</p>
+      <img loading='lazy' onClick={() => goToPreview(userProfile)} className='star_avatar' src={userProfile.avatar} alt='avatar' />
+      <p className='star_nickname'>{userProfile.nickname}</p>
+      <p className='star_role'>{userProfile.role}</p>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 import { mainContext } from '../App';
@@ -21,11 +20,10 @@ const NotFound = () => {
           Страница не найдена <span className="emoji">😔</span>
         </h1>
         <div className="go_back" onClick={() => goInput()}>
-          <img className="go_back_arrow" src={arrowSvg} alt="Arrow" />
+          <img loading='lazy' className="go_back_arrow" src={arrowSvg} alt="Arrow" />
           <button className="go_back_button">Вернуться на главную</button>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

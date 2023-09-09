@@ -62,8 +62,7 @@
 .author_open_newsware_item {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px;
 }
 
 .avatar_author_open_newsware_item {

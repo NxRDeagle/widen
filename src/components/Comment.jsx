@@ -3,20 +3,19 @@ import React, { useEffect } from 'react';
 import '../css/Comments.css';
 import Reply from '../components/Reply';
 
-import { mainContext, defaultUser, defaultComment} from '../App';
-import users_data from '../data/users_data.json';
+import { mainContext, defaultComment} from '../App';
 import comments_data from '../data/comments_data.json';
 
 const Comment = ({ authorCommentId, commentId }) => {
 
-  const { Conversion, setMessageText, goToPreview } = React.useContext(mainContext);
+  const { Conversion, setMessageText, goToPreview, getUser } = React.useContext(mainContext);
 
   const [wrap, setWrap] = React.useState(false);//comp
 
   useEffect(() => {
       if (wrap) {
         if (document.querySelector('blockquote')) {
-          document.querySelector('blockquote').innerHTML = `Ответить <a style='color:var(--color_active)'>${profile.nickname}</a>`;
+          document.querySelector('blockquote').innerHTML = `Ответить <a style='color:var(--color_active)'>${userProfile.nickname}</a>`;
         }
       }
       else {
@@ -28,7 +27,7 @@ const Comment = ({ authorCommentId, commentId }) => {
   }, [wrap])
 
 
-  const profile = users_data.find((obj) => obj.userId === authorCommentId) ? users_data.find((obj) => obj.userId === authorCommentId) : defaultUser;
+  const userProfile = getUser(authorCommentId);
   const comment = comments_data.find((obj) => obj.commentId === commentId) ? comments_data.find((obj) => obj.commentId === commentId) : defaultComment;
   const likesCount = Conversion('count', comment.likes.length);
   const replysCount = Conversion('count', comment.replies.length);
@@ -49,11 +48,11 @@ const Comment = ({ authorCommentId, commentId }) => {
               }}
             >
               <div className="comment_user_avatar_box">
-                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={() => goToPreview(profile)} />
+                <img loading='lazy' className="avatar_picture" src={userProfile.avatar} alt="User Avatar" onClick={() => goToPreview(userProfile)} />
               </div>
               <div className="comment_text_box">
                 <p className="comment_user_nickname">
-                  {profile.nickname}
+                  {userProfile.nickname}
                 </p>
                 <p className="comment_text">{comment.text}</p>
                 <span className='time_reply_box'>

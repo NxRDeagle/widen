@@ -2,17 +2,17 @@ import React from 'react';
 
 import '../css/Reply.css';
 
-import { mainContext, defaultUser, defaultComment } from '../App';
+import { mainContext, defaultComment } from '../App';
 
 import users_data from '../data/users_data.json';
 import comments_data from '../data/comments_data.json';
 
 const Reply = ({ replyId, authorReplyId }) => {
 
-    const {Conversion, setMessageText, goToPreview } = React.useContext(mainContext);
+    const {Conversion, setMessageText, goToPreview, getUser } = React.useContext(mainContext);
 
     const reply = comments_data.find((obj) => obj.commentId === replyId) ? comments_data.find((obj) => obj.commentId === replyId) : defaultComment;
-    let profile = users_data.find((obj) => obj.userId === authorReplyId) ? users_data.find((obj) => obj.userId === authorReplyId) : defaultUser;
+    let userProfile = getUser(authorReplyId);
     const likesCount = Conversion('count', reply.likes.length);
 
     React.useEffect(() => {
@@ -29,24 +29,24 @@ const Reply = ({ replyId, authorReplyId }) => {
             className="reply_box"
             onClick={() => {
                 const block = document.querySelector('blockquote');
-                setMessageText(`<a style='color:var(--color_active)'>${profile.nickname}</a>, `)
-                block.innerHTML = `<a style='color:var(--color_active)'>${profile.nickname}</a>, `;
+                setMessageText(`<a style='color:var(--color_active)'>${userProfile.nickname}</a>, `)
+                block.innerHTML = `<a style='color:var(--color_active)'>${userProfile.nickname}</a>, `;
                 block.focus();
             }}
         >
             <div className="reply_user_avatar_box">
-                <img className="avatar_picture" src={profile.avatar} alt="User Avatar" onClick={()=>goToPreview(profile)} />
+                <img loading='lazy' className="avatar_picture" src={userProfile.avatar} alt="User Avatar" onClick={()=>goToPreview(userProfile)} />
             </div>
             <div className="reply_text_box">
                 <p className="reply_user_nickname">
-                    {profile.nickname}
+                    {userProfile.nickname}
                 </p>
                 <p
                     id={`reply_author_id_${reply.authorCommentId}`}
                     onClick={(e) => {
                         if (e.target.tagName === 'A') {
-                            profile = users_data.find((obj) => obj.nickname === e.target.textContent);
-                            goToPreview(profile);
+                            userProfile = users_data.find((obj) => obj.nickname === e.target.textContent);
+                            goToPreview(userProfile);
                         }
                     }}
                     className="reply_text"

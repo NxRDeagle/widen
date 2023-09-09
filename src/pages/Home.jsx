@@ -3,17 +3,16 @@ import ContentLoader from 'react-content-loader';
 
 import Header from '../components/Header';
 import Newsware from '../components/Newsware';
-import Footer from '../components/Footer';
 import Preload from '../components/Preload';
 
 import newsware_data from '../data/newsware_data.json';
 
-import { mainContext, userId, myProfile } from '../App';
+import { mainContext, userId} from '../App';
 
 import '../css/Home.css';
 
 const Home = () => {
-  const { currentNewswareFilter } = React.useContext(mainContext);
+  const { currentNewswareFilter, myProfile } = React.useContext(mainContext);
 
   const [isLoading, setIsLoading] = React.useState(false); // setTimeOut убрать
 
@@ -61,7 +60,6 @@ const Home = () => {
           )}
         </div>
       </main>
-      <Footer />
     </>
   );
 };

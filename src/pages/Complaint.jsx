@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
-
 import { mainContext } from '../App';
 
 import '../css/Complaint.css';
@@ -96,7 +94,6 @@ const Complaint = ({ complaint_post_id }) => {
           </div>
         </>
       )}
-      <Footer />
     </>
   );
 };

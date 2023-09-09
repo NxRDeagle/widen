@@ -4,22 +4,30 @@ import { Link } from 'react-router-dom';
 import '../css/Footer.css';
 
 import { mainContext } from '../App';
-import { myProfile } from '../App';
 
-const Footer = (props) => {
-  const { page, setMessageText, messageText, location } = React.useContext(mainContext);
+const Footer = () => {
+  const { page, setMessageText, messageText, confirmationOpen, chatActionsOpen, activeChats, myProfile } = React.useContext(mainContext);
 
-  const { message = false, preview = false } = props;
+  function unReadMessages() {
+
+    let logic = false;
+    Object.keys(activeChats).forEach((tabName) => {
+      activeChats[tabName].forEach((activeChat) => {
+        if (activeChat.fullStatus === 'unread' || activeChat.flagUnRead) {
+          logic = true;
+        }
+      });
+    });
+    return logic;
+  }
 
   return (
-    <footer
-      className={preview ? 'foot_container foot_notview' : 'foot_container'}
-      style={location.pathname === '/dialog' ? { backgroundColor: 'transparent' } : {}}>
-      {page === 'comments' || message ? (
+    <footer style={page === 'dialog' ? {backgroundColor:'transparent'} : null} className={page === 'preview' || confirmationOpen || chatActionsOpen ? 'foot_container foot_notview' : 'foot_container'}>
+      {['comments','dialog'].includes(page)? (
         <ul className="nav_comment_items" style={{ padding: '0 28px 0 28px' }}>
           <li style={{ marginRight: '7px' }}>
             <div className="comment_user_avatar_box">
-              <img className="avatar_picture" src={myProfile.avatar} alt="User Avatar" />
+              <img loading='lazy' className="avatar_picture" src={myProfile.avatar} alt="User Avatar" />
             </div>
           </li>
           <li>
@@ -32,9 +40,7 @@ const Footer = (props) => {
                 }}
                 onBlur={() => {
                   messageText === ''
-                    ? location.pathname === '/dialog'
-                      ? (document.querySelector('blockquote').textContent = 'Сообщение')
-                      : (document.querySelector('blockquote').textContent = 'Комментировать...')
+                    ? (document.querySelector('blockquote').textContent = 'Комментировать...')
                     : (document.querySelector('blockquote').innerHTML = `${messageText}`);
                 }}
                 onInput={() => {
@@ -42,7 +48,7 @@ const Footer = (props) => {
                 }}
                 className="user_comment_input"
                 contentEditable="true">
-                {location.pathname === '/dialog' ? 'Сообщение' : 'Комментировать...'}
+                Комментировать...
               </blockquote>
               <svg
                 width="16"
@@ -101,10 +107,10 @@ const Footer = (props) => {
         <ul className="nav_icon_items">
           <Link to="/">
             <li
-              id="home"
-              onClick={() => {
-                if (location.pathname === '/') window.scrollTo(0, 0);
-              }}>
+              // onClick={() => {
+              //   if (location.pathname === '/') window.scrollTo(0, 0);
+              // }}
+            >
               {page === 'home' || page === 'search' ? (
                 <svg
                   width="27"
@@ -153,7 +159,7 @@ const Footer = (props) => {
             </li>
           </Link>
           <Link to="/vacancies">
-            <li id="vacancies">
+            <li>
               {page === 'vacancies' ? (
                 <svg
                   width="25"
@@ -190,7 +196,7 @@ const Footer = (props) => {
             </li>
           </Link>
           <Link to="/messenger">
-            <li id="messenger">
+            <li>
               {page === 'messenger' ? (
                 <svg
                   width="24"
@@ -202,7 +208,7 @@ const Footer = (props) => {
                     d="M12.0009 22C9.98404 22.0021 7.99938 21.5363 6.23169 20.6461L2.77016 21.5452C2.45473 21.6291 2.12053 21.6338 1.80244 21.5588C1.48435 21.4839 1.19403 21.3321 0.961799 21.1192C0.729567 20.9063 0.563933 20.6402 0.482189 20.3486C0.400444 20.057 0.405587 19.7507 0.497081 19.4615L1.47785 16.2885C0.213312 14.1743 -0.258455 11.7379 0.13512 9.35402C0.528695 6.97012 1.76581 4.77078 3.65616 3.09432C5.54651 1.41787 7.98537 0.357169 10.5976 0.0753933C13.2098 -0.206383 15.8507 0.306373 18.1139 1.53478C20.3772 2.76319 22.1374 4.63921 23.124 6.87425C24.1105 9.10928 24.2686 11.5795 23.574 13.905C22.8794 16.2304 21.3705 18.2823 19.2795 19.7449C17.1885 21.2075 14.6312 21.9998 12.0009 22Z"
                     fill="#7E52EE"
                   />
-                  <circle cx="20" cy="4" r="4" fill="#FD0909" />
+                  {unReadMessages() ? <circle cx="20" cy="4" r="4" fill="#FD0909" /> : null}
                 </svg>
               ) : (
                 <svg
@@ -215,7 +221,7 @@ const Footer = (props) => {
                     d="M12.0009 22C9.98404 22.0021 7.99938 21.5363 6.23169 20.6461L2.77016 21.5452C2.45473 21.6291 2.12053 21.6338 1.80244 21.5588C1.48435 21.4839 1.19403 21.3321 0.961799 21.1192C0.729567 20.9063 0.563933 20.6402 0.482189 20.3486C0.400444 20.057 0.405587 19.7507 0.497081 19.4615L1.47785 16.2885C0.213312 14.1743 -0.258455 11.7379 0.13512 9.35402C0.528695 6.97012 1.76581 4.77078 3.65616 3.09432C5.54651 1.41787 7.98537 0.357169 10.5976 0.0753933C13.2098 -0.206383 15.8507 0.306373 18.1139 1.53478C20.3772 2.76319 22.1374 4.63921 23.124 6.87425C24.1105 9.10928 24.2686 11.5795 23.574 13.905C22.8794 16.2304 21.3705 18.2823 19.2795 19.7449C17.1885 21.2075 14.6312 21.9998 12.0009 22ZM6.34708 18.8904C6.51283 18.8928 6.67536 18.9327 6.82015 19.0067C8.94776 20.1634 11.4628 20.5684 13.8931 20.1455C16.3233 19.7227 18.5016 18.5012 20.019 16.7104C21.5363 14.9196 22.2883 12.6826 22.1337 10.4195C21.9792 8.15647 20.9287 6.02294 19.1796 4.41957C17.4304 2.8162 15.103 1.85328 12.6341 1.7116C10.1653 1.56993 7.72501 2.25925 5.77138 3.65013C3.81776 5.04101 2.48522 7.03779 2.02397 9.26553C1.56272 11.4933 2.00448 13.7987 3.26631 15.749C3.32926 15.8489 3.36984 15.9593 3.38569 16.0737C3.40154 16.1881 3.39234 16.3043 3.35862 16.4154L2.26246 19.9269L6.09323 18.9221C6.17591 18.9012 6.26129 18.8905 6.34708 18.8904Z"
                     fill="black"
                   />
-                  <circle cx="20" cy="4" r="4" fill="#FD0909" />
+                  {unReadMessages() ? <circle cx="20" cy="4" r="4" fill="#FD0909" /> : null}
                 </svg>
               )}
               <p
@@ -229,7 +235,7 @@ const Footer = (props) => {
             </li>
           </Link>
           <Link to="/forum">
-            <li id="forum">
+            <li>
               {page === 'forum' ? (
                 <svg
                   width="35"
@@ -276,7 +282,7 @@ const Footer = (props) => {
             </li>
           </Link>
           <Link to="/profile">
-            <li id="profile">
+            <li>
               {page === 'profile' || page.includes('user_profile') ? (
                 <svg
                   width="22"

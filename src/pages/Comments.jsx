@@ -8,7 +8,6 @@ import '../css/Comments.css';
 import { mainContext, defaultPost, userId } from '../App';
 import newsware_data from '../data/newsware_data.json';
 import comments_data from '../data/comments_data.json';
-import Footer from '../components/Footer';
 
 const Comments = () => {
   const { commentNewswareId, Conversion, message, goBack} = React.useContext(mainContext);
@@ -51,7 +50,6 @@ const Comments = () => {
             })}
         </div>
       </div>
-      <Footer message={message}/>
     </>
   );
 };
