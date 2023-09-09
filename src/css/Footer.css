@@ -88,3 +88,8 @@
   border: 0;
   outline: none;
 }
+
+.chat_elements_box{
+  position: fixed;
+  right: 35px;
+}

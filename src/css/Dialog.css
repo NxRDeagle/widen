@@ -2,10 +2,12 @@
     width: 100%;
     min-height: 100vh;
     height: fit-content;
-    padding: 120px 0 80px 0;
+    padding-top: 120px;
+    padding: 0 12px 80px 12px;
     background: rgb(175, 144, 255);
     background: linear-gradient(114deg, rgba(175, 144, 255, 1) 18%, rgba(126, 82, 238, 1) 88%);
     background-size: cover;
+    animation: open 0.5s ease-in-out;
 }
 
 .dialog_header {
@@ -85,11 +87,12 @@
     justify-content: space-between;
     width: fit-content;
     max-width: 270px;
+    min-width: 60px;
     border-radius: 15px;
     background-color: white;
-    padding: 6px 12px;
+    padding: 6px 10px;
     margin-top: auto;
-    margin-bottom: 13px;
+    margin-bottom: 16px;
 }
 
 .your_message {
@@ -108,15 +111,83 @@
     font-weight: 400;
     line-height: 16px;
     color: black;
+    word-break: break-word;
 }
 
-.dialog_message_time {
+.dialog_message_box::after {
     position: absolute;
+    width: fit-content;
+    height: fit-content;
+    padding: 1px 2px;
+    background-color: #BABABA;
+    content: attr(data-time);
+    color: white;
+    border-radius: 10px;
     font-size: 8px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    color: #BABABA;
-    bottom: 3px;
-    right: 10px;
+    bottom: -5px;
+    right: -5px;
+}
+
+.companion_avatar {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    left: -18px;
+    bottom: -10px;
+}
+
+.start_dialog {
+    position: absolute;
+    color: white;
+    top: 120px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.spam_btn {
+    position: absolute;
+    z-index: 10;
+    background-color: #F03939;
+    color: white;
+    border: none;
+    height: 33px;
+    width: 115px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.35));
+    border-radius: 15px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.spam_btn:active{
+    height: 30px;
+    width: 105px;
+    filter: none;
+}
+
+@keyframes open {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

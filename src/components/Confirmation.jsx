@@ -1,11 +1,11 @@
 import '../css/Confirmation.css';
 import React from 'react';
 
-import { mainContext} from '../App';
+import { mainContext } from '../App';
 
-const Confirmation = ({ firstOption, secondOption, states = null, setStates = null }) => {
+const Confirmation = ({states = null, setStates = null}) => {
 
-    const { confirmationOpen, setConfirmation, confirmSign, whatConfirm, deleteActiveChatsTab, clickChat, editedChats, setChatActions, myProfile } = React.useContext(mainContext);
+    const { confirmationOpen, setConfirmation, confirmSign, whatConfirm, deleteActiveChatsTab, clickChat, editedChats, setChatActions, myProfile, page, goBack, confirmationSecondOption, confirmationFirstOption } = React.useContext(mainContext);
 
     function secondChoise() {
         switch (whatConfirm) {
@@ -41,6 +41,9 @@ const Confirmation = ({ firstOption, secondOption, states = null, setStates = nu
                 editedChats(null);
                 setConfirmation();
                 setChatActions();
+                if(page === 'dialog'){
+                    goBack();
+                };
                 break;
             default:
                 break;
@@ -51,8 +54,8 @@ const Confirmation = ({ firstOption, secondOption, states = null, setStates = nu
         <div className={confirmationOpen ? 'confirmation_container confirmation_container_active' : 'confirmation_container confirmation_container_none_active'}>
             <p className='confirmation_sign'>{confirmSign}</p>
             <div className='confirmation_btns_box'>
-                <button onClick={() => setConfirmation()} className='confirmation_btn'>{firstOption}</button>
-                <button onClick={() => secondChoise()} className='confirmation_btn'>{secondOption}</button>
+                <button onClick={() => setConfirmation()} className='confirmation_btn'>{confirmationFirstOption}</button>
+                <button onClick={() => secondChoise()} className='confirmation_btn'>{confirmationSecondOption}</button>
             </div>
         </div>
     )

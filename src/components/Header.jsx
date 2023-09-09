@@ -9,8 +9,13 @@ import { mainContext } from '../App';
 import History from './History';
 
 const Header = () => {
-
-  const { isNewswareFilterOpen, location, onClickHeaderFilter, setIsNewswareFilterOpen, ColorClick } = React.useContext(mainContext);
+  const {
+    isNewswareFilterOpen,
+    location,
+    onClickHeaderFilter,
+    setIsNewswareFilterOpen,
+    ColorClick,
+  } = React.useContext(mainContext);
 
   const clickHeaderFilter = (e) => {
     if (e.target.tagName === 'LI') {
@@ -22,7 +27,7 @@ const Header = () => {
     if (e.target.tagName === 'LI') {
       ColorClick(e.target, 'filter_newsware_item');
     }
-  }
+  };
 
   return (
     <>
@@ -30,12 +35,23 @@ const Header = () => {
         onClick={clickHeaderFilter}
         onTouchStart={headerFilterHandler}
         onTouchEnd={headerFilterHandler}
-        className={isNewswareFilterOpen ? 'filter_newsware_box filter_newsware_box_open' : 'filter_newsware_box'}
-      >
-        <li name='case' className='filter_newsware_item'>Кейсы</li>
-        <li name='post' className='filter_newsware_item'>Посты</li>
-        <li name='event' className='filter_newsware_item'>Мероприятия</li>
-        <li name='all' className='filter_newsware_item'>Всё вместе</li>
+        className={
+          isNewswareFilterOpen
+            ? 'filter_newsware_box filter_newsware_box_open'
+            : 'filter_newsware_box'
+        }>
+        <li name="case" className="filter_newsware_item">
+          Кейсы
+        </li>
+        <li name="post" className="filter_newsware_item">
+          Посты
+        </li>
+        <li name="event" className="filter_newsware_item">
+          Мероприятия
+        </li>
+        <li name="all" className="filter_newsware_item">
+          Всё вместе
+        </li>
       </ul>
 
       <header className="head_container">
@@ -53,9 +69,11 @@ const Header = () => {
               />
               <circle cx="52" cy="19" r="2" fill="black" />
             </svg>
-            <div onClick={() => setIsNewswareFilterOpen()} className={isNewswareFilterOpen ? 'arrow_open arrow_box' : 'arrow_box'}>
-              <span className='arrow_right'></span>
-              <span className='arrow_left'></span>
+            <div
+              onClick={() => setIsNewswareFilterOpen()}
+              className={isNewswareFilterOpen ? 'arrow_open arrow_box' : 'arrow_box'}>
+              <span className="arrow_right"></span>
+              <span className="arrow_left"></span>
             </div>
           </div>
           {/* <div className={isNewswareFilterOpen ? 'filter_post_box filter_post_box_open' : 'filter_post_box'}>
@@ -87,14 +105,13 @@ const Header = () => {
         <div className="history_container">
           <div className="user_history_box">
             <div className="user_history_add">
-              <img loading='lazy' src={addHistory} alt="Add History" />
+              <img loading="lazy" src={addHistory} alt="Add History" />
             </div>
           </div>
           {[...new Array(15)].map((_, index) => {
             return <History key={index} />;
           })}
         </div>
-        <div className="line"></div>
       </header>
     </>
   );

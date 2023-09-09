@@ -83,8 +83,8 @@ const TabEditor = ({ messengerStates, setMessengerStates }) => {
         })
     };
 
-    function TabAction(confirmSign = '', whatConfirm = '', clickChat = {}) {
-        setConfirmation(confirmSign, whatConfirm, clickChat)
+    function TabAction(confirmSign = '', whatConfirm = '') {
+        setConfirmation(confirmSign, whatConfirm, 'Нет', 'Да');
     };
 
     function includesSubscriber(subscriberId) {

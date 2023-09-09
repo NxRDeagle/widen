@@ -78,8 +78,6 @@ const Messenger = () => {
       <ChatActions />
 
       <Confirmation
-        firstOption='Нет'
-        secondOption='Да'
         states={messengerStates}
         setStates={setMessengerStates}
       />
@@ -148,7 +146,7 @@ const Messenger = () => {
 
       <div style={chatActionsOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none', overflow: 'hidden' } : null} className="chats_container">
         {activeChats[chatFilter].map((item) => {
-          return <Message key={item.chatId} {...item} />;
+          return <Message key={chatFilter+item.chatId} {...item} />;
         })}
       </div>
 

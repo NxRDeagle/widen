@@ -154,17 +154,18 @@ export function reducer(state, { type, payload }) {
                 confirmationOpen: !state.confirmationOpen,
                 confirmSign: payload.confirmSign,
                 whatConfirm: payload.whatConfirm,
+                confirmationFirstOption: payload.confirmationFirstOption,
+                confirmationSecondOption: payload.confirmationSecondOption
             };
         case 'SET_CLICK_CHAT':
             return{
                 ...state,
-                clickChat: payload
+                clickChat: Object.assign(payload)
             }
         case 'SET_CHAT_ACTIONS':
             return {
                 ...state,
-                chatActionsOpen: !state.chatActionsOpen,
-                clickChat: payload
+                chatActionsOpen: !state.chatActionsOpen
             }
         case 'EDITED_CHATS':
             return{

@@ -1,18 +1,65 @@
 import React from 'react';
 
-import { mainContext } from '../App';
+import { mainContext, userId } from '../App';
+
+import ChatActions from '../components/ChatActions';
+import Confirmation from '../components/Confirmation';
 
 
 import '../css/Dialog.css';
 
 const Dialog = () => {
-    const { clickChat, getUser, myProfile, goBack, editMyProfile, Conversion } = React.useContext(mainContext);
+    const { clickChat, getUser, myProfile, goBack, editMyProfile, Conversion, setChatActions, chatActionsOpen, goToPreview, setConfirmation, confirmationOpen } = React.useContext(mainContext);
 
     const countConversation = clickChat.conversationName ? Conversion('count', clickChat.companionsId.length + 1) : null;
 
+    function isSpam() {
+        return (!clickChat.conversationName &&
+            !myProfile.subscriptions.includes(clickChat.companionsId[0]) &&
+            clickChat.messages.length > 0 &&
+            !clickChat.messages.find((message) => message.companionId === userId)
+        );
+    }
+
+    function spamClick() {
+        setConfirmation(
+            `Вы уверены, что хотите заблокировать ${getUser(clickChat.companionsId[0]).nickname}?`,
+            'blockUser',
+            'Нет',
+            'Да'
+        );
+    }
+
+    React.useEffect(() => {
+        const dialogCt = document.querySelector('.dialog_container');
+        let counter = 10;
+        const msgs = document.querySelectorAll('.dialog_message_box');
+        for (let i = 0; i < msgs.length; i++) {
+            counter += Math.ceil((msgs[i].offsetHeight + 20) / (dialogCt.offsetHeight / 100));
+            if (counter >= 80) {
+                dialogCt.style.paddingTop = '120px';
+                break;
+            }
+            else {
+                dialogCt.style.paddingTop = `calc(100vh - ${counter}vh)`;
+            }
+        };
+        dialogCt.scrollIntoView(false);
+    });
+
     return (
-        <div className="dialog_container">
-            <div className="dialog_header">
+        <>
+            <ChatActions />
+
+            <Confirmation />
+
+            {
+                isSpam() && (
+                    <button onClick={spamClick} className='spam_btn'>Это спам!</button>
+                )
+            }
+
+            <div style={chatActionsOpen || confirmationOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none' } : null} className="dialog_header">
 
                 <svg onClick={goBack} className='dialog_back_arrow' xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17" fill="none">
                     <path d="M9.66904 0.457403C9.97723 0.762335 10.1252 1.1308 10.1128 1.56278C10.0995 1.99477 9.93871 2.36323 9.63052 2.66816L5.27739 6.97534H22.4588C22.8954 6.97534 23.2616 7.12171 23.5575 7.41444C23.8523 7.70616 23.9997 8.06801 23.9997 8.5C23.9997 8.93199 23.8523 9.29435 23.5575 9.58709C23.2616 9.87881 22.8954 10.0247 22.4588 10.0247H5.27739L9.66904 14.37C9.97723 14.6749 10.1313 15.0373 10.1313 15.457C10.1313 15.8758 9.97723 16.2377 9.66904 16.5426C9.36086 16.8475 8.99463 17 8.57036 17C8.14712 17 7.7814 16.8475 7.47322 16.5426L0.42346 9.56727C0.269365 9.4148 0.159958 9.24963 0.0952396 9.07175C0.0315475 8.89387 -0.000299454 8.70329 -0.000299454 8.5C-0.000299454 8.29671 0.0315475 8.10613 0.0952396 7.92825C0.159958 7.75038 0.269365 7.5852 0.42346 7.43274L7.51174 0.419287C7.79424 0.139765 8.14712 1.90735e-06 8.57036 1.90735e-06C8.99463 1.90735e-06 9.36086 0.15247 9.66904 0.457403Z" fill="#7E52EE" />
@@ -22,11 +69,12 @@ const Dialog = () => {
                     <div className="dialog_avatar_box">
                         <img
                             className="dialog_avatar_picture"
+                            onClick={() => setChatActions(clickChat)}
                             src={clickChat.conversationAvatar ? clickChat.conversationAvatar : getUser(clickChat.companionsId[0]).avatar}
                             alt="user_avatar"
                         />
                         {
-                            !clickChat.conversationName && (
+                            !clickChat.conversationName && getUser(clickChat.companionsId[0]).online && (
                                 <svg className='icon_online' xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                     <circle cx="6" cy="6" r="6" fill="#7E52EE" />
                                 </svg>
@@ -36,11 +84,7 @@ const Dialog = () => {
 
                     <p className="dialog_nickname">{clickChat.conversationName ? clickChat.conversationName : getUser(clickChat.companionsId[0]).nickname}</p>
 
-                    {clickChat.conversationName ? (
-                        <p className="nickname_bottom_sign">{countConversation} участников</p>
-                    ) : (
-                        <p className="nickname_bottom_sign">Был(а) в сети в 00:99</p>
-                    )}
+                    <p className="nickname_bottom_sign">{clickChat.conversationName ? `Кол-во участников ${countConversation}` : !getUser(clickChat.companionsId[0]).online ? 'Был(а) в сети в 00:99' : '' }</p>
                 </div>
 
                 {
@@ -64,25 +108,30 @@ const Dialog = () => {
                 }
             </div>
 
-            <div className='dialog_message_box your_message'>
-                <p className='dialog_message_text'>Гандон штопаный</p>
-                <p className='dialog_message_time'>12:32</p>
+            <div style={chatActionsOpen || confirmationOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none' } : null} className="dialog_container">
+
+                {
+                    clickChat.messages.length === 0 && (
+                        <h1 className='start_dialog'>Начните диалог!</h1>
+                    )
+                }
+
+                {
+                    clickChat.messages.map((message, index) => {
+                        return (
+                            <div style={message.status === 'unread' ? { boxShadow: '2px 0px 14px 0px #7E00B9' } : null} key={index} data-time={message.time} className={message.companionId === userId ? 'dialog_message_box your_message' : 'dialog_message_box user_message'}>
+                                {
+                                    clickChat.conversationName && message.companionId !== userId && (
+                                        <img onClick={() => goToPreview(getUser(message.companionId))} className='companion_avatar' src={getUser(message.companionId).avatar} alt='companion' />
+                                    )
+                                }
+                                <p className='dialog_message_text'>{message.message}</p>
+                            </div>
+                        )
+                    })
+                }
             </div>
-            <div className='dialog_message_box user_message'>
-                <p className='dialog_message_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, error. Quisquam officia cumque velit libero eligendi fuga sit quae, dolores excepturi repellendus pariatur ut esse asperiores aliquid, debitis minima. Incidunt?</p>
-                <p className='dialog_message_time'>12:32</p>
-            </div>
-            
-            <div className='dialog_message_box  your_message'>
-                <p className='dialog_message_text'>Гандон штопаный</p>
-                <p className='dialog_message_time'>12:32</p>
-            </div>
-            <div className='dialog_message_box  your_message'>
-                <p className='dialog_message_text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, error. Quisquam officia cumque velit libero eligendi fuga sit quae, dolores excepturi repellendus pariatur ut esse asperiores aliquid, debitis minima. Incidunt?</p>
-                <p className='dialog_message_time'>12:32</p>
-            </div>
-            
-        </div>
+        </>
     );
 };
 export default Dialog;

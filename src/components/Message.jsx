@@ -6,7 +6,7 @@ import {mainContext, userId } from '../App';
 const Message = (props) => {
   const { messages, conversationAvatar, conversationName, companionsId, flagUnRead } = props;
 
-  const { Conversion, setChatActions, ColorClick, getUser, setClickChat, navigate} = React.useContext(mainContext);
+  const { Conversion, setChatActions, ColorClick, getUser, setClickChat, navigate, editedChats} = React.useContext(mainContext);
 
   /*Объект последнего сообщения*/
   const Message = messages.length ? messages[messages.length - 1] : {
@@ -25,7 +25,8 @@ const Message = (props) => {
   const chatStartHandler = (e) => {
     ColorClick(e.target, 'chat_box');
     timeout = setTimeout(() => {
-      setChatActions(props);
+      setClickChat(props)
+      setChatActions();
     }, 1000)
   };
 
@@ -39,8 +40,14 @@ const Message = (props) => {
   };
 
   const goToDialog = (chat) => {
-    console.log(chat);
-    setClickChat(chat);
+    const readChat = {
+      ...chat,
+      messages: chat.messages.map((message) => {return message.companionId !== userId && message.status === 'unread' ? {...message, status:'read'} : message}),
+      fullStatus: chat.messages.find((message) => message.status === 'unread' && message.companionId === userId) ? 'unread' : 'read',
+      flagUnRead: false
+    };
+    setClickChat(readChat);
+    editedChats(readChat, readChat.chatId);
     navigate('/dialog');
   };
 

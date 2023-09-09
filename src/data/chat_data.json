@@ -1,7 +1,7 @@
 [
     {
         "chatId": 1,
-        "companionsId": [4,5,6],
+        "companionsId": [4,11,15],
         "tabsName" : ["Крутые перцы"],
         "conversationName": "Кукусики",
         "conversationAvatar": "https://cs6.pikabu.ru/post_img/2014/10/01/10/1412175957_158274204.gif",
@@ -10,9 +10,93 @@
         "messages": [
             {
                 "companionId": 1,
-                "message": "Крутой пляшем",
-                "status": "unread",
+                "message": "Всем привет, кто хочет сходить на хакатон?",
+                "status": "read",
                 "time": "12:30"
+            },
+            {
+                "companionId": 11,
+                "message": "Я не люблю стендап!",
+                "status": "read",
+                "time": "12:32"
+            },
+            {
+                "companionId": 15,
+                "message": "О боже мой",
+                "status": "read",
+                "time": "12:40"
+            },
+            {
+                "companionId": 15,
+                "message": "Кто добавил его в беседу?",
+                "status": "read",
+                "time": "12:40"
+            },
+            {
+                "companionId": 4,
+                "message": "Он просто не знает, что это такое, зачем заводиться на ровном месте?",
+                "status": "read",
+                "time": "12:42"
+            },
+            {
+                "companionId": 4,
+                "message": "Сейчас мы ему всё объясним и он поймёт",
+                "status": "read",
+                "time": "12:45"
+            },
+            {
+                "companionId": 1,
+                "message": "...",
+                "status": "read",
+                "time": "12:55"
+            },
+            {
+                "companionId": 1,
+                "message": "Попрошу вас без нигатива, потому что мероприятие очень важное. Мы должны поддерживать командный дух, чтобы взять призовые места. Поэтому сейчас вы напишете кому когда удобно!",
+                "status": "read",
+                "time": "12:58"
+            },
+            {
+                "companionId": 15,
+                "message": "Ладно, извините. Был не прав. 25 мая в 12:00",
+                "status": "read",
+                "time": "13:00"
+            },
+            {
+                "companionId": 11,
+                "message": "Я могу хоть когда",
+                "status": "read",
+                "time": "13:20"
+            },
+            {
+                "companionId": 4,
+                "message": "Поддерживаю",
+                "status": "read",
+                "time": "13:22"
+            },
+            {
+                "companionId": 1,
+                "message": "Супер, тогда скоро пришлю вам план!",
+                "status": "read",
+                "time": "13:32"
+            },
+            {
+                "companionId": 11,
+                "message": "Ждёмс",
+                "status": "read",
+                "time": "13:42"
+            },
+            {
+                "companionId": 15,
+                "message": "Ожидаем",
+                "status": "read",
+                "time": "13:42"
+            },
+            {
+                "companionId": 15,
+                "message": "Кстати, что по призам?",
+                "status": "unread",
+                "time": "14:02"
             }
         ]
     },
@@ -22,15 +106,117 @@
         "tabsName" : ["Крутые перцы"],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus" : "unread",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 5,
-                "message": "Пельмеши супер",
+                "message": "Привет работяга, как дела?",
                 "status": "read",
                 "time": "11:30"
-            }
+            },
+            {
+                "companionId": 1,
+                "message": "Здарова",
+                "status": "read",
+                "time": "11:32"
+            },
+            {
+                "companionId": 1,
+                "message": "Сижу откисаю",
+                "status": "read",
+                "time": "11:32"
+            },
+            {
+                "companionId": 5,
+                "message": "Я недавно такие пельмеши крутые нашёл, Цезарь - очень вкусно",
+                "status": "read",
+                "time": "11:40"
+            },
+            {
+                "companionId": 5,
+                "message": "<a>Защита</a>",
+                "status": "read",
+                "time": "11:42"
+            },
+            {
+                "companionId": 1,
+                "message": "Наш сайт хорошо защищён",
+                "status": "read",
+                "time": "11:50"
+            },
+            {
+                "companionId": 1,
+                "message": "А пельмеши реально топ!",
+                "status": "read",
+                "time": "12:42"
+            },
+            {
+                "companionId": 1,
+                "message": "Есть кстати новая тема, когда пельмени ешь не мазиком, а ещё и вместе с кетчупом. Я называю это кетчунез. Звучит прикольно, попробуй как-нибудь. Я уверен, что с ним даже самые дешманские пельмени станут божественной едой. Не благодари",
+                "status": "read",
+                "time": "12:42"
+            },
+            {
+                "companionId": 5,
+                "message": "Слушаю тебя вниматочно",
+                "status": "read",
+                "time": "12:44"
+            },
+            {
+                "companionId": 1,
+                "message": "Кароче",
+                "status": "read",
+                "time": "12:46"
+            },
+            {
+                "companionId": 1,
+                "message": "Прикинь, если создать сериал про общагу",
+                "status": "read",
+                "time": "12:48"
+            },
+            {
+                "companionId": 5,
+                "message": "В каком смысле?",
+                "status": "read",
+                "time": "12:49"
+            },
+            {
+                "companionId": 1,
+                "message": "Ну там о жизни студентов. Как они зачёты сдают, в какие передряги вступают",
+                "status": "read",
+                "time": "12:49"
+            },
+            {
+                "companionId": 5,
+                "message": "Если ещё комичные ситуации будут происходить. Ваще топ",
+                "status": "read",
+                "time": "12:49"
+            },
+            {
+                "companionId": 1,
+                "message": "Да про это и речь",
+                "status": "unread",
+                "time": "13:49"
+            },
+            {
+                "companionId": 1,
+                "message": "Ещё и самых клешированных персонажей возьмём",
+                "status": "unread",
+                "time": "13:50"
+            },
+            {
+                "companionId": 1,
+                "message": "Ухахочешься",
+                "status": "unread",
+                "time": "13:50"
+            },
+            {
+                "companionId": 1,
+                "message": "Короче, если ты в теме. Пораспрашивай людей, которые согласятся сниматся за пачку доширака. Каждый день разумеется! Только нужно, чтобы они, как студенты выглядели.",
+                "status": "unread",
+                "time": "13:52"
+            }    
         ]
     },
     {
@@ -43,10 +229,94 @@
         "flagUnRead": false,
         "messages": [
             {
+                "companionId": 8,
+                "message": "Всем привет, друзья мои",
+                "status": "read",
+                "time": "14:30"
+            },
+            {
+                "companionId": 8,
+                "message": "Я собрал вас всех по важному делу!",
+                "status": "read",
+                "time": "14:30"
+            },
+            {
                 "companionId": 6,
-                "message": "100 жмёшь?",
+                "message": "Сто от груди жмёшь?",
+                "status": "read",
+                "time": "14:32"
+            },
+            {
+                "companionId": 1,
+                "message": "Причём тут это?",
+                "status": "read",
+                "time": "14:35"
+            },
+            {
+                "companionId": 8,
+                "message": "Так Рокси угомонись, мы здесь не для того",
+                "status": "read",
+                "time": "14:40"
+            },
+            {
+                "companionId": 8,
+                "message": "Чтобы кач обсужадть",
+                "status": "read",
+                "time": "14:40"
+            },
+            {
+                "companionId": 1,
+                "message": "Давайте ближе к дела, мне ещё кушать надо",
+                "status": "read",
+                "time": "14:42"
+            },
+            {
+                "companionId": 6,
+                "message": "Я протеина выпил мне норм",
+                "status": "read",
+                "time": "14:50"
+            },
+            {
+                "companionId": 1,
+                "message": "Поздравляю",
+                "status": "read",
+                "time": "14:52"
+            },
+            {
+                "companionId": 8,
+                "message": "Поздравляем",
+                "status": "read",
+                "time": "14:52"
+            },
+            {
+                "companionId": 6,
+                "message": "От души",
+                "status": "read",
+                "time": "15:00"
+            },
+            {
+                "companionId": 1,
+                "message": "Я сейчас выйду, блин",
+                "status": "read",
+                "time": "15:10"
+            },
+            {
+                "companionId": 6,
+                "message": "Надеюсь, выйдешь и пойдёшь в качалку?",
+                "status": "read",
+                "time": "15:12"
+            },
+            {
+                "companionId": 8,
+                "message": "О боже",
                 "status": "unread",
-                "time": "10:30"
+                "time": "15:16"
+            },
+            {
+                "companionId": 8,
+                "message": "...",
+                "status": "unread",
+                "time": "15:17"
             }
         ]
     },
