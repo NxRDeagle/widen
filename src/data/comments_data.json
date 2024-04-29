@@ -5,7 +5,7 @@
         "text": "Кузя, ты дебил, как мне это есть?",
         "likes": [1,2,3,4],
         "replies": [2,3],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": false
     },
     {
@@ -14,7 +14,7 @@
         "text": "Успокойся Тоша",
         "likes": [1,2],
         "replies": [],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": true
     },
     {
@@ -23,7 +23,7 @@
         "text": "<a style='color: var(--color_active)'>Premium</a>, Не затыкай ему рот!",
         "likes": [1,2],
         "replies": [],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": true
     },
     {
@@ -32,7 +32,7 @@
         "text": "С мазиком вкуснее!",
         "likes": [1,2,5],
         "replies": [],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": false
     },
     {
@@ -41,7 +41,7 @@
         "text": "А что, идёт!",
         "likes": [],
         "replies": [],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": false
     },
     {
@@ -50,7 +50,7 @@
         "text": "Закачаешься",
         "likes": [],
         "replies": [],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": false
     },
     {
@@ -59,7 +59,7 @@
         "text": "Какие бани вы чо?",
         "likes": [],
         "replies": [8],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": false
     },
     {
@@ -68,7 +68,7 @@
         "text": "Личико прикрыл и бан!",
         "likes": [],
         "replies": [],
-        "time": "",
+        "time": "2023-09-11 08:18:34",
         "isReply": true
     }
 ]

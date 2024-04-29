@@ -1,0 +1,131 @@
+.preview_box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-size: cover;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.preview_box_open {
+    animation: openPreview .4s ease-in-out forwards;
+}
+
+.preview_box_close {
+    animation: closePreview .5s ease-in-out forwards;
+}
+
+@keyframes openPreview {
+    0% {
+        transform: translate(0, -100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes closePreview {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0, -100%);
+        opacity: 0;
+    }
+}
+
+.preview_avatar {
+    position: absolute;
+    width: 191px;
+    height: 191px;
+    border-radius: 50%;
+    border: 2px solid white;
+    top: 6em;
+}
+
+.preview_nickname_box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    background-color: white;
+    padding: 15px 20px;
+    min-width: 180px;
+    top: 19em;
+}
+
+.preview_nickname {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+}
+
+.preview_role {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #BABABA;
+}
+
+.preview_close {
+    position: absolute;
+    bottom: 40px;
+}
+
+.preview_status_container {
+    position: absolute;
+    background-color: white;
+    width: 80%;
+    top: 25em;
+    padding: 20px 0;
+    border-radius: 25px;
+}
+
+.preview_status_box {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.preview_status_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview_status_count {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+}
+
+.preview_status_sign {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #BABABA;
+    margin-bottom: 20px;
+}
+
+.preview_about {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    padding: 0 20px;
+}

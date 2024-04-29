@@ -1,0 +1,150 @@
+.mainBackground,
+.newsware_container {
+  background-color: #f5f5f5;
+  padding-bottom: 2px;
+}
+
+
+.newsware_container {
+  animation: main 0.4s forwards;
+  width: var(--max-width);
+  height: fit-content;
+  margin-top: 10px;
+}
+
+.newsware_container:last-child {
+  padding-bottom: 60px;
+}
+
+/*Flex+column*/
+.filter_post_box,
+.filter_post_item,
+.user_history_box {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.header_box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  padding: 0 30px;
+  border-bottom: 1px solid #BABABA;
+}
+
+.logo_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+}
+
+.logo_sign {
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: black;
+}
+
+.arrow_box {
+  position: relative;
+  height: fit-content;
+  width: 20px;
+  height: 20px;
+}
+
+.arrow_right {
+  position: absolute;
+  display: block;
+  background-color: black;
+  width: 65%;
+  height: 3px;
+  transform: rotate(-50deg);
+  border-radius: 5px;
+  left: 0;
+  top: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow_left {
+  position: absolute;
+  display: block;
+  background-color: black;
+  width: 65%;
+  height: 3px;
+  transform: rotate(50deg);
+  border-radius: 5px;
+  right: 0;
+  top: 6px;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow_open .arrow_right {
+  transform: rotate(50deg);
+}
+
+.arrow_open .arrow_left {
+  transform: rotate(-50deg);
+}
+
+.filter_newsware_box {
+  display: block;
+  position: absolute;
+  text-align: center;
+  list-style: none;
+  width: 150px;
+  height: 0;
+  opacity: 0;
+  left: 27px;
+  top: 95px;
+  border-radius: 10px;
+  border: 1px solid #BABABA;
+  background-color: white;
+  z-index: 1;
+  overflow: hidden;
+  transition: all .3s ease-in-out;
+  pointer-events: none;
+}
+
+.filter_newsware_box_open {
+  height: 175px;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.filter_newsware_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 43px;
+  border-bottom: 1px solid #BABABA;
+}
+
+.filter_newsware_box li:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.filter_newsware_box li:last-child {
+  border: none !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.head_search {}
+
+@keyframes main {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

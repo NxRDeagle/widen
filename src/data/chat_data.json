@@ -1,456 +1,900 @@
 [
     {
         "chatId": 1,
-        "companionsId": [4,11,15],
-        "tabsName" : ["Крутые перцы"],
+        "companionsId": [
+            4,
+            11,
+            15
+        ],
+        "tabsName": [
+            "Крутые перцы"
+        ],
         "conversationName": "Кукусики",
         "conversationAvatar": "https://cs6.pikabu.ru/post_img/2014/10/01/10/1412175957_158274204.gif",
-        "fullStatus" : "unread",
+        "fullStatus": "unread",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
+                "messageId": 1,
                 "message": "Всем привет, кто хочет сходить на хакатон?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:30"
+                "time": "2022-12-05 10:37:22"
             },
             {
                 "companionId": 11,
+                "messageId": 2,
                 "message": "Я не люблю стендап!",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:32"
+                "time": "2023-02-20 12:37:22"
             },
             {
                 "companionId": 15,
+                "messageId": 3,
                 "message": "О боже мой",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:40"
+                "time": "2023-05-22 08:23:12"
             },
             {
                 "companionId": 15,
+                "messageId": 4,
                 "message": "Кто добавил его в беседу?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:40"
+                "time": "2023-07-02 12:20:12"
             },
             {
                 "companionId": 4,
+                "messageId": 5,
                 "message": "Он просто не знает, что это такое, зачем заводиться на ровном месте?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:42"
+                "time": "2023-08-25 12:25:12"
             },
             {
                 "companionId": 4,
+                "messageId": 6,
                 "message": "Сейчас мы ему всё объясним и он поймёт",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:45"
+                "time": "2023-09-02 18:25:12"
             },
             {
                 "companionId": 1,
+                "messageId": 7,
                 "message": "...",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:55"
+                "time": "2023-09-02 18:56:12"
             },
             {
                 "companionId": 1,
+                "messageId": 8,
                 "message": "Попрошу вас без нигатива, потому что мероприятие очень важное. Мы должны поддерживать командный дух, чтобы взять призовые места. Поэтому сейчас вы напишете кому когда удобно!",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:58"
+                "time": "2023-09-02 19:56:12"
             },
             {
                 "companionId": 15,
+                "messageId": 9,
                 "message": "Ладно, извините. Был не прав. 25 мая в 12:00",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "13:00"
+                "time": "2023-09-02 20:56:12"
             },
             {
                 "companionId": 11,
+                "messageId": 10,
                 "message": "Я могу хоть когда",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "13:20"
+                "time": "2023-09-11 10:16:12"
             },
             {
                 "companionId": 4,
+                "messageId": 11,
                 "message": "Поддерживаю",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "13:22"
+                "time": "2023-09-11 11:16:12"
             },
             {
                 "companionId": 1,
+                "messageId": 12,
                 "message": "Супер, тогда скоро пришлю вам план!",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "13:32"
+                "time": "2023-09-11 12:16:12"
             },
             {
                 "companionId": 11,
+                "messageId": 13,
                 "message": "Ждёмс",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "13:42"
+                "time": "2023-09-11 15:16:12"
             },
             {
                 "companionId": 15,
+                "messageId": 14,
                 "message": "Ожидаем",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "13:42"
+                "time": "2023-09-11 16:16:12"
             },
             {
                 "companionId": 15,
+                "messageId": 15,
                 "message": "Кстати, что по призам?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "14:02"
+                "time": "2023-09-13 01:18:00"
+            },
+            {
+                "companionId": 11,
+                "messageId": 16,
+                "message": "Ghost bster",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-13 02:18:00"
+            },
+            {
+                "companionId": 11,
+                "messageId": 17,
+                "message": "ой",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-13 02:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 18,
+                "message": "Прекол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-13 03:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 19,
+                "message": "Gf;bkjq",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 20,
+                "message": "Лол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 11,
+                "messageId": 21,
+                "message": "Ну и что мне с этого?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 22,
+                "message": "Прекол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-13 03:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 23,
+                "message": "Gf;bkjq",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 24,
+                "message": "Лол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 11,
+                "messageId": 25,
+                "message": "Ну и что мне с этого?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 26,
+                "message": "Gf;bkjq",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 27,
+                "message": "Лол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 11,
+                "messageId": 28,
+                "message": "Ну и что мне с этого?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 29,
+                "message": "Прекол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-13 03:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 30,
+                "message": "Gf;bkjq",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:19:00"
+            },
+            {
+                "companionId": 15,
+                "messageId": 31,
+                "message": "Лол",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
+            },
+            {
+                "companionId": 11,
+                "messageId": 32,
+                "message": "Ну и что мне с этого?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
+                "status": "unread",
+                "time": "2023-09-14 13:20:00"
             }
         ]
     },
     {
         "chatId": 2,
-        "companionsId": [5],
-        "tabsName" : ["Крутые перцы"],
+        "companionsId": [
+            5
+        ],
+        "tabsName": [
+            "Крутые перцы"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "unread",
+        "fullStatus": "unread",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 5,
+                "messageId": 1,
                 "message": "Привет работяга, как дела?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "11:30"
+                "time": "2023-09-11 08:18:34"
             },
             {
                 "companionId": 1,
+                "messageId": 2,
                 "message": "Здарова",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "11:32"
+                "time": "2023-09-11 08:19:12"
             },
             {
                 "companionId": 1,
+                "messageId": 3,
                 "message": "Сижу откисаю",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "11:32"
+                "time": "2023-09-11 08:20:34"
             },
             {
                 "companionId": 5,
+                "messageId": 4,
                 "message": "Я недавно такие пельмеши крутые нашёл, Цезарь - очень вкусно",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "11:40"
+                "time": "2023-09-11 08:22:54"
             },
             {
                 "companionId": 5,
+                "messageId": 5,
                 "message": "<a>Защита</a>",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "11:42"
+                "time": "2023-09-11 10:12:53"
             },
             {
                 "companionId": 1,
+                "messageId": 6,
                 "message": "Наш сайт хорошо защищён",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "11:50"
+                "time": "2023-09-11 10:23:12"
             },
             {
                 "companionId": 1,
+                "messageId": 7,
                 "message": "А пельмеши реально топ!",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:42"
+                "time": "2023-09-11 10:42:23"
             },
             {
                 "companionId": 1,
+                "messageId": 8,
                 "message": "Есть кстати новая тема, когда пельмени ешь не мазиком, а ещё и вместе с кетчупом. Я называю это кетчунез. Звучит прикольно, попробуй как-нибудь. Я уверен, что с ним даже самые дешманские пельмени станут божественной едой. Не благодари",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:42"
+                "time": "2023-09-11 10:52:53"
             },
             {
                 "companionId": 5,
+                "messageId": 9,
                 "message": "Слушаю тебя вниматочно",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:44"
+                "time": "2023-09-11 11:20:33"
             },
             {
                 "companionId": 1,
+                "messageId": 10,
                 "message": "Кароче",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:46"
+                "time": "2023-09-11 12:02:23"
             },
             {
                 "companionId": 1,
+                "messageId": 11,
                 "message": "Прикинь, если создать сериал про общагу",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:48"
+                "time": "2023-09-11 12:03:33"
             },
             {
                 "companionId": 5,
+                "messageId": 12,
                 "message": "В каком смысле?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:49"
+                "time": "2023-09-11 12:05:23"
             },
             {
                 "companionId": 1,
+                "messageId": 13,
                 "message": "Ну там о жизни студентов. Как они зачёты сдают, в какие передряги вступают",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:49"
+                "time": "2023-09-11 12:12:33"
             },
             {
                 "companionId": 5,
+                "messageId": 14,
                 "message": "Если ещё комичные ситуации будут происходить. Ваще топ",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "12:49"
+                "time": "2023-09-11 12:12:53"
             },
             {
                 "companionId": 1,
+                "messageId": 15,
                 "message": "Да про это и речь",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "13:49"
+                "time": "2023-09-11 14:12:53"
             },
             {
                 "companionId": 1,
+                "messageId": 16,
                 "message": "Ещё и самых клешированных персонажей возьмём",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "13:50"
+                "time": "2023-09-11 14:13:53"
             },
             {
                 "companionId": 1,
+                "messageId": 17,
                 "message": "Ухахочешься",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "13:50"
+                "time": "2023-09-11 14:15:53"
             },
             {
                 "companionId": 1,
+                "messageId": 18,
                 "message": "Короче, если ты в теме. Пораспрашивай людей, которые согласятся сниматся за пачку доширака. Каждый день разумеется! Только нужно, чтобы они, как студенты выглядели.",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "13:52"
-            }    
+                "time": "2023-09-11 14:16:53"
+            }
         ]
     },
     {
         "chatId": 3,
-        "companionsId": [6,8],
-        "tabsName" : ["Крутые перцы"],
+        "companionsId": [
+            6,
+            8
+        ],
+        "tabsName": [
+            "Крутые перцы"
+        ],
         "conversationName": "Прикуска",
         "conversationAvatar": "https://proprikol.ru/wp-content/uploads/2020/12/kartinki-smeh-49.jpg",
-        "fullStatus" : "unread",
+        "fullStatus": "unread",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 8,
+                "messageId": 1,
                 "message": "Всем привет, друзья мои",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:30"
+                "time": "2021-09-11 14:16:53"
             },
             {
                 "companionId": 8,
+                "messageId": 2,
                 "message": "Я собрал вас всех по важному делу!",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:30"
+                "time": "2021-09-11 14:20:53"
             },
             {
                 "companionId": 6,
+                "messageId": 3,
                 "message": "Сто от груди жмёшь?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:32"
+                "time": "2021-09-11 14:26:53"
             },
             {
                 "companionId": 1,
+                "messageId": 4,
                 "message": "Причём тут это?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:35"
+                "time": "2021-09-11 14:36:53"
             },
             {
                 "companionId": 8,
+                "messageId": 5,
                 "message": "Так Рокси угомонись, мы здесь не для того",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:40"
+                "time": "2021-09-11 14:45:53"
             },
             {
                 "companionId": 8,
+                "messageId": 6,
                 "message": "Чтобы кач обсужадть",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:40"
+                "time": "2021-09-11 14:56:53"
             },
             {
                 "companionId": 1,
+                "messageId": 7,
                 "message": "Давайте ближе к дела, мне ещё кушать надо",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:42"
+                "time": "2021-09-11 15:06:53"
             },
             {
                 "companionId": 6,
+                "messageId": 8,
                 "message": "Я протеина выпил мне норм",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:50"
+                "time": "2021-09-11 15:12:53"
             },
             {
                 "companionId": 1,
+                "messageId": 9,
                 "message": "Поздравляю",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:52"
+                "time": "2021-09-11 15:16:53"
             },
             {
                 "companionId": 8,
+                "messageId": 10,
                 "message": "Поздравляем",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:52"
+                "time": "2021-09-11 15:18:53"
             },
             {
                 "companionId": 6,
+                "messageId": 11,
                 "message": "От души",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "15:00"
+                "time": "2021-09-11 15:26:53"
             },
             {
                 "companionId": 1,
+                "messageId": 12,
                 "message": "Я сейчас выйду, блин",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "15:10"
+                "time": "2021-09-11 15:28:53"
             },
             {
                 "companionId": 6,
+                "messageId": 13,
                 "message": "Надеюсь, выйдешь и пойдёшь в качалку?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "15:12"
+                "time": "2021-09-11 15:28:53"
             },
             {
                 "companionId": 8,
+                "messageId": 14,
                 "message": "О боже",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "15:16"
+                "time": "2021-09-11 15:29:53"
             },
             {
                 "companionId": 8,
+                "messageId": 15,
                 "message": "...",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "15:17"
+                "time": "2021-09-11 15:30:53"
             }
         ]
     },
     {
         "chatId": 4,
-        "companionsId": [8],
-        "tabsName" : ["Крутые перцы"],
+        "companionsId": [
+            8
+        ],
+        "tabsName": [
+            "Крутые перцы"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
+                "messageId": 1,
                 "message": "Зачёт",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "9:30"
+                "time": "2023-04-11 15:28:53"
             }
         ]
     },
     {
         "chatId": 5,
-        "companionsId": [7],
-        "tabsName" : ["Крутые перцы"],
+        "companionsId": [
+            7
+        ],
+        "tabsName": [
+            "Крутые перцы"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
+                "messageId": 1,
                 "message": "Скоро буду делать тестовое и ещё",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "8:30"
+                "time": "2023-09-01 15:28:53"
             }
         ]
     },
     {
         "chatId": 6,
-        "companionsId": [11],
-        "tabsName" : ["Коллеги","Крутые перцы"],
+        "companionsId": [
+            11
+        ],
+        "tabsName": [
+            "Коллеги",
+            "Крутые перцы"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "unread",
+        "fullStatus": "unread",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 11,
+                "messageId": 1,
                 "message": "Привет",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "8:30"
+                "time": "2023-09-13 01:38:53"
             },
             {
                 "companionId": 11,
+                "messageId": 2,
                 "message": "Есть дело",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "unread",
-                "time": "8:32"
+                "time": "2023-09-13 01:39:53"
             }
         ]
     },
     {
         "chatId": 7,
-        "companionsId": [12],
-        "tabsName" : ["Коллеги"],
+        "companionsId": [
+            12
+        ],
+        "tabsName": [
+            "Коллеги"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 12,
+                "messageId": 1,
                 "message": "Привет",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "5:30"
+                "time": "2023-09-10 01:38:53"
             },
             {
                 "companionId": 12,
+                "messageId": 2,
                 "message": "Я это я!",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "6:32"
+                "time": "2023-09-12 01:38:53"
             }
         ]
     },
     {
         "chatId": 8,
-        "companionsId": [13],
-        "tabsName" : ["Заказчики"],
+        "companionsId": [
+            13
+        ],
+        "tabsName": [
+            "Заказчики"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 13,
+                "messageId": 1,
                 "message": "Есть работа",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "21:13"
+                "time": "2023-08-13 01:38:53"
             }
         ]
     },
     {
         "chatId": 9,
-        "companionsId": [14],
-        "tabsName" : ["Заказчики"],
+        "companionsId": [
+            14
+        ],
+        "tabsName": [
+            "Заказчики"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": [
             {
                 "companionId": 1,
+                "messageId": 1,
                 "message": "Есть работа?",
+                "replies": [],
+                "transplanted": [],
+                "edited": false,
                 "status": "read",
-                "time": "14:12"
+                "time": "2023-09-12 03:38:53"
             }
         ]
     },
     {
         "chatId": 10,
-        "companionsId": [20],
-        "tabsName" : ["Заказчики"],
+        "companionsId": [
+            20
+        ],
+        "tabsName": [
+            "Заказчики"
+        ],
         "conversationName": "",
         "conversationAvatar": "",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": []
     },
     {
         "chatId": 11,
-        "companionsId": [6,8,9],
-        "tabsName" : ["Заказчики"],
+        "companionsId": [
+            6,
+            8,
+            9
+        ],
+        "tabsName": [
+            "Заказчики"
+        ],
         "conversationName": "Япы",
         "conversationAvatar": "https://licensingrussia.ru/media/cache/4c/00/4c00baddab18d96b8e60f5a132e1afc9.jpg",
-        "fullStatus" : "read",
+        "fullStatus": "read",
         "flagUnRead": false,
         "messages": []
     }

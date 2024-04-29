@@ -4,16 +4,13 @@
     height: fit-content;
     width: 90%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     box-shadow: 0px 4px 15px 0px #9A7BE9;
     border-radius: 10px;
     z-index: 200;
     transition: all .3s ease-out;
-}
-
-.chat_actions_container_active {
-    top: 50%;
 }
 
 .chat_actions_container_none_active {
@@ -39,11 +36,6 @@
     height: 42px;
     padding-left: 14px;
     transition: background-color 0.2s ease-in-out;
-}
-
-.chat_action_box_active {
-    background-color: #A488EC;
-    border: none !important;
 }
 
 .chat_action_sign {
@@ -79,11 +71,11 @@
     margin: 18px 0 6px 0;
 }
 
-.chat_action_user_nickname{
+.chat_action_user_nickname {
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    color: black; 
+    color: black;
     margin-bottom: 10px;
 }

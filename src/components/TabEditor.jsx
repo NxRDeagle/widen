@@ -9,7 +9,7 @@ import {mainContext } from '../App';
 
 const TabEditor = ({ messengerStates, setMessengerStates }) => {
 
-    const { confirmationOpen, setConfirmation, activeChats, alreadyTabEditor, myProfile, getUser } = React.useContext(mainContext);
+    const { confirmationOpen, setConfirmation, activeChats, alreadyTabEditor, myProfile, getUser, openTabEditor,setOpenTabEditor } = React.useContext(mainContext);
 
     function getSubscribers(usersId) {
         return users_data.filter((user) => usersId.includes(user.userId));
@@ -72,7 +72,6 @@ const TabEditor = ({ messengerStates, setMessengerStates }) => {
         document.querySelector('[name="tab_name_input"]').value = '';
         setMessengerStates({
             openEditorBtn: false,
-            isOpenEditor: false,
             isNewTab: false,
             categoryFilter: '',
             tabsName: Object.keys(activeChats),
@@ -80,7 +79,8 @@ const TabEditor = ({ messengerStates, setMessengerStates }) => {
             tabPosition: 0,
             isChangePosition: false,
             changeTabPosition: -1,
-        })
+        });
+        setOpenTabEditor();
     };
 
     function TabAction(confirmSign = '', whatConfirm = '') {
@@ -110,8 +110,6 @@ const TabEditor = ({ messengerStates, setMessengerStates }) => {
 
     const tabsChats = getAllTabsChats();
 
-    const subscribers = getSubscribers(myProfile.subscribers);
-
     const signTab = messengerStates.tabsName[messengerStates.tabPosition];
 
 
@@ -133,7 +131,7 @@ const TabEditor = ({ messengerStates, setMessengerStates }) => {
 
     return (
         <>
-            <div style={confirmationOpen ? { filter: 'blur(7.5px)', width: '103%', overflowY: 'hidden', pointerEvents: 'none' } : null} className={messengerStates.isOpenEditor ? "tab_editor_container tab_editor_container_open" : "tab_editor_container tab_editor_container_close"}>
+            <div style={confirmationOpen ? { filter: 'blur(7.5px)', width: '100%', overflowY: 'hidden', pointerEvents: 'none' } : null} className={openTabEditor ? "tab_editor_container" : "tab_editor_container tab_editor_container_close"}>
 
                 <svg onClick={() => { TabEditorBack() }} className='tab_editor_back' xmlns="http://www.w3.org/2000/svg" width="21" height="17" viewBox="0 0 21 17" fill="none">
                     <path d="M8.23742 1.27067C8.49999 1.55686 8.62602 1.90269 8.61551 2.30813C8.60414 2.71358 8.46717 3.0594 8.20461 3.3456L4.49593 7.38814H19.1337C19.5057 7.38814 19.8177 7.52551 20.0697 7.80026C20.3209 8.07406 20.4465 8.41368 20.4465 8.81912C20.4465 9.22457 20.3209 9.56467 20.0697 9.83942C19.8177 10.1132 19.5057 10.2501 19.1337 10.2501H4.49593L8.23742 14.3284C8.49999 14.6146 8.63127 14.9547 8.63127 15.3487C8.63127 15.7418 8.49999 16.0814 8.23742 16.3676C7.97486 16.6538 7.66285 16.7969 7.30139 16.7969C6.94081 16.7969 6.62924 16.6538 6.36668 16.3676L0.36059 9.82081C0.229309 9.67771 0.136097 9.52269 0.0809593 9.35574C0.0266972 9.18879 -0.000434875 9.00992 -0.000434875 8.81912C-0.000434875 8.62832 0.0266972 8.44945 0.0809593 8.2825C0.136097 8.11555 0.229309 7.96053 0.36059 7.81743L6.3995 1.23489C6.64018 0.972544 6.94081 0.841368 7.30139 0.841368C7.66285 0.841368 7.97486 0.984468 8.23742 1.27067Z" fill="#BABABA" />
@@ -179,28 +177,6 @@ const TabEditor = ({ messengerStates, setMessengerStates }) => {
 
                 <div style={!messengerStates.activeTabChats.length ? { marginTop: '200px' } : { marginTop: '10px' }} className='add_chat_container'>
                     <p className='add_chat_sign'>Добавить чаты</p>
-
-                    <div onClick={() => { openCategory('Подписчики') }} className='chat_category_box'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="19" viewBox="0 0 24 19" fill="none">
-                            <path d="M9.5 9.5C8.19375 9.5 7.07552 9.0349 6.14531 8.10469C5.2151 7.17448 4.75 6.05625 4.75 4.75C4.75 3.44375 5.2151 2.32552 6.14531 1.39531C7.07552 0.465104 8.19375 0 9.5 0C10.8062 0 11.9245 0.465104 12.8547 1.39531C13.7849 2.32552 14.25 3.44375 14.25 4.75C14.25 6.05625 13.7849 7.17448 12.8547 8.10469C11.9245 9.0349 10.8062 9.5 9.5 9.5ZM0 19V15.675C0 15.0021 0.173375 14.3834 0.520125 13.8189C0.866875 13.2545 1.32683 12.8242 1.9 12.5281C3.12708 11.9146 4.37396 11.4542 5.64062 11.1471C6.90729 10.8399 8.19375 10.6867 9.5 10.6875C10.8062 10.6875 12.0927 10.8411 13.3594 11.1482C14.626 11.4554 15.8729 11.9154 17.1 12.5281C17.674 12.825 18.1343 13.2557 18.4811 13.8201C18.8278 14.3846 19.0008 15.0029 19 15.675V19H0ZM2.375 16.625H16.625V15.675C16.625 15.4573 16.5704 15.2594 16.4611 15.0813C16.3519 14.9031 16.2086 14.7646 16.0312 14.6656C14.9625 14.1313 13.8839 13.7307 12.7953 13.4639C11.7068 13.1971 10.6083 13.0633 9.5 13.0625C8.39167 13.0625 7.29323 13.1963 6.20469 13.4639C5.11615 13.7315 4.0375 14.132 2.96875 14.6656C2.79062 14.7646 2.64694 14.9031 2.53769 15.0813C2.42844 15.2594 2.37421 15.4573 2.375 15.675V16.625ZM9.5 7.125C10.1531 7.125 10.7124 6.89225 11.1779 6.42675C11.6434 5.96125 11.8758 5.40233 11.875 4.75C11.875 4.09688 11.6422 3.53756 11.1767 3.07206C10.7112 2.60656 10.1523 2.37421 9.5 2.375C8.84687 2.375 8.28756 2.60775 7.82206 3.07325C7.35656 3.53875 7.12421 4.09767 7.125 4.75C7.125 5.40312 7.35775 5.96244 7.82325 6.42794C8.28875 6.89344 8.84767 7.12579 9.5 7.125Z" fill="black" />
-                        </svg>
-                        <p className='chat_category_sign'>Подписчики</p>
-                        <div className={messengerStates.categoryFilter === 'Подписчики' ? 'chat_category_triangle_left chat_category_triangle_bottom' : 'chat_category_triangle_left'}></div>
-                    </div>
-
-                    <div className={messengerStates.categoryFilter === 'Подписчики' ? 'chat_category_add_chats_box chat_category_add_chats_box_open' : 'chat_category_add_chats_box'}>
-                        {
-                            subscribers.map((subscriber) => {
-                                return (
-                                    <div key={subscriber.userId} className='add_chat_box'>
-                                        <img loading='lazy' className='add_chat_avatar' src={subscriber.avatar} alt='avatar'></img>
-                                        <p className='add_chat_nickname'>{subscriber.nickname}</p>
-                                        <div onClick={() => addChat(subscriber)} className={includesSubscriber(subscriber.userId) ? 'add_chat_check_box add_chat_check_box_active' : 'add_chat_check_box'}></div>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
 
                     <div className='chat_category_box'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

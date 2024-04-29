@@ -11,6 +11,26 @@ export function reducer(state, { type, payload }) {
                 ...state,
                 isNewswareFilterOpen: !state.isNewswareFilterOpen
             };
+        case "SET_USER_PROFILE":
+            return{
+                ...state,
+                userProfile: Object.assign(payload)
+            }
+        case "SET_MODAL":
+            return{
+                ...state,
+                modalOption: payload.option
+            }
+        case "SET_FOOTER_TYPE":
+            return {
+                ...state,
+                footType: payload
+            };
+        case "SET_LOGIN_BOX":
+            return {
+                ...state,
+                activeLoginBox: payload
+            };
         case "SET_MESSAGE_TEXT":
             return {
                 ...state,
@@ -21,38 +41,26 @@ export function reducer(state, { type, payload }) {
                 ...state,
                 page: payload
             };
-        case "GO_TO_COMMENTS":
-            return {
-                ...state,
-                message: true,
-                commentNewswareId: payload
-            };
         case "SET_FULL_IMGS":
             return {
                 ...state,
                 fullImages: payload.imgs,
                 fullImgIndex: payload.index
             };
-        case "SET_PROFILE":
-            return {
-                ...state,
-                userProfile: Object.assign(payload)
-            };
         case "EDIT_MY_PROFILE":
-            return{
+            return {
                 ...state,
                 myProfile: Object.assign(payload)
-            };
-        case "GO_BACK_COMMENTS":
-            return {
-                ...state,
-                messageText: '',
-                message: false
             };
         case "SET_USER_PROFILE_NEWSWARE":
             return {
                 ...state,
                 userProfileNewswareItems: payload
+            };
+        case "SET_PROFILE_ACTIVE_ICON":
+            return {
+                ...state,
+                profileActiveIcon: payload
             };
         case "SET_CHAT_FILTER":
             return {
@@ -148,29 +156,76 @@ export function reducer(state, { type, payload }) {
                 default:
                     return state;
             };
-        case 'SET_CONFIRMATION_OPEN':
+        case 'SET_OPEN_TAB_EDITOR':
             return {
                 ...state,
-                confirmationOpen: !state.confirmationOpen,
-                confirmSign: payload.confirmSign,
-                whatConfirm: payload.whatConfirm,
-                confirmationFirstOption: payload.confirmationFirstOption,
-                confirmationSecondOption: payload.confirmationSecondOption
-            };
+                openTabEditor: !state.openTabEditor
+            }
         case 'SET_CLICK_CHAT':
-            return{
+            return {
                 ...state,
                 clickChat: Object.assign(payload)
-            }
-        case 'SET_CHAT_ACTIONS':
+            };
+        case 'EDITED_CHATS':
             return {
                 ...state,
-                chatActionsOpen: !state.chatActionsOpen
-            }
-        case 'EDITED_CHATS':
-            return{
+                activeChats: Object.assign(payload),
+                messageText: '',
+                changeMsgs: [],
+                replyDialogMsg: false,
+                forwardedDialogMsgs: []
+            };
+        case 'SET_CHANGE_MSG':
+            return {
                 ...state,
-                activeChats : Object.assign(payload)
+                changeMsgs: state.changeMsgs.find((changeMsg) => changeMsg.messageId === payload.messageId) ? state.changeMsgs.filter((changeMsg) => changeMsg.messageId !== payload.messageId) : [...state.changeMsgs, payload],
+                replyDialogMsg: false,
+                forwardedDialogMsgs: [],
+                footType: 'editorMsg'
+            }
+        case 'DELETE_MESSAGES':
+            return {
+                ...state,
+                clickChat: { ...payload },
+                changeMsgs: []
+            };
+        case 'CLICK_MSG_REDACTOR':
+            return {
+                ...state,
+                messageText: payload,
+                footType: 'text',
+                editorMsg: true
+            };
+        case 'CLOSED_EDITOR_MSG':
+            return {
+                ...state,
+                messageText: '',
+                footType: 'text',
+                changeMsgs: [],
+                forwardedDialogMsgs: [],
+                replyDialogMsg: false,
+            };
+        case 'REDACTOR_MESSAGE':
+            return {
+                ...state,
+                clickChat: { ...payload },
+                changeMsgs: [],
+                messageText: '',
+                replyDialogMsg: false,
+                forwardedDialogMsgs: [],
+                editorMsg: false
+            };
+        case 'SET_REPLY_DIALOG_MSG':
+            return {
+                ...state,
+                replyDialogMsg: payload,
+                footType: 'text',
+            };
+        case 'SET_FORWARDED_DIALOG_MSG':
+            return {
+                ...state,
+                changeMsgs : [],
+                forwardedDialogMsgs: [...state.changeMsgs]
             }
         default:
             return state;

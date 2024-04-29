@@ -1,0 +1,12 @@
+.modal_container {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    backdrop-filter: blur(7.5px);
+}
+
+.modal_close{
+    opacity: 0;
+}

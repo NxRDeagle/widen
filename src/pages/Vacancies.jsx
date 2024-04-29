@@ -2,11 +2,10 @@ import React from 'react';
 
 import '../css/Vacancies.css';
 
+
 const Vacancies = () => {
   return (
-    <>
-      <div className="friend_container"></div>
-    </>
+      <button>Пробуем</button>
   );
 };
 export default Vacancies;

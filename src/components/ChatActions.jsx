@@ -64,7 +64,7 @@ const ChatActions = () => {
 
     return (
         <ul
-            className={chatActionsOpen ? "chat_actions_container chat_actions_container_active" : "chat_actions_container chat_actions_container_none_active"}
+            className={chatActionsOpen ? "chat_actions_container" : "chat_actions_container chat_actions_container_none_active"}
             onTouchStart={chatActionHandler}
             onTouchEnd={chatActionHandler}
             onClick={actionWithChat}
@@ -157,10 +157,10 @@ const ChatActions = () => {
                 )
             }
             <li name='close' className="chat_action_box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="10" viewBox="0 0 19 10" fill="none">
-                    <path d="M1 10L0 9L4 5L0 1L1 0L5 4L9 0L10 1L6 5L10 9L9 10L5 6L1 10Z" fill="#BABABA" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M1 10L0 9L4 5L0 1L1 0L5 4L9 0L10 1L6 5L10 9L9 10L5 6L1 10Z" fill="#DE5757" />
                 </svg>
-                <p className="chat_action_sign">Закрыть</p>
+                <p style={{ color: '#DE5757' }} className="chat_action_sign">Закрыть</p>
             </li>
         </ul>
     )

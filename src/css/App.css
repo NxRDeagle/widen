@@ -29,8 +29,9 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    outline: none;
 }
 
 body {
-    overflow-x: none;
+    overflow-x: hidden;
 }

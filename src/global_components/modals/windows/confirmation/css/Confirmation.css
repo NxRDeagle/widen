@@ -1,0 +1,86 @@
+.confirmation_box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: white;
+    box-shadow: 0px 4px 15px 0px var(--color_active);
+    border-radius: 10px;
+    padding: 35px 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -1000%);
+    opacity: 0;
+    transition: transform .4s ease-in-out, opacity .2s ease-in-out;
+}
+
+.confirmation_box_open {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.confirmation_question {
+    width: 70%;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+}
+
+.confirmation_options_box {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-top: 20px;
+}
+
+.confirmation_options_btn {
+    height: 33px;
+    border: 1px solid #BABABA;
+    background-color: white;
+    border-radius: 100px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.confirmation_options_btn_active {
+    color: white;
+    background-color: var(--color_active);
+}
+
+.confirmation_additional_section_box {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.confirmation_additional_section_option {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+}
+
+.confirmation_additional_section_checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #BABABA;
+    margin-right: 8px;
+    background-color: white;
+    transition: background-color .2s ease-in;
+}
+
+.confirmation_additional_section_checkbox:checked {
+    background-color: var(--color_active);
+    border: none;
+    outline: none;
+}

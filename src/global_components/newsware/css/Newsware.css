@@ -1,0 +1,351 @@
+.newsware_item {
+    display: flex;
+    flex-direction: column;
+    border: var(--border1) white;
+    /* padding-left: 31px; */
+    background-color: white !important;
+    border-radius: 10px;
+    padding-top: 8px;
+    margin-bottom: 10px;
+}
+
+.open_newsware_item {
+    padding-top: 40px;
+    margin-bottom: 0 !important;
+}
+
+.author_newsware_item {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: fit-content;
+    margin-left: 30px;
+}
+
+.author_open_newsware_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    width: 100%;
+}
+
+.author_open_newsware_item .author_newsware_nick_box {
+    margin: 5px 0 !important;
+    text-align: center;
+}
+
+.author_open_newsware_item .geolocation {
+    margin: 2px 0 !important;
+    text-align: center;
+}
+
+.avatar_author_newsware {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.avatar_author_newsware_open {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+
+.author_newsware_nick_box {
+    display: flex;
+    flex-direction: column;
+    margin: 4px 0 0 8px;
+}
+
+.author_newsware_nickname {
+    color: black;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.geolocation {
+    color: var(--color_gray);
+    margin: 2px 0 0 -2px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.add_friend_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: rgb(147, 118, 221);
+    background: linear-gradient(114deg, rgba(147, 118, 221, 1) 19%, rgba(101, 41, 255, 1) 88%);
+    border-radius: 50%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    margin: 5px;
+}
+
+.remove_friend_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    margin: 5px;
+}
+
+.post_card_box,
+.event_card_box {
+    display: flex;
+    flex-direction: column;
+    margin: 13px 0 13px 30px;
+    max-height: fit-content;
+}
+
+.post_card_text,
+.event_card_text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 16px;
+    max-width: 80%;
+}
+
+.sign_wrap {
+    color: var(--color_active);
+}
+
+.newsware_image {
+    max-width: 90%;
+    width: fit-content;
+    max-height: 600px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.case_card_box {
+    position: relative;
+    max-width: 90%;
+    width: fit-content;
+    max-height: 600px;
+    border-radius: 10px;
+    margin: 13px 0;
+    overflow: hidden;
+    padding-left: 30px;
+}
+
+.case_image {
+    width: var(--max-width);
+    height: 100%;
+    border-radius: 10px;
+    filter: brightness(55%) blur(1px);
+}
+
+.case_header {
+    position: absolute;
+    top: 46px;
+    left: 47px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: white;
+    max-width: 80%;
+    max-height: 100%;
+}
+
+.case_author_avatar {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    bottom: 20px;
+    left: 47px;
+    z-index: 10;
+}
+
+.case_author_nickname {
+    position: absolute;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: white;
+    bottom: 25px;
+    left: 90px;
+    z-index: 10;
+}
+
+.newsware_icons {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    padding-bottom: 8px;
+    color: black;
+    height: fit-content;
+    left: 30px;
+}
+
+.newsware_icon_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.newsware_icon_animation {
+    animation: postIconAnimation 0.6s ease-out;
+    animation-fill-mode: forwards;
+}
+
+.newsware_icon_animation path {
+    stroke: var(--color_active);
+    fill: var(--color_active);
+}
+
+.newsware_icon_active path {
+    stroke: var(--color_active);
+    fill: var(--color_active);
+}
+
+.newsware_count {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.newsware_time {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #bababa;
+    margin: 0 0 10px 30px;
+}
+
+.tags_box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin: 0 0 20px 30px;
+}
+
+.tag {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: white;
+    background-image: url('../../../img/tag.jpg');
+    background-size: cover;
+    border: none;
+    border-radius: 29px;
+    padding: 5px 14px;
+    margin: 0 4px 4px 0;
+}
+
+.event_tags_box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: 30px;
+}
+
+.event_category {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: black;
+    margin: 5px 5px 0 0;
+    text-decoration: underline;
+}
+
+
+
+.useful {
+    z-index: 10;
+    position: absolute;
+    left: 11px;
+    bottom: 0;
+    top: 10px;
+}
+
+.not_useful {
+    animation: activeUsefulBtnAnimation 0.2s ease-in;
+    animation-fill-mode: forwards
+}
+
+.is_useful {
+    animation: clickUsefulBtnAnimation 0.2s ease-in;
+    animation-fill-mode: forwards
+}
+
+@keyframes activeUsefulBtnAnimation {
+    0% {
+        opacity: 0;
+        width: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+        width: 65px;
+    }
+
+    100% {
+        opacity: 1;
+        width: 130px;
+    }
+}
+
+@keyframes clickUsefulBtnAnimation {
+    0% {
+        opacity: 1;
+        width: 130px;
+    }
+
+    50% {
+        opacity: 0.5;
+        width: 65px;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes postIconAnimation {
+    25% {
+        transform: translateY(-4px);
+        z-index: 2;
+    }
+
+    50% {
+        transform: rotate(0.04turn);
+        z-index: 2;
+    }
+
+    75% {
+        transform: rotate(-0.04turn);
+        z-index: 2;
+    }
+
+    100% {
+        transform: none;
+    }
+}
