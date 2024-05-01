@@ -29,7 +29,7 @@
   margin-right: 4px;
   color: black;
   white-space: nowrap;
-  transition: .3s background-color ease-in-out;
+  transition: 0.3s background-color ease-in-out;
 }
 
 .active_btn {
@@ -73,7 +73,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
-  color: #BABABA;
+  color: #bababa;
 }
 
 .set_margin {
@@ -263,7 +263,7 @@
   margin-right: 30px;
   width: 16px;
   height: 16px;
-  border: 1px solid #BABABA;
+  border: 1px solid #bababa;
   background-color: white;
   transition: all 0.2s ease-in-out;
 }
@@ -329,7 +329,7 @@
   flex-wrap: wrap;
   width: var(--max-width);
   padding: 7px 20px;
-  border-bottom: 1px solid #BABABA;
+  border-bottom: 1px solid #bababa;
 }
 
 .global_tag_box {

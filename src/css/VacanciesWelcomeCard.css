@@ -1,0 +1,38 @@
+.vacancies-welcome_card {
+  width: 80%;
+  min-height: 130px;
+  height: fit-content;
+  box-shadow: 0 4px 15px 0 #7e52ee;
+  border-radius: 16px;
+  margin-top: 40px;
+  padding: 5px 20px;
+}
+
+.vacancies-welcome_card__name {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  color: #000;
+}
+
+.vacancies-welcome_card__description {
+  margin-top: 10px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  color: #545454;
+}
+
+.vacancies_welcome_card_sign {
+  position: relative;
+  bottom: 0;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  color: #545454;
+}
+
+.card_inactive {
+  box-shadow: none;
+  background-color: #dddddd;
+}

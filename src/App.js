@@ -14,12 +14,8 @@ import './css/fontello.css';
 
 import Router from './page_routes/Router';
 
-
-
 import Footer from './components/Footer';
 import ChatActions from './components/ChatActions';
-
-
 
 localStorage.clear();
 
@@ -62,7 +58,9 @@ export const defaultPost = {
     reposts: [],
     views: [],
   },
-  imgs: ['https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg'],
+  imgs: [
+    'https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg',
+  ],
   signImgs: ['Пост не найден :('],
   geoposition: '',
   time: '',
@@ -72,8 +70,8 @@ export const defaultChat = {
   chatId: 0,
   companionsId: [],
   tabsName: [],
-  conversationName: "",
-  conversationAvatar: "",
+  conversationName: '',
+  conversationAvatar: '',
   fullStatus: '',
   messages: [],
 };
@@ -88,12 +86,12 @@ export const defaultComment = {
   isReply: false,
 };
 
-
 function App() {
-
   const location = useLocation();
   const navigate = useNavigate();
-  const scrollValues = React.useRef(sessionStorage.getItem('scrollValue') ? JSON.parse(sessionStorage.getItem('scrollValue')) : []);
+  const scrollValues = React.useRef(
+    sessionStorage.getItem('scrollValue') ? JSON.parse(sessionStorage.getItem('scrollValue')) : [],
+  );
   const msgText = React.useRef(null);
 
   //Достаём работу с глобальными состояниями
@@ -101,18 +99,15 @@ function App() {
   const appvalue = globalStates.appvalue;
   const dispatch = globalStates.dispatch;
 
-
   //Статические функции приложения
 
   function currentTime(time) {
     if (time < 10) {
       return `0${time}`;
-    }
-    else {
+    } else {
       return time;
     }
   }
-
 
   function howLongHasItBeen(dispatchDate) {
     let nowDate = new Date();
@@ -124,33 +119,31 @@ function App() {
       if (howLong['inHours']) {
         howLong['inDays'] = Math.floor((nowDate.getTime() - dispatchDate.getTime()) / 86400000);
         if (howLong['inDays']) {
-          howLong['inMonths'] = (nowDate.getMonth() + 12 * nowDate.getFullYear()) - (dispatchDate.getMonth() + 12 * dispatchDate.getFullYear());
+          howLong['inMonths'] =
+            nowDate.getMonth() +
+            12 * nowDate.getFullYear() -
+            (dispatchDate.getMonth() + 12 * dispatchDate.getFullYear());
           if (howLong['inMonths']) {
             howLong['inYears'] = nowDate.getFullYear() - dispatchDate.getFullYear();
             if (howLong['inYears']) {
               return howLong;
-            }
-            else {
+            } else {
               delete howLong['inYears'];
             }
-          }
-          else {
+          } else {
             delete howLong['inMonths'];
           }
-        }
-        else {
+        } else {
           delete howLong['inDays'];
         }
-      }
-      else {
+      } else {
         delete howLong['inHours'];
       }
-    }
-    else {
+    } else {
       delete howLong['inMinutes'];
     }
     return howLong;
-  };
+  }
 
   function getSignMonth(monthNumber) {
     switch (monthNumber) {
@@ -181,7 +174,7 @@ function App() {
       default:
         return;
     }
-  };
+  }
 
   function Conversion(type, stats) {
     let element = null;
@@ -189,26 +182,26 @@ function App() {
       case 'count':
         element =
           stats >= 1000000
-            ? ((Math.floor((stats / 1000000) * 10) / 10) + 'm').replace('.', ',')
+            ? (Math.floor((stats / 1000000) * 10) / 10 + 'm').replace('.', ',')
             : stats >= 1000
-              ? ((Math.floor((stats / 1000) * 10) / 10) + 'k').replace('.', ',')
-              : stats;
+            ? (Math.floor((stats / 1000) * 10) / 10 + 'k').replace('.', ',')
+            : stats;
         break;
       case 'comments':
         element =
           stats % 10 === 1 && stats % 100 !== 1
             ? 'комментарий'
             : stats % 10 === 0 || stats % 10 >= 5 || stats % 100 === 1
-              ? 'комментариев'
-              : 'комментария';
+            ? 'комментариев'
+            : 'комментария';
         break;
       case 'conversation':
         element =
           stats % 10 === 1 && stats % 100 !== 1
             ? 'участник'
             : stats % 10 === 0 || stats % 10 >= 5 || stats % 100 === 1
-              ? 'участников'
-              : 'участника';
+            ? 'участников'
+            : 'участника';
         break;
       case 'previewIdea':
         element = stats.length > 200 ? stats.substr(0, 200) + '...' : stats;
@@ -222,7 +215,7 @@ function App() {
       case 'previewSign':
         element = {
           large: stats.length > 180,
-          sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats
+          sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats,
         };
         break;
       case 'chatUnreadCount':
@@ -231,22 +224,35 @@ function App() {
       case 'time':
         let howLong = howLongHasItBeen(stats);
         if (Object.keys(howLong).length === 6) {
-          element = appvalue.page === 'messenger' ? `${stats.getFullYear()}г.` :
-            `${stats.getDate()}${getSignMonth(stats.getMonth())} ${stats.getFullYear()}г. в ${currentTime(stats.getHours())}:${currentTime(stats.getMinutes())}`;
-        }
-        else if (Object.keys(howLong).length === 5) {
-          element = appvalue.page === 'messenger' ? `${howLong['inMonths']}мес.` :
-            `${stats.getDate()}${getSignMonth(stats.getMonth())} в ${currentTime(stats.getHours())}:${currentTime(stats.getMinutes())}`;
-        }
-        else if (Object.keys(howLong).length === 4) {
-          element = appvalue.page === 'messenger' ? `${howLong['inDays']}д.` :
-            `${stats.getDate()}${getSignMonth(stats.getMonth())} в ${currentTime(stats.getHours())}:${currentTime(stats.getMinutes())}`;
-        }
-        else if (Object.keys(howLong).length > 1) {
+          element =
+            appvalue.page === 'messenger'
+              ? `${stats.getFullYear()}г.`
+              : `${stats.getDate()}${getSignMonth(
+                  stats.getMonth(),
+                )} ${stats.getFullYear()}г. в ${currentTime(stats.getHours())}:${currentTime(
+                  stats.getMinutes(),
+                )}`;
+        } else if (Object.keys(howLong).length === 5) {
+          element =
+            appvalue.page === 'messenger'
+              ? `${howLong['inMonths']}мес.`
+              : `${stats.getDate()}${getSignMonth(stats.getMonth())} в ${currentTime(
+                  stats.getHours(),
+                )}:${currentTime(stats.getMinutes())}`;
+        } else if (Object.keys(howLong).length === 4) {
+          element =
+            appvalue.page === 'messenger'
+              ? `${howLong['inDays']}д.`
+              : `${stats.getDate()}${getSignMonth(stats.getMonth())} в ${currentTime(
+                  stats.getHours(),
+                )}:${currentTime(stats.getMinutes())}`;
+        } else if (Object.keys(howLong).length > 1) {
           element = `${currentTime(stats.getHours())}:${currentTime(stats.getMinutes())}`;
-        }
-        else {
-          element = appvalue.page === 'messenger' ? element = `${howLong['inSeconds']}с.` : element = `${howLong['inSeconds']}сек. назад`;
+        } else {
+          element =
+            appvalue.page === 'messenger'
+              ? (element = `${howLong['inSeconds']}с.`)
+              : (element = `${howLong['inSeconds']}сек. назад`);
         }
         break;
       case 'dialogReply':
@@ -274,8 +280,7 @@ function App() {
     for (const [key, value] of Object.entries(globalFilters)) {
       if (!value.length) {
         continue;
-      }
-      else {
+      } else {
         for (let index = 0; index < eventTags[key].length; index++) {
           if (value.includes(eventTags[key][index])) {
             break;
@@ -287,35 +292,44 @@ function App() {
       }
     }
     return true;
-  };
+  }
 
   function ColorClick(element, classElement) {
-    element.classList.contains(classElement) ?
-      element.classList.toggle('color_click') :
-      element.closest(`.${classElement}`).classList.toggle('color_click')
-  };
+    element.classList.contains(classElement)
+      ? element.classList.toggle('color_click')
+      : element.closest(`.${classElement}`).classList.toggle('color_click');
+  }
 
   function getAllActiveChats() {
     const activeChats = {};
-    (users_data.find((obj) => obj.userId === userId) ? users_data.find((obj) => obj.userId === userId) : defaultUser)
-      .tabsName.forEach((tabName) => activeChats[tabName] = chat_data.filter((chat) => chat.tabsName.includes(tabName)));
+    (users_data.find((obj) => obj.userId === userId)
+      ? users_data.find((obj) => obj.userId === userId)
+      : defaultUser
+    ).tabsName.forEach(
+      (tabName) =>
+        (activeChats[tabName] = chat_data.filter((chat) => chat.tabsName.includes(tabName))),
+    );
     activeChats['Все чаты'] = chat_data;
     return activeChats;
-  };
+  }
 
   function getUser(userId) {
-    return users_data.find((user) => user.userId === userId) ? users_data.find((user) => user.userId === userId) : defaultUser;
-  };
+    return users_data.find((user) => user.userId === userId)
+      ? users_data.find((user) => user.userId === userId)
+      : defaultUser;
+  }
 
   /*Эффекты приложения*/
 
   React.useEffect(() => {
-
-    appvalue.setFooterType(['/dialog', '/comments'].includes(location.pathname) ? 'text' : 'navigation');
+    appvalue.setFooterType(
+      ['/dialog', '/comments'].includes(location.pathname) ? 'text' : 'navigation',
+    );
 
     if (location.pathname !== '/dialog') {
-
-      let scrollValue = scrollValues.current.find((scrollValue) => scrollValue.pathname === location.pathname);
+      let scrollValue = scrollValues.current.find(
+        (scrollValue) => scrollValue.pathname === location.pathname,
+      );
 
       console.log(scrollValue);
 
@@ -324,35 +338,42 @@ function App() {
       } else {
         scrollValues.current.push({
           pathname: location.pathname,
-          scroll: 0
+          scroll: 0,
         });
         window.scrollTo(0, 0);
       }
     }
 
-    dispatch({ type: 'CHANGE_PAGE', payload: location.pathname === '/' ? 'home' : location.pathname.substring(1) });
+    dispatch({
+      type: 'CHANGE_PAGE',
+      payload: location.pathname === '/' ? 'home' : location.pathname.substring(1),
+    });
     if (location.pathname.includes('profile')) {
       const userNickname = location.pathname.split('/')[2];
-      const userProfile = users_data.find((obj) => obj.nickname === userNickname) ?
-        users_data.find((obj) => obj.nickname === userNickname)
+      const userProfile = users_data.find((obj) => obj.nickname === userNickname)
+        ? users_data.find((obj) => obj.nickname === userNickname)
         : defaultUser;
       dispatch({ type: 'SET_PROFILE', payload: userProfile });
-    };
+    }
     if (location.pathname === '/') {
       dispatch({ type: 'CLEAR_GLOBAL_FILTERS' });
-    };
+    }
   }, [location.pathname]);
 
   React.useEffect(() => {
     const onScroll = () => {
       if (window.scrollY !== 0) {
-        scrollValues.current = scrollValues.current.map(((scrollValue) => { return scrollValue.pathname === location.pathname ? { ...scrollValue, scroll: +window.scrollY } : scrollValue }))
-      };
+        scrollValues.current = scrollValues.current.map((scrollValue) => {
+          return scrollValue.pathname === location.pathname
+            ? { ...scrollValue, scroll: +window.scrollY }
+            : scrollValue;
+        });
+      }
       try {
         sessionStorage.setItem('scrollValue', JSON.stringify(scrollValues.current));
       } catch (err) {
         return undefined;
-      };
+      }
     };
     window.addEventListener('scroll', onScroll);
 
@@ -385,15 +406,11 @@ function App() {
           EventGlobalFilterHandler,
           ColorClick,
           getUser,
-          msgText
+          msgText,
         }}>
         <Modal />
         <Router />
-        {
-          !['/login', '/full_image'].includes(location.pathname) && (
-            <Footer />
-          )
-        }
+        {!['/login', '/full_image'].includes(location.pathname) && <Footer />}
       </mainContext.Provider>
     </>
   );
