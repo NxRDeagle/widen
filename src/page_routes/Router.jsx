@@ -12,24 +12,26 @@ import FullMode from '../pages/FullMode';
 import Complaint from '../pages/Complaint';
 import Dialog from '../pages/Dialog';
 import Authorisation from '../pages/Authorisation/Authorisation';
+import Partnership from '../global_components/Partnership/Partnership';
 
 const Router = () => {
-    return (
-        <Routes>
-            <Route index path="/" element={<Home />} />
-            <Route path="/comments" element={<Comments />} />
-            {/* <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} index={appvalue.fullImgIndex} />} /> */}
-            <Route path="/search" element={<Search />} />
-            <Route path="/vacancies" element={<Vacancies />} />
-            <Route path="/messenger" element={<Messenger />} />
-            <Route path="/forum" element={<Forum />} />
-            <Route path="/profile/:nickname" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/complaint" element={<Complaint />} />
-            <Route path="/dialog" element={<Dialog />} />
-            <Route path="/login" element={<Authorisation />} />
-        </Routes>
-    )
-}
+  return (
+    <Routes>
+      <Route index path="/" element={<Home />} />
+      <Route path="/comments" element={<Comments />} />
+      {/* <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} index={appvalue.fullImgIndex} />} /> */}
+      <Route path="/search" element={<Search />} />
+      <Route path="/vacancies" element={<Vacancies />} />
+      <Route path="/messenger" element={<Messenger />} />
+      <Route path="/forum" element={<Forum />} />
+      <Route path="/profile/:nickname" element={<Profile />} />
+      <Route path="*" element={<NotFound />} />
+      <Route path="/complaint" element={<Complaint />} />
+      <Route path="/dialog" element={<Dialog />} />
+      <Route path="/login" element={<Authorisation />} />
+      <Route path="/partnership/:id" element={<Partnership />} />
+    </Routes>
+  );
+};
 
 export default Router;

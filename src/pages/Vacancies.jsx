@@ -9,7 +9,15 @@ import VacanciesWelcomeCard from '../components/VacanciesWelcomeCard';
 
 import { mainContext } from '../App';
 
+import addPartner from '../img/addPartner.svg';
+
 import { Tags } from '../global_components/newsware/components/newsware_components';
+import PartnershipCard from '../global_components/partnershipCard/PartnershipCard';
+
+import partnership_data from '../data/partnersip_data.json';
+import users_data from '../data/users_data.json';
+
+import { userId } from '../App';
 
 const Vacancies = () => {
   const { partnershipFilters, dropPartnershipFilter } = useContext(mainContext);
@@ -416,28 +424,15 @@ const Vacancies = () => {
                   В процессе
                 </button>
                 <button
-                  onClick={() => setStatusFilter('Зыкрыты')}
+                  onClick={() => setStatusFilter('Закрыты')}
                   className={
-                    statusFilter === 'Зыкрыты'
+                    statusFilter === 'Закрыты'
                       ? 'vacancies_select_status_btn active_btn'
                       : 'vacancies_select_status_btn'
                   }>
                   Закрыты
                 </button>
               </div>
-              {/* {partnershipFilters.tags.length > 0 && (
-                <div
-                  style={{ filter: 'drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25))' }}
-                  className="global_tags_container">
-                  {partnershipFilters.tags.map((item, index) => {
-                    return (
-                      <Tags key={index} onClick={() => dropPartnershipFilter('tags', item)}>
-                        {item}
-                      </Tags>
-                    );
-                  })}
-                </div>
-              )} */}
             </div>
             <div className="vacancies_filterBox">
               <PartnershipFilter
@@ -445,73 +440,32 @@ const Vacancies = () => {
                 setIsFiltersOpen={setIsFiltersOpen}
               />
             </div>
+            <div className="partnership_newsline">
+              {partnership_data.map((item, idx) => {
+                if (
+                  (statusFilter === 'Открыты' && item.status === 'opened') ||
+                  (statusFilter === 'Закрыты' && item.status === 'closed') ||
+                  (statusFilter === 'В процессе' && item.status === 'in_process')
+                ) {
+                  return (
+                    <PartnershipCard
+                      key={idx}
+                      isInFavorites={item.stats.favorites.includes(userId)}
+                      img={item.imgs[0]}
+                      avatar={users_data[item.authorId].avatar}
+                      nickname={users_data[item.authorId].nickname}
+                      geo={item.geoposition}
+                      header={item.partnershipName}
+                      sign={item.idea}
+                    />
+                  );
+                }
+              })}
+              <img className="addSvg" src={addPartner} alt="addPartner_icon" />
+            </div>
           </div>
         )
       )}
-
-      {/* {globalFilters.tags.length > 0 && (
-        <div
-          style={{ filter: 'drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25))' }}
-          className="global_tags_container">
-          {globalFilters.tags.map((item, index) => {
-            return (
-              <GlobalTags key={index} onClick={() => dropGlobalFilter('tag', item)}>
-                {item}
-              </GlobalTags>
-            );
-          })}
-        </div>
-      )}
-      <div className="search_category_box">
-        <CategoryBtn category="globalOpen">Открыты</CategoryBtn>
-        <CategoryBtn category="globalInProcess">В процессе</CategoryBtn>
-        <CategoryBtn category="globalClosed">Закрыты</CategoryBtn>
-      </div>
-      {activeGlobalSearch === 'globalOpen' && (
-        <div style={{ paddingBottom: '60px' }} className="global_search_container">
-          <div className="mainBackground">
-            {globalCases.map((globalCase) => {
-              return <Newsware key={globalCase.newswareId} {...globalCase} />;
-            })}
-          </div>
-        </div>
-      )}
-      {activeGlobalSearch === 'globalInProcess' && (
-        <div style={{ paddingBottom: '60px' }} className="global_search_container">
-          <div className="mainBackground">
-            {globalPosts.map((globalPost) => {
-              return <Newsware key={globalPost.newswareId} {...globalPost} />;
-            })}
-          </div>
-        </div>
-      )}
-      {activeGlobalSearch === 'globalClosed' && (
-        <div className="global_search_container">
-          {globalRisingStars.map((risingStar) => {
-            return <GlobalStar {...risingStar} onClick={() => goToPreview(risingStar)} />;
-          })}
-        </div>
-      )}
-
-      {activeGlobalSearch === 'globalShark' && (
-        <div className="global_search_container">
-          {globalSharks.map((shark) => {
-            return <GlobalStar {...shark} onClick={() => goToPreview(shark)} />;
-          })}
-        </div>
-      )}
-      {activeGlobalSearch === 'globalEvent' && (
-        <div
-          className={
-            isFiltersOpen ? 'global_search_container set_margin' : 'global_search_container'
-          }>
-          <EventFilter isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} />
-
-          {globalEvents.map((item) => {
-            return <Newsware {...item} key={item.newswareId} />;
-          })}
-        </div>
-      )} */}
     </>
   );
 };
