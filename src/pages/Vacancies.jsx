@@ -20,9 +20,9 @@ import users_data from '../data/users_data.json';
 import { userId } from '../App';
 
 const Vacancies = () => {
-  const { partnershipFilters, dropPartnershipFilter } = useContext(mainContext);
+  const { partnershipFilters, dropPartnershipFilter, navigate, division, setDivision } =
+    useContext(mainContext);
 
-  const [division, setDivision] = React.useState(0); // Текущий раздел (0 - гл. страница)
   const [isFiltersOpen, setIsFiltersOpen] = React.useState(false); // Открытие фильтрации
   const [statusFilter, setStatusFilter] = React.useState('Открыты'); // Фильтрация по партнерствам (Открыты/В процессе/Закрыты)
 
@@ -449,6 +449,7 @@ const Vacancies = () => {
                 ) {
                   return (
                     <PartnershipCard
+                      num={idx + 1}
                       key={idx}
                       isInFavorites={item.stats.favorites.includes(userId)}
                       img={item.imgs[0]}

@@ -394,6 +394,8 @@ function App() {
     localStorage.setItem('activeChat', JSON.stringify(appvalue.chatFilter));
   }, [appvalue.chatFilter]);
 
+  const [division, setDivision] = React.useState(0); // Текущий раздел (0 - гл. страница)
+
   return (
     <>
       <mainContext.Provider
@@ -407,6 +409,8 @@ function App() {
           ColorClick,
           getUser,
           msgText,
+          division,
+          setDivision,
         }}>
         <Modal />
         <Router />

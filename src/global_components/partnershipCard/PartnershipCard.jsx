@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import './css/PartnershipCard.css';
 
-const PartnershipCard = ({ img, isInFavorites, avatar, nickname, geo, header, sign }) => {
+const PartnershipCard = ({ img, isInFavorites, avatar, nickname, geo, header, sign, num }) => {
   const [isFav, setFav] = React.useState(isInFavorites);
-
   const navigate = useNavigate();
 
   function goToUserProfile(nickname) {
@@ -46,7 +45,7 @@ const PartnershipCard = ({ img, isInFavorites, avatar, nickname, geo, header, si
           <p className="partnership-card_box__geo">{geo}</p>
         </div>
       </div>
-      <div className="partnership-card_box__bottom">
+      <div className="partnership-card_box__bottom" onClick={() => navigate(`/partnership/${num}`)}>
         <h1 className="partnership-card_box__header">{header}</h1>
         <p className="partnership-card_box__sign">{sign}</p>
       </div>
