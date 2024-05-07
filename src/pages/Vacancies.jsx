@@ -20,8 +20,10 @@ import users_data from '../data/users_data.json';
 import { userId } from '../App';
 
 const Vacancies = () => {
-  const { partnershipFilters, dropPartnershipFilter, navigate, division, setDivision } =
+  const { partnershipFilters, dropPartnershipFilter, navigate, division, setDivision, getUser } =
     useContext(mainContext);
+
+  const [searchValue, setSearchValue] = React.useState('');
 
   const [isFiltersOpen, setIsFiltersOpen] = React.useState(false); // Открытие фильтрации
   const [statusFilter, setStatusFilter] = React.useState('Открыты'); // Фильтрация по партнерствам (Открыты/В процессе/Закрыты)
@@ -403,7 +405,7 @@ const Vacancies = () => {
               <h1 className="vacancies-welcome_header">Партнёрства</h1>
             </div>
             <div className="vacancies_searchBar">
-              <SearchInput placeholder="Партнёрства" />
+              <SearchInput placeholder="Партнёрства" setSearchValue={setSearchValue} />
               <div className="vacancies_status_btns">
                 <button
                   onClick={() => setStatusFilter('Открыты')}
@@ -441,27 +443,30 @@ const Vacancies = () => {
               />
             </div>
             <div className="partnership_newsline">
-              {partnership_data.map((item, idx) => {
-                if (
-                  (statusFilter === 'Открыты' && item.status === 'opened') ||
-                  (statusFilter === 'Закрыты' && item.status === 'closed') ||
-                  (statusFilter === 'В процессе' && item.status === 'in_process')
-                ) {
-                  return (
-                    <PartnershipCard
-                      num={idx + 1}
-                      key={idx}
-                      isInFavorites={item.stats.favorites.includes(userId)}
-                      img={item.imgs[0]}
-                      avatar={users_data[item.authorId].avatar}
-                      nickname={users_data[item.authorId].nickname}
-                      geo={item.geoposition}
-                      header={item.partnershipName}
-                      sign={item.idea}
-                    />
-                  );
-                }
-              })}
+              {partnership_data
+                .filter((item) =>
+                  item.partnershipName.toLowerCase().includes(searchValue.toLowerCase()),
+                )
+                .map((item, idx) => {
+                  if (
+                    (statusFilter === 'Открыты' && item.status === 'opened') ||
+                    (statusFilter === 'Закрыты' && item.status === 'closed') ||
+                    (statusFilter === 'В процессе' && item.status === 'in_process')
+                  ) {
+                    return (
+                      <PartnershipCard
+                        author={getUser(item.authorId)}
+                        num={idx + 1}
+                        key={idx}
+                        isInFavorites={item.stats.favorites.includes(userId)}
+                        img={item.imgs[0]}
+                        geo={item.geoposition}
+                        header={item.partnershipName}
+                        sign={item.idea}
+                      />
+                    );
+                  }
+                })}
               <img className="addSvg" src={addPartner} alt="addPartner_icon" />
             </div>
           </div>

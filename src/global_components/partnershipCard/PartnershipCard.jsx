@@ -1,16 +1,16 @@
 import React from 'react';
 
+import { mainContext } from '../../App';
+
 import { useNavigate } from 'react-router-dom';
 
 import './css/PartnershipCard.css';
 
-const PartnershipCard = ({ img, isInFavorites, avatar, nickname, geo, header, sign, num }) => {
+const PartnershipCard = ({ img, isInFavorites, author, geo, header, sign, num }) => {
+  const { goToProfile } = React.useContext(mainContext);
+
   const [isFav, setFav] = React.useState(isInFavorites);
   const navigate = useNavigate();
-
-  function goToUserProfile(nickname) {
-    navigate(`/profile/${nickname}`, { replace: true });
-  }
 
   return (
     <div className="partnership-card_box">
@@ -35,12 +35,12 @@ const PartnershipCard = ({ img, isInFavorites, avatar, nickname, geo, header, si
           </svg>
           <img
             className="partnership-card_box__avatar"
-            src={avatar}
+            src={author.avatar}
             alt="parnership IMG"
-            onClick={() => goToUserProfile(nickname)}
+            onClick={() => goToProfile(author)}
           />
-          <p className="partnership-card_box__nickname" onClick={() => goToUserProfile(nickname)}>
-            {nickname}
+          <p className="partnership-card_box__nickname" onClick={() => goToProfile(author)}>
+            {author.nickname}
           </p>
           <p className="partnership-card_box__geo">{geo}</p>
         </div>
