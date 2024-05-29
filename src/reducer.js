@@ -165,6 +165,7 @@ export function reducer(state, { type, payload }) {
           format: [],
           direction: [],
           type: [],
+          cities: [],
         },
       };
     case 'DROP_PARTNERSHIP_FILTER':
@@ -219,25 +220,43 @@ export function reducer(state, { type, payload }) {
               ),
             },
           };
+        case 'cities':
+          return {
+            ...state,
+            partnershipFilters: {
+              ...state.partnershipFilters,
+              cities: state.partnershipFilters.cities.filter(
+                (obj) => obj !== payload.partnershipFilter,
+              ),
+            },
+          };
         default:
           return state;
       }
     case 'ADD_PARTNERSHIP_FILTER':
       switch (payload.category) {
-        case 'tags':
-          return {
-            ...state,
-            partnershipFilters: {
-              ...state.partnershipFilters,
-              tags: [...state.partnershipFilters.tags, payload.partnershipFilter],
-            },
-          };
+        // case 'tags':
+        //   return {
+        //     ...state,
+        //     partnershipFilters: {
+        //       ...state.partnershipFilters,
+        //       tags: state.partnershipFilters.tags.includes(payload.partnershipFilter)
+        //         ? state.partnershipFilters.tags.filter((item) => item != payload.partnershipFilter)
+        //         : [...state.partnershipFilters.tags, payload.partnershipFilter],
+
+        //       //tags: [...state.partnershipFilters.tags, payload.partnershipFilter],
+        //     },
+        //   };
         case 'duration':
           return {
             ...state,
             partnershipFilters: {
               ...state.partnershipFilters,
-              duration: [...state.partnershipFilters.duration, payload.partnershipFilter],
+              duration: state.partnershipFilters.duration.includes(payload.partnershipFilter)
+                ? state.partnershipFilters.duration.filter(
+                    (item) => item != payload.partnershipFilter,
+                  )
+                : [...state.partnershipFilters.duration, payload.partnershipFilter],
             },
           };
         case 'format':
@@ -245,7 +264,11 @@ export function reducer(state, { type, payload }) {
             ...state,
             partnershipFilters: {
               ...state.partnershipFilters,
-              format: [...state.partnershipFilters.format, payload.partnershipFilter],
+              format: state.partnershipFilters.format.includes(payload.partnershipFilter)
+                ? state.partnershipFilters.format.filter(
+                    (item) => item != payload.partnershipFilter,
+                  )
+                : [...state.partnershipFilters.format, payload.partnershipFilter],
             },
           };
         case 'direction':
@@ -253,7 +276,11 @@ export function reducer(state, { type, payload }) {
             ...state,
             partnershipFilters: {
               ...state.partnershipFilters,
-              direction: [...state.partnershipFilters.direction, payload.partnershipFilter],
+              direction: state.partnershipFilters.direction.includes(payload.partnershipFilter)
+                ? state.partnershipFilters.direction.filter(
+                    (item) => item != payload.partnershipFilter,
+                  )
+                : [...state.partnershipFilters.direction, payload.partnershipFilter],
             },
           };
         case 'type':
@@ -261,7 +288,21 @@ export function reducer(state, { type, payload }) {
             ...state,
             partnershipFilters: {
               ...state.partnershipFilters,
-              type: [...state.partnershipFilters.type, payload.partnershipFilter],
+              type: state.partnershipFilters.type.includes(payload.partnershipFilter)
+                ? state.partnershipFilters.type.filter((item) => item != payload.partnershipFilter)
+                : [...state.partnershipFilters.type, payload.partnershipFilter],
+            },
+          };
+        case 'cities':
+          return {
+            ...state,
+            partnershipFilters: {
+              ...state.partnershipFilters,
+              cities: state.partnershipFilters.cities.includes(payload.partnershipFilter)
+                ? state.partnershipFilters.cities.filter(
+                    (item) => item != payload.partnershipFilter,
+                  )
+                : [...state.partnershipFilters.cities, payload.partnershipFilter],
             },
           };
         default:

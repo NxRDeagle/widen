@@ -60,6 +60,7 @@ export function GlobalStates() {
       format: [],
       direction: [],
       type: [],
+      cities: [],
     },
     openTabEditor: false,
     clickChat: localStorage.getItem('clickChat')
@@ -227,6 +228,8 @@ export function GlobalStates() {
       type: 'ADD_PARTNERSHIP_FILTER',
       payload: { category: category, partnershipFilter: partnershipFilter },
     });
+    console.log(category);
+    console.log(partnershipFilter);
   };
 
   //Выбираем какой будем отображать блок в профиле

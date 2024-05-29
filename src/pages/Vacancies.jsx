@@ -16,12 +16,12 @@ import PartnershipCard from '../global_components/partnershipCard/PartnershipCar
 
 import partnership_data from '../data/partnersip_data.json';
 import users_data from '../data/users_data.json';
+import city_data from '../data/russian-cities.json';
 
 import { userId } from '../App';
 
 const Vacancies = () => {
-  const { partnershipFilters, dropPartnershipFilter, navigate, division, setDivision, getUser } =
-    useContext(mainContext);
+  const { navigate, division, setDivision, getUser } = useContext(mainContext);
 
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -93,7 +93,7 @@ const Vacancies = () => {
             </p>
           )}
         </div>
-        <div
+        <form
           className={
             openedCategories === category
               ? inputFilter.length > 0
@@ -117,12 +117,12 @@ const Vacancies = () => {
                 );
               })}
           </ul>
-        </div>
+        </form>
       </div>
     );
   };
 
-  //Компонент фильтра для мероприятий
+  //Компонент фильтра для партнерств
   const PartnershipFilter = ({ isFiltersOpen, setIsFiltersOpen }) => {
     const {
       partnershipFilters,
@@ -168,6 +168,7 @@ const Vacancies = () => {
       'Рукоделие',
     ];
     const type = ['Коммерческий', 'Некоммерческий'];
+    const cities = city_data.map((item) => item.name);
 
     //Выбор категории фильтра
     const [openedCategories, setOpenedCategories] = useState('');
@@ -178,11 +179,11 @@ const Vacancies = () => {
       format: '',
       direction: '',
       type: '',
+      cities: '',
     });
 
     //Открытие фильтра определённой категории
     const onClickCategory = (category) => {
-      console.log(category);
       openedCategories === category ? setOpenedCategories('') : setOpenedCategories(category);
     };
 
@@ -200,6 +201,7 @@ const Vacancies = () => {
       for (const key in partnershipFilters) {
         length += partnershipFilters[key].length;
       }
+      console.log('AAAAAAAAAA' + length);
       return length;
     };
 
@@ -210,38 +212,14 @@ const Vacancies = () => {
         format: '',
         direction: '',
         type: '',
+        cities: '',
       });
       dropPartnershipFilters();
     };
 
     //Нажатие на чекбокс для каждой категории
-    const clickCategoryItem = (active, categoryItemSign, category) => {
-      active
-        ? addPartnershipFilter(category, categoryItemSign)
-        : dropPartnershipFilter(category, categoryItemSign);
-    };
-
-    const partnershipTags = ({ onClick, children }) => {
-      return (
-        <div onClick={onClick} className="global_tag_box">
-          <p className="global_tag">{children}</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none">
-            <path
-              d="M11.3642 4.62983L4.62977 11.3643C4.39968 11.5944 4.01806 11.5944 3.78797 11.3643C3.55787 11.1342 3.55787 10.7526 3.78797 10.5225L10.5224 3.78803C10.7525 3.55794 11.1341 3.55794 11.3642 3.78803C11.5943 4.01812 11.5943 4.39974 11.3642 4.62983Z"
-              fill="white"
-            />
-            <path
-              d="M11.3642 11.3643C11.1341 11.5944 10.7525 11.5944 10.5224 11.3643L3.78797 4.62989C3.55787 4.39979 3.55787 4.01818 3.78797 3.78808C4.01806 3.55799 4.39968 3.55799 4.62977 3.78808L11.3642 10.5225C11.5943 10.7526 11.5943 11.1342 11.3642 11.3643Z"
-              fill="white"
-            />
-          </svg>
-        </div>
-      );
+    const clickCategoryItem = (categoryItemSign, category) => {
+      addPartnershipFilter(category, categoryItemSign);
     };
 
     return (
@@ -274,7 +252,6 @@ const Vacancies = () => {
 
             {AllCountFilters(partnershipFilters) > 0 && (
               <p className="count_filters" id="count_filters_main">
-                {' '}
                 {AllCountFilters(partnershipFilters)}
               </p>
             )}
@@ -343,7 +320,18 @@ const Vacancies = () => {
             clickCategoryItem={clickCategoryItem}>
             Тип
           </PartnershipCategoryFilter>
-          <div className="filters_down">
+          <PartnershipCategoryFilter
+            category="cities"
+            onClickCategory={onClickCategory}
+            handleChange={handleChange}
+            openedCategories={openedCategories}
+            categoryFilters={partnershipFilters.cities}
+            inputFilter={inputStates.cities}
+            categoryList={cities}
+            clickCategoryItem={clickCategoryItem}>
+            Город
+          </PartnershipCategoryFilter>
+          <div className="filters_down div_filters_down">
             <button
               className="btn_reset"
               onClick={() => {

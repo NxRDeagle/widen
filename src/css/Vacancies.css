@@ -72,6 +72,7 @@
 .filters_list {
   z-index: 1;
   margin-left: 20px;
+  height: fit-content;
 }
 
 .filter_duration {
@@ -103,6 +104,14 @@
   max-height: 60px;
   margin: 5px 0 15px 0;
   opacity: 1;
+}
+
+.filter_cities {
+  height: 150px !important;
+  max-height: 300px;
+  margin: 5px 0 15px 0;
+  opacity: 1;
+  overflow: auto;
 }
 
 .vacancies_status_btns {
@@ -159,4 +168,9 @@
   position: fixed;
   bottom: 80px;
   right: 10px;
+}
+
+.div_filters_down {
+  background-color: white;
+  z-index: 1;
 }
