@@ -136,9 +136,9 @@ export function Conversion(type, stats, page = '') {
                 sign: stats.length > 180 ? stats.substr(0, 177) + '...' : stats
             };
             break;
-        //Конвертация количества непрочитанных сообщений
-        case 'chatUnreadCount':
-            element = stats.length > 100 ? '100+' : stats.length;
+        //Конвертация количества, если больше 100, то 100+
+        case 'hundredPlus':
+            element = stats > 100 ? '100+' : stats;
             break;
         //Конвертация времени
         case 'time':
@@ -171,39 +171,6 @@ export function Conversion(type, stats, page = '') {
     return element;
 }
 
-//Фильтр по тегам, кроме мероприятий
-export function OtherGlobalFilterHandler(tags, tagsFilter) {
-    if (!tagsFilter.length) {
-        return true;
-    }
-    for (let tag of tagsFilter) {
-        if (tags.includes(tag)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-//Фильтр по тегам мероприятий
-export function EventGlobalFilterHandler(eventTags, globalFilters) {
-    for (const [key, value] of Object.entries(globalFilters)) {
-        if (!value.length) {
-            continue;
-        }
-        else {
-            for (let index = 0; index < eventTags[key].length; index++) {
-                if (value.includes(eventTags[key][index])) {
-                    break;
-                }
-                if (index === eventTags[key].length - 1) {
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-};
-
 //Функция изменения цвета по нажатию
 export function ColorClick(element, classElement) {
     element.classList.contains(classElement) ?
@@ -224,3 +191,22 @@ export function getAllActiveChats() {
 export function getUser(userId) {
     return users_data.find((user) => user.userId === userId) || defaultUser;
 };
+
+//Функция, которая определяет, что человек выбрал фильтры
+export function getBoolCountFilter(globalFilter){
+    for(let key in globalFilter){
+        if(globalFilter[key].length > 0){
+            return true;
+        }
+    }
+    return false
+}
+
+//Подсчёт количества выбранных фильтров по всем категориям
+export function getCountAllCategoryFilter(globalFilter){
+    let count = 0;
+    for(let key in globalFilter){
+        count += globalFilter[key].length
+    }
+    return count;
+}

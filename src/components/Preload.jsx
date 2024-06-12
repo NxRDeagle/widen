@@ -1,11 +1,11 @@
 import React from 'react';
 
-import '../css/Preload.css';
+import '../scss/Preload.scss';
 
 const Preload = () => {
   return (
     <div className="preload_container">
-      <h1 className="preload_box">
+      <h1 className="preload_container_headerbox">
         <span>F</span>
         <span>L</span>
         <span>L</span>

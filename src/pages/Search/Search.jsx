@@ -5,9 +5,13 @@ import SearchInput from '../../global_components/search/SearchInput';
 
 import { mainContext } from '../../App';
 
-import { GlobalTags, CategoryBtn, GlobalStar, EventFilter } from './components/search-components';
+import { GlobalTags, CategoryBtn, GlobalStar } from './components/search-components';
 
-import './css/Search.css';
+import EventFilter from '../../global_components/event_filter/EventFilter';
+
+import { eventDataSet } from '../../global-constants/constants';
+
+import './scss/Search.scss';
 
 const Search = () => {
   const {
@@ -17,14 +21,10 @@ const Search = () => {
     globalRisingStars,
     globalSharks,
     globalEvents,
-    globalFilters,
-    dropGlobalFilter,
     goToPreview,
   } = React.useContext(mainContext);
 
   const [isLoaded, setIsLoaded] = React.useState(false); //comp
-
-  const [isFiltersOpen, setIsFiltersOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoaded(true);
@@ -32,20 +32,19 @@ const Search = () => {
 
   return (
     <>
-      <SearchInput placeholder="глобальный поиск" />
-      {globalFilters.tags.length > 0 && (
-        <div
-          style={{ filter: 'drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25))' }}
-          className="global_tags_container">
-          {globalFilters.tags.map((item, index) => {
-            return (
-              <GlobalTags key={index} onClick={() => dropGlobalFilter('tag', item)}>
-                {item}
-              </GlobalTags>
-            );
-          })}
-        </div>
-      )}
+      <SearchInput />
+      {/* {
+                globalFilters.tags.length > 0 &&
+                (
+                    <div style={{ filter: "drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25))" }} className='global_tags_container'>
+                        {
+                            globalFilters.tags.map((item, index) => {
+                                return <GlobalTags key={index} onClick={() => dropGlobalFilter("tag", item)}>{item}</GlobalTags>
+                            })
+                        }
+                    </div>
+                )
+            } */}
       <div className="search_category_box">
         <CategoryBtn category="globalCase">Кейсы</CategoryBtn>
         <CategoryBtn category="globalPost">Посты</CategoryBtn>
@@ -55,7 +54,7 @@ const Search = () => {
       </div>
       {activeGlobalSearch === 'globalCase' && (
         <div style={{ paddingBottom: '60px' }} className="global_search_container">
-          <div className="mainBackground">
+          <div className="main_background">
             {globalCases.map((globalCase) => {
               return <Newsware key={globalCase.newswareId} {...globalCase} />;
             })}
@@ -64,7 +63,7 @@ const Search = () => {
       )}
       {activeGlobalSearch === 'globalPost' && (
         <div style={{ paddingBottom: '60px' }} className="global_search_container">
-          <div className="mainBackground">
+          <div className="main_background">
             {globalPosts.map((globalPost) => {
               return <Newsware key={globalPost.newswareId} {...globalPost} />;
             })}
@@ -86,11 +85,8 @@ const Search = () => {
         </div>
       )}
       {activeGlobalSearch === 'globalEvent' && (
-        <div
-          className={
-            isFiltersOpen ? 'global_search_container set_margin' : 'global_search_container'
-          }>
-          <EventFilter isFiltersOpen={isFiltersOpen} setIsFiltersOpen={setIsFiltersOpen} />
+        <div className="global_search_container">
+          <EventFilter table={eventDataSet} />
 
           {globalEvents.map((item) => {
             return <Newsware {...item} key={item.newswareId} />;

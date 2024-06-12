@@ -4,10 +4,9 @@ import { mainContext } from '../../App';
 
 import { BackBtn } from '../NotFound/components/not_found_components';
 
-import './css/NotFound.css';
+import './scss/NotFound.scss';
 
 const NotFound = () => {
-
   const { goInput } = React.useContext(mainContext);
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { mainContext } from '../App';
 
-import '../css/Complaint.css';
+import '../scss/Complaint.scss';
 
 const Complaint = ({ complaint_post_id }) => {
   const { navigate } = React.useContext(mainContext);

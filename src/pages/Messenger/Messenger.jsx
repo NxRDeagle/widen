@@ -11,7 +11,7 @@ import {
 
 import { mainContext } from '../../App';
 
-import './css/Messenger.css';
+import './scss/Messenger.scss';
 
 const Messenger = () => {
   const { setOpenTabEditor, chatFilter, activeChats, chatActionsOpen, myProfile } =
@@ -66,7 +66,7 @@ const Messenger = () => {
     <>
       <TabEditor messengerStates={messengerStates} setMessengerStates={setMessengerStates} />
 
-      <SearchInput placeholder="глобальный поиск" />
+      <SearchInput />
 
       <div
         style={chatActionsOpen ? { filter: 'blur(7.5px)', pointerEvents: 'none' } : null}

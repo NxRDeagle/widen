@@ -5,6 +5,9 @@ import bg3 from '../img/spheres/bg3.jpg';
 import bg4 from '../img/spheres/bg4.jpg';
 import bg5 from '../img/spheres/bg5.jpg';
 
+import interest_data from '../data/interest_data.json';
+import russian_cities from '../data/russian_cities.json';
+
 export const defaultUser = {
     userId: 0,
     avatar: defaultAvatar,
@@ -73,3 +76,47 @@ for (let i = 0; i < 28; i++) {
     bgs.push(bgarray[i % 4])
 }
 export default bgs;
+
+//Датасет из категорий для фильтра мероприятий
+export const eventDataSet = [
+    {
+        code: 'tags',
+        name: 'Направление',
+        value: interest_data.map(i => i.name)
+    },
+    {
+        code: 'forms',
+        name: 'Форма участия',
+        value: ['Платная', 'Бесплатная', 'Волонтерство']
+    },
+    {
+        code: 'formats',
+        name: 'Формат',
+        value: ['Онлайн', 'Офлайн']
+    },
+    {
+        code: 'cities',
+        name: 'Город',
+        value: russian_cities.map(c => c.name)
+    }
+]
+
+//Датасет для кнопок выбора статуса в партнёрствах
+export const partenrshipBtns = [
+    {
+        code: 'opened',
+        name: 'Открыты',
+        count: 0
+    },
+    {
+        code: 'in_process',
+        name: 'В процессе',
+        count: 0
+    },
+    {
+        code: 'closed',
+        name: 'Закрыты',
+        count: 0
+    },
+    
+]

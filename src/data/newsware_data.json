@@ -1,8 +1,8 @@
 [
     {
-        "newswareId": 1,
+        "id": 1,
         "type": "post",
-        "authorId": 3,
+        "author_id": 5,
         "stats":{
             "likes": [3,5,6,8],
             "comments": [],
@@ -11,233 +11,43 @@
             "views": [3,5,6,8,15],
             "useful":[6,8]
         },
-        "imgs": ["https://papik.pro/uploads/posts/2023-03/1678351868_papik-pro-p-krutoi-risunok-dlya-oblozhki-7.jpg"],
-        "signImgs": ["Лутс гоу"],
+        "preview_text": "Всем привет рад вас всех видеть!",
+        "preview_image": "https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666336850_21-mykaleidoscope-ru-p-milie-cherepakhi-krasivo-23.jpg",
+        "media": [
+            {
+                "type": "image",
+                "content": "https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666336850_21-mykaleidoscope-ru-p-milie-cherepakhi-krasivo-23.jpg"
+            },
+            {
+                "type": "image",
+                "content": "https://cdn.trinixy.ru/pics3/20080915/podb/1/turtle_01.jpg"
+            },
+            {
+                "type": "text",
+                "content": "Всем привет рад вас всех видеть!"
+            },
+            {
+                "type": "image",
+                "content": "https://kartinki.pics/uploads/posts/2022-03/1648185529_25-kartinkin-net-p-cherepashka-kartinki-29.jpg"
+            },
+            {
+                "type": "text",
+                "content": "Черепашки моя слабость. Всем спасибо за внимание!!!"
+            }
+        ],
         "geoposition" : "Москва",
         "time" : "2023-09-12 01:38:53",
-        "tags": ["Крутыши","Крутое рисование"],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 2,
-        "type": "case",
-        "authorId": 5,
-        "stats":{
-            "likes": [6,8],
-            "comments": [1,2,3,4,5],
-            "favorites": [5,6],
-            "reposts": [],
-            "views": [1,2,3,4,5,6,8,11,12,19],
-            "useful":[1,6,8]
-        },
-        "imgs": ["https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663755871_9-mykaleidoscope-ru-p-appetitnie-pelmeni-yeda-krasivo-9.jpg"],
-        "signImgs": ["История пельменей"],
-        "geoposition" : "Общага",
-        "time" : "2022-09-12 01:38:53",
-        "tags": ["Крутой","Вкусный вкус","Кечунез"],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 3,
-        "type": "event",
-        "authorId": 6,
-        "stats":{
-            "likes": [6,8],
-            "comments": [6],
-            "favorites": [5,6],
-            "reposts": [],
-            "views": [5,6,8,15],
-            "useful":[8]
-        },
-        "imgs": ["https://cs2.livemaster.ru/storage/d1/a6/a58554b0163b43b747960b1c61hv--kantselyarskie-tovary-oblozhka-na-pasport.jpg"],
-        "signImgs": ["Приходи"],
-        "geoposition" : "Лос-Анджелес",
-        "time" : "2023-02-12 01:38:53",
-        "tags": [],
-        "eventTags":{
-            "tags" : ["Графический дизайн","Пупа"],
-            "forms": ["Платная"],
-            "formats": ["Онлайн"],
-            "cities": ["Тамбов","Пермь"]
-        }
-    },
-    {
-        "newswareId": 4,
-        "type": "post",
-        "authorId": 1,
-        "stats":{
-            "likes": [1,6,8],
-            "comments": [],
-            "favorites": [1,5,6],
-            "reposts": [],
-            "views": [1,5,6,8],
-            "useful":[1,6,8]
-        },
-        "imgs": ["https://i.yapx.cc/Mw7aT.gif","https://i.gifer.com/WS56.gif"],
-        "signImgs": ["Лёгкий распрыг","На выход"],
-        "geoposition" : "Пермь",
-        "time" : "2023-09-10 01:38:53",
-        "tags": ["Гивочки","Картиночки","Сочные сливочки"],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 5,
-        "type": "post",
-        "authorId": 17,
-        "stats":{
-            "likes": [12,14,2,18],
-            "comments": [],
-            "favorites": [],
-            "reposts": [],
-            "views": [2,12,14,18,17],
-            "useful":[12]
-        },
-        "imgs": ["https://cdn.fishki.net/upload/post/2019/03/15/2911238/podborka-15032019-037--kopirovaty.jpg"],
-        "signImgs": ["Единорог"],
-        "geoposition" : "Стамбул",
-        "time" : "2023-09-01 01:38:53",
-        "tags": [],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 6,
-        "type": "post",
-        "authorId": 18,
-        "stats":{
-            "likes": [1],
-            "comments": [],
-            "favorites": [],
-            "reposts": [2],
-            "views": [1,2,12,14,18],
-            "useful":[]
-        },
-        "imgs": ["https://fotorelax.ru/wp-content/uploads/2015/10/funny-animals-01.jpg","https://otkritkis.com/wp-content/uploads/2022/02/scale_1200-25.jpg"],
-        "signImgs": ["Зову всех","Или нет"],
-        "geoposition" : "Екатеринбург",
-        "time" : "2021-09-12 01:38:53",
-        "tags": ["В мире животных","Лютый движ"],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 7,
-        "type": "case",
-        "authorId": 13,
-        "stats":{
-            "likes": [],
-            "comments": [],
-            "favorites": [],
-            "reposts": [2],
-            "views": [2,12,14,18,13],
-            "useful":[]
-        },
-        "imgs": ["https://i.pinimg.com/originals/29/a3/b6/29a3b6efcc703a07a57b13a026b5c83f.jpg"],
-        "signImgs": ["Ленд_Крол"],
-        "geoposition" : "Москва",
-        "time" : "2023-02-23 01:38:53",
-        "tags": ["В мире животных","Лютый движ"],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 8,
-        "type": "case",
-        "authorId": 20,
-        "stats":{
-            "likes": [2,3],
-            "comments": [],
-            "favorites": [13],
-            "reposts": [2],
-            "views": [1,2,3,13,20],
-            "useful":[2,3]
-        },
-        "imgs": ["http://digiseller.ru/preview/1057982/p1_3303863_98c3c1b5.jpg"],
-        "signImgs": ["Платина"],
-        "geoposition" : "Сити",
-        "time" : "2018-02-23 01:38:53",
-        "tags": ["Кс Го","Игры"],
-        "eventTags":{
-            "tags" : [],
-            "forms": [],
-            "formats": [],
-            "cities": []
-        }
-    },
-    {
-        "newswareId": 9,
-        "type": "event",
-        "authorId": 12,
-        "stats":{
-            "likes": [6,8],
-            "comments": [6],
-            "favorites": [5,6],
-            "reposts": [],
-            "views": [5,6,8,15],
-            "useful":[6]
-        },
-        "imgs": ["https://kartinkin.net/uploads/posts/2022-03/1647077874_16-kartinkin-net-p-tusa-kartinki-16.jpg","https://talantikam.ru/800/600/https/www.vetenskaphalsa.se/wp-content/uploads/2015/03/COLOURBOX12780968.jpg"],
-        "signImgs": ["Намечается туса в Zoom, Она если чо онлайн, так что заплатите и проходите,если вам это интересно! Стоимость будет около 20к рупиев. Понимаю это дорого, но знайте всё с кайфом. Если что я не инфоциган","Мы будем обсуждать, как правильно наваливать боком и током!"],
-        "geoposition" : "Москва",
-        "time" : "2023-04-23 01:38:53",
-        "tags": [],
-        "eventTags":{
-            "tags" : ["Графический дизайн","Маркетинг"],
-            "forms": ["Платная"],
-            "formats": ["Онлайн"],
-            "cities": ["Тамбов","Пермь"]
-        }
-    },
-    {
-        "newswareId": 10,
-        "type": "event",
-        "authorId": 21,
-        "stats":{
-            "likes": [6,8],
-            "comments": [7,8],
-            "favorites": [5,6],
-            "reposts": [],
-            "views": [5,6,8,15,4,21],
-            "useful":[]
-        },
-        "imgs": ["https://gymnasia2.ru/wp-content/uploads/a/4/4/a44f23b4a2b1906467f3048a40918c1d.jpeg","https://dosuga.net/uploads/posts/2023-04/2.jpg","https://otkritkis.com/wp-content/uploads/2022/07/hr2rm.gif"],
-        "signImgs": ["Приглашаем всех в баню, платим все волонтёрим","С собой хорошее настроение и пиво!","Не забываем про волонтёрскую дань"],
-        "geoposition" : "Пермь",
-        "time" : "2022-02-23 01:38:53",
-        "tags": [],
-        "eventTags":{
-            "tags" : ["Графический дизайн","Моушн-дизайн"],
-            "forms": ["Волонтерство"],
-            "formats": ["Офлайн"],
-            "cities": ["Пермь"]
-        }
+        "tags": [
+            {
+                "name": "Направление",
+                "code": "tags",
+                "value": ["Крутыши","Крутое рисование"]
+            },
+            {
+                "name": "Кака",
+                "code": "tags",
+                "value": ["Крутыши","Крутое рисование"]
+            }
+        ]
     }
-
 ]

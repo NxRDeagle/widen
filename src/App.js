@@ -9,8 +9,8 @@ import { GlobalStates } from './global_states/global_states';
 
 import Modal from './global_components/modals/Modal';
 
-import './css/App.css';
-import './css/fontello.css';
+import './scss/App.scss';
+import './scss/fontello.scss';
 
 import Router from './page_routes/Router';
 
@@ -331,8 +331,6 @@ function App() {
         (scrollValue) => scrollValue.pathname === location.pathname,
       );
 
-      console.log(scrollValue);
-
       if (scrollValue) {
         window.scrollTo(0, scrollValue.scroll);
       } else {
@@ -394,8 +392,6 @@ function App() {
     localStorage.setItem('activeChat', JSON.stringify(appvalue.chatFilter));
   }, [appvalue.chatFilter]);
 
-  const [division, setDivision] = React.useState(0); // Текущий раздел (0 - гл. страница)
-
   return (
     <>
       <mainContext.Provider
@@ -409,8 +405,6 @@ function App() {
           ColorClick,
           getUser,
           msgText,
-          division,
-          setDivision,
         }}>
         <Modal />
         <Router />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../css/Footer.css';
+import '../scss/Footer.scss';
 
 import { mainContext, userId } from '../App';
 
@@ -26,7 +26,8 @@ const Footer = () => {
     replyDialogMsg,
     setFooterType,
     setForwardedDialogMsg,
-    forwardedDialogMsgs } = React.useContext(mainContext);
+    forwardedDialogMsgs,
+  } = React.useContext(mainContext);
 
   function footerItems(type) {
     switch (type) {
@@ -82,9 +83,9 @@ const Footer = () => {
                 </p>
               </li>
             </Link>
-            <Link to="/vacancies">
+            <Link to="/projects">
               <li>
-                {page === 'vacancies' ? (
+                {['projects', 'partnerships'].includes(page) ? (
                   <svg
                     width="25"
                     height="25"
@@ -111,11 +112,11 @@ const Footer = () => {
                 )}
                 <p
                   className={
-                    page === 'vacancies'
+                    page === 'projects'
                       ? 'footer_nav_sign footer_nav_sign_active'
                       : 'footer_nav_sign'
                   }>
-                  Вакансии
+                  Проекты
                 </p>
               </li>
             </Link>
@@ -252,7 +253,12 @@ const Footer = () => {
           <ul className="nav_comment_items" style={{ padding: '0 28px' }}>
             <li style={{ marginRight: '7px' }}>
               <div className="comment_user_avatar_box">
-                <img loading='lazy' className="avatar_picture" src={myProfile.avatar} alt="User Avatar" />
+                <img
+                  loading="lazy"
+                  className="avatar_picture"
+                  src={myProfile.avatar}
+                  alt="User Avatar"
+                />
               </div>
             </li>
             <li>
@@ -260,11 +266,14 @@ const Footer = () => {
                 <blockquote
                   ref={msgText}
                   onClick={() => {
-                    messageText === '' ? msgText.current.textContent = '' : msgText.current.textContent = messageText;
+                    messageText === ''
+                      ? (msgText.current.textContent = '')
+                      : (msgText.current.textContent = messageText);
                   }}
                   onBlur={() => {
                     if (messageText === '') {
-                      msgText.current.textContent = page === 'dialog' ? 'Сообщение...' : 'Комментировать...'
+                      msgText.current.textContent =
+                        page === 'dialog' ? 'Сообщение...' : 'Комментировать...';
                     }
                   }}
                   onInput={() => {
@@ -274,7 +283,7 @@ const Footer = () => {
                   contentEditable="true">
                   {page === 'dialog' ? 'Сообщение...' : 'Комментировать...'}
                 </blockquote>
-                <div className='chat_elements_box'>
+                <div className="chat_elements_box">
                   <svg
                     width="16"
                     height="18"
@@ -309,7 +318,11 @@ const Footer = () => {
                     style={{ marginRight: '16px' }}>
                     <path
                       d="M16.9736 9.00282C16.9736 8.7806 16.9143 8.5624 16.8019 8.37069C16.6895 8.17899 16.5281 8.02071 16.3342 7.91217L16.3259 7.90388L2.50712 0.514441C2.28491 0.39142 2.0305 0.33901 1.77776 0.36419C1.52502 0.38937 1.28595 0.490945 1.09238 0.65539C0.898812 0.819834 0.75993 1.03934 0.694229 1.28469C0.628528 1.53003 0.639126 1.78957 0.724612 2.02875L3.21264 8.99935L0.721094 15.9687C0.640292 16.1909 0.624736 16.4315 0.676264 16.6622C0.72779 16.893 0.84425 17.1041 1.0119 17.2708C1.0373 17.2963 1.06381 17.3206 1.09143 17.3438C1.28421 17.5078 1.52253 17.6089 1.77442 17.6335C2.02631 17.6582 2.27972 17.6052 2.50063 17.4817L16.3209 10.097L16.3292 10.0887C16.5233 9.98122 16.6853 9.82397 16.7986 9.63313C16.9118 9.44228 16.9723 9.22473 16.9736 9.00282ZM1.90926 16.3839L1.89876 16.3888L4.31623 9.62497L9.53612 9.62574C9.69906 9.62161 9.85393 9.55399 9.96773 9.4373C10.0815 9.32061 10.1452 9.16409 10.1453 9.0011C10.1453 8.83811 10.0817 8.68155 9.96795 8.5648C9.85421 8.44806 9.69937 8.38036 9.53643 8.37615L4.31655 8.37428L1.90194 1.60865L1.90967 1.61638L15.7229 9.00251L1.90926 16.3839Z"
-                      fill={messageText === '' && !replyDialogMsg && !forwardedDialogMsgs.length ? "#888888" : "#7E52EE"}
+                      fill={
+                        messageText === '' && !replyDialogMsg && !forwardedDialogMsgs.length
+                          ? '#888888'
+                          : '#7E52EE'
+                      }
                     />
                   </svg>
                 </div>
@@ -319,34 +332,58 @@ const Footer = () => {
         );
       case 'block':
         return (
-          <div className='block_user_box'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 16C6.89333 16 5.85333 15.7899 4.88 15.3696C3.90667 14.9493 3.06 14.3795 2.34 13.66C1.62 12.94 1.05013 12.0933 0.6304 11.12C0.210667 10.1467 0.000533333 9.10667 0 8C0 6.89333 0.210133 5.85333 0.6304 4.88C1.05067 3.90667 1.62053 3.06 2.34 2.34C3.06 1.62 3.90667 1.05013 4.88 0.6304C5.85333 0.210667 6.89333 0.000533333 8 0C9.10667 0 10.1467 0.210133 11.12 0.6304C12.0933 1.05067 12.94 1.62053 13.66 2.34C14.38 3.06 14.9501 3.90667 15.3704 4.88C15.7907 5.85333 16.0005 6.89333 16 8C16 9.10667 15.7899 10.1467 15.3696 11.12C14.9493 12.0933 14.3795 12.94 13.66 13.66C12.94 14.38 12.0933 14.9501 11.12 15.3704C10.1467 15.7907 9.10667 16.0005 8 16ZM8 14.4C9.78667 14.4 11.3 13.78 12.54 12.54C13.78 11.3 14.4 9.78667 14.4 8C14.4 7.28 14.2832 6.58667 14.0496 5.92C13.816 5.25333 13.4795 4.64 13.04 4.08L4.08 13.04C4.64 13.48 5.25333 13.8168 5.92 14.0504C6.58667 14.284 7.28 14.4005 8 14.4ZM2.96 11.92L11.92 2.96C11.36 2.52 10.7467 2.18347 10.08 1.9504C9.41333 1.71733 8.72 1.60053 8 1.6C6.21333 1.6 4.7 2.22 3.46 3.46C2.22 4.7 1.6 6.21333 1.6 8C1.6 8.72 1.71653 9.41333 1.9496 10.08C2.18267 10.7467 2.51947 11.36 2.96 11.92Z" fill="#CB2323" />
+          <div className="block_user_box">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none">
+              <path
+                d="M8 16C6.89333 16 5.85333 15.7899 4.88 15.3696C3.90667 14.9493 3.06 14.3795 2.34 13.66C1.62 12.94 1.05013 12.0933 0.6304 11.12C0.210667 10.1467 0.000533333 9.10667 0 8C0 6.89333 0.210133 5.85333 0.6304 4.88C1.05067 3.90667 1.62053 3.06 2.34 2.34C3.06 1.62 3.90667 1.05013 4.88 0.6304C5.85333 0.210667 6.89333 0.000533333 8 0C9.10667 0 10.1467 0.210133 11.12 0.6304C12.0933 1.05067 12.94 1.62053 13.66 2.34C14.38 3.06 14.9501 3.90667 15.3704 4.88C15.7907 5.85333 16.0005 6.89333 16 8C16 9.10667 15.7899 10.1467 15.3696 11.12C14.9493 12.0933 14.3795 12.94 13.66 13.66C12.94 14.38 12.0933 14.9501 11.12 15.3704C10.1467 15.7907 9.10667 16.0005 8 16ZM8 14.4C9.78667 14.4 11.3 13.78 12.54 12.54C13.78 11.3 14.4 9.78667 14.4 8C14.4 7.28 14.2832 6.58667 14.0496 5.92C13.816 5.25333 13.4795 4.64 13.04 4.08L4.08 13.04C4.64 13.48 5.25333 13.8168 5.92 14.0504C6.58667 14.284 7.28 14.4005 8 14.4ZM2.96 11.92L11.92 2.96C11.36 2.52 10.7467 2.18347 10.08 1.9504C9.41333 1.71733 8.72 1.60053 8 1.6C6.21333 1.6 4.7 2.22 3.46 3.46C2.22 4.7 1.6 6.21333 1.6 8C1.6 8.72 1.71653 9.41333 1.9496 10.08C2.18267 10.7467 2.51947 11.36 2.96 11.92Z"
+                fill="#CB2323"
+              />
             </svg>
-            <p className='block_user_sign'>Отправка сообщений ограничена</p>
+            <p className="block_user_box_sign">Отправка сообщений ограничена</p>
           </div>
-        )
+        );
       case 'editorMsg':
         return (
-          <div className='editor_msgs_box'>
-            <button onClick={setForwardedDialogMsg} className='editor_msgs_btn'>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none">
-                <path d="M5.97339 3.41337V0L0 5.97339L5.97339 11.9468V8.44808C10.2401 8.44808 13.2268 9.81343 15.3602 12.8001C14.5068 8.53342 11.9468 4.26671 5.97339 3.41337Z" fill="#BABABA" />
+          <div className="editor_msgs_box">
+            <button onClick={setForwardedDialogMsg} className="editor_msgs_box_btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="13"
+                viewBox="0 0 16 13"
+                fill="none">
+                <path
+                  d="M5.97339 3.41337V0L0 5.97339L5.97339 11.9468V8.44808C10.2401 8.44808 13.2268 9.81343 15.3602 12.8001C14.5068 8.53342 11.9468 4.26671 5.97339 3.41337Z"
+                  fill="#BABABA"
+                />
               </svg>
-              <p className='editor_msgs_btn_sign'>Переслать</p>
+              <p className="editor_msgs_box_btn_sign">Переслать</p>
             </button>
-            <button onClick={setReplyDialogMsg} className='editor_msgs_btn'>
-              <p className='editor_msgs_btn_sign'>Ответить</p>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none">
-                <path d="M9.16667 3.46667V0L15 6.06667L9.16667 12.1333V8.58C5 8.58 2.08333 9.96667 0 13C0.833334 8.66667 3.33333 4.33333 9.16667 3.46667Z" fill="#BABABA" />
+            <button onClick={setReplyDialogMsg} className="editor_msgs_box_btn">
+              <p className="editor_msgs_box_btn_sign">Ответить</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="13"
+                viewBox="0 0 16 13"
+                fill="none">
+                <path
+                  d="M9.16667 3.46667V0L15 6.06667L9.16667 12.1333V8.58C5 8.58 2.08333 9.96667 0 13C0.833334 8.66667 3.33333 4.33333 9.16667 3.46667Z"
+                  fill="#BABABA"
+                />
               </svg>
             </button>
           </div>
-        )
+        );
       default:
         return;
     }
-  };
+  }
 
   function unReadMessages() {
     let logic = false;
@@ -358,7 +395,7 @@ const Footer = () => {
       });
     });
     return logic;
-  };
+  }
 
   function sendMessage() {
     switch (page) {
@@ -367,45 +404,59 @@ const Footer = () => {
           if (replyDialogMsg || forwardedDialogMsgs.length) {
             editedChats({
               ...clickChat,
-              messages: [...clickChat.messages, {
-                companionId: userId,
-                message: messageText,
-                replies: replyDialogMsg ? [...changeMsgs] : [],
-                transplanted: forwardedDialogMsgs.length ? [...forwardedDialogMsgs] : [],
-                messageId: clickChat.messages.length + 1,
-                edited: false,
-                status: "unread",
-                time: new Date()
-              }]
+              messages: [
+                ...clickChat.messages,
+                {
+                  companionId: userId,
+                  message: messageText,
+                  replies: replyDialogMsg ? [...changeMsgs] : [],
+                  transplanted: forwardedDialogMsgs.length ? [...forwardedDialogMsgs] : [],
+                  messageId: clickChat.messages.length + 1,
+                  edited: false,
+                  status: 'unread',
+                  time: new Date(),
+                },
+              ],
             });
             setFooterType('text');
           } else {
-            messageText !== '' ? redactorMessage() :
-              setConfirmation(
-                `Вы уверены, что хотите удалить сообщение?`,
-                'deleteMsgs',
-                'Отмена',
-                'Удалить'
-              );
+            messageText !== ''
+              ? redactorMessage()
+              : setConfirmation(
+                  `Вы уверены, что хотите удалить сообщение?`,
+                  'deleteMsgs',
+                  'Отмена',
+                  'Удалить',
+                );
           }
-        }
-        else {
+        } else {
           if (messageText !== '') {
             editedChats({
               ...clickChat,
-              fullStatus : clickChat.messages.find((msg) => msg.status === 'unread' && msg.companionId === userId) ? 'unread' : 'read',
-              messages: [...clickChat.messages.map((msg) => {return msg.status === 'unread' && msg.companionId !== userId ? {...msg, status:'read'} : msg}), {
-                companionId: userId,
-                message: messageText,
-                replies: [],
-                transplanted: [],
-                messageId: clickChat.messages.length + 1,
-                edited: false,
-                status: "unread",
-                time: new Date()
-              }]
+              fullStatus: clickChat.messages.find(
+                (msg) => msg.status === 'unread' && msg.companionId === userId,
+              )
+                ? 'unread'
+                : 'read',
+              messages: [
+                ...clickChat.messages.map((msg) => {
+                  return msg.status === 'unread' && msg.companionId !== userId
+                    ? { ...msg, status: 'read' }
+                    : msg;
+                }),
+                {
+                  companionId: userId,
+                  message: messageText,
+                  replies: [],
+                  transplanted: [],
+                  messageId: clickChat.messages.length + 1,
+                  edited: false,
+                  status: 'unread',
+                  time: new Date(),
+                },
+              ],
             });
-          };
+          }
         }
         setMessageText();
         msgText.current.textContent = 'Сообщение...';
@@ -413,10 +464,16 @@ const Footer = () => {
       default:
         return;
     }
-  };
+  }
 
   return (
-    <footer style={page === 'dialog' ? { backgroundColor: 'transparent' } : null} className={isPreview || confirmationOpen || chatActionsOpen ? 'foot_container foot_notview' : 'foot_container'}>
+    <footer
+      style={page === 'dialog' ? { backgroundColor: 'transparent' } : null}
+      className={
+        isPreview || confirmationOpen || chatActionsOpen
+          ? 'foot_container foot_notview'
+          : 'foot_container'
+      }>
       {footerItems(footType)}
     </footer>
   );

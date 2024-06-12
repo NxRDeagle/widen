@@ -1,121 +1,138 @@
 import { useContext, createContext, useState } from 'react';
 
-import { Conversion, OtherGlobalFilterHandler, EventGlobalFilterHandler, getUser } from '../../global_function/function';
+import { Conversion, getUser } from '../../global_function/function';
 
-import { AuthorNewsware, PostCard, EventCard, CaseCard, NewswareIcons, Tags } from './components/newsware_components';
+import PostCard from './cards/post-card/PostCard';
+
+import { NewswareIcons, Tags } from './components/newsware_components';
 
 import { mainContext } from '../../App';
 
-import './css/Newsware.css';
+import './scss/Newsware.scss';
 
 export const NewswareContext = createContext();
 
 const Newsware = (props) => {
-    const { page,
-        myProfile,
-        goToComments,
-        globalFilters,
-        clickGlobalFilter } = useContext(mainContext);
+  const { page, myProfile, goToComments } = useContext(mainContext);
 
-    const {
-        full = false,
-        type = 'post',
-        newswareId = 0,
-        authorId = 0,
-        imgs = [
-            'https://fikiwiki.com/uploads/posts/2022-02/1645041619_8-fikiwiki-com-p-ya-v-shoke-prikolnie-kartinki-9.jpg',
-        ],
-        signImgs = ['Пост не найден :('],
-        stats = {
-            likes: [],
-            comments: [],
-            favorites: [],
-            reposts: [],
-            views: [],
-            useful: [],
-        },
-        geoposition = 'Тридевятое царство',
-        time = new Date(),
-        tags = [],
-        eventTags = {},
-    } = props;
+  const {
+    full = false,
+    time = new Date(),
+    type = 'post',
+    id = 0,
+    author_id = 0,
+    stats = {
+      likes: [],
+      comments: [],
+      favorites: [],
+      reposts: [],
+      views: [],
+      useful: [],
+    },
+    tags = [],
+  } = props;
 
-    //Стейты для статистики новостной ленты
-    const [newswareStates, setNewswareStates] = useState({
-        activeLike: stats.likes.includes(myProfile.userId),
-        activeFavorite: stats.favorites.includes(myProfile.userId),
-        isUseful: stats.useful.includes(myProfile.userId),
-        clickUseful: stats.likes.includes(myProfile.userId) || stats.useful.includes(myProfile.userId),
-    });
+  //Стейты для статистики новостной ленты
+  const [newswareStates, setNewswareStates] = useState({
+    activeLike: stats.likes.includes(myProfile.userId),
+    activeFavorite: stats.favorites.includes(myProfile.userId),
+    isUseful: stats.useful.includes(myProfile.userId),
+    clickUseful: stats.likes.includes(myProfile.userId) || stats.useful.includes(myProfile.userId),
+  });
 
-    let statsCount = {};
+  let statsCount = {};
 
-    for (const key in stats) {
-        statsCount[key] = Conversion('count', stats[key].length);
+  for (const key in stats) {
+    statsCount[key] = Conversion('count', stats[key].length);
+  }
+
+  //Получение автора новости
+  const author = getUser(author_id);
+
+  //Изменение статистики новости
+  const onClickIcon = (icon) => {
+    console.log(icon);
+    switch (icon) {
+      case 'icon-like':
+        stats.likes.includes(myProfile.userId)
+          ? (stats.likes = stats.likes.filter((obj) => {
+              return obj !== myProfile.userId;
+            }))
+          : stats.likes.push(myProfile.userId);
+        setNewswareStates({
+          ...newswareStates,
+          activeLike: !newswareStates.activeLike,
+        });
+        break;
+      case 'icon-comment':
+        goToComments(id);
+        break;
+      case 'icon-repost':
+        break;
+      case 'icon-flag':
+        stats.favorites.includes(myProfile.userId)
+          ? (stats.favorites = stats.favorites.filter((obj) => {
+              return obj !== myProfile.userId;
+            }))
+          : stats.favorites.push(myProfile.userId);
+        setNewswareStates({
+          ...newswareStates,
+          activeFavorite: !newswareStates.activeFavorite,
+        });
+        break;
+      case 'icon-useful':
+        stats.useful.includes(myProfile.userId)
+          ? (stats.useful = stats.useful.filter((obj) => {
+              return obj !== myProfile.userId;
+            }))
+          : stats.useful.push(myProfile.userId);
+        setNewswareStates({
+          ...newswareStates,
+          isUseful: !newswareStates.isUseful,
+        });
+        setTimeout(() => {
+          setNewswareStates({
+            ...newswareStates,
+            clickUseful: true,
+          });
+        }, 500);
+        break;
+      default:
+        return;
     }
+  };
 
-    //Получение автора новости
-    const userProfile = getUser(authorId);
-
-    //Изменение статистики новости
-    const onClickIcon = (icon) => {
-        switch (icon) {
-            case 'icon-like':
-                stats.likes.includes(myProfile.userId)
-                    ? (stats.likes = stats.likes.filter((obj) => {
-                        return obj !== myProfile.userId;
-                    }))
-                    : stats.likes.push(myProfile.userId);
-                setNewswareStates({
-                    ...newswareStates,
-                    activeLike: !newswareStates.activeLike,
-                });
-                break;
-            case 'icon-comment':
-                goToComments(newswareId);
-                break;
-            case 'icon-repost':
-                break;
-            case 'icon-flag':
-                stats.favorites.includes(myProfile.userId)
-                    ? (stats.favorites = stats.favorites.filter((obj) => {
-                        return obj !== myProfile.userId;
-                    }))
-                    : stats.favorites.push(myProfile.userId);
-                setNewswareStates({
-                    ...newswareStates,
-                    activeFavorite: !newswareStates.activeFavorite,
-                });
-                break;
-            case 'icon-useful':
-                stats.useful.includes(myProfile.userId)
-                    ? (stats.useful = stats.useful.filter((obj) => {
-                        return obj !== myProfile.userId;
-                    }))
-                    : stats.useful.push(myProfile.userId);
-                setNewswareStates({
-                    ...newswareStates,
-                    isUseful: !newswareStates.isUseful,
-                });
-                setTimeout(() => {
-                    setNewswareStates({
-                        ...newswareStates,
-                        clickUseful: true,
-                    });
-                }, 500);
-                break;
-            default:
-                return;
-        }
-    };
-
-    return (
+  return (
+    <div className="newsware-box">
+      {type === 'post' && <PostCard full={full} {...author} {...props} />}
+      {full && (
         <>
-            {
-                (
-                    OtherGlobalFilterHandler(tags, globalFilters.tags) ||
-                    EventGlobalFilterHandler(eventTags, globalFilters)
-                )
+          {tags.map((t, idx) => {
+            return (
+              <div key={idx} className="newsware-tags-box">
+                <p className="newsware-tags-box__category">{t.name}:</p>
+                {t.value.map((v, idx) => {
+                  return (
+                    <Tags
+                      key={idx}
+                      onClick={(e) => {
+                        alert('А');
+                      }}>
+                      {v}
+                    </Tags>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </>
+      )}
+      {/* {
+                // (
+                //     OtherGlobalFilterHandler(tags, globalFilters.tags) ||
+                //     EventGlobalFilterHandler(eventTags, globalFilters)
+                // )
+                true
                 &&
                 (
                     <div className={full ? 'newsware_item open_newsware_item' : 'newsware_item'}>
@@ -201,26 +218,26 @@ const Newsware = (props) => {
                                 </>
                             )
                         }
+                    */}
+      <div
+        className="newsware_icons"
+        onClick={(e) => {
+          if (!e.target.getAttribute('name')) {
+            return;
+          } else {
+            onClickIcon(e.target.getAttribute('name').split(' ')[0]);
+          }
+        }}>
+        <NewswareIcons
+          full={full}
+          newswareStates={newswareStates}
+          setNewswareStates={setNewswareStates}
+          stats={stats}></NewswareIcons>
+      </div>
 
-                        <div
-                            className="newsware_icons"
-                            onClick={(e) => {
-                                if (!e.target.getAttribute('name')) {
-                                    return;
-                                } else {
-                                    onClickIcon(e.target.getAttribute('name').split(' ')[0]);
-                                }
-                            }}
-                        >
-                            <NewswareIcons full={full} newswareStates={newswareStates} setNewswareStates={setNewswareStates} stats={stats}></NewswareIcons>
-                        </div>
-
-                        <p className="newsware_time">{Conversion('time', new Date(time), page)}</p>
-                    </div>
-                )
-            }
-        </>
-    )
+      <p className="newsware_time">{Conversion('time', new Date(time), page)}</p>
+    </div>
+  );
 };
 
 export default Newsware;

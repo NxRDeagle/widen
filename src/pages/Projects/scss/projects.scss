@@ -1,0 +1,61 @@
+.projects-header {
+    text-align: center;
+    margin: 1.2em auto;
+    width: 100%;
+    font-weight: 700;
+    font-size: 30px;
+    color: black;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    overflow-y: auto;
+    min-height: 80vh;
+
+    &_btn-box {
+        position: relative; //Потом не забыть убрать, когда все разделы появятся
+        height: 160px;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 20px;
+        background-color: white;
+        box-shadow: 0 4px 15px 0 #7e52ee;
+
+        //Тоже не забыть уьрать
+        &:disabled{
+            background-color: #888787;
+            box-shadow: none;
+        }
+
+        &__head {
+            font-weight: 400;
+            font-size: 20px;
+            color: black;
+        }
+
+        &__caption {
+            font-weight: 400;
+            font-size: 12px;
+            color: #545454;
+            margin-top: 20px;
+        }
+
+        //Убрать, после завершения всех разделов
+        &__note {
+            position: absolute;
+            right: 30px;
+            bottom: 20px;
+            font-weight: 400;
+            font-size: 12px;
+            color: #545454;
+        }
+    }
+}
