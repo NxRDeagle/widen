@@ -5,7 +5,7 @@
   background: url('../img/backInputColor.jpg');
   background-size: cover;
 
-  ._headerbox {
+  &_headerbox {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -28,19 +28,19 @@
   }
 }
 
-.preload_box span:nth-child(2) {
+.preload_container_headerbox span:nth-child(2) {
   animation-delay: 0.1s;
 }
 
-.preload_box span:nth-child(3) {
+.preload_container_headerbox span:nth-child(3) {
   animation-delay: 0.2s;
 }
 
-.preload_box span:nth-child(4) {
+.preload_container_headerbox span:nth-child(4) {
   animation-delay: 0.3s;
 }
 
-.preload_box span:nth-child(5) {
+.preload_container_headerbox span:nth-child(5) {
   animation-delay: 0.4s;
 }
 

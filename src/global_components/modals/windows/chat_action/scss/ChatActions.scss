@@ -1,4 +1,5 @@
-.chat_actions_list {
+.chat_actions {
+  &_list {
     position: relative;
     list-style: none;
     height: fit-content;
@@ -10,15 +11,15 @@
     border-radius: 10px;
     transform: translate(-50%, -1000%);
     opacity: 0;
-    transition: transform .4s ease-in-out, opacity .2s ease-in-out;
-}
+    transition: transform 0.4s ease-in-out, opacity 0.2s ease-in-out;
 
-.chat_actions_list_open{
-    transform: translate(-50%, -50%);
-    opacity: 1;
-}
+    &_open {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
 
-.chat_actions_name {
+  &_name {
     text-align: center;
     width: 100%;
     padding: 19px 0 10px 0;
@@ -27,42 +28,43 @@
     font-weight: 400;
     line-height: normal;
     color: black;
-}
+  }
 
-.chat_actions_item {
+  &_item {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid #BABABA;
+    border-bottom: 1px solid #bababa;
     height: 42px;
     padding-left: 14px;
-}
 
-.chat_actions_item_active{
-    border-bottom: 1px solid var(--color_active);
-    background-color: var(--color_active);
-}
+    &_active {
+      border-bottom: 1px solid var(--color_active);
+      background-color: var(--color_active);
 
-.chat_actions_item_active p{
-    color: white !important;
-}
+      p {
+        color: white !important;
+      }
 
-.chat_actions_item_active path{
-    fill: white;
-}
+      path {
+        fill: white;
+      }
+    }
 
-.chat_actions_item:last-child {
-    border: none !important;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
+    &_sign {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: black;
+      margin-left: 8px;
+    }
 
-.chat_actions_item_sign {
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: black;
-    margin-left: 8px;
+    &:last-child {
+      border: none !important;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
 }
