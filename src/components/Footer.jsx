@@ -34,7 +34,7 @@ const Footer = () => {
       case 'navigation':
         return (
           <ul className="nav_icon_items">
-            <Link to="/">
+            <Link to="/home">
               <li>
                 {page === 'home' || page === 'search' ? (
                   <svg

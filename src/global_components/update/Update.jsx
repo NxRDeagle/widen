@@ -14,7 +14,7 @@ export default class ProfileUpdate extends React.Component {
       : null;
     const profileStatus = document.querySelector('.profile_status')
       ? document.querySelector('.profile_status')
-      : null;
+      : document.createElement('div');
 
     let screenY = null;
     let clientTop = null;
@@ -75,7 +75,7 @@ export default class ProfileUpdate extends React.Component {
           statusOpacity = 1;
           profileAvatar.style.width = avatarWidth + 'px';
           profileAvatar.style.height = avatarHeight + 'px';
-          profileStatus.style.opacity = statusOpacity;
+          profileAvatar.style.opacity = statusOpacity;
         }
       });
     }

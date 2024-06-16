@@ -17,7 +17,7 @@ const Comments = () => {
 
   //Достаём нужную новость, которая развернулась
   const newsware =
-    newsware_data.find((obj) => obj.newswareId === +getParams.get('newsware')) || defaultPost;
+    newsware_data.find((obj) => obj.id === +getParams.get('newsware')) || defaultPost;
 
   //Кол-во комментов
   const commentsCount = Conversion('count', newsware.stats.comments.length);

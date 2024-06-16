@@ -1,0 +1,42 @@
+.btn-loader {
+  display: block;
+  font-weight: 400;
+  font-size: 15px;
+  color: #bababa;
+  margin-top: 20px;
+  width: 80%;
+  text-align: center;
+
+  &__circle {
+    color: #bababa;
+  }
+}
+
+.circle {
+  &--1 {
+    animation: btnLoaderSwitch 0.8s infinite;
+  }
+
+  &--2 {
+    animation: btnLoaderSwitch 0.8s infinite;
+    animation-delay: 0.8s !important;
+  }
+
+  &--3 {
+    animation: btnLoaderSwitch 0.8s infinite;
+    animation-delay: 1.6s !important;
+  }
+}
+
+@keyframes btnLoaderSwitch {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+    color: #7e52ee;
+  }
+  100% {
+    transform: scale(0);
+  }
+}

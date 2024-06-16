@@ -15,23 +15,23 @@ import Authorisation from '../pages/Authorisation/Authorisation';
 import Projects from '../pages/Projects/Projects';
 
 const Router = () => {
-    return (
-        <Routes>
-            <Route index path="/" element={<Home />} />
-            <Route path="/comments" element={<Comments />} />
-            {/* <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} index={appvalue.fullImgIndex} />} /> */}
-            <Route path="/search" element={<Search />} />
-            <Route path="/partnerships" element={<Vacancies />} />
-            <Route path="/messenger" element={<Messenger />} />
-            <Route path="/forum" element={<Forum />} />
-            <Route path="/profile/:nickname" element={<Profile />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/complaint" element={<Complaint />} />
-            <Route path="/dialog" element={<Dialog />} />
-            <Route path="/login" element={<Authorisation />} />
-            <Route path='/projects' element={<Projects />} />
-        </Routes>
-    )
-}
+  return (
+    <Routes>
+      <Route index path="/home" element={<Home />} />
+      <Route path="/comments" element={<Comments />} />
+      {/* <Route path="/full_image" element={<FullMode imgs={appvalue.fullImages} index={appvalue.fullImgIndex} />} /> */}
+      <Route path="/search" element={<Search />} />
+      <Route path="/partnerships" element={<Vacancies />} />
+      <Route path="/messenger" element={<Messenger />} />
+      <Route path="/forum" element={<Forum />} />
+      <Route path="/profile/:nickname" element={<Profile />} />
+      <Route path="*" element={<NotFound />} />
+      <Route path="/complaint" element={<Complaint />} />
+      <Route path="/dialog" element={<Dialog />} />
+      <Route path="/login" element={<Authorisation />} />
+      <Route path="/projects" element={<Projects />} />
+    </Routes>
+  );
+};
 
 export default Router;

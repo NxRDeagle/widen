@@ -154,7 +154,8 @@
   }
 }
 
-.authoristaion_form .authoristaion_text_input {
+.authorisation_form,
+.authorisation_text_input {
   width: 90%;
   height: 43px;
   margin-top: 20px;
@@ -176,9 +177,9 @@
   right: 14px;
 }
 
-.authoristaion_text_input:focus,
-.authoristaion_password_input:focus,
-.authoristaion_code_input:focus {
+.authorisation_text_input:focus,
+.authorisation_password_input:focus,
+.authorisation_code_input:focus {
   outline: none;
   box-shadow: 0px 4px 15px 0px var(--color_active);
   -webkit-box-shadow: 0px 4px 15px 0px var(--color_active);

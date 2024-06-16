@@ -13,20 +13,21 @@ export const SubmitBtn = ({ children }) => {
 }
 
 //Поля для ввода текста
-export const AuthInput = ({ placeholder, onChange, onFocus, className, name }) => {
+export const AuthInput = ({ placeholder, onChange, onFocus, className, name, value = '' }) => {
     return (
-        <input data-login name={name} onChange={onChange} onFocus={onFocus} type='text' placeholder={placeholder} className={className} />
+        <input data-login value={value} name={name} onChange={onChange} onFocus={onFocus} type='text' placeholder={placeholder} className={className} />
     )
 }
 
 //Поле для ввода пароля
-export const PswdInput = ({ placeholder, onChange, onFocus, className, name }) => {
+export const PswdInput = ({ placeholder, onChange, onFocus, className, name, value='' }) => {
     const [isVisiblePswd, setIsVisiblePswd] = useState(false)
     return (
         <div className='authoristaion_password_box'>
             <input
                 onChange={onChange}
                 onFocus={onFocus}
+                value={value}
                 type={isVisiblePswd ? 'text' : 'password'}
                 placeholder={placeholder}
                 className={className}
